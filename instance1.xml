@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">
+    
+    <!-- Complex program with repetitions and loops -->
+    
+    <title>Complex Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <author>
+        <firstName>Matthias</firstName>
+        <lastName>MccCurdy</lastName>
+    </author>
+    <creationDate>2022-06-30</creationDate>
+    <poolLength>25</poolLength>
+    <poolLengthUnit>meters</poolLengthUnit>
+    <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+    
+    <!-- Examples of a veriety of instructions -->
+
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <rest><afterStop>PT20S</afterStop></rest>
+        <intensity><staticIntensity><precentageEffort>70</precentageEffort></staticIntensity></intensity>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <rest><sinceStart>PT1M45S</sinceStart></rest>
+        <intensity><staticIntensity><precentageEffort>70</precentageEffort></staticIntensity></intensity>
+        <stroke><kicking>
+            <orientation>front</orientation>
+            <legMovement>flutter</legMovement>
+        </kicking></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>400</lengthAsDistance>
+        <rest><inOut>3</inOut></rest>
+        <intensity>
+            <startIntensity>
+                <precentageEffort>60</precentageEffort>
+            </startIntensity>
+            <stopIntensity>
+                <precentageEffort>100</precentageEffort>
+            </stopIntensity>
+        </intensity>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    
+    <!-- An example of a simple repetition -->
+    <!-- It uses IM as the repetition stroke, so 100FL, 100BK, 100BR, 100FR -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <stroke><standardStroke>individualMedley</standardStroke></stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                <intensity><staticIntensity><zone>tempo</zone></staticIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- Example of a repeition changing intensity.  -->
+    <!-- This would be a build exercise -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <intensity>
+                <startIntensity><precentageEffort>60</precentageEffort></startIntensity>
+                <stopIntensity><precentageEffort>100</precentageEffort></stopIntensity>
+            </intensity>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <breath>5</breath>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- Exmaple of a repeition inside a repetition -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <lengthAsDistance>50</lengthAsDistance>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                    <instruction>
+                        <lengthAsDistance>50</lengthAsDistance>
+                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- some basic instructions -->
+    <instruction>
+        <lengthAsTime>PT2M30S</lengthAsTime>
+        <lenghUnit>time</lenghUnit>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsTime>PT1M30S</lengthAsTime>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>8</lengthAsDistance>
+        <lenghUnit>laps</lenghUnit>
+        <intensity><staticIntensity><zone>endurance</zone></staticIntensity></intensity>
+        <stroke><standardStroke>backstroke</standardStroke></stroke>
+    </instruction>
+</program>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="swiML.xsd">
+    <!-- This program demonstrates only basic instructions -->
+    <!-- Id doesn't have any repetitions or pyramids -->
+    
+    <title>Simple Program with only direct instructions</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <author>
+        <firstName>Christine</firstName>
+        <lastName>McCurdy</lastName>
+        <email>christine@mccurdy.com</email>
+    </author>
+    <programDescription>A short program to warm up.</programDescription>
+    <creationDate>2022-07-04</creationDate>
+    <poolLength>25</poolLength>
+    <poolLengthUnit>meters</poolLengthUnit>
+    <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <intensity><staticIntensity><precentageEffort>70</precentageEffort></staticIntensity></intensity>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <breath>3</breath>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+        <instructionDescription>Focus on body position</instructionDescription>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>200</lengthAsDistance>
+        <intensity><staticIntensity><zone>endurance</zone></staticIntensity></intensity>
+        <stroke><kicking>
+            <orientation>front</orientation>
+            <legMovement>flutter</legMovement>
+        </kicking></stroke>
+        <equipment>fins</equipment>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <intensity>
+            <startIntensity><precentageEffort>70</precentageEffort></startIntensity>
+            <stopIntensity><precentageEffort>100</precentageEffort></stopIntensity>
+        </intensity>
+        <stroke><standardStroke>individualMedley</standardStroke></stroke>
+        <instructionDescription>Focus on underwater phase</instructionDescription>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke><drill>
+            <drillNameType>123</drillNameType>
+            <drillStroke>freestyle</drillStroke>
+        </drill></stroke>
+    </instruction>
+</program>
