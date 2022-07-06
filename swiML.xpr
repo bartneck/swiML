@@ -10,31 +10,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>instance1.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swimXMLSchema01</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>instance2.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swimXMLSchema01</String>
+                                        <String>swiMLSchema</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -50,31 +30,11 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>swiML.xsd</String>
+                                    <String>instance1.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swimXMLSchema01</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>swimXMLSchema01.xsd</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swimXMLSchema01</String>
+                                        <String>swiMLSchema</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -98,7 +58,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>swimXMLSchema01</String>
+                                    <String>swiMLSchema</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -134,10 +94,10 @@
                                     <Boolean>true</Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean>false</Boolean>
+                                    <Boolean>true</Boolean>
                                 </field>
                                 <field name="outputResource">
-                                    <null/>
+                                    <String>${cfn}.html</String>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
                                     <Boolean>false</Boolean>
@@ -182,7 +142,7 @@
             </serialized>
         </options>
     </meta>
-    <projectTree name="swimXML.xpr">
+    <projectTree name="swiML.xpr">
         <folder path="."/>
     </projectTree>
 </project>

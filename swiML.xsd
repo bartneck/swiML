@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" version="0.1"  
-    >
+    vc:minVersion="1.1" version="0.1">
     <!-- parking the namespace for now. Not used yet.
     targetNamespace="http://swiML.bartneck.de"
     xmlns="http://swiML.bartneck.de"  
-    -->    
-    
+    -->
+
     <xs:element name="program">
 
         <!-- ====================================================== -->
@@ -56,7 +55,8 @@
                 </xs:element>
                 <xs:element minOccurs="1" name="creationDate" type="xs:date" maxOccurs="1">
                     <xs:annotation>
-                        <xs:documentation>The date on which the program was created.</xs:documentation>
+                        <xs:documentation>The date on which the program was
+                            created.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <xs:element minOccurs="1" name="poolLength" type="xs:nonNegativeInteger"
@@ -79,19 +79,21 @@
                 <xs:element name="defaultInstructionLengthUnit" minOccurs="1" maxOccurs="1"
                     type="lengthUnitType">
                     <xs:annotation>
-                        <xs:documentation>All length information for all instruction will use this unit.</xs:documentation>
+                        <xs:documentation>All length information for all instruction will use this
+                            unit.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                
+
                 <!-- ====================================================== -->
                 <!-- The main element(s) for each program. Each instruction can contain instructions. This is recursion. -->
                 <!-- This is the main recursive element for a program -->
                 <!-- ====================================================== -->
-                
+
                 <xs:element name="instruction" type="instructionType" minOccurs="1"
                     maxOccurs="unbounded">
                     <xs:annotation>
-                        <xs:documentation>The basic elements for programs. Each instruction defines what to swim.</xs:documentation>
+                        <xs:documentation>The basic elements for programs. Each instruction defines
+                            what to swim.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
             </xs:sequence>
@@ -101,7 +103,7 @@
     <!-- ====================================================== -->
     <!-- The types used for the meta information -->
     <!-- ====================================================== -->
-    
+
     <!-- The definition of the valid email address -->
     <xs:simpleType name="emailAddress">
         <xs:annotation>
@@ -136,8 +138,8 @@
     <!-- Units of measurement for pool length -->
     <xs:simpleType name="poolLengthUnits">
         <xs:annotation>
-            <xs:documentation>The unit of measurement for the length of the target
-                pool (meter or yards).</xs:documentation>
+            <xs:documentation>The unit of measurement for the length of the target pool (meter or
+                yards).</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
@@ -159,59 +161,65 @@
     <!-- The basic type for all instructions. It can be either a -->
     <!-- process element or a direction instruction on what to swim -->
     <!-- ====================================================== -->
-    
+
     <!-- The fundamental building block of all swimmming programs -->
     <xs:complexType name="instructionType" mixed="true">
         <xs:annotation>
-            <xs:documentation>An instruction can consiset of process or a direct instruction on what to swim.</xs:documentation>
+            <xs:documentation>An instruction can consiset of process or a direct instruction on what
+                to swim.</xs:documentation>
         </xs:annotation>
-            <xs:choice>
+        <xs:choice>
+            <xs:annotation>
+                <xs:documentation>The different types of instructions,</xs:documentation>
+            </xs:annotation>
+            <!-- Process based elements for instructions -->
+            <xs:element name="repetition" type="repetitionType">
                 <xs:annotation>
-                    <xs:documentation>The different types of instructions,</xs:documentation>
+                    <xs:documentation>Instruction process element to repeat enclosed
+                        instructions.</xs:documentation>
                 </xs:annotation>
-                <!-- Process based elements for instructions -->
-                <xs:element name="repetition" type="repetitionType">
+            </xs:element>
+            <xs:element name="pyramid" type="pyramidType">
+                <xs:annotation>
+                    <xs:documentation>Instruction process element to swim a
+                        pyramid.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <!-- Direct instruction on what to swim -->
+            <xs:sequence>
+                <xs:annotation>
+                    <xs:documentation>Sequence of basic elements for an
+                        instruction.</xs:documentation>
+                </xs:annotation>
+                <!-- Length as either distance or time -->
+                <xs:choice>
                     <xs:annotation>
-                        <xs:documentation>Instruction process element to repeat enclosed instructions.</xs:documentation>
+                        <xs:documentation>Length can be descriped as distance or
+                            time.</xs:documentation>
                     </xs:annotation>
-                </xs:element>
-                <xs:element name="pyramid" type="pyramidType">
-                    <xs:annotation>
-                        <xs:documentation>Instruction process element to swim a pyramid.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-                <!-- Direct instruction on what to swim -->
-                <xs:sequence>
-                    <xs:annotation>
-                        <xs:documentation>Sequence of basic elements for an instruction.</xs:documentation>
-                    </xs:annotation>
-                    <!-- Length as either distance or time -->
-                    <xs:choice>
+                    <xs:element name="lengthAsDistance" type="xs:nonNegativeInteger">
                         <xs:annotation>
-                            <xs:documentation>Length can be descriped as distance or time.</xs:documentation>
-                        </xs:annotation>
-                        <xs:element name="lengthAsDistance" type="xs:nonNegativeInteger">
-                            <xs:annotation>
-                                <xs:documentation>Length of instruction as distance.</xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                        <xs:element name="lengthAsTime" type="xs:duration">
-                            <xs:annotation>
-                                <xs:documentation>Duration starts with PT followed by int M and int
-                                    S. For example PT1M30S for 1:30.</xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
-                    </xs:choice>
-                    <!-- optional length unit if different from default described in the meta information -->
-                    <xs:element name="lenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                            <xs:documentation>Length unit if different from program default.</xs:documentation>
+                            <xs:documentation>Length of instruction as distance.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <!-- Common elements for instrucionts -->
-                    <xs:group ref="instructionGroup"/>
-                </xs:sequence>
-            </xs:choice>
+                    <xs:element name="lengthAsTime" type="xs:duration">
+                        <xs:annotation>
+                            <xs:documentation>Duration starts with PT followed by int M and int S.
+                                For example PT1M30S for 1:30.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+                <!-- optional length unit if different from default described in the meta information -->
+                <xs:element name="lenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Length unit if different from program
+                            default.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <!-- Common elements for instrucionts -->
+                <xs:group ref="instructionGroup"/>
+            </xs:sequence>
+        </xs:choice>
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -228,14 +236,16 @@
             </xs:element>
             <xs:element name="intensity" minOccurs="0" maxOccurs="1" type="intensityProfile">
                 <xs:annotation>
-                    <xs:documentation>The intensity at which to swim the instruction.</xs:documentation>
+                    <xs:documentation>The intensity at which to swim the
+                        instruction.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
             <!-- to do: cross check that only one stroke is defined. -->
             <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
                 <xs:annotation>
-                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and drills.</xs:documentation>
+                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
+                        drills.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="breath" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
@@ -245,7 +255,8 @@
             </xs:element>
             <xs:element name="equipment" minOccurs="0" maxOccurs="unbounded" type="equipmentType">
                 <xs:annotation>
-                    <xs:documentation>Equipment to be used, such as board or pads.</xs:documentation>
+                    <xs:documentation>Equipment to be used, such as board or
+                        pads.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="instructionDescription" type="instructionDescriptionType"
@@ -266,7 +277,7 @@
     <!-- The repetitionType is one of the major process elements -->
     <xs:complexType name="repetitionType">
         <xs:annotation>
-            <xs:documentation></xs:documentation>
+            <xs:documentation/>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="repetitionCount" type="xs:nonNegativeInteger" minOccurs="1"
@@ -298,7 +309,7 @@
                         customise the repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
+
             <!-- This is the main recursion statement. Every repetition contains instructions. -->
             <!-- Every instruction can contain a repetition -->
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
@@ -314,7 +325,9 @@
     <!-- A pyramid is a common structure element for programs. -->
     <xs:complexType name="pyramidType">
         <xs:annotation>
-            <xs:documentation>Pyramids start with short instructions (e.g. 50) and increase to their stop length (e.g. 200). They then decrease back to the start length.</xs:documentation>
+            <xs:documentation>Pyramids start with short instructions (e.g. 50) and increase to their
+                stop length (e.g. 200). They then decrease back to the start
+                length.</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="startLength" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
@@ -323,34 +336,38 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="startLenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
-            
-            <xs:element name="stopLength"  minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
+
+            <xs:element name="stopLength" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
-                    <xs:documentation>The stop length of the pyramid. This is the highest point of the pyramid.</xs:documentation>
+                    <xs:documentation>The stop length of the pyramid. This is the highest point of
+                        the pyramid.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="stopLenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
-            
-            <xs:element name="increment"  minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
+
+            <xs:element name="increment" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
-                    <xs:documentation>The increment at which the pyramid increases. This defines the slope.</xs:documentation>
+                    <xs:documentation>The increment at which the pyramid increases. This defines the
+                        slope.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="incremenentLenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
-            
-            <xs:element name="isPointy"  minOccurs="1" maxOccurs="1" type="xs:boolean">
+            <xs:element name="incremenentLenghUnit" type="lengthUnitType" minOccurs="0"
+                maxOccurs="1"/>
+
+            <xs:element name="isPointy" minOccurs="1" maxOccurs="1" type="xs:boolean">
                 <xs:annotation>
-                    <xs:documentation>A pointy pyramid swims the stop length only once. A non-pointy pyramid swims the stop length twice.</xs:documentation>
+                    <xs:documentation>A pointy pyramid swims the stop length only once. A non-pointy
+                        pyramid swims the stop length twice.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:group ref="instructionGroup"/>
         </xs:sequence>
     </xs:complexType>
-    
+
     <!-- ====================================================== -->
     <!-- The types used for the instructions -->
     <!-- ====================================================== -->
-    
+
     <!-- Swimming instructions can be given in these units -->
     <!-- this is currently not used. It would force the unit to be  -->
     <!-- explicit with any lenth. Using a default length is better -->
@@ -365,7 +382,7 @@
             <xs:element name="swimDuration" type="xs:duration"/>
         </xs:choice>
     </xs:complexType>
-    
+
     <xs:simpleType name="lengthUnitType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
@@ -374,7 +391,7 @@
             <xs:enumeration value="time"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Rest can be given in these ways -->
     <xs:complexType name="restType" mixed="true">
         <xs:annotation>
@@ -404,7 +421,7 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
-    
+
     <!-- Intensity at which an instruction is swum -->
     <xs:complexType name="intensityType">
         <xs:annotation>
@@ -430,7 +447,7 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
-    
+
     <!-- Working out the build option -->
     <xs:complexType name="intensityProfile" mixed="true">
         <xs:choice>
@@ -452,7 +469,7 @@
             </xs:sequence>
         </xs:choice>
     </xs:complexType>
-    
+
     <!-- Swimming instructions can be given in these units -->
     <xs:simpleType name="zoneType">
         <xs:annotation>
@@ -465,7 +482,7 @@
             <xs:enumeration value="max"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Percentage as an interger from 0-100 -->
     <xs:simpleType name="percentType">
         <xs:annotation>
@@ -476,7 +493,7 @@
             <xs:maxInclusive value="100"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Swimming instructions use these stroke types-->
     <xs:complexType name="strokeType" mixed="true">
         <xs:annotation>
@@ -488,7 +505,7 @@
             <xs:element name="drill" type="drillType"/>
         </xs:choice>
     </xs:complexType>
-    
+
     <xs:simpleType name="standardStrokeType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="butterfly"/>
@@ -523,7 +540,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    
+
     <xs:simpleType name="legMovementType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="flutter"/>
@@ -531,7 +548,7 @@
             <xs:enumeration value="scissor"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="orientationType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="front"/>
@@ -541,7 +558,7 @@
             <xs:enumeration value="side"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="equipmentType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="board"/>
@@ -553,13 +570,13 @@
             <xs:enumeration value="stretchCord"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- The equipment list allows for multiple equiopments, but only one of each type -->
-    
+
     <xs:simpleType name="equipmentList">
         <xs:list itemType="equipmentType"/>
     </xs:simpleType>
-    
+
     <xs:complexType name="drillType">
         <xs:annotation>
             <xs:documentation>Drill type consists of a drill name and a stroke. For example, this
@@ -575,7 +592,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    
+
     <xs:simpleType name="drillNameType">
         <xs:annotation>
             <xs:documentation>Drill names.</xs:documentation>
@@ -588,7 +605,7 @@
             <xs:enumeration value="scull"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- The definition of the instructions description restriction in length -->
     <xs:simpleType name="instructionDescriptionType">
         <xs:annotation>
