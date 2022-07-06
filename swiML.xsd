@@ -3,8 +3,8 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" version="0.1">
     <!-- parking the namespace for now. Not used yet.
-    targetNamespace="http://swiML.bartneck.de"
-    xmlns="http://swiML.bartneck.de"  
+    targetNamespace="https://github.com/bartneck/swiML"
+    xmlns="https://github.com/bartneck/swiML"  
     -->
 
     <xs:element name="program">
