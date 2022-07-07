@@ -14,6 +14,7 @@
     <author>
         <firstName>Matthias</firstName>
         <lastName>MccCurdy</lastName>
+        <email>mc@swim.com</email>
     </author>
     <creationDate>2022-06-30</creationDate>
     <poolLength>25</poolLength>
