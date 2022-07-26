@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="swiML.xsd">
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
+    <!--  
+    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
+    xmlns="https://github.com/bartneck/swiML"
+    -->
+    
     <!-- This program demonstrates only basic instructions -->
     <!-- Id doesn't have any repetitions or pyramids -->
 

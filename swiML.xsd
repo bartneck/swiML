@@ -210,7 +210,7 @@
                     </xs:element>
                 </xs:choice>
                 <!-- optional length unit if different from default described in the meta information -->
-                <xs:element name="lenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1">
+                <xs:element name="lengthUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>Length unit if different from program
                             default.</xs:documentation>
@@ -335,7 +335,7 @@
                     <xs:documentation>The start length of the pyramid.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="startLenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="startlengthUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
 
             <xs:element name="stopLength" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
@@ -343,7 +343,7 @@
                         the pyramid.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="stopLenghUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="stoplengthUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1"/>
 
             <xs:element name="increment" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
@@ -351,7 +351,7 @@
                         slope.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="incremenentLenghUnit" type="lengthUnitType" minOccurs="0"
+            <xs:element name="incremenentLengthUnit" type="lengthUnitType" minOccurs="0"
                 maxOccurs="1"/>
 
             <xs:element name="isPointy" minOccurs="1" maxOccurs="1" type="xs:boolean">

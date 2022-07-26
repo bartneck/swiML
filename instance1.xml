@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">
-
+    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
+    <!--  
+    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
+    xmlns="https://github.com/bartneck/swiML"
+    -->
+    
     <!-- Complex program with repetitions and loops -->
 
     <title>Complex Program</title>
@@ -122,7 +126,7 @@
     <!-- some basic instructions -->
     <instruction>
         <lengthAsTime>PT2M30S</lengthAsTime>
-        <lenghUnit>time</lenghUnit>
+        <lengthUnit>time</lengthUnit>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
@@ -131,7 +135,7 @@
     </instruction>
     <instruction>
         <lengthAsDistance>8</lengthAsDistance>
-        <lenghUnit>laps</lenghUnit>
+        <lengthUnit>laps</lengthUnit>
         <intensity><staticIntensity>
                 <zone>endurance</zone>
             </staticIntensity></intensity>
