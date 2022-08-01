@@ -24,19 +24,18 @@
                 -->
                 <h2>Description:</h2>
                 <xsl:for-each select="program">
-                    <p>
-                        <xsl:value-of select="programDescription"/>
-                    </p>
-                    <p>Target Pool Length: <xsl:value-of select="poolLength"
-                            /><xsl:text> </xsl:text><xsl:value-of select="poolLengthUnit"/></p>
-                    <p>Default Length Unit: <xsl:value-of select="defaultInstructionLengthUnit"
-                        /></p>
+                    <p><xsl:value-of select="programDescription"/></p>
+                    <p>Target Pool Length: <xsl:value-of select="poolLength" /><xsl:text> </xsl:text><xsl:value-of select="poolLengthUnit"/></p>
+                    <p>Default Length Unit: <xsl:value-of select="defaultInstructionLengthUnit"/></p>
+                    <p>Creation Date: <xsl:value-of select="format-date(creationDate,'[D01] [MNn] [Y0001]')"/></p>
                 </xsl:for-each>
 
+<!-- 
                 <p>
                     <xsl:apply-templates select="program"/>
                 </p>
-
+ -->
+                
                 <!--  Example on how to call a template
                 <xsl:call-template name="dateTransformation" />
                 -->
@@ -45,26 +44,34 @@
                     <xsl:apply-templates select="program/author"/>
                 </ul>
                 <h2>Program:</h2>
-                <ul>
+                <ol>
                     <xsl:apply-templates select="program/instruction"/>
-                    <xsl:apply-templates select="program/instruction/stroke/standardStroke"/>
-                </ul>
+                </ol>
             </body>
         </html>
     </xsl:template>
-
-    <xsl:template match="standardStroke">
-        <p>Standard Stroke: <xsl:value-of select="standardStroke"/></p>
-    </xsl:template>
-
-
+    
     <xsl:template match="instruction">
-        <li>
-            <xsl:value-of select="lengthAsDistance"/>
-        </li>
-
+        <xsl:apply-templates select="repetition"/>
+        <xsl:apply-templates select="lengthAsDistance"/>
+        <xsl:apply-templates select="lengthAsTime" />
+    </xsl:template>
+    
+    <xsl:template match="repetition">
+        <li>Repetition Count: <xsl:value-of select="repetitionCount"/></li>
+        <ol>
+            <xsl:apply-templates select="instruction"/>
+        </ol>
     </xsl:template>
 
+    <xsl:template match="lengthAsDistance">
+        <li>LENGTH: <xsl:value-of select="../lengthAsDistance"/></li>
+    </xsl:template>
+    
+    <xsl:template match="lengthAsTime">
+        <li>TIME: <xsl:value-of select="../lengthAsTime"/></li>
+        <!--<li>TIME: <xsl:value-of select="format-time(../lengthAsTime,'[h]-[m]-[s]')"/></li>-->
+    </xsl:template>
 
     <xsl:template match="author">
         <xd:desc>
@@ -75,11 +82,13 @@
     </xsl:template>
 
     <!-- Just left here as an example of how to call a template -->
+    <!--
     <xsl:template name="dateTransformation"> test <xsl:for-each select="program">
             <xsl:value-of select="creationDate"/>
         </xsl:for-each>
     </xsl:template>
 
+    
 
     <xsl:template match="program">Creation Date: <xsl:call-template name="iso8601DateToDisplayDate">
             <xsl:with-param name="iso8601Date" select="creationDate"/>
@@ -114,4 +123,6 @@
         <xsl:variable name="datePart" select="substring($iso8601Date, 9, 2)"/>
         <xsl:value-of select="concat($datePart, ' ', $monthName, ' ', $yearPart)"/>
     </xsl:template>
+    -->
+    
 </xsl:stylesheet>

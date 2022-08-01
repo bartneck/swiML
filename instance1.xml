@@ -28,7 +28,7 @@
     <!-- Examples of a veriety of instructions -->
 
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
+        <lengthAsDistance>101</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
         <intensity><staticIntensity>
                 <precentageEffort>70</precentageEffort>
@@ -38,7 +38,7 @@
         <equipment>pullBuoy</equipment>
     </instruction>
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
+        <lengthAsDistance>102</lengthAsDistance>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
         <intensity><staticIntensity>
                 <precentageEffort>70</precentageEffort>
@@ -49,7 +49,7 @@
             </kicking></stroke>
     </instruction>
     <instruction>
-        <lengthAsDistance>400</lengthAsDistance>
+        <lengthAsDistance>103</lengthAsDistance>
         <rest><inOut>3</inOut></rest>
         <intensity>
             <startIntensity>
@@ -69,7 +69,7 @@
             <repetitionCount>4</repetitionCount>
             <stroke><standardStroke>individualMedley</standardStroke></stroke>
             <instruction>
-                <lengthAsDistance>100</lengthAsDistance>
+                <lengthAsDistance>104</lengthAsDistance>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><staticIntensity>
                         <zone>tempo</zone>
@@ -82,7 +82,7 @@
     <!-- This would be a build exercise -->
     <instruction>
         <repetition>
-            <repetitionCount>4</repetitionCount>
+            <repetitionCount>5</repetitionCount>
             <intensity>
                 <startIntensity>
                     <precentageEffort>60</precentageEffort>
@@ -92,7 +92,7 @@
                 </stopIntensity>
             </intensity>
             <instruction>
-                <lengthAsDistance>100</lengthAsDistance>
+                <lengthAsDistance>105</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <breath>5</breath>
             </instruction>
@@ -102,22 +102,22 @@
     <!-- Exmaple of a repeition inside a repetition -->
     <instruction>
         <repetition>
-            <repetitionCount>4</repetitionCount>
+            <repetitionCount>6</repetitionCount>
             <instruction>
                 <repetition>
                     <repetitionCount>2</repetitionCount>
                     <instruction>
-                        <lengthAsDistance>50</lengthAsDistance>
+                        <lengthAsDistance>106</lengthAsDistance>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <lengthAsDistance>50</lengthAsDistance>
+                        <lengthAsDistance>107</lengthAsDistance>
                         <stroke><standardStroke>breaststroke</standardStroke></stroke>
                     </instruction>
                 </repetition>
             </instruction>
             <instruction>
-                <lengthAsDistance>200</lengthAsDistance>
+                <lengthAsDistance>108</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
         </repetition>

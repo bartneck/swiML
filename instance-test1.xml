@@ -13,9 +13,12 @@
     <poolLengthUnit>meters</poolLengthUnit>
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
     <instruction>
-        <lengthAsDistance>50</lengthAsDistance>
+        <lengthAsDistance>1</lengthAsDistance>
     </instruction>
     <instruction>
-        <lengthAsDistance>50</lengthAsDistance>
+        <lengthAsDistance>2</lengthAsDistance>
+    </instruction>
+    <instruction>
+    <lengthAsDistance>3</lengthAsDistance>
     </instruction>
 </program>
