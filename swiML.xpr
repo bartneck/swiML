@@ -10,16 +10,36 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>firstPDFTest.xml</String>
+                                    <String>swiML.xsd</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>firstPDFTest</String>
+                                        <String>swiMLSchema</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
                                     <list>
-                                        <String>XML_CHEMISTRY</String>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>instance1.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLSchema</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
                                     </list>
                                 </field>
                                 <field name="scenarioStorageLocations">
@@ -70,16 +90,16 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>instance1.xml</String>
+                                    <String>firstPDFTest.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swiMLSchema</String>
+                                        <String>firstPDFTest</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
                                     <list>
-                                        <String>XSL</String>
+                                        <String>XML_CHEMISTRY</String>
                                     </list>
                                 </field>
                                 <field name="scenarioStorageLocations">
@@ -91,26 +111,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>instance2.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLSchema</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>swiML.xsd</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -602,7 +602,7 @@
                                     <String>${oxygenInstallDir}</String>
                                 </field>
                                 <field name="showConsoleAlways">
-                                    <Boolean>true</Boolean>
+                                    <Boolean>false</Boolean>
                                 </field>
                                 <field name="advancedOptionsMap">
                                     <null/>

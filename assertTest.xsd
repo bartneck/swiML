@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1">
+    <xs:element name="sizeRange">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="minSize" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="maxSize" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType"/>
+            </xs:sequence>
+            <xs:assert test="stroke"/>
+<!--            <xs:assert test="minSize and not(maxSize) or maxSize and not(minSize)"/>-->
+
+        </xs:complexType>
+     </xs:element>
+    
+    <xs:complexType name="strokeType" mixed="true">
+        <xs:annotation>
+            <xs:documentation>Stroke types.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="standardStroke" type="standardStrokeType"/>
+            <xs:element name="kicking" type="kickStyle"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:simpleType name="standardStrokeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="butterfly"/>
+            <xs:enumeration value="backstroke"/>
+            <xs:enumeration value="breaststroke"/>
+            <xs:enumeration value="freestyle"/>
+            <xs:enumeration value="individualMedley"/>
+            <xs:enumeration value="reverseIndividualMedley"/>
+            <xs:enumeration value="indivdualMedleyOverlap"/>
+            <xs:enumeration value="any"/>
+            <xs:enumeration value="nr1"/>
+            <xs:enumeration value="nr2"/>
+            <xs:enumeration value="nr3"/>
+            <xs:enumeration value="nr4"/>
+            <xs:enumeration value="notButterfly"/>
+            <xs:enumeration value="notBackstroke"/>
+            <xs:enumeration value="notBreaststroke"/>
+            <xs:enumeration value="notFreestyle"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="kickStyle">
+        <xs:sequence>
+            <xs:element name="orientation" type="orientationType">
+                <xs:annotation>
+                    <xs:documentation>The orientation of the swimmers body.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="legMovement" type="legMovementType">
+                <xs:annotation>
+                    <xs:documentation>The style of the leg movements.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="legMovementType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="flutter"/>
+            <xs:enumeration value="dolpine"/>
+            <xs:enumeration value="scissor"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="orientationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="front"/>
+            <xs:enumeration value="back"/>
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="ride"/>
+            <xs:enumeration value="side"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
- xmlns="https://github.com/bartneck/swiML"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">
-    <title>title0</title>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
+    
+<title>title0</title>
     <author>
     </author>
     <author>
@@ -12,13 +12,132 @@
     <poolLength>25</poolLength>
     <poolLengthUnit>meters</poolLengthUnit>
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+    
+    <!-- valid -->
     <instruction>
-        <lengthAsDistance>1</lengthAsDistance>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
     </instruction>
+    
+    <!-- invalid -->
     <instruction>
-        <lengthAsDistance>2</lengthAsDistance>
+        <lengthAsDistance>200</lengthAsDistance>
     </instruction>
+
+    <!-- valid -->
     <instruction>
-    <lengthAsDistance>3</lengthAsDistance>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>            
+        </repetition>
     </instruction>
+
+    <!-- invalid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>            
+        </repetition>
+    </instruction>
+
+    <!-- valid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <lengthAsDistance>100</lengthAsDistance>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    
+    <!-- invalid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <stroke>
+                        <standardStroke>backstroke</standardStroke>
+                    </stroke>
+                    <instruction>
+                        <lengthAsDistance>100</lengthAsDistance>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- invalid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <lengthAsDistance>100</lengthAsDistance>
+                        <stroke>
+                            <standardStroke>backstroke</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    
 </program>

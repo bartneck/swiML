@@ -10,7 +10,7 @@
                         <xsl:value-of select="title"/>
                     </xsl:for-each>
                 </title>
-
+                
             </head>
             <body>
                 <h1>
@@ -18,7 +18,7 @@
                         <xsl:value-of select="title"/>
                     </xsl:for-each>
                 </h1>
-
+                
                 <h2>Description:</h2>
                 <xsl:for-each select="program">
                     <p><xsl:value-of select="programDescription"/></p>
@@ -26,10 +26,7 @@
                     <p>Default Length Unit: <xsl:value-of select="defaultInstructionLengthUnit"/></p>
                     <p>Creation Date: <xsl:value-of select="format-date(creationDate,'[D01] [MNn] [Y0001]')"/></p>
                 </xsl:for-each>
-                
-                <!--  Example on how to call a template
-                <xsl:call-template name="dateTransformation" />
-                -->
+
                 <h2>Authors:</h2>
                 <ul>
                     <xsl:apply-templates select="program/author"/>
@@ -63,7 +60,7 @@
             <xsl:apply-templates select="instruction"/>
         </ol>
     </xsl:template>
-
+    
     <xsl:template match="lengthAsDistance">
         <li>LENGTH: <xsl:value-of select="../lengthAsDistance"/> <xsl:value-of select="../lengthUnit"/>
         </li>
@@ -72,51 +69,7 @@
     <xsl:template match="lengthAsTime">
         <li>TIME: <xsl:value-of select="minutes-from-duration(../lengthAsTime)"/>:<xsl:value-of select="seconds-from-duration(../lengthAsTime)"/></li>
     </xsl:template>
-
-
-
-    <!-- Just left here as an example of how to call a template -->
-    <!--
-    <xsl:template name="dateTransformation"> test <xsl:for-each select="program">
-            <xsl:value-of select="creationDate"/>
-        </xsl:for-each>
-    </xsl:template>
-
     
 
-    <xsl:template match="program">Creation Date: <xsl:call-template name="iso8601DateToDisplayDate">
-            <xsl:with-param name="iso8601Date" select="creationDate"/>
-        </xsl:call-template>
-    </xsl:template>
-
-
-    <xsl:variable name="allMonths" select="document('months.xml')"/>
-    <xsl:variable name="thisDocument" select="document('')"/>
-
-    <myData:Months>
-        <Month index="1">January</Month>
-        <Month index="2">February</Month>
-        <Month index="3">March</Month>
-        <Month index="4">April</Month>
-        <Month index="5">May</Month>
-        <Month index="6">June</Month>
-        <Month index="7">July</Month>
-        <Month index="8">August</Month>
-        <Month index="9">September</Month>
-        <Month index="10">October</Month>
-        <Month index="11">November</Month>
-        <Month index="12">December</Month>
-    </myData:Months>
-
-    <xsl:template name="iso8601DateToDisplayDate">
-        <xsl:param name="iso8601Date"/>
-        <xsl:variable name="yearPart" select="substring($iso8601Date, 1, 4)"/>
-        <xsl:variable name="monthPart" select="substring($iso8601Date, 6, 2)"/>
-        <xsl:variable name="monthName"
-            select="$thisDocument/xsl:stylesheet/myData:Months/Month[@index = number($monthPart)]"/>
-        <xsl:variable name="datePart" select="substring($iso8601Date, 9, 2)"/>
-        <xsl:value-of select="concat($datePart, ' ', $monthName, ' ', $yearPart)"/>
-    </xsl:template>
-    -->
     
 </xsl:stylesheet>

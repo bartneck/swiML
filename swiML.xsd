@@ -219,7 +219,11 @@
                 <!-- Common elements for instrucionts -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
+                
         </xs:choice>
+<!--        <xs:assert test="stroke or not(parent::stroke)"/>-->
+<!--        <xs:assert test="../stroke"/>-->
+<!--        <xs:assert test="stroke and not(parent::stroke) or parent::stroke and not(stroke)"/>-->
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -320,6 +324,25 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+<!--        <xs:assert test="stroke and not(child/stroke)"/>-->
+<!--        <xs:assert test="stroke and not(instruction/stroke) or not(stroke) and instruction/stroke"/>-->
+<!--        <xs:assert test="stroke and not(instruction/repetition/stroke) or not(stroke) and instruction/repetition/stroke"/>-->
+<!--        <xs:assert test="stroke and not(*/stroke) or */stroke and not(stroke)" />-->
+<!--        <xs:assert test="stroke"/>-->
+<!--        <xs:assert test="descendant::stroke and not(stroke)"/>-->
+<!--        <xs:assert test="stroke and not(descendant::stroke) or descendant::stroke and not(stroke)"/>-->
+<!--        <xs:assert test="stroke and not(instruction/stroke)"/>-->
+        
+        
+<!--    
+        An atomic instruction must have a stroke unless its parent repetition has a stroke
+        A cannot have a stroke if its parent repetition has a stroke
+        
+        If a repetition has a stroke, then none of atomic instructions or repetition can have a stroke
+        descendants::stroke selects ALL strokes below it
+        
+        
+        -->
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->

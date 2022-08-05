@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sizeRange xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/assertTest.xsd">
+    <minSize>100</minSize>
+    <maxSize>200</maxSize>
+    <stroke>
+        <standardStroke>freestyle</standardStroke>
+    </stroke>
+</sizeRange>
