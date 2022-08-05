@@ -13,7 +13,7 @@
     <poolLengthUnit>meters</poolLengthUnit>
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
     
-    <!-- valid -->
+    <!-- case 1: valid -->
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
         <stroke>
@@ -21,12 +21,12 @@
         </stroke>
     </instruction>
     
-    <!-- invalid -->
+    <!-- case 2: invalid -->
     <instruction>
         <lengthAsDistance>200</lengthAsDistance>
     </instruction>
 
-    <!-- valid -->
+    <!-- case 3: valid -->
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
@@ -42,7 +42,7 @@
         </repetition>
     </instruction>
 
-    <!-- invalid -->
+    <!-- case 4: invalid -->
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
@@ -61,7 +61,7 @@
         </repetition>
     </instruction>
 
-    <!-- valid -->
+    <!-- case 5: valid -->
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
@@ -86,7 +86,7 @@
     </instruction>
     
     
-    <!-- invalid -->
+    <!-- case 6: invalid -->
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
@@ -113,7 +113,7 @@
         </repetition>
     </instruction>
     
-    <!-- invalid -->
+    <!-- case 7: invalid -->
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>

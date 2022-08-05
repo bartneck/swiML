@@ -3,7 +3,7 @@
     xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/assertTest.xsd">
     <minSize>100</minSize>
     <maxSize>200</maxSize>
-    <stroke>
+<!--    <stroke>
         <standardStroke>freestyle</standardStroke>
-    </stroke>
+    </stroke>-->
 </sizeRange>

@@ -221,7 +221,7 @@
             </xs:sequence>
                 
         </xs:choice>
-<!--        <xs:assert test="stroke or not(parent::stroke)"/>-->
+<!--        <xs:assert test="stroke or ../stroke"/>-->
 <!--        <xs:assert test="../stroke"/>-->
 <!--        <xs:assert test="stroke and not(parent::stroke) or parent::stroke and not(stroke)"/>-->
     </xs:complexType>
@@ -324,6 +324,7 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        
 <!--        <xs:assert test="stroke and not(child/stroke)"/>-->
 <!--        <xs:assert test="stroke and not(instruction/stroke) or not(stroke) and instruction/stroke"/>-->
 <!--        <xs:assert test="stroke and not(instruction/repetition/stroke) or not(stroke) and instruction/repetition/stroke"/>-->
