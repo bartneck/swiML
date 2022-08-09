@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
     
-<title>title0</title>
+    <title>title0</title>
     <author>
     </author>
     <author>
@@ -12,6 +12,14 @@
     <poolLength>25</poolLength>
     <poolLengthUnit>meters</poolLengthUnit>
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+
+    <!-- case 1: valid -->
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+    </instruction>
     
     <!-- case 1: valid -->
     <instruction>
@@ -140,4 +148,39 @@
         </repetition>
     </instruction>
     
+    
+    <!-- case 8: valid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>            
+        </repetition>
+    </instruction>
+    
+    <!-- case 9: invalid -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+            </instruction>            
+        </repetition>
+    </instruction>
 </program>

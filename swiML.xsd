@@ -95,11 +95,15 @@
                         <xs:documentation>The basic elements for programs. Each instruction defines
                             what to swim.</xs:documentation>
                     </xs:annotation>
+                
                 </xs:element>
+                
             </xs:sequence>
+            
         </xs:complexType>
+        
     </xs:element>
-
+    
     <!-- ====================================================== -->
     <!-- The types used for the meta information -->
     <!-- ====================================================== -->
@@ -221,6 +225,27 @@
             </xs:sequence>
                 
         </xs:choice>
+        
+        <!--<xs:assert test=".. is root()"/>-->
+        
+        <!-- test if parent has stroke -->
+<!--        <xs:assert test="../stroke"/>-->
+        
+        <!-- test if parent is repetition -->
+<!--        <xs:assert test="parent::repetition"/>-->
+
+        <!-- test is instrucion has stroke -->
+<!--        <xs:assert test="stroke"/>-->
+
+
+        <!-- test if parent is repetition and has a stroke -->
+<!--        <xs:assert test="parent::repetition and ../stroke and not(repetition/stroke) and not(stroke)"/>-->
+
+<!--        <xs:assert test="stroke"/>-->
+<!--        <xs:assert test="stroke and (*/descendant::stroke) or */descendant::stroke and not(stroke)"/>-->
+<!--        <xs:assert test="stroke and not(instruction)"></xs:assert>-->
+<!--        <xs:assert test="repetition/instruction/stroke"/>-->
+<!--        <xs:assert test="../stroke"/>-->
 <!--        <xs:assert test="stroke or ../stroke"/>-->
 <!--        <xs:assert test="../stroke"/>-->
 <!--        <xs:assert test="stroke and not(parent::stroke) or parent::stroke and not(stroke)"/>-->
@@ -324,7 +349,9 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+<!--        <xs:assert test="stroke and (*/descendant::stroke) or */descendant::stroke and not(stroke)"/>-->
         
+<!--        <xs:assert test="instruction/stroke"/>-->
 <!--        <xs:assert test="stroke and not(child/stroke)"/>-->
 <!--        <xs:assert test="stroke and not(instruction/stroke) or not(stroke) and instruction/stroke"/>-->
 <!--        <xs:assert test="stroke and not(instruction/repetition/stroke) or not(stroke) and instruction/repetition/stroke"/>-->
@@ -342,6 +369,8 @@
         If a repetition has a stroke, then none of atomic instructions or repetition can have a stroke
         descendants::stroke selects ALL strokes below it
         
+        maybe this one:
+        ../folowing-sibling::stroke or name()='stroke'
         
         -->
     </xs:complexType>
