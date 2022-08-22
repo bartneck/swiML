@@ -1,34 +1,33 @@
 <!DOCTYPE HTML><html xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="UTF-8">
+      <link href="swiML.css" rel="stylesheet" type="text/css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800" rel="stylesheet">
       <title>Simple Program with only direct instructions</title>
    </head>
    <body>
-      <h1>Simple Program with only direct instructions</h1>
-      <h2>Description:</h2>
-      <p>A short program to warm up.</p>
-      <p>Target Pool Length: 25 meters</p>
-      <p>Default Length Unit: meters</p>
-      <p>Creation Date: 04 July 2022</p>
-      <h2>Authors:</h2>
-      <ul>
-         <xd:desc>
-            <xd:p>The template for each author.</xd:p>
-         </xd:desc>
-         <li>Christoph Bartneck, christoph@bartneck.de</li>
-         <xd:desc>
-            <xd:p>The template for each author.</xd:p>
-         </xd:desc>
-         <li>Christine McCurdy, christine@mccurdy.com</li>
-      </ul>
-      <h2>Program:</h2>
-      <ul>
-         <li>100</li>
-         <li>200</li>
-         <li>100</li>
-         <li>100</li>
-         <p>Standard Stroke: </p>
-         <p>Standard Stroke: </p>
-      </ul>
+      <div class="intro">
+         <h1>Simple Program with only direct instructions</h1>
+         <p class="authorName">Christoph Bartneck</p>
+         <p class="authorEmail">christoph@bartneck.de</p>
+         <p class="authorName">Christine McCurdy</p>
+         <p class="authorEmail"></p>
+         <p class="describtion">A short program to warm up.</p>
+         <ul>
+            <li><span style="font-weight: 600">Date:</span>04 July 2022</li>
+            <li><span style="font-weight: 600">Pool Size:</span>25 meters</li>
+            <li><span style="font-weight: 600">Units:</span>meters</li>
+            <li><span style="font-weight: 600">Length:</span>500</li>
+         </ul>
+      </div>
+      <div class="program">
+         <div class="instruction">LENGTH: 100&nbsp;FR </div>
+         <div class="instruction">LENGTH: 200&nbsp;  K Flutter Front</div>
+         <div class="instruction">LENGTH: 100&nbsp; </div>
+         <div class="instruction">LENGTH: 100&nbsp; </div>
+      </div>
    </body>
 </html>

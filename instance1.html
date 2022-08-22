@@ -1,51 +1,62 @@
 <!DOCTYPE HTML><html xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="UTF-8">
+      <link href="swiML.css" rel="stylesheet" type="text/css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800" rel="stylesheet">
       <title>Complex Program</title>
    </head>
    <body>
-      <h1>Complex Program</h1>
-      <h2>Description:</h2>
-      <p></p>
-      <p>Target Pool Length: 25 meters</p>
-      <p>Default Length Unit: meters</p>
-      <p>Creation Date: 30 June 2022</p>
-      <h2>Authors:</h2>
-      <ul>
-         <xd:desc>
-            <xd:p>The template for each author.</xd:p>
-         </xd:desc>
-         <li>Christoph Bartneck, christoph@bartneck.de</li>
-         <xd:desc>
-            <xd:p>The template for each author.</xd:p>
-         </xd:desc>
-         <li>Matthias MccCurdy, mc@swim.com</li>
-      </ul>
-      <h2>Program:</h2>
-      <ol>
-         <li>LENGTH: 101</li>
-         <li>LENGTH: 102</li>
-         <li>LENGTH: 103</li>
-         <li>Repetition Count: 4</li>
-         <ol>
-            <li>LENGTH: 104</li>
-         </ol>
-         <li>Repetition Count: 5</li>
-         <ol>
-            <li>LENGTH: 105</li>
-         </ol>
-         <li>Repetition Count: 6</li>
-         <ol>
-            <li>Repetition Count: 2</li>
-            <ol>
-               <li>LENGTH: 106</li>
-               <li>LENGTH: 107</li>
-            </ol>
-            <li>LENGTH: 108</li>
-         </ol>
-         <li>TIME: 2:30</li>
-         <li>TIME: 1:30</li>
-         <li>LENGTH: 8laps</li>
-      </ol>
+      <div class="intro">
+         <h1>Complex Program</h1>
+         <p class="authorName">Christoph Bartneck</p>
+         <p class="authorEmail">christoph@bartneck.de</p>
+         <p class="authorName">Matthias MccCurdy</p>
+         <p class="authorEmail">mc@swim.com</p>
+         <p class="describtion">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         <ul>
+            <li><span style="font-weight: 600">Date:</span>30 June 2022</li>
+            <li><span style="font-weight: 600">Pool Size:</span>25 meters</li>
+            <li><span style="font-weight: 600">Units:</span>meters</li>
+            <li><span style="font-weight: 600">Length:</span>314</li>
+         </ul>
+      </div>
+      <div class="program">
+         <div class="instruction">LENGTH: 101&nbsp;FR </div>
+         <div class="instruction">LENGTH: 102&nbsp;  K Flutter Front</div>
+         <div class="instruction">LENGTH: 103&nbsp;FR </div>
+         <div class="repetition">
+            <div class="repetitionCount">4×</div>
+            <div class="reptitionSymbol"></div>
+            <div class="repetitionContent">
+               <div class="instruction">LENGTH: 104&nbsp; </div>
+            </div>
+         </div>
+         <div class="repetition">
+            <div class="repetitionCount">5×</div>
+            <div class="reptitionSymbol"></div>
+            <div class="repetitionContent">
+               <div class="instruction">LENGTH: 105&nbsp;FR </div>
+            </div>
+         </div>
+         <div class="repetition">
+            <div class="repetitionCount">6×</div>
+            <div class="reptitionSymbol"></div>
+            <div class="repetitionContent">
+               <div class="repetition">
+                  <div class="repetitionCount">2×</div>
+                  <div class="reptitionSymbol"></div>
+                  <div class="repetitionContent">
+                     <div class="instruction">LENGTH: 106&nbsp;BK </div>
+                     <div class="instruction">LENGTH: 107&nbsp;BR </div>
+                  </div>
+               </div>
+               <div class="instruction">LENGTH: 108&nbsp;FR </div>
+            </div>
+         </div>
+         <div class="instruction">LENGTH: 8&nbsp;BK laps</div>
+      </div>
    </body>
 </html>

@@ -20,6 +20,7 @@
         <lastName>MccCurdy</lastName>
         <email>mc@swim.com</email>
     </author>
+    <programDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</programDescription>
     <creationDate>2022-06-30</creationDate>
     <poolLength>25</poolLength>
     <poolLengthUnit>meters</poolLengthUnit>

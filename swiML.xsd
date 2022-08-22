@@ -26,13 +26,13 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="firstName" minOccurs="0" type="xs:string">
+                            <xs:element name="firstName" minOccurs="1" type="xs:string">
                                 <xs:annotation>
                                     <xs:documentation>The first name of the author. Can contain
                                         middle names if necessary.</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="lastName" minOccurs="0" type="xs:string">
+                            <xs:element name="lastName" minOccurs="1" type="xs:string">
                                 <xs:annotation>
                                     <xs:documentation>The last name of the
                                         author.</xs:documentation>
@@ -99,7 +99,7 @@
                 </xs:element>
                 
             </xs:sequence>
-            
+<!--            <xs:assert test=".. is root()"/>-->
         </xs:complexType>
         
     </xs:element>
@@ -226,7 +226,17 @@
                 
         </xs:choice>
         
-        <!--<xs:assert test=".. is root()"/>-->
+        <!-- is child of root element, does not work for first element -->
+<!--        <xs:assert test=".. is root()"/>-->
+<!--        <xs:assert test=".. is root() and stroke"/>-->
+<!--        <xs:assert test="not(parent::*)"/> -->
+        
+<!--        <xs:assert test="(preceding-sibling::stroke and parent::repetition)"/>-->
+<!--        <xs:assert test="contains[name(preceding-sibling),'stroke']"/>-->
+<!--        <xs:assert test="stroke or repetition/stroke"/>-->
+        
+        <!-- test if element has stroke or repetition stroke -->
+<!--        <xs:assert test="stroke or repetition/stroke"/>-->
         
         <!-- test if parent has stroke -->
 <!--        <xs:assert test="../stroke"/>-->
@@ -234,7 +244,7 @@
         <!-- test if parent is repetition -->
 <!--        <xs:assert test="parent::repetition"/>-->
 
-        <!-- test is instrucion has stroke -->
+        <!-- test if instrucion has stroke -->
 <!--        <xs:assert test="stroke"/>-->
 
 
@@ -581,12 +591,12 @@
     </xs:simpleType>
     <xs:complexType name="kickStyle">
         <xs:sequence>
-            <xs:element name="orientation" type="orientationType">
+            <xs:element name="orientation" type="orientationType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>The orientation of the swimmers body.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="legMovement" type="legMovementType">
+            <xs:element name="legMovement" type="legMovementType" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>The style of the leg movements.</xs:documentation>
                 </xs:annotation>
@@ -607,7 +617,7 @@
             <xs:enumeration value="front"/>
             <xs:enumeration value="back"/>
             <xs:enumeration value="left"/>
-            <xs:enumeration value="ride"/>
+            <xs:enumeration value="right"/>
             <xs:enumeration value="side"/>
         </xs:restriction>
     </xs:simpleType>

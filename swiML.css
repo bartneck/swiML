@@ -1,21 +1,73 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css?family=JetBrain+Mono&display=swap');
-
-
 body {
-	font-family: 'JetBrains Mono Medium';
-	font-size: 20px;
-	line-height: 200%;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 5mm;
+	font-weight: 400;
+	font-style: normal;
+	counter-reset: line;
+}
+
+ul {
+	line-height: 110%;
+	list-style-type: "~>";
+}
+
+li {
+	font-size: 90%;
+	margin: 0.3em;
+}
+
+h1 {
+	text-transform: capitalize;
+	text-align: center;
+}
+
+p.authorName {
+	text-align: center;
+	font-weight: 600;
+}
+
+p.authorEmail {
+	text-align: center;
+	line-height: 80%;
+	margin-top: -1em;
+}
+
+.intro {
+	width: 32em;
+	background-color: aliceblue;
+}
+p.describtion {
+	line-height: 120%;
+	margin-bottom: 2em;
 }
 
 .instruction {
 	display: flex;
 	flex-direction: row;
+	margin-top: 0.3em;
 }
+
+.instruction::after {
+	display: inline-block;
+	counter-increment: line;
+	content: counter(line);
+	padding-left: 2em;
+	width: 1em;
+	/*
+	border-left: 1px black solid;
+	*/
+	margin-left: auto;
+	text-align: right;
+	font-weight: 100;
+	color: grey;
+}
+
 
 .repetition {
 	display: flex;
+	margin-top: 0.1em;
 }
 
 .repetitionCount {
@@ -30,23 +82,26 @@ body {
 	display: flex;
 	align-items: center;
 	width: 0.5em;
-	border-top: 2px solid #000000;
-	border-bottom: 2px solid #000000;
-	border-left: 2px solid #000000;
+	border-top: 0.13em solid #000000;
+	border-bottom: 0.13em solid #000000;
+	border-left: 0.13em solid #000000;
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
-	
 }
 
 .repetitionContent {
-	
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .program {
-	padding: 0.2em;
+	padding: 1em;
 	border: solid;
 	border-width: thin;
 	width: fit-content;
+	/*min-width: 30em;*/
+	background-color: antiquewhite;
 }
 
 .pyramid {
@@ -54,6 +109,7 @@ body {
 	flex-direction: column;
 	font-weight: thin;
 	font-size: 120%;
+	font-style: 
 }
 
 @media print {

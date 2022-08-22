@@ -5,8 +5,8 @@
     
     <title>title0</title>
     <author>
-    </author>
-    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
     </author>
     <creationDate>2006-05-04</creationDate>
     <poolLength>25</poolLength>

@@ -9,7 +9,7 @@
                 <xs:element name="maxSize" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
                 <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType"/>
             </xs:sequence>
-            <xs:assert test="stroke"/>
+<!--            <xs:assert test="stroke"/>-->
 <!--            <xs:assert test="minSize and not(maxSize) or maxSize and not(minSize)"/>-->
 
         </xs:complexType>
