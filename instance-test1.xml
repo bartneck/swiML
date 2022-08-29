@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
-    
+    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
+    >
     <title>title0</title>
     <author>
         <firstName>Christoph</firstName>
@@ -183,4 +184,6 @@
             </instruction>            
         </repetition>
     </instruction>
+    
+    
 </program>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" version="0.1">
-    <!-- parking the namespace for now. Not used yet.
+    vc:minVersion="1.1" 
     targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML"  
-    -->
+    xmlns="https://github.com/bartneck/swiML"> 
+ 
 
     <xs:element name="program">
 
@@ -77,13 +76,23 @@
                 </xs:element>
                 <!-- All length information for all instruction will use this unit -->
                 <xs:element name="defaultInstructionLengthUnit" minOccurs="1" maxOccurs="1"
-                    type="lengthUnitType">
+                    type="lengthUnitType" default="meters">
                     <xs:annotation>
                         <xs:documentation>All length information for all instruction will use this
                             unit.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-
+                <!-- The total length of the program. -->
+                <xs:element name="programLength" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>The total length of the program expressed in the defaultInstructionLengthUnit</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="hideIntro" minOccurs="0" maxOccurs="1" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>True if intro should be hidden in output.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
                 <!-- ====================================================== -->
                 <!-- The main element(s) for each program. Each instruction can contain instructions. This is recursion. -->
                 <!-- This is the main recursive element for a program -->
@@ -99,6 +108,7 @@
                 </xs:element>
                 
             </xs:sequence>
+<!--            <xs:assert test="instruction/stroke or instruction/repetition"/>-->
 <!--            <xs:assert test=".. is root()"/>-->
         </xs:complexType>
         
@@ -226,6 +236,12 @@
                 
         </xs:choice>
         
+        
+<!--        <xs:assert test="stroke or repetition"/>-->
+        
+<!--        <xs:assert test="ancestor[stroke]"/>-->
+<!--        <xs:assert test="stroke and not(ancestor::stroke) or not(stroke) and ancestor::stroke"/>-->
+<!--        <xs:assert test="stroke and not(ancestor/stroke) or not(stroke) and ancestor/stroke"/>-->
         <!-- is child of root element, does not work for first element -->
 <!--        <xs:assert test=".. is root()"/>-->
 <!--        <xs:assert test=".. is root() and stroke"/>-->
@@ -281,7 +297,7 @@
             </xs:element>
             <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
             <!-- to do: cross check that only one stroke is defined. -->
-            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
+            <xs:element name="stroke" minOccurs="1" maxOccurs="1" type="strokeType">
                 <xs:annotation>
                     <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
                         drills.</xs:documentation>
@@ -290,6 +306,11 @@
             <xs:element name="breath" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
                     <xs:documentation>Number of arm strokes per breath.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="underwater" minOccurs="0" maxOccurs="1" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>True if swimming under water.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="equipment" minOccurs="0" maxOccurs="unbounded" type="equipmentType">
@@ -325,10 +346,12 @@
                     <xs:documentation>Count of repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
+            <!-- I took out the intensity and stroke for repetiton -->
             <!-- Stroke needs to be included to express indivdual medley repetitions -->
             <!-- If stroke is defined here it overwrites the stroke within the repeition -->
             <!-- to do: validate that stroke only occurs once. Either in repetition or instruction in repetition -->
-            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
+<!--            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
                 <xs:annotation>
                     <xs:documentation>Stroke information for all items in the repeition. In
                         particular individual medley.</xs:documentation>
@@ -340,7 +363,7 @@
                         example, the intensity migh increase between the items in the
                         repetition.</xs:documentation>
                 </xs:annotation>
-            </xs:element>
+            </xs:element>-->
             <xs:element name="repetitionDescription" minOccurs="0" maxOccurs="1"
                 type="instructionDescriptionType">
                 <xs:annotation>
@@ -359,7 +382,13 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-<!--        <xs:assert test="stroke and (*/descendant::stroke) or */descendant::stroke and not(stroke)"/>-->
+        
+        <!-- This works except for the case that a nested repetition does not have stroke, which is find if the
+        parent reptition has a stroke -->
+<!--        <xs:assert test="stroke and not(*/descendant::stroke) or */descendant::stroke and not(stroke)"/>-->
+        
+        <!-- third or is to check if an ancestor has a stroke -->
+<!--        <xs:assert test="(stroke and not(*/descendant::stroke)) or (*/descendant::stroke and not(stroke)) or (ancestor::stroke and not(stroke))"/>-->
         
 <!--        <xs:assert test="instruction/stroke"/>-->
 <!--        <xs:assert test="stroke and not(child/stroke)"/>-->
@@ -527,8 +556,9 @@
                         intensity. The swimmer could, for example, start at 70% and speed up to
                         100%.</xs:documentation>
                 </xs:annotation>
-                <xs:element name="startIntensity" type="intensityType"/>
-                <xs:element name="stopIntensity" type="intensityType"/>
+                <xs:element name="dynamicAcross" minOccurs="1" maxOccurs="1" type="xs:boolean"/>
+                <xs:element name="startIntensity" minOccurs="1" maxOccurs="1" type="intensityType"/>
+                <xs:element name="stopIntensity" minOccurs="1" maxOccurs="1"  type="intensityType"/>
             </xs:sequence>
         </xs:choice>
     </xs:complexType>
@@ -578,6 +608,8 @@
             <xs:enumeration value="individualMedley"/>
             <xs:enumeration value="reverseIndividualMedley"/>
             <xs:enumeration value="indivdualMedleyOverlap"/>
+            <xs:enumeration value="individualMedleyOrder"/>
+            <xs:enumeration value="medley"/>
             <xs:enumeration value="any"/>
             <xs:enumeration value="nr1"/>
             <xs:enumeration value="nr2"/>

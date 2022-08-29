@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="swiML.xsl"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
-    <!--  
     xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
-    xmlns="https://github.com/bartneck/swiML"
-    -->
+    xmlns="https://github.com/bartneck/swiML">
     
     <!-- Complex program with repetitions and loops -->
 
@@ -53,6 +51,7 @@
         <lengthAsDistance>103</lengthAsDistance>
         <rest><inOut>3</inOut></rest>
         <intensity>
+            <dynamicAcross>false</dynamicAcross>
             <startIntensity>
                 <precentageEffort>60</precentageEffort>
             </startIntensity>
@@ -68,13 +67,13 @@
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
-            <stroke><standardStroke>individualMedley</standardStroke></stroke>
             <instruction>
                 <lengthAsDistance>104</lengthAsDistance>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><staticIntensity>
                         <zone>tempo</zone>
                     </staticIntensity></intensity>
+                <stroke><standardStroke>any</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
@@ -84,14 +83,6 @@
     <instruction>
         <repetition>
             <repetitionCount>5</repetitionCount>
-            <intensity>
-                <startIntensity>
-                    <precentageEffort>60</precentageEffort>
-                </startIntensity>
-                <stopIntensity>
-                    <precentageEffort>100</precentageEffort>
-                </stopIntensity>
-            </intensity>
             <instruction>
                 <lengthAsDistance>105</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>

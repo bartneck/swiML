@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns="https://github.com/bartneck/swiML"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">
+    <title>title0</title>
+    <author>
+        <firstName>firstName0</firstName>
+        <lastName>lastName0</lastName>
+    </author>
+    <author>
+        <firstName>firstName1</firstName>
+        <lastName>lastName1</lastName>
+    </author>
+    <creationDate>2006-05-04</creationDate>
+    <poolLength>25</poolLength>
+    <poolLengthUnit>meters</poolLengthUnit>
+    <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+    <instruction>
+        <repetition>
+            <repetitionCount>50</repetitionCount>
+            <instruction>
+                <pyramid>
+                    <startLength>50</startLength>
+                    <stopLength>50</stopLength>
+                    <increment>50</increment>
+                    <isPointy>false</isPointy>
+                </pyramid>
+            </instruction>
+            <instruction>
+                <pyramid>
+                    <startLength>50</startLength>
+                    <stopLength>50</stopLength>
+                    <increment>50</increment>
+                    <isPointy>false</isPointy>
+                </pyramid>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <lengthAsTime>P1Y2M3DT1H10M0S</lengthAsTime>
+    </instruction>
+</program>

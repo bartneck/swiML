@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd">    
-    <!--  
-    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
-    xmlns="https://github.com/bartneck/swiML"
-    -->
+    xsi:noNamespaceSchemaLocation="file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
+    xmlns="https://github.com/bartneck/swiML">    
     
     <!-- This program demonstrates only basic instructions -->
     <!-- Id doesn't have any repetitions or pyramids -->
@@ -25,8 +22,12 @@
     <poolLength>25</poolLength>
     <poolLengthUnit>meters</poolLengthUnit>
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+    <programLength>800</programLength>
+    <hideIntro>true</hideIntro>
+    
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
+        <rest><afterStop>PT0M20S</afterStop></rest>
         <intensity><staticIntensity>
                 <precentageEffort>70</precentageEffort>
             </staticIntensity></intensity>
@@ -45,11 +46,13 @@
                 <orientation>front</orientation>
                 <legMovement>flutter</legMovement>
             </kicking></stroke>
+        <underwater>true</underwater>
         <equipment>fins</equipment>
     </instruction>
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
         <intensity>
+            <dynamicAcross>false</dynamicAcross>
             <startIntensity>
                 <precentageEffort>70</precentageEffort>
             </startIntensity>
@@ -60,8 +63,28 @@
         <stroke><standardStroke>individualMedley</standardStroke></stroke>
         <instructionDescription>Focus on underwater phase</instructionDescription>
     </instruction>
+    
+    
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
+        <rest><sinceStart>PT1M25S</sinceStart></rest>
+        <intensity>
+            <dynamicAcross>true</dynamicAcross>
+            <startIntensity>
+                <precentageHeartRate>70</precentageHeartRate>
+            </startIntensity>
+            <stopIntensity>
+                <precentageHeartRate>100</precentageHeartRate>
+            </stopIntensity>
+        </intensity>
+        <stroke><standardStroke>individualMedley</standardStroke></stroke>
+        <instructionDescription>Focus on underwater phase</instructionDescription>
+    </instruction>
+    
+    
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <intensity><staticIntensity><precentageHeartRate>90</precentageHeartRate></staticIntensity></intensity>
         <stroke><drill>
                 <drillNameType>123</drillNameType>
                 <drillStroke>freestyle</drillStroke>

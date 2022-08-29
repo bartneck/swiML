@@ -36,7 +36,6 @@ p.authorEmail {
 
 .intro {
 	width: 32em;
-	background-color: aliceblue;
 }
 p.describtion {
 	line-height: 120%;
@@ -101,7 +100,6 @@ p.describtion {
 	border-width: thin;
 	width: fit-content;
 	/*min-width: 30em;*/
-	background-color: antiquewhite;
 }
 
 .pyramid {
