@@ -45,7 +45,9 @@ p.describtion {
 .instruction {
 	display: flex;
 	flex-direction: row;
-	margin-top: 0.3em;
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+	vertical-align: middle;
 }
 
 .instruction::after {
@@ -63,16 +65,14 @@ p.describtion {
 	color: grey;
 }
 
-
 .repetition {
 	display: flex;
-	margin-top: 0.1em;
+	margin-top: 0.2em;
 }
 
 .repetitionCount {
     display: flex;
     align-items: center;
-
 }
 
 .reptitionSymbol {

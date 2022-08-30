@@ -92,14 +92,12 @@
     <xsl:template name="showLength">
         <xsl:choose>
             <xsl:when test="not(sw:programLength)">
-                <total>
                     <xsl:value-of select="
                             sum(
                             for $l in //sw:lengthAsDistance
                             return
                                 $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
                             )"/>
-                </total>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="sw:programLength"/>
@@ -129,7 +127,7 @@
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
         <div class="repetition">
-            <div class="repetitionCount"><xsl:value-of select="sw:repetitionCount"/>&#215;</div>
+            <div class="repetitionCount"><xsl:value-of select="concat(sw:repetitionCount,'&#215;',sw:repetitionDescription)"/></div>
             <div class="reptitionSymbol"/>
             <div class="repetitionContent">
                 <xsl:apply-templates select="sw:instruction"/>
