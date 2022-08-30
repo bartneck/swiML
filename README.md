@@ -1,4 +1,7 @@
 # swiML
+
+[swiML-logo.png]
+
 A project to formalise swimming programs using XML.
 
 The goal of this project is to develop a communication standard for swim training programs that can be used to exchange training programs between web services, apps, and fitness trackers. While there are some standards available for loggin your exercises, none focus on what you want to swim.
