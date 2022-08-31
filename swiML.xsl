@@ -75,38 +75,6 @@
     <!-- Main Templates -->
     <!-- ============================== -->
 
-    <!-- Calculation for the length of the program -->
-    <!-- Does not work if mixed length units, such as laps, meters, time -->
-    <!-- Works fine if all lengths are exclusively meters or laps -->
-    <xsl:function name="myData:product" as="xs:decimal">
-        <xsl:param name="numbers" as="xs:decimal*"/>
-        <xsl:sequence select="
-                if (empty($numbers))
-                then
-                    1
-                else
-                    $numbers[1] * myData:product($numbers[position() gt 1])"/>
-    </xsl:function>
-
-    <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
-    <xsl:template name="showLength">
-        <xsl:choose>
-            <xsl:when test="not(sw:programLength)">
-                    <xsl:value-of select="
-                            sum(
-                            for $l in //sw:lengthAsDistance
-                            return
-                                $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
-                            )"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="sw:programLength"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-
-
     <!-- Author Template -->
     <xsl:template match="sw:author">
         <p class="authorName">
@@ -127,7 +95,10 @@
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
         <div class="repetition">
-            <div class="repetitionCount"><xsl:value-of select="concat(sw:repetitionCount,'&#215;',sw:repetitionDescription)"/></div>
+            <div class="repetitionCount">
+                <xsl:value-of
+                    select="concat(sw:repetitionCount, '&#215;', sw:repetitionDescription)"/>
+            </div>
             <div class="reptitionSymbol"/>
             <div class="repetitionContent">
                 <xsl:apply-templates select="sw:instruction"/>
@@ -142,7 +113,8 @@
                 <xsl:value-of separator=" " select="../sw:lengthAsDistance, ../sw:lengthUnit"/>
             </span>
             <xsl:apply-templates select="../sw:stroke/sw:standardStroke"/>
-            <xsl:apply-templates select="../sw:stroke/sw:kicking"/>
+            <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:orientation"/>
+            <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
             <xsl:apply-templates select="../sw:stroke/sw:drill"/>
             <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
             <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
@@ -152,7 +124,6 @@
             <xsl:apply-templates select="../sw:underwater"/>
             <xsl:apply-templates select="../sw:equipment"/>
             <xsl:apply-templates select="../sw:instructionDescription"/>
-
         </div>
     </xsl:template>
 
@@ -165,6 +136,23 @@
     <!-- Secondary Templates -->
     <!-- ============================== -->
 
+    <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
+    <xsl:template name="showLength">
+        <xsl:choose>
+            <xsl:when test="not(sw:programLength)">
+                <xsl:value-of select="
+                    sum(
+                    for $l in //sw:lengthAsDistance
+                    return
+                    $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
+                    )"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="sw:programLength"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
     <xsl:template match="sw:instructionDescription">
         <span style="font-style: italic;">
             <xsl:value-of select="concat('&#160;', ../sw:instructionDescription)"/>
@@ -190,6 +178,7 @@
         <xsl:text>&#160;&#8615;</xsl:text>
     </xsl:template>
 
+    <!-- Intensity -->
     <xsl:template name="showIntensity">
         <!-- static intensity profile -->
         <xsl:if test="../sw:intensity/sw:staticIntensity/sw:precentageEffort">
@@ -289,6 +278,7 @@
         </xsl:if>
     </xsl:template>
 
+    <!-- Rest -->
     <xsl:template match="sw:afterStop">
         <xsl:value-of
             select="concat('&#160;&#9684;', minutes-from-duration(.), ':', seconds-from-duration(.))"
@@ -304,6 +294,7 @@
         <xsl:value-of select="concat('&#160;', ., ' in 1 out')"/>
     </xsl:template>
 
+    <!-- Stroke -->
     <xsl:template match="sw:standardStroke">
         <xsl:text>&#160;</xsl:text>
         <xsl:call-template name="toDisplay">
@@ -311,14 +302,26 @@
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template match="sw:kicking">
+    <!-- Kick -->
+    <xsl:template match="sw:orientation">
+        <xsl:text>&#160;K&#160;</xsl:text>
+        <xsl:call-template name="toDisplay">
+            <xsl:with-param name="fullTerm" select="."/>
+        </xsl:call-template>
         <xsl:text>&#160;</xsl:text>
-        <xsl:call-template name="toDisplayKick">
-            <xsl:with-param name="orientation" select="sw:orientation"/>
-            <xsl:with-param name="legMovement" select="sw:legMovement"/>
+        <xsl:call-template name="toDisplay">
+            <xsl:with-param name="fullTerm" select="../sw:legMovement"/>
         </xsl:call-template>
     </xsl:template>
 
+    <xsl:template match="sw:standardKick">
+        <xsl:text>&#160;K&#160;</xsl:text>
+        <xsl:call-template name="toDisplay">
+            <xsl:with-param name="fullTerm" select="."/>
+        </xsl:call-template>
+    </xsl:template>
+
+    <!-- Drill -->
     <xsl:template match="sw:drill">
         <xsl:text>&#160;D&#160;</xsl:text>
         <xsl:if test="sw:drillStroke">
@@ -346,20 +349,6 @@
         />
     </xsl:template>
 
-    <xsl:template name="toDisplayKick">
-        <xsl:param name="orientation"/>
-        <xsl:param name="legMovement"/>
-        <xsl:if test="$legMovement != ''">
-            <xsl:value-of select="
-                    concat(
-                    'K&#160;',
-                    $thisDocument/xsl:stylesheet/myData:translation/term[@index = string($legMovement)],
-                    '&#160;',
-                    $thisDocument/xsl:stylesheet/myData:translation/term[@index = string($orientation)])"
-            />
-        </xsl:if>
-    </xsl:template>
-
     <myData:translation>
         <term index="butterfly">FL</term>
         <term index="backstroke">BK</term>
@@ -367,9 +356,8 @@
         <term index="freestyle">FR</term>
         <term index="individualMedley">IM</term>
         <term index="reverseIndividualMedley">IM Reverse</term>
-        <term index="indivdualMedleyOverlap">IM Overlap</term>
+        <term index="individualMedleyOverlap">IM Overlap</term>
         <term index="individualMedleyOrder">IM Order</term>
-        <term index="medley">Medley</term>
         <term index="any">Any</term>
         <term index="nr1">Nr 1</term>
         <term index="nr2">Nr 2</term>
@@ -396,6 +384,7 @@
         <term index="123">123</term>
         <term index="bigDog">Big Dog</term>
         <term index="scull">Scull</term>
+        <term index="singleArm">Single Arm</term>
         <term index="board">Board</term>
         <term index="pads">Pads</term>
         <term index="pullBuoy">Pullbuoy</term>
@@ -406,5 +395,16 @@
         <term index="breath">b</term>
     </myData:translation>
 
-
+    <!-- Calculation for the length of the program -->
+    <!-- Does not work if mixed length units, such as laps, meters, time -->
+    <!-- Works fine if all lengths are exclusively meters or laps -->
+    <xsl:function name="myData:product" as="xs:decimal">
+        <xsl:param name="numbers" as="xs:decimal*"/>
+        <xsl:sequence select="
+            if (empty($numbers))
+            then
+            1
+            else
+            $numbers[1] * myData:product($numbers[position() gt 1])"/>
+    </xsl:function>
 </xsl:stylesheet>

@@ -607,9 +607,8 @@
             <xs:enumeration value="freestyle"/>
             <xs:enumeration value="individualMedley"/>
             <xs:enumeration value="reverseIndividualMedley"/>
-            <xs:enumeration value="indivdualMedleyOverlap"/>
+            <xs:enumeration value="individualMedleyOverlap"/>
             <xs:enumeration value="individualMedleyOrder"/>
-            <xs:enumeration value="medley"/>
             <xs:enumeration value="any"/>
             <xs:enumeration value="nr1"/>
             <xs:enumeration value="nr2"/>
@@ -622,6 +621,7 @@
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="kickStyle">
+        <xs:choice>
         <xs:sequence>
             <xs:element name="orientation" type="orientationType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
@@ -634,6 +634,8 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+            <xs:element name="standardKick" minOccurs="1" maxOccurs="1" type="standardStrokeType"/>
+        </xs:choice>
     </xs:complexType>
 
     <xs:simpleType name="legMovementType">
@@ -698,6 +700,7 @@
             <xs:enumeration value="123"/>
             <xs:enumeration value="bigDog"/>
             <xs:enumeration value="scull"/>
+            <xs:enumeration value="singleArm"/>
         </xs:restriction>
     </xs:simpleType>
 

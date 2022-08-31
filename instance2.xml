@@ -90,4 +90,9 @@
                 <drillStroke>freestyle</drillStroke>
             </drill></stroke>
     </instruction>
+    <instruction>
+        <lengthAsDistance>300</lengthAsDistance>
+        <rest><afterStop>PT0M20S</afterStop></rest>
+        <stroke><kicking><standardKick>individualMedley</standardKick></kicking></stroke>
+    </instruction>
 </program>
