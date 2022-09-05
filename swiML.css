@@ -42,6 +42,10 @@ p.describtion {
 	margin-bottom: 2em;
 }
 
+p.footnote {
+	font-size: 70%;
+}
+
 .instruction {
 	display: flex;
 	flex-direction: row;
@@ -110,9 +114,13 @@ p.describtion {
 	font-style: 
 }
 
+img.swiML-logo-bw {
+	height: 1em;
+}
+
 @media print {
 	@page {
-		size: 100vh 100vw;
+		size: A4;
 		margin: 0cm;
 	}
 	

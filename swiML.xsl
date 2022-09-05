@@ -67,6 +67,7 @@
                 <div class="program">
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
+                <p class="footnote">made with:<a href="https://github.com/bartneck/swiML"><img class="swiML-logo-bw" src="swiML-logo-bw.svg"/></a></p>
             </body>
         </html>
     </xsl:template>
@@ -112,26 +113,35 @@
             <span style="font-weight: 900">
                 <xsl:value-of separator=" " select="../sw:lengthAsDistance, ../sw:lengthUnit"/>
             </span>
-            <xsl:apply-templates select="../sw:stroke/sw:standardStroke"/>
-            <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:orientation"/>
-            <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
-            <xsl:apply-templates select="../sw:stroke/sw:drill"/>
-            <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
-            <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
-            <xsl:apply-templates select="../sw:rest/sw:inOut"/>
-            <xsl:call-template name="showIntensity"/>
-            <xsl:apply-templates select="../sw:breath"/>
-            <xsl:apply-templates select="../sw:underwater"/>
-            <xsl:apply-templates select="../sw:equipment"/>
-            <xsl:apply-templates select="../sw:instructionDescription"/>
+            <xsl:call-template name="directSwim"/>
         </div>
     </xsl:template>
 
     <xsl:template match="sw:lengthAsTime">
         <!--        <li>TIME: <xsl:value-of select="minutes-from-duration(../lengthAsTime)"/>:<xsl:value-of
                 select="seconds-from-duration(../lengthAsTime)"/></li>-->
+        <div class="instruction">
+            <span style="font-weight: 900">
+                <xsl:value-of separator=":" select="minutes-from-duration(.),format-number(seconds-from-duration(.),'00')"/>
+            </span>
+            <xsl:call-template name="directSwim"/>
+        </div>
     </xsl:template>
 
+    <xsl:template name="directSwim">
+        <xsl:apply-templates select="../sw:stroke/sw:standardStroke"/>
+        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:orientation"/>
+        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
+        <xsl:apply-templates select="../sw:stroke/sw:drill"/>
+        <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
+        <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
+        <xsl:apply-templates select="../sw:rest/sw:inOut"/>
+        <xsl:call-template name="showIntensity"/>
+        <xsl:apply-templates select="../sw:breath"/>
+        <xsl:apply-templates select="../sw:underwater"/>
+        <xsl:apply-templates select="../sw:equipment"/>
+        <xsl:apply-templates select="../sw:instructionDescription"/>
+    </xsl:template>
     <!-- ============================== -->
     <!-- Secondary Templates -->
     <!-- ============================== -->
@@ -141,18 +151,18 @@
         <xsl:choose>
             <xsl:when test="not(sw:programLength)">
                 <xsl:value-of select="
-                    sum(
-                    for $l in //sw:lengthAsDistance
-                    return
-                    $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
-                    )"/>
+                        sum(
+                        for $l in //sw:lengthAsDistance
+                        return
+                            $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
+                        )"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="sw:programLength"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <xsl:template match="sw:instructionDescription">
         <span style="font-style: italic;">
             <xsl:value-of select="concat('&#160;', ../sw:instructionDescription)"/>
@@ -281,13 +291,13 @@
     <!-- Rest -->
     <xsl:template match="sw:afterStop">
         <xsl:value-of
-            select="concat('&#160;&#9684;', minutes-from-duration(.), ':', seconds-from-duration(.))"
+            select="concat('&#160;&#9684;', minutes-from-duration(.), ':', format-number(seconds-from-duration(.),'00'))"
         />
     </xsl:template>
 
     <xsl:template match="sw:sinceStart">
         <xsl:value-of
-            select="concat('&#160;@_', minutes-from-duration(.), ':', seconds-from-duration(.))"/>
+            select="concat('&#160;@_', minutes-from-duration(.), ':', format-number(seconds-from-duration(.),'00'))"/>
     </xsl:template>
 
     <xsl:template match="sw:inOut">
@@ -401,10 +411,10 @@
     <xsl:function name="myData:product" as="xs:decimal">
         <xsl:param name="numbers" as="xs:decimal*"/>
         <xsl:sequence select="
-            if (empty($numbers))
-            then
-            1
-            else
-            $numbers[1] * myData:product($numbers[position() gt 1])"/>
+                if (empty($numbers))
+                then
+                    1
+                else
+                    $numbers[1] * myData:product($numbers[position() gt 1])"/>
     </xsl:function>
 </xsl:stylesheet>

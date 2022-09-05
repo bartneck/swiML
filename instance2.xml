@@ -92,7 +92,13 @@
     </instruction>
     <instruction>
         <lengthAsDistance>300</lengthAsDistance>
-        <rest><afterStop>PT0M20S</afterStop></rest>
+        <rest><afterStop>PT1M00S</afterStop></rest>
         <stroke><kicking><standardKick>individualMedley</standardKick></kicking></stroke>
+    </instruction>
+    
+    <instruction>
+        <lengthAsTime>PT05M09S</lengthAsTime>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <breath>5</breath>
     </instruction>
 </program>
