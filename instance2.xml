@@ -26,6 +26,10 @@
     <hideIntro>true</hideIntro>
     
     <instruction>
+    <segmentName>Warm Up</segmentName>
+    </instruction>
+    
+    <instruction>
         <lengthAsDistance>100</lengthAsDistance>
         <rest><afterStop>PT0M20S</afterStop></rest>
         <intensity><staticIntensity>

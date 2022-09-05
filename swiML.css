@@ -42,8 +42,21 @@ p.describtion {
 	margin-bottom: 2em;
 }
 
-p.footnote {
+.bottom {
+	margin-top: 0.2em;
+}
+
+.footnote {
+	display: inline-block;
+	vertical-align: middle;
 	font-size: 70%;
+}
+
+.logo {
+	display: inline-block;
+	vertical-align: center;
+	height: 5%;
+	width: 5%;
 }
 
 .instruction {
@@ -98,6 +111,14 @@ p.footnote {
 	width: 100%;
 }
 
+.segmentName {
+	display: block;
+	text-align: center;
+	border-bottom: solid 1px black;
+	margin-bottom: 0.5em;
+	font-weight: 600;
+}
+
 .program {
 	padding: 1em;
 	border: solid;
@@ -114,9 +135,7 @@ p.footnote {
 	font-style: 
 }
 
-img.swiML-logo-bw {
-	height: 1em;
-}
+
 
 @media print {
 	@page {

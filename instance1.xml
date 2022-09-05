@@ -25,7 +25,10 @@
     <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
 
     <!-- Examples of a veriety of instructions -->
-
+    
+    <instruction>
+        <segmentName>Warm Up</segmentName>
+    </instruction>
     <instruction>
         <lengthAsDistance>101</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
@@ -62,6 +65,10 @@
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
 
+    <instruction>
+        <segmentName>Main Program</segmentName>
+    </instruction>
+    
     <!-- An example of a simple repetition -->
     <!-- It uses IM as the repetition stroke, so 100FL, 100BK, 100BR, 100FR -->
     <instruction>
