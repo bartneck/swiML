@@ -1,6 +1,6 @@
 # swiML
 
-![logo swiML](https://github.com/bartneck/swiML/blob/74c4bd7a78afad667203d14e075f63d4ac9d7131/swiML-logo-gradient.png)
+![logo swiML](https://github.com/bartneck/swiML/blob/a473bc2d25aba77e6a85223b60402f1dfcff7f9e/swiMLLogoGradient.png)
 
 A project to formalise swimming programs using XML.
 
