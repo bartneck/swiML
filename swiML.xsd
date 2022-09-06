@@ -51,7 +51,7 @@
                         <xs:documentation>A short description for the program.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element minOccurs="1" name="creationDate" type="xs:date" maxOccurs="1">
+                <xs:element minOccurs="1" name="creationDate" type="xs:date" maxOccurs="1" default="2022-02-22">
                     <xs:annotation>
                         <xs:documentation>The date on which the program was
                             created.</xs:documentation>
@@ -113,6 +113,7 @@
 
 
             </xs:sequence>
+            
             <!--            <xs:assert test="instruction/stroke or instruction/repetition"/>-->
             <!--            <xs:assert test=".. is root()"/>-->
         </xs:complexType>
@@ -192,7 +193,7 @@
                 <xs:documentation>The different types of instructions,</xs:documentation>
             </xs:annotation>
             <!-- Process based elements for instructions -->
-            <xs:element name="segmentName" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="segmentName" minOccurs="0" maxOccurs="1" type="segmentNameType"/>
             <xs:element name="repetition" type="repetitionType">
                 <xs:annotation>
                     <xs:documentation>Instruction process element to repeat enclosed
@@ -241,7 +242,7 @@
             </xs:sequence>
 
         </xs:choice>
-        
+<!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
         <!--<xs:assert test="segmentName and .. is root()"/>-->
 
         <!--        <xs:assert test="stroke or repetition"/>-->
@@ -340,6 +341,7 @@
     <!-- These types control the structural flow of the  -->
     <!-- instructions.  -->
     <!-- ====================================================== -->
+    
 
     <!-- The repetitionType is one of the major process elements -->
     <xs:complexType name="repetitionType">
@@ -389,7 +391,7 @@
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-
+        
         <!-- This works except for the case that a nested repetition does not have stroke, which is find if the
         parent reptition has a stroke -->
         <!--        <xs:assert test="stroke and not(*/descendant::stroke) or */descendant::stroke and not(stroke)"/>-->
@@ -570,6 +572,15 @@
         </xs:choice>
     </xs:complexType>
 
+
+    <xs:simpleType name="segmentNameType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value=" 30"/>
+<!--            <xs:assertion test="ancestor::repetition"/>-->
+        </xs:restriction>
+<!--        <xs:assert test="ancestor::repetition"/>-->
+    </xs:simpleType>
+    
     <!-- Swimming instructions can be given in these units -->
     <xs:simpleType name="zoneType">
         <xs:annotation>

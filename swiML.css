@@ -111,11 +111,18 @@ p.describtion {
 	width: 100%;
 }
 
+.firstSegmentName {
+	display: block;
+	text-align: center;
+	border-bottom: solid 1px black;
+	font-weight: 600;
+}
+
 .segmentName {
 	display: block;
 	text-align: center;
 	border-bottom: solid 1px black;
-	margin-bottom: 0.5em;
+	padding-top: 0.9em;
 	font-weight: 600;
 }
 

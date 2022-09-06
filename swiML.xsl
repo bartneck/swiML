@@ -123,6 +123,9 @@
         </p>
     </xsl:template>
 
+    <!-- First Segment Template-->
+    <xsl:template match="sw:instruction[1]/sw:segmentName"/>
+        
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
         <xsl:apply-templates select="sw:segmentName"/>
@@ -130,7 +133,12 @@
         <xsl:apply-templates select="sw:lengthAsDistance"/>
         <xsl:apply-templates select="sw:lengthAsTime"/>
     </xsl:template>
-
+    
+    <!-- First segment template -->
+    <xsl:template match="sw:instruction[1]/sw:segmentName">
+        <div class="firstSegmentName"><xsl:value-of select="."/></div>
+    </xsl:template>
+    
     <!-- Segment name template -->
     <xsl:template match="sw:segmentName">
         <div class="segmentName">
