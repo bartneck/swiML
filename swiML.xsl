@@ -68,7 +68,7 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
-                <link href="swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="https://raw.githubusercontent.com/bartneck/swiML/main/swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
