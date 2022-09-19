@@ -59,20 +59,26 @@ p.describtion {
 	width: 5%;
 }
 
-.lengthAsDistance {
-    display:inline-block;
+.huhu {
+    /*  display:inline-block;
+    width: 5em;*/
     font-weight: 900;
-    text-align:right;
+    background-color: red;
+}
+.test {
     background-color: red;
 }
 
 .instruction {
-	display: flex;
-	flex-direction: row;
+    display: inline-block;
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
 	vertical-align: middle;
+	border: solid 1px black;
+	background-color: blue;
 }
+
+
 
 .instruction::after {
 	display: inline-block;
@@ -82,25 +88,44 @@ p.describtion {
 	width: 1em;
 	margin-left: auto;
 	text-align: right;
-	font-weight: 100;
+	font-weight: 800;
 	color: grey;
 }
 
+.tbrow {
+    width: fit-content;
+    /* width:100%; */
+}
+.counter {
+	/*  counter-increment: line;
+	content: counter(line);*/
+	background-color: antiquewhite;
+	padding-left: 2em;
+	width: 1em;
+	/*  margin-left: auto;*/
+	text-align: right;
+	font-weight: 100;
+	color: grey;
+	
+}
+
+table {
+    border: solid 1px black;
+}
 .repetition {
-	display: flex;
 	margin-top: 0.2em;
+	/* width: 100%; */
+	background-color:aliceblue; 
 }
 
 .repetitionCount {
-    display: flex;
-    align-items: center;
+
 }
 
 .reptitionSymbol {
 	margin-left: 0.3em;
 	margin-right: 0.3em;
-	display: flex;
-	align-items: center;
+
 	width: 0.5em;
 	border-top: 0.13em solid #000000;
 	border-bottom: 0.13em solid #000000;
@@ -110,9 +135,9 @@ p.describtion {
 }
 
 .repetitionContent {
-	display: flex;
-	flex-direction: column;
+    /* 
 	width: 100%;
+	 * */
 }
 
 .firstSegmentName {
@@ -141,7 +166,6 @@ p.describtion {
 .pyramid {
 	display: flex;
 	flex-direction: column;
-	font-weight: thin;
 	font-size: 120%;
 }
 
@@ -151,10 +175,6 @@ p.describtion {
 	@page {
 		size: A4;
 		margin: 0cm;
-	}
-	
-	body {
-	    font-size: 9pt;
 	}
 	/* 
 	.instruction {

@@ -4,6 +4,60 @@
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:sw="https://github.com/bartneck/swiML">
 
+    <!-- global variables for space calculation -->
+    <xsl:variable name="maxLengthAsDistanceWidth">
+        <xsl:choose>
+            <xsl:when test="//sw:lengthAsDistance">
+                <xsl:for-each select="//sw:lengthAsDistance">
+                    <xsl:sort select="string-length(.)" order="ascending" data-type="number"/>
+                    <xsl:if test="position() = last()">
+                        <xsl:value-of select="string-length(.)"/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="maxLengthAsLapsWidth">
+        <xsl:choose>
+            <xsl:when test="//sw:lengthAsLaps">
+                <xsl:for-each select="//sw:lengthAsLaps">
+                    <xsl:sort select="string-length(.)" order="ascending" data-type="number"/>
+                    <xsl:if test="position() = last()">
+                        <xsl:value-of select="string-length(.)"/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="maxLengthAsTime">
+        <xsl:choose>
+            <xsl:when test="//sw:lengthAsTime">
+                <xsl:for-each select="//sw:lengthAsTime">
+                    <xsl:sort
+                        select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))"
+                        order="ascending" data-type="number"/>
+                    <xsl:if test="position() = last()">
+                        <xsl:value-of
+                            select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))"
+                        />
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="space">
+        <xsl:value-of
+            select="max(($maxLengthAsDistanceWidth, $maxLengthAsLapsWidth, $maxLengthAsTime))"/>
+    </xsl:variable>
+
+
+
     <xsl:template match="/">
 
         <!-- ============================== -->
@@ -46,13 +100,10 @@
                                 <li>
                                     <span style="font-weight: 600">Pool Size:</span>
                                     <xsl:value-of select="sw:program/sw:poolLength"/>
-                                    <xsl:text> </xsl:text>
-                                    <xsl:value-of select="sw:program/sw:poolLengthUnit"/>
                                 </li>
                                 <li>
                                     <span style="font-weight: 600">Units:</span>
-                                    <xsl:value-of
-                                        select="sw:program/sw:defaultInstructionLengthUnit"/>
+                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
                                 </li>
                                 <li>
                                     <span style="font-weight: 600">Length:</span>
@@ -71,34 +122,34 @@
                 <xsl:choose>
                     <xsl:when test="sw:program/sw:hideIntro = 'true'"/>
                     <xsl:otherwise>
-                        
-                <div class="bottom">
-                    <div class="footnote">made with: </div>
-                    <div class="logo">
-                        <a href="https://github.com/bartneck/swiML">
-                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 1219.33 460.35">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #231f20;
-                                        }</style>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M209,360.8c0,58.3-51.7,99.55-104.5,99.55C39.6,460.35,0,419.65,0,362.45c0-14.3,12.1-26.4,26.4-26.4h39.6c18.7,0,26.4,11.55,26.4,25.85,0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1v-9.35c0-17.6-6.05-25.85-24.75-33.55l-22.55-9.9C41.25,297,0,279.95,0,225.5v-20.35c0-58.3,44.55-101.75,104.5-101.75,66.55,0,104.5,45.65,104.5,97.35,0,14.3-12.1,26.4-26.4,26.4h-39.6c-15.95,0-26.4-7.7-26.4-25.3,0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1v7.7c0,17.05,7.7,27.5,24.2,34.65l23.1,9.9c29.15,12.65,69.3,29.15,69.3,83.6v23.1Z"/>
-                                <path class="cls-1"
-                                    d="M556.59,354.2c0,72.05-51.7,106.15-96.25,106.15-19.25,0-35.75-3.3-49.5-12.65l-7.15-4.4c-3.85-2.75-5.5-4.4-9.9-4.4-3.3,0-5.5,1.1-9.9,4.4l-6.6,4.4c-13.75,9.35-30.8,12.65-49.5,12.65-52.25,0-96.8-40.7-96.8-106.15V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v233.75c0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v233.75c0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1V133.65c0-14.3,12.1-26.4,26.4-26.4h40.15c14.3,0,25.85,12.1,25.85,26.4v220.55Z"/>
-                                <path class="cls-1"
-                                    d="M672.64,58.85c0,14.3-12.1,26.4-26.4,26.4h-39.6c-14.3,0-26.4-12.1-26.4-26.4V29.15c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v29.7Zm0,371.25c0,14.3-12.1,26.4-26.4,26.4h-39.6c-14.3,0-26.4-12.1-26.4-26.4V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4V430.1Z"/>
-                                <path class="cls-1"
-                                    d="M1033.99,116.05V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-12.1-26.4-26.4V31.35c0-17.05,13.2-31.35,32.45-31.35,6.6,0,14.3,2.75,19.25,4.95l2.75,1.1c6.05,2.2,8.8,3.85,15.95,3.85,6.05,0,14.85-2.75,22-4.95,7.15-2.2,19.25-4.95,32.45-4.95s23.1,2.75,31.9,5.5c7.15,2.2,15.4,4.4,20.35,4.4s13.2-2.2,20.35-4.4c8.8-2.75,21.45-5.5,34.65-5.5,73.7,0,105.05,43.45,105.05,116.05Z"/>
-                                <path class="cls-1"
-                                    d="M1154.43,347.6c0,7.15,4.95,12.65,12.1,12.65h26.4c14.3,0,26.4,12.1,26.4,26.4v43.45c0,14.3-12.1,26.4-26.4,26.4h-108.35c-14.3,0-26.4-12.1-26.4-26.4V29.15c0-14.3,12.1-26.4,26.4-26.4h43.45c14.3,0,26.4,12.1,26.4,26.4V347.6Z"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+
+                        <div class="bottom">
+                            <div class="footnote">made with: </div>
+                            <div class="logo">
+                                <a href="https://github.com/bartneck/swiML">
+                                    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 1219.33 460.35">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #231f20;
+                                                }</style>
+                                        </defs>
+                                        <path class="cls-1"
+                                            d="M209,360.8c0,58.3-51.7,99.55-104.5,99.55C39.6,460.35,0,419.65,0,362.45c0-14.3,12.1-26.4,26.4-26.4h39.6c18.7,0,26.4,11.55,26.4,25.85,0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1v-9.35c0-17.6-6.05-25.85-24.75-33.55l-22.55-9.9C41.25,297,0,279.95,0,225.5v-20.35c0-58.3,44.55-101.75,104.5-101.75,66.55,0,104.5,45.65,104.5,97.35,0,14.3-12.1,26.4-26.4,26.4h-39.6c-15.95,0-26.4-7.7-26.4-25.3,0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1v7.7c0,17.05,7.7,27.5,24.2,34.65l23.1,9.9c29.15,12.65,69.3,29.15,69.3,83.6v23.1Z"/>
+                                        <path class="cls-1"
+                                            d="M556.59,354.2c0,72.05-51.7,106.15-96.25,106.15-19.25,0-35.75-3.3-49.5-12.65l-7.15-4.4c-3.85-2.75-5.5-4.4-9.9-4.4-3.3,0-5.5,1.1-9.9,4.4l-6.6,4.4c-13.75,9.35-30.8,12.65-49.5,12.65-52.25,0-96.8-40.7-96.8-106.15V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v233.75c0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v233.75c0,6.6,5.5,12.1,12.1,12.1s12.1-5.5,12.1-12.1V133.65c0-14.3,12.1-26.4,26.4-26.4h40.15c14.3,0,25.85,12.1,25.85,26.4v220.55Z"/>
+                                        <path class="cls-1"
+                                            d="M672.64,58.85c0,14.3-12.1,26.4-26.4,26.4h-39.6c-14.3,0-26.4-12.1-26.4-26.4V29.15c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4v29.7Zm0,371.25c0,14.3-12.1,26.4-26.4,26.4h-39.6c-14.3,0-26.4-12.1-26.4-26.4V133.65c0-14.3,12.1-26.4,26.4-26.4h39.6c14.3,0,26.4,13.75,26.4,26.4V430.1Z"/>
+                                        <path class="cls-1"
+                                            d="M1033.99,116.05V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-12.1-26.4-26.4V31.35c0-17.05,13.2-31.35,32.45-31.35,6.6,0,14.3,2.75,19.25,4.95l2.75,1.1c6.05,2.2,8.8,3.85,15.95,3.85,6.05,0,14.85-2.75,22-4.95,7.15-2.2,19.25-4.95,32.45-4.95s23.1,2.75,31.9,5.5c7.15,2.2,15.4,4.4,20.35,4.4s13.2-2.2,20.35-4.4c8.8-2.75,21.45-5.5,34.65-5.5,73.7,0,105.05,43.45,105.05,116.05Z"/>
+                                        <path class="cls-1"
+                                            d="M1154.43,347.6c0,7.15,4.95,12.65,12.1,12.65h26.4c14.3,0,26.4,12.1,26.4,26.4v43.45c0,14.3-12.1,26.4-26.4,26.4h-108.35c-14.3,0-26.4-12.1-26.4-26.4V29.15c0-14.3,12.1-26.4,26.4-26.4h43.45c14.3,0,26.4,12.1,26.4,26.4V347.6Z"
+                                        />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </xsl:otherwise>
                 </xsl:choose>
 
@@ -125,27 +176,30 @@
 
     <!-- First Segment Template-->
     <xsl:template match="sw:instruction[1]/sw:segmentName"/>
-        
+
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
         <xsl:apply-templates select="sw:segmentName"/>
         <xsl:apply-templates select="sw:repetition"/>
         <xsl:apply-templates select="sw:lengthAsDistance"/>
+        <xsl:apply-templates select="sw:lengthAsLaps"/>
         <xsl:apply-templates select="sw:lengthAsTime"/>
     </xsl:template>
-    
+
     <!-- First segment template -->
     <xsl:template match="sw:instruction[1]/sw:segmentName">
-        <div class="firstSegmentName"><xsl:value-of select="."/></div>
+        <div class="firstSegmentName">
+            <xsl:value-of select="."/>
+        </div>
     </xsl:template>
-    
+
     <!-- Segment name template -->
     <xsl:template match="sw:segmentName">
         <div class="segmentName">
             <xsl:value-of select="."/>
         </div>
     </xsl:template>
-    
+
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
         <div class="repetition">
@@ -162,19 +216,52 @@
 
     <!-- Dirct Swim Template -->
     <xsl:template match="sw:lengthAsDistance">
+        <xsl:variable name="maxlengthAsDistance"
+            select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
         <div class="instruction">
-            <span style="font-weight: 900">
-                <xsl:value-of separator=" " select="../sw:lengthAsDistance, ../sw:lengthUnit"/>
+            <span>                
+                <xsl:attribute name="style">
+                    <xsl:text>width:</xsl:text>
+                    <xsl:value-of select="//$space"/>
+                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="../sw:lengthAsDistance"/>
             </span>
+            <xsl:if test="//sw:lengthUnit = 'laps'">
+                <xsl:text>&#160;&#60;-&#62;</xsl:text>
+            </xsl:if>            
+            <xsl:call-template name="directSwim"/>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="sw:lengthAsLaps">
+        <div class="instruction">
+            <span>
+                <xsl:attribute name="style">
+                    <xsl:text>width:</xsl:text>
+                    <xsl:value-of select="//$space"/>
+                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="../sw:lengthAsLaps"/>
+            </span>
+            <xsl:if test="not(//sw:lengthUnit = 'laps')">
+                <xsl:text>&#160;</xsl:text>
+                <xsl:call-template name="toDisplay">
+                    <xsl:with-param name="fullTerm" select="'laps'"/>
+                </xsl:call-template>
+            </xsl:if>
             <xsl:call-template name="directSwim"/>
         </div>
     </xsl:template>
 
     <xsl:template match="sw:lengthAsTime">
-        <!--        <li>TIME: <xsl:value-of select="minutes-from-duration(../lengthAsTime)"/>:<xsl:value-of
-                select="seconds-from-duration(../lengthAsTime)"/></li>-->
         <div class="instruction">
-            <span style="font-weight: 900">
+            <span>
+                <xsl:attribute name="style">
+                    <xsl:text>width:</xsl:text>
+                    <xsl:value-of select="//$space"/>
+                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+                </xsl:attribute>
                 <xsl:value-of separator=":"
                     select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
                 />
@@ -210,13 +297,23 @@
                         for $l in //sw:lengthAsDistance
                         return
                             $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
-                        )"/>
+                        )
+                        +
+                        sum(
+                        for $l in //sw:lengthAsLaps
+                        return
+                            $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
+                        ) * //sw:poolLength
+                        
+                        
+                        "/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="sw:programLength"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
 
     <xsl:template match="sw:instructionDescription">
         <span style="font-style: italic;">
@@ -408,6 +505,7 @@
     <!-- ============================== -->
     <xsl:variable name="thisDocument" select="document('')"/>
 
+
     <xsl:template name="toDisplay">
         <xsl:param name="fullTerm"/>
         <xsl:value-of
@@ -459,7 +557,11 @@
         <term index="chute">Chute</term>
         <term index="stretchCord">Stretch Cord</term>
         <term index="breath">b</term>
+        <term index="laps">laps</term>
+        <term index="meters">m</term>
+        <term index="yards">yd</term>
     </myData:translation>
+
 
     <!-- Calculation for the length of the program -->
     <!-- Does not work if mixed length units, such as laps, meters, time -->

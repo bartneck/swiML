@@ -54,26 +54,21 @@ p.describtion {
 
 .logo {
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align:middle;
 	height: 5%;
 	width: 5%;
 }
 
-.lengthAsDistance {
-    display:inline-block;
-    font-weight: 900;
-    text-align:right;
-    background-color: red;
-}
-
 .instruction {
-	display: flex;
-	flex-direction: row;
+	display: block;
+	/*flex-direction: row;*/
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
-	vertical-align: middle;
+	/*vertical-align: middle;*/
+	background-color: beige;
 }
 
+/*
 .instruction::after {
 	display: inline-block;
 	counter-increment: line;
@@ -85,34 +80,56 @@ p.describtion {
 	font-weight: 100;
 	color: grey;
 }
+*/
 
 .repetition {
-	display: flex;
+	display: inline-block;
+	vertical-align: middle;
 	margin-top: 0.2em;
+	background-color: brown;
 }
 
+.repRigh {
+	display: block;
+	/* float: right; */
+	background-color: blueviolet;
+	/*border-top: 0.13em solid #000000;
+	border-bottom: 0.13em solid #000000;
+	*/
+	border-left: 0.13em solid #000000;
+	border-top-left-radius: 0.5em;
+	border-bottom-left-radius: 0.5em;
+	background-color: antiquewhite;
+}
 .repetitionCount {
-    display: flex;
-    align-items: center;
+    display: block;
+	/* float: left; */
+	height: 100%;
+    /*align-items: center;*/
+	background-color: aliceblue;
 }
 
 .reptitionSymbol {
 	margin-left: 0.3em;
 	margin-right: 0.3em;
-	display: flex;
-	align-items: center;
+	display: block;
+	/*  float: left; */
+	/*align-items: center;*/
 	width: 0.5em;
 	border-top: 0.13em solid #000000;
 	border-bottom: 0.13em solid #000000;
 	border-left: 0.13em solid #000000;
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
+	background-color: antiquewhite;
 }
 
 .repetitionContent {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+	display: block;
+	/* float: right; */
+	/*float: right;*/
+	/*width: 100%;*/
+	background-color: aqua;
 }
 
 .firstSegmentName {
@@ -141,7 +158,6 @@ p.describtion {
 .pyramid {
 	display: flex;
 	flex-direction: column;
-	font-weight: thin;
 	font-size: 120%;
 }
 
@@ -152,16 +168,11 @@ p.describtion {
 		size: A4;
 		margin: 0cm;
 	}
-	
-	body {
-	    font-size: 9pt;
-	}
 	/* 
 	.instruction {
 	display: flex;
 	flex-direction: row;
 	color:red;
+	 */
 }
-*/
 	
-}

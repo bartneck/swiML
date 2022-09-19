@@ -19,10 +19,8 @@
     </author>
     <programDescription>A short program to warm up.</programDescription>
     <creationDate>2022-07-04</creationDate>
-    <poolLength>25</poolLength>
-    <poolLengthUnit>meters</poolLengthUnit>
-    <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
-    <programLength>800</programLength>
+    <poolLength>50</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>true</hideIntro>
 
     <instruction>
@@ -30,7 +28,7 @@
     </instruction>
 
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
+        <lengthAsDistance>500</lengthAsDistance>
         <rest><afterStop>PT0M20S</afterStop></rest>
         <intensity><staticIntensity>
                 <precentageEffort>70</precentageEffort>
@@ -40,6 +38,10 @@
         <equipment>pads</equipment>
         <equipment>pullBuoy</equipment>
         <instructionDescription>Focus on body position</instructionDescription>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>2</lengthAsLaps>
+        <stroke><standardStroke>backstroke</standardStroke></stroke>
     </instruction>
     <instruction>
         <lengthAsDistance>200</lengthAsDistance>
@@ -108,7 +110,7 @@
     </instruction>
 
     <instruction>
-        <lengthAsTime>PT05M09S</lengthAsTime>
+        <lengthAsTime>PT10M09S</lengthAsTime>
         <stroke><standardStroke>any</standardStroke></stroke>
         <breath>5</breath>
     </instruction>

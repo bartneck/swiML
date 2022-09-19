@@ -21,8 +21,8 @@
     <programDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</programDescription>
     <creationDate>2022-06-30</creationDate>
     <poolLength>25</poolLength>
-    <poolLengthUnit>meters</poolLengthUnit>
-    <defaultInstructionLengthUnit>meters</defaultInstructionLengthUnit>
+
+    <lengthUnit>meters</lengthUnit>
 
     <!-- Examples of a veriety of instructions -->
     
@@ -52,7 +52,7 @@
             </kicking></stroke>
     </instruction>
     <instruction>
-        <lengthAsDistance>103</lengthAsDistance>
+        <lengthAsDistance>100</lengthAsDistance>
         <rest><inOut>3</inOut></rest>
         <intensity>
             <dynamicAcross>false</dynamicAcross>
@@ -121,16 +121,12 @@
                 <lengthAsDistance>108</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
-            <instruction>
-                <segmentName>test</segmentName>
-            </instruction>
         </repetition>
     </instruction>
 
     <!-- some basic instructions -->
     <instruction>
         <lengthAsTime>PT2M30S</lengthAsTime>
-        <lengthUnit>time</lengthUnit>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
@@ -138,8 +134,7 @@
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <lengthAsDistance>8</lengthAsDistance>
-        <lengthUnit>laps</lengthUnit>
+        <lengthAsLaps>8</lengthAsLaps>
         <intensity><staticIntensity>
                 <zone>endurance</zone>
             </staticIntensity></intensity>

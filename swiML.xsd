@@ -66,18 +66,10 @@
                             reverse cannot be guranteed.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element minOccurs="1" name="poolLengthUnit" type="poolLengthUnits" maxOccurs="1"
+                <xs:element minOccurs="1" name="lengthUnit" type="lengthUnits" maxOccurs="1"
                     default="meters">
                     <xs:annotation>
                         <xs:documentation>The length of pool requires a measurement
-                            unit.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-                <!-- All length information for all instruction will use this unit -->
-                <xs:element name="defaultInstructionLengthUnit" minOccurs="1" maxOccurs="1"
-                    type="lengthUnitType" default="meters">
-                    <xs:annotation>
-                        <xs:documentation>All length information for all instruction will use this
                             unit.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
@@ -156,7 +148,7 @@
     </xs:simpleType>
 
     <!-- Units of measurement for pool length -->
-    <xs:simpleType name="poolLengthUnits">
+    <xs:simpleType name="lengthUnits">
         <xs:annotation>
             <xs:documentation>The unit of measurement for the length of the target pool (meter or
                 yards).</xs:documentation>
@@ -164,6 +156,7 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
             <xs:enumeration value="yards"/>
+            <xs:enumeration value="laps"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -212,7 +205,7 @@
                     <xs:documentation>Sequence of basic elements for an
                         instruction.</xs:documentation>
                 </xs:annotation>
-                <!-- Length as either distance or time -->
+                <!-- Length as either distance, laps or time -->
                 <xs:choice>
                     <xs:annotation>
                         <xs:documentation>Length can be descriped as distance or
@@ -229,14 +222,12 @@
                                 For example PT1M30S for 1:30.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="lengthAsLaps" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                            <xs:documentation>Length of instruction in number of laps.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
                 </xs:choice>
-                <!-- optional length unit if different from default described in the meta information -->
-                <xs:element name="lengthUnit" type="lengthUnitType" minOccurs="0" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:documentation>Length unit if different from program
-                            default.</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
                 <!-- Common elements for instrucionts -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
