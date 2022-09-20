@@ -710,6 +710,8 @@
             <xs:enumeration value="bigDog"/>
             <xs:enumeration value="scull"/>
             <xs:enumeration value="singleArm"/>
+            <xs:enumeration value="any"/>
+            <xs:enumeration value="technic"/>
         </xs:restriction>
     </xs:simpleType>
 

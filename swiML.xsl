@@ -68,7 +68,7 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
-                <link href="https://raw.githubusercontent.com/bartneck/swiML/main/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -549,6 +549,7 @@
         <term index="bigDog">Big Dog</term>
         <term index="scull">Scull</term>
         <term index="singleArm">Single Arm</term>
+        <term index="technic">Technic</term>
         <term index="board">Board</term>
         <term index="pads">Pads</term>
         <term index="pullBuoy">Pullbuoy</term>
