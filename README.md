@@ -10,4 +10,6 @@ Each trainer has his/her own taxonomy and nomenclatures for the various exercise
 
 In addition, it features a transformation of turing valid XML files into beautifuly formatted instructions that can be printed or displayed on devices.
 
+A first test implementation showing the [training sessions](https://bartneck.github.io/swiML/jasiMasters/) for the [Jasi Masters](https://jasimasters.org.nz) swimming club in Christchurch, New Zealand is available.
+
 Christoph Bartneck
