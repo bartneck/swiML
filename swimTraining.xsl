@@ -8,7 +8,7 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
-                <link href="../swimTraining.css" rel="stylesheet" type="text/css"/>
+                <link href="../swiMLTraining.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
