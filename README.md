@@ -1,6 +1,6 @@
 # swiML
 
-![logo swiML](https://github.com/bartneck/swiML/blob/a473bc2d25aba77e6a85223b60402f1dfcff7f9e/swiMLLogoGradient.png)
+![logo swiML](https://bartneck.github.io/swiML/swiMLLogoGradient.png)
 
 A project to formalise swimming programs using XML.
 
@@ -9,5 +9,7 @@ The goal of this project is to develop a communication standard for swim trainin
 Each trainer has his/her own taxonomy and nomenclatures for the various exercises. swiML will provide a standard for naming. The goal is to also allow for customisations to accomodate local preferences.
 
 In addition, it features a transformation of turing valid XML files into beautifuly formatted instructions that can be printed or displayed on devices.
+
+A first test implementation showing the [training sessions](https://bartneck.github.io/swiML/jasiMasters/) for the [Jasi Masters](https://jasimasters.org.nz) swimming club in Christchurch, New Zealand is available.
 
 Christoph Bartneck
