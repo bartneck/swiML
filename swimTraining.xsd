@@ -8,7 +8,8 @@
     <xs:element name="swimTraining">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="clubName" type="xs:string"/>
+                <xs:element name="clubName" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="clubURL" minOccurs="0" maxOccurs="1" type="xs:string"/>
                 <xs:element name="session" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                     <xs:sequence >

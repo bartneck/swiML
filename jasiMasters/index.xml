@@ -3,6 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swimTraining.xsd">
     <clubName>Jasi Masters</clubName>
+    <clubURL>https://jasimasters.org.nz</clubURL>
     <session>
         <date>2022-09-20</date>
         <pool>Jellie Park</pool>
