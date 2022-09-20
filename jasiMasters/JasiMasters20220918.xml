@@ -8,7 +8,7 @@
       <lastName>Bartneck</lastName>
       <email>christoph@bartneck.de</email>
    </author>
-   <programDescription/>
+   <programDescription>A sunday program focusing on kick with fins and sprints.</programDescription>
    <creationDate>2022-09-18</creationDate>
    <poolLength>25</poolLength>
    <lengthUnit>meters</lengthUnit>
@@ -19,7 +19,7 @@
    <instruction>
       <lengthAsDistance>400</lengthAsDistance>
       <intensity><staticIntensity>
-            <zone>recovery</zone>
+            <zone>easy</zone>
          </staticIntensity></intensity>
       <stroke><standardStroke>any</standardStroke></stroke>
    </instruction>
@@ -37,6 +37,7 @@
             <drillNameType>6K</drillNameType>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
+      <equipment>fins</equipment>
    </instruction>
    <instruction>
       <lengthAsDistance>50</lengthAsDistance>
@@ -45,6 +46,7 @@
             <drillNameType>123</drillNameType>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
+      <equipment>fins</equipment>
    </instruction>
    <instruction>
       <lengthAsDistance>50</lengthAsDistance>
@@ -53,6 +55,7 @@
             <drillNameType>fingerTrails</drillNameType>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
+      <equipment>fins</equipment>
    </instruction>
    <instruction>
       <lengthAsDistance>50</lengthAsDistance>
@@ -110,7 +113,7 @@
                   <lengthAsDistance>75</lengthAsDistance>
                   <rest><afterStop>PT45S</afterStop></rest>
                   <intensity><staticIntensity>
-                        <zone>tempo</zone>
+                        <zone>endurance</zone>
                      </staticIntensity></intensity>
                   <stroke><standardStroke>freestyle</standardStroke></stroke>
                </instruction>
@@ -147,7 +150,7 @@
          <instruction>
             <lengthAsDistance>200</lengthAsDistance>
             <intensity><staticIntensity>
-                  <zone>recovery</zone>
+                  <zone>easy</zone>
                </staticIntensity></intensity>
             <stroke><standardStroke>any</standardStroke></stroke>
          </instruction>
