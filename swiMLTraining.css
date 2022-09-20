@@ -22,3 +22,20 @@ h1 {
 	text-transform: capitalize;
 	text-align: center;
 }
+
+.bottom {
+	margin-top: 0.2em;
+}
+
+.footnote {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 70%;
+}
+
+.logo {
+	display: inline-block;
+	vertical-align: middle;
+	height: 5%;
+	width: 5%;
+}

@@ -57,7 +57,7 @@
                                         select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), '.jpeg')"
                                     />
                                 </xsl:attribute>
-                                <xsl:text>JEPG</xsl:text>
+                                <xsl:text>JPEG</xsl:text>
                             </a>
                             <xsl:text>)</xsl:text>
                         </li>
