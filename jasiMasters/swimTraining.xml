@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<swimTrainingSession xmlns="https://github.com/bartneck/swiML"
+<swimTraining xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swimTraining.xsd">
     <clubName>Jasi Masters</clubName>
@@ -11,4 +11,4 @@
         <date>2022-09-20</date>
         <pool>Jellie Park</pool>
     </session>
-</swimTrainingSession>
+</swimTraining>

@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 5mm;
+	font-weight: 400;
+	font-style: normal;
+	counter-reset: line;
+}
+
+ul {
+	line-height: 110%;
+	list-style-type: "~>";
+}
+
+li {
+	font-size: 90%;
+	margin: 0.3em;
+}
+
+h1 {
+	text-transform: capitalize;
+	text-align: center;
+}
