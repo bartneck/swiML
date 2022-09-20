@@ -25,7 +25,7 @@
                     <xsl:text> Training</xsl:text>
                 </h1> This is the index of the <a>
                     <xsl:attribute name="href">
-                        <xsl:value-of select="clubURL"/>
+                        <xsl:value-of select="sw:swimTraining/sw:clubURL"/>
                     </xsl:attribute>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
                 </a> Training Sessions. <ul>
