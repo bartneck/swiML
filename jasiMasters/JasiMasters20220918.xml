@@ -93,7 +93,7 @@
                </instruction>
                <instruction>
                   <lengthAsDistance>50</lengthAsDistance>
-                  <rest><sinceStart>PT1M45S</sinceStart></rest>
+                  <rest><sinceLastRest>PT1M45S</sinceLastRest></rest>
                   <stroke><standardStroke>freestyle</standardStroke></stroke>
                </instruction>
             </repetition>
