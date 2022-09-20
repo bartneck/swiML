@@ -10,11 +10,31 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/jasiMasters20220918.xml</String>
+                                    <String>jasiMasters/swimTraining.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>jasiMasters20220918</String>
+                                        <String>swimTraining</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>jasiMasters/JasiMasters20220918.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLSchema</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -5536,7 +5556,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>jasiMasters20220918</String>
+                                    <String>swimTraining</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -5554,7 +5574,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsl</String>
+                                    <String>file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swimTraining.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -5575,7 +5595,7 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="outputResource">
-                                    <String>/Users/cba56/Dropbox (UC Enterprise)/swimML/oxygen/jasiMasters/jasiMasters20220918.html</String>
+                                    <String>index.html</String>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
                                     <Boolean>false</Boolean>

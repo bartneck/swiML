@@ -8,26 +8,49 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
-                <link href="https://bartneck.github.io/swiML/swimTraining.css" rel="stylesheet" type="text/css"/>
+                <link href="swimTraining.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
                     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800"
                     rel="stylesheet"/>
                 <title>
-                    <xsl:value-of select="sw:clubName"/>
+                    <xsl:value-of select="sw:swimTraining/sw:clubName"/>
+                    <xsl:text> Training</xsl:text>
                 </title>
             </head>
             
             <body>
-                <h1><xsl:value-of select="sw:clubName"/></h1>
-                This is the index of the <xsl:value-of select="sw:clubName"/> Training Sessions.
+                <h1><xsl:value-of select="sw:swimTraining/sw:clubName"/>
+                <xsl:text> Training</xsl:text>
+                </h1>
+                This is the index of the <xsl:value-of select="sw:swimTraining/sw:clubName"/> Training Sessions.
                 <ul>
-                    <xsl:for-each select="session">
-                        <li><xsl:value-of select="date"/><xsl:value-of select="pool"/>
-                            (<a href="jasiMasters20220918.html">HTML</a>
-                            , <a href="jasiMasters20220918.xml">XML</a>
-                            , <a href="jasiMasters20220918.jpeg">JPEG</a>)
+                    <xsl:for-each select="sw:swimTraining/sw:session">
+                        <xsl:sort select="sw:date" order="descending"/>
+                        <li><xsl:value-of separator=" " select="sw:date, sw:pool"/>
+                            <xsl:text> (</xsl:text>
+                            <a>                
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="concat(translate(../sw:clubName,' ',''),format-date(sw:date,'[Y0001][M01][D01]'),'.html')"/>
+                                </xsl:attribute>
+                                <xsl:text>HTML</xsl:text>
+                            </a>
+                            <xsl:text>, </xsl:text>
+                            <a>                
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="concat(translate(../sw:clubName,' ',''),format-date(sw:date,'[Y0001][M01][D01]'),'.xml')"/>
+                                </xsl:attribute>
+                                <xsl:text>XML</xsl:text>
+                            </a>
+                            <xsl:text>, </xsl:text>
+                            <a>                
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="concat(translate(../sw:clubName,' ',''),format-date(sw:date,'[Y0001][M01][D01]'),'.jpeg')"/>
+                                </xsl:attribute>
+                                <xsl:text>JEPG</xsl:text>
+                            </a>  
+                            <xsl:text>)</xsl:text>
                         </li>
                     </xsl:for-each>
                      
