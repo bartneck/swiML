@@ -174,9 +174,6 @@
         </p>
     </xsl:template>
 
-    <!-- First Segment Template-->
-    <xsl:template match="sw:instruction[1]/sw:segmentName"/>
-
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
         <xsl:apply-templates select="sw:segmentName"/>
@@ -276,6 +273,7 @@
         <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
         <xsl:apply-templates select="../sw:stroke/sw:drill"/>
         <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
+        <xsl:apply-templates select="../sw:rest/sw:sinceLastRest"/>
         <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
         <xsl:apply-templates select="../sw:rest/sw:inOut"/>
         <xsl:call-template name="showIntensity"/>
@@ -452,6 +450,12 @@
             select="concat('&#160;@_', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
         />
     </xsl:template>
+    
+    <xsl:template match="sw:sinceLastRest">
+        <xsl:value-of
+            select="concat('&#160;&#8592;@_', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
+        />        
+    </xsl:template>
 
     <xsl:template match="sw:inOut">
         <xsl:value-of select="concat('&#160;', ., ' in 1 out')"/>
@@ -539,9 +543,10 @@
         <term index="left">Left</term>
         <term index="right">Right</term>
         <term index="side">Side</term>
-        <term index="recovery">Recovery</term>
+        <term index="easy">Easy</term>
+        <term index="threshold">Threshold</term>
         <term index="endurance">Endurance</term>
-        <term index="tempo">Tempo</term>
+        <term index="racePace">Race Pace</term>
         <term index="max">Max</term>
         <term index="6KickDrill">6KD</term>
         <term index="fingerTrails">FT</term>
@@ -562,8 +567,8 @@
         <term index="meters">m</term>
         <term index="yards">yd</term>
     </myData:translation>
-
-
+    
+    
     <!-- Calculation for the length of the program -->
     <!-- Does not work if mixed length units, such as laps, meters, time -->
     <!-- Works fine if all lengths are exclusively meters or laps -->

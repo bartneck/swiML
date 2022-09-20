@@ -588,9 +588,10 @@
             <xs:documentation>The intensity zone.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="recovery"/>
+            <xs:enumeration value="easy"/>
+            <xs:enumeration value="threshold"/>
             <xs:enumeration value="endurance"/>
-            <xs:enumeration value="tempo"/>
+            <xs:enumeration value="racePace"/>
             <xs:enumeration value="max"/>
         </xs:restriction>
     </xs:simpleType>
