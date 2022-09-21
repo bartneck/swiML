@@ -30,15 +30,21 @@
                 <lengthAsDistance>50</lengthAsDistance>
                 <rest><afterStop>PT0S</afterStop></rest>
                 <stroke><standardStroke>backstroke</standardStroke></stroke>
+                <equipment>pads</equipment>
+                <equipment>pullBuoy</equipment>
             </instruction>
             <instruction>
                 <lengthAsDistance>50</lengthAsDistance>
                 <rest><afterStop>PT0S</afterStop></rest>
                 <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                <equipment>pads</equipment>
+                <equipment>pullBuoy</equipment>
             </instruction>
             <instruction>
                 <lengthAsDistance>50</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <equipment>pads</equipment>
+                <equipment>pullBuoy</equipment>
             </instruction>
         </repetition>
     </instruction>
@@ -62,6 +68,10 @@
         <stroke><kicking>
                 <standardKick>freestyle</standardKick>
             </kicking></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke><standardStroke>individualMedley</standardStroke></stroke>
     </instruction>
     <instruction>
         <segmentName>First set</segmentName>
