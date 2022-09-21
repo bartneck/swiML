@@ -186,7 +186,6 @@
         <stroke><kicking>
                 <standardKick>nr1</standardKick>
             </kicking></stroke>
-        <equipment>fins</equipment>
     </instruction>
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
