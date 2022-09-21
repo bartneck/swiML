@@ -42,6 +42,7 @@
             </instruction>
             <instruction>
                 <lengthAsDistance>50</lengthAsDistance>
+                <rest><afterStop>PT0S</afterStop></rest>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <equipment>pads</equipment>
                 <equipment>pullBuoy</equipment>
