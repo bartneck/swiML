@@ -8,6 +8,10 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
+                <meta property="og:image" content="https://bartneck.github.io/swiML/swiMLLogoGradientFacebook.png"/>
+                <meta property="og:image:type" content="image/png"/>
+                <meta property="og:image:width" content="1200"/>
+                <meta property="og:image:height" content="630"/>
                 <link href="../swiMLTraining.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
