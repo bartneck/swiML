@@ -140,7 +140,8 @@
     <instruction>
         <lengthAsDistance>50</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
-        <stroke><standardStroke>nr1</standardStroke></stroke>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <equipment>fins</equipment>
     </instruction>
     <instruction>
         <lengthAsDistance>50</lengthAsDistance>
@@ -148,7 +149,7 @@
         <intensity><staticIntensity>
                 <zone>max</zone>
             </staticIntensity></intensity>
-        <stroke><kicking><standardKick>nr1</standardKick></kicking></stroke>
+        <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
         <equipment>fins</equipment>
     </instruction>
     <instruction>
