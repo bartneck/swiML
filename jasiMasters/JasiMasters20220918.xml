@@ -34,7 +34,7 @@
       <lengthAsDistance>50</lengthAsDistance>
       <rest><afterStop>PT0S</afterStop></rest>
       <stroke><drill>
-            <drillNameType>6K</drillNameType>
+         <drillNameType>6KickDrill</drillNameType>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
       <equipment>fins</equipment>
