@@ -34,7 +34,7 @@
       <lengthAsDistance>50</lengthAsDistance>
       <rest><afterStop>PT0S</afterStop></rest>
       <stroke><drill>
-            <drillNameType>6K</drillNameType>
+            <drillName>6KickDrill</drillName>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
       <equipment>fins</equipment>
@@ -43,7 +43,7 @@
       <lengthAsDistance>50</lengthAsDistance>
       <rest><afterStop>PT0S</afterStop></rest>
       <stroke><drill>
-            <drillNameType>123</drillNameType>
+            <drillName>123</drillName>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
       <equipment>fins</equipment>
@@ -52,7 +52,7 @@
       <lengthAsDistance>50</lengthAsDistance>
       <rest><afterStop>PT0S</afterStop></rest>
       <stroke><drill>
-            <drillNameType>fingerTrails</drillNameType>
+            <drillName>fingerTrails</drillName>
             <drillStroke>freestyle</drillStroke>
          </drill></stroke>
       <equipment>fins</equipment>
@@ -74,7 +74,7 @@
       <lengthAsDistance>75</lengthAsDistance>
       <rest><afterStop>PT0S</afterStop></rest>
       <stroke><drill>
-            <drillNameType>any</drillNameType>
+            <drillName>any</drillName>
             <drillStroke>any</drillStroke>
          </drill></stroke>
    </instruction>
@@ -95,7 +95,7 @@
                   <lengthAsDistance>50</lengthAsDistance>
                   <rest><afterStop>PT0S</afterStop></rest>
                   <stroke><drill>
-                        <drillNameType>technic</drillNameType>
+                        <drillName>technic</drillName>
                         <drillStroke>freestyle</drillStroke>
                      </drill></stroke>
                </instruction>
