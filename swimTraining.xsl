@@ -35,12 +35,12 @@
                 </a> Training Sessions. <ul>
                     <xsl:for-each select="sw:swimTraining/sw:session">
                         <xsl:sort select="sw:date" order="descending"/>
-                        <li><xsl:value-of separator=" " select="sw:date, sw:pool"/>
+                        <li><xsl:value-of separator=" " select="sw:date, format-number(sw:id,'00'), sw:pool"/>
                             <xsl:text> (</xsl:text>
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), '.html')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'),'.html')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>HTML</xsl:text>
@@ -49,7 +49,7 @@
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), '.xml')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'), '.xml')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>XML</xsl:text>
@@ -58,7 +58,7 @@
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), '.jpeg')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'), '.jpeg')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>JPEG</xsl:text>
