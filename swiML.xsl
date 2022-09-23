@@ -524,7 +524,7 @@
         </xsl:if>
         <xsl:text>&#160;</xsl:text>
         <xsl:call-template name="toDisplay">
-            <xsl:with-param name="fullTerm" select="sw:drillNameType"/>
+            <xsl:with-param name="fullTerm" select="sw:drillName"/>
         </xsl:call-template>
     </xsl:template>
 
