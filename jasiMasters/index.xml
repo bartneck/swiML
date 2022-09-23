@@ -4,15 +4,19 @@
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swimTraining.xsd">
     <clubName>Jasi Masters</clubName>
     <clubURL>https://jasimasters.org.nz</clubURL>
+        <session>
+        <date>2022-09-18</date>
+        <id>1</id>
+        <pool>Graham Condon</pool>
+    </session>
     <session>
         <date>2022-09-20</date>
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
     <session>
-        <date>2022-09-18</date>
+        <date>2022-09-22</date>
         <id>1</id>
         <pool>Graham Condon</pool>
     </session>
-
 </swimTraining>
