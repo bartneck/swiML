@@ -87,7 +87,7 @@
             </instruction>
         </repetition>
     </instruction>
-    <instruction><segmentName>Second set and warm down</segmentName></instruction>
+    <instruction><segmentName>Second set</segmentName></instruction>
     <instruction>
         <repetition>
             <repetitionCount>8</repetitionCount>
