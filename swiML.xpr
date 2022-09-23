@@ -10,6 +10,26 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>jasiMasters/JasiMasters2022092201.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLSchema</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>jasiMasters/index.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -30,7 +50,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/JasiMasters20220920.xml</String>
+                                    <String>jasiMasters/JasiMasters20220918.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -50,7 +70,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/JasiMasters20220918.xml</String>
+                                    <String>jasiMasters/JasiMasters20220920.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

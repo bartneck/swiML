@@ -14,7 +14,6 @@
                     <xs:complexType>
                     <xs:sequence >
                         <xs:element name="date" minOccurs="1" maxOccurs="1" type="xs:date"/>
-
                         <xs:element name="id" minOccurs="1" maxOccurs="1" type="idRange">
                         </xs:element>
                         <xs:element name="pool" minOccurs="1" maxOccurs="1" type="xs:string"/>
