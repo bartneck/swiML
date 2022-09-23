@@ -50,7 +50,7 @@
             </head>
 
             <body>
-                <div style="text-align:center;">
+                
                 <img>
                     <xsl:attribute name="src">
                         <xsl:value-of select="concat(translate(sw:swimTraining/sw:clubName, ' ', ''), '.svg')"/>
@@ -58,7 +58,7 @@
                     <xsl:attribute name="width">350px</xsl:attribute>
                     <xsl:attribute name="height">200px</xsl:attribute>
                 </img>
-                </div>
+                
                 <h1><xsl:value-of select="sw:swimTraining/sw:clubName"/>
                     <xsl:text> Training</xsl:text>
                 </h1> This is the index of the <a>

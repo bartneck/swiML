@@ -20,7 +20,7 @@ li {
 
 h1 {
 	text-transform: capitalize;
-	text-align: center;
+	/* text-align: center;*/
 }
 
 .bottom {
