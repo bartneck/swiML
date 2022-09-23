@@ -8,7 +8,8 @@
         <html>
             <head>
                 <meta charset="UTF-8"/>
-                <meta property="og:image" content="https://bartneck.github.io/swiML/swiMLLogoGradientFacebook.png"/>
+                <meta property="og:image"
+                    content="https://bartneck.github.io/swiML/swiMLLogoGradientFacebook.png"/>
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
@@ -18,11 +19,13 @@
                 <link
                     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800"
                     rel="stylesheet"/>
-                
+
                 <link rel="shortcut icon" href="/swiML/favicon/favicon.ico"/>
                 <link rel="icon" sizes="16x16 32x32 64x64" href="/swiML/favicon/favicon.ico"/>
-                <link rel="icon" type="image/png" sizes="196x196" href="/swiML/favicon/favicon-192.png"/>
-                <link rel="icon" type="image/png" sizes="160x160" href="/swiML/favicon/favicon-160.png"/>
+                <link rel="icon" type="image/png" sizes="196x196"
+                    href="/swiML/favicon/favicon-192.png"/>
+                <link rel="icon" type="image/png" sizes="160x160"
+                    href="/swiML/favicon/favicon-160.png"/>
                 <link rel="icon" type="image/png" sizes="96x96" href="/swiML/favicon/favicon-96.png"/>
                 <link rel="icon" type="image/png" sizes="64x64" href="/swiML/favicon/favicon-64.png"/>
                 <link rel="icon" type="image/png" sizes="32x32" href="/swiML/favicon/favicon-32.png"/>
@@ -39,7 +42,7 @@
                 <meta name="msapplication-TileColor" content="#FFFFFF"/>
                 <meta name="msapplication-TileImage" content="/swiML/favicon/favicon-144.png"/>
                 <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml"/>
-               
+
                 <title>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
                     <xsl:text> Training</xsl:text>
@@ -47,6 +50,13 @@
             </head>
 
             <body>
+                <img>
+                    <xsl:attribute name="src">
+                        <xsl:value-of select="concat(translate(sw:swimTraining/sw:clubName, ' ', ''), '.svg')"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="width">700px</xsl:attribute>
+                    <xsl:attribute name="height">400px</xsl:attribute>
+                </img>
                 <h1><xsl:value-of select="sw:swimTraining/sw:clubName"/>
                     <xsl:text> Training</xsl:text>
                 </h1> This is the index of the <a>
@@ -57,12 +67,13 @@
                 </a> Training Sessions. <ul>
                     <xsl:for-each select="sw:swimTraining/sw:session">
                         <xsl:sort select="sw:date" order="descending"/>
-                        <li><xsl:value-of separator=" " select="sw:date, 'Program:',format-number(sw:id,'00'), sw:pool"/>
+                        <li><xsl:value-of separator=" "
+                                select="sw:date, 'Program:', format-number(sw:id, '00'), sw:pool"/>
                             <xsl:text> (</xsl:text>
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'),'.html')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.html')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>HTML</xsl:text>
@@ -71,7 +82,7 @@
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'), '.xml')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.xml')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>XML</xsl:text>
@@ -80,14 +91,15 @@
                             <a>
                                 <xsl:attribute name="href">
                                     <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id,'00'), '.jpeg')"
+                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.jpeg')"
                                     />
                                 </xsl:attribute>
                                 <xsl:text>JPEG</xsl:text>
                             </a>
                             <xsl:text>)</xsl:text>
                         </li>
-                    </xsl:for-each> </ul>
+                    </xsl:for-each>
+                </ul>
                 <div class="bottom">
                     <div class="footnote">made with: </div>
                     <div class="logo">
@@ -97,7 +109,7 @@
                                 <defs>
                                     <style>
                                         .cls-1 {
-                                        fill: #231f20;
+                                            fill: #231f20;
                                         }</style>
                                 </defs>
                                 <path class="cls-1"
