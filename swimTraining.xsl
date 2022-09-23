@@ -39,6 +39,7 @@
                 <meta name="msapplication-TileColor" content="#FFFFFF"/>
                 <meta name="msapplication-TileImage" content="/swiML/favicon/favicon-144.png"/>
                 <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml"/>
+               
                 <title>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
                     <xsl:text> Training</xsl:text>
