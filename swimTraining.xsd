@@ -14,7 +14,16 @@
                     <xs:complexType>
                     <xs:sequence >
                         <xs:element name="date" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                        <xs:element name="id" minOccurs="1" maxOccurs="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    <xs:minInclusive value="1"/>
+                                    <xs:maxInclusive value="99"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
                         <xs:element name="pool" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                        
                     </xs:sequence>
                     </xs:complexType>
                 </xs:element>
