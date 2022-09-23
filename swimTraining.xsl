@@ -57,7 +57,7 @@
                 </a> Training Sessions. <ul>
                     <xsl:for-each select="sw:swimTraining/sw:session">
                         <xsl:sort select="sw:date" order="descending"/>
-                        <li><xsl:value-of separator=" " select="sw:date, format-number(sw:id,'00'), sw:pool"/>
+                        <li><xsl:value-of separator=" " select="sw:date, 'Program:',format-number(sw:id,'00'), sw:pool"/>
                             <xsl:text> (</xsl:text>
                             <a>
                                 <xsl:attribute name="href">
