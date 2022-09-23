@@ -19,27 +19,26 @@
                     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800"
                     rel="stylesheet"/>
                 
-                <link rel="shortcut icon" href="/favicon/favicon.ico"/>
-                <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico"/>
-                <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png"/>
-                <link rel="icon" type="image/png" sizes="160x160" href="/favicon/favicon-160.png"/>
-                <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96.png"/>
-                <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64.png"/>
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png"/>
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png"/>
-                <link rel="apple-touch-icon" href="/favicon/favicon-57.png"/>
-                <link rel="apple-touch-icon" sizes="114x114" href="/favicon/favicon-114.png"/>
-                <link rel="apple-touch-icon" sizes="72x72" href="/favicon/favicon-72.png"/>
-                <link rel="apple-touch-icon" sizes="144x144" href="/favicon/favicon-144.png"/>
-                <link rel="apple-touch-icon" sizes="60x60" href="/favicon/favicon-60.png"/>
-                <link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon-120.png"/>
-                <link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon-76.png"/>
-                <link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon-152.png"/>
-                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png"/>
+                <link rel="shortcut icon" href="/swiML/favicon/favicon.ico"/>
+                <link rel="icon" sizes="16x16 32x32 64x64" href="/swiML/favicon/favicon.ico"/>
+                <link rel="icon" type="image/png" sizes="196x196" href="/swiML/favicon/favicon-192.png"/>
+                <link rel="icon" type="image/png" sizes="160x160" href="/swiML/favicon/favicon-160.png"/>
+                <link rel="icon" type="image/png" sizes="96x96" href="/swiML/favicon/favicon-96.png"/>
+                <link rel="icon" type="image/png" sizes="64x64" href="/swiML/favicon/favicon-64.png"/>
+                <link rel="icon" type="image/png" sizes="32x32" href="/swiML/favicon/favicon-32.png"/>
+                <link rel="icon" type="image/png" sizes="16x16" href="/swiML/favicon/favicon-16.png"/>
+                <link rel="apple-touch-icon" href="/swiML/favicon/favicon-57.png"/>
+                <link rel="apple-touch-icon" sizes="114x114" href="/swiML/favicon/favicon-114.png"/>
+                <link rel="apple-touch-icon" sizes="72x72" href="/swiML/favicon/favicon-72.png"/>
+                <link rel="apple-touch-icon" sizes="144x144" href="/swiML/favicon/favicon-144.png"/>
+                <link rel="apple-touch-icon" sizes="60x60" href="/swiML/favicon/favicon-60.png"/>
+                <link rel="apple-touch-icon" sizes="120x120" href="/swiML/favicon/favicon-120.png"/>
+                <link rel="apple-touch-icon" sizes="76x76" href="/swiML/favicon/favicon-76.png"/>
+                <link rel="apple-touch-icon" sizes="152x152" href="/swiML/favicon/favicon-152.png"/>
+                <link rel="apple-touch-icon" sizes="180x180" href="/swiML/favicon/favicon-180.png"/>
                 <meta name="msapplication-TileColor" content="#FFFFFF"/>
-                <meta name="msapplication-TileImage" content="/favicon/favicon-144.png"/>
-                <meta name="msapplication-config" content="/favicon/browserconfig.xml"/>
-                
+                <meta name="msapplication-TileImage" content="/swiML/favicon/favicon-144.png"/>
+                <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml"/>
                 <title>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
                     <xsl:text> Training</xsl:text>
