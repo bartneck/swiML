@@ -19,4 +19,14 @@
         <id>1</id>
         <pool>Graham Condon</pool>
     </session>
+    <session>
+        <date>2022-09-24</date>
+        <id>1</id>
+        <pool>Graham Condon</pool>
+    </session>
+    <session>
+        <date>2022-09-25</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
 </swimTraining>

@@ -410,7 +410,7 @@
                         <xsl:with-param name="fullTerm"
                             select="../sw:intensity/sw:stopIntensity/sw:zone"/>
                     </xsl:call-template>
-                    <xsl:text>Across</xsl:text>
+                    <xsl:text> Across</xsl:text>
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
@@ -552,6 +552,7 @@
         <term index="reverseIndividualMedley">IM Reverse</term>
         <term index="individualMedleyOverlap">IM Overlap</term>
         <term index="individualMedleyOrder">IM Order</term>
+        <term index="reverseIndividualMedleyOrder">IM Reverse Order</term>
         <term index="any">Any</term>
         <term index="nr1">Nr 1</term>
         <term index="nr2">Nr 2</term>

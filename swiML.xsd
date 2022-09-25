@@ -629,6 +629,7 @@
             <xs:enumeration value="reverseIndividualMedley"/>
             <xs:enumeration value="individualMedleyOverlap"/>
             <xs:enumeration value="individualMedleyOrder"/>
+            <xs:enumeration value="reverseIndividualMedleyOrder"/>
             <xs:enumeration value="any"/>
             <xs:enumeration value="nr1"/>
             <xs:enumeration value="nr2"/>
