@@ -724,6 +724,7 @@
             <xs:enumeration value="singleArm"/>
             <xs:enumeration value="any"/>
             <xs:enumeration value="technic"/>
+            <xs:enumeration value="dogPaddle"/>
         </xs:restriction>
     </xs:simpleType>
 

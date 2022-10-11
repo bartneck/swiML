@@ -582,6 +582,7 @@
         <term index="scull">Scull</term>
         <term index="singleArm">Single Arm</term>
         <term index="technic">Technic</term>
+        <term index="dogPaddle">Dog Paddle</term>
         <term index="board">Board</term>
         <term index="pads">Pads</term>
         <term index="pullBuoy">Pullbuoy</term>
