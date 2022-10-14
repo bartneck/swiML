@@ -74,4 +74,9 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
+    <session>
+        <date>2022-10-15</date>
+        <id>1</id>
+        <pool>Graham Condon</pool>
+    </session>
 </swimTraining>
