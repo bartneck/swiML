@@ -726,6 +726,7 @@
             <xs:enumeration value="technic"/>
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
+            <xs:enumeration value="6666"/>
         </xs:restriction>
     </xs:simpleType>
 
