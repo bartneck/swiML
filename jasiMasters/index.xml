@@ -104,4 +104,14 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
+    <session>
+        <date>2022-11-05</date>
+        <id>1</id>
+        <pool>Kaikoura Aquatic Centre</pool>
+    </session>
+    <session>
+        <date>2022-11-06</date>
+        <id>1</id>
+        <pool>Kaikoura Aquatic Centre</pool>
+    </session>
 </swimTraining>
