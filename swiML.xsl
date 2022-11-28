@@ -154,7 +154,7 @@
                             <div class="logo">
                                 <a href="https://github.com/bartneck/swiML">
                                     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 1219.33 460.35">
+                                        viewBox="0 0 1219.33 460.35" >
                                         <defs>
                                             <style>
                                                 .cls-1 {
