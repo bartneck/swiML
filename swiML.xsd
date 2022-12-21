@@ -674,6 +674,7 @@
             <xs:enumeration value="left"/>
             <xs:enumeration value="right"/>
             <xs:enumeration value="side"/>
+            <xs:enumeration value="vertical"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -570,6 +570,7 @@
         <term index="left">Left</term>
         <term index="right">Right</term>
         <term index="side">Side</term>
+        <term index="vertical">Vertical</term>
         <term index="easy">Easy</term>
         <term index="threshold">Threshold</term>
         <term index="endurance">Endurance</term>
