@@ -66,42 +66,54 @@
                         <xsl:value-of select="sw:swimTraining/sw:clubURL"/>
                     </xsl:attribute>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
-                </a> Training Sessions. <ul>
-                    <xsl:for-each select="sw:swimTraining/sw:session">
-                        <xsl:sort select="sw:date" order="descending"/>
-                        <li><xsl:value-of separator=" "
+                </a> Training Sessions. 
+                
+                <ul>
+                <xsl:for-each-group select="sw:swimTraining/sw:session" group-by="year-from-date(sw:date)">
+                    <xsl:sort select="current-grouping-key()" order="descending"/>
+                    <li><xsl:value-of select="year-from-date(sw:date)"/></li>
+                    <ul>
+                        <xsl:for-each select="current-group()">
+                            <xsl:sort select="sw:date" order="descending"/>
+                            <li><xsl:value-of separator=" "
                                 select="sw:date, 'Program:', format-number(sw:id, '00'), sw:pool"/>
-                            <xsl:text> (</xsl:text>
-                            <a>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.html')"
-                                    />
-                                </xsl:attribute>
-                                <xsl:text>HTML</xsl:text>
-                            </a>
-                            <xsl:text>, </xsl:text>
-                            <a>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.xml')"
-                                    />
-                                </xsl:attribute>
-                                <xsl:text>XML</xsl:text>
-                            </a>
-                            <xsl:text>, </xsl:text>
-                            <a>
-                                <xsl:attribute name="href">
-                                    <xsl:value-of
-                                        select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.jpeg')"
-                                    />
-                                </xsl:attribute>
-                                <xsl:text>JPEG</xsl:text>
-                            </a>
-                            <xsl:text>)</xsl:text>
-                        </li>
-                    </xsl:for-each>
+                                <xsl:text> (</xsl:text>
+                                <a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of
+                                            select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.html')"
+                                        />
+                                    </xsl:attribute>
+                                    <xsl:text>HTML</xsl:text>
+                                </a>
+                                <xsl:text>, </xsl:text>
+                                <a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of
+                                            select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.xml')"
+                                        />
+                                    </xsl:attribute>
+                                    <xsl:text>XML</xsl:text>
+                                </a>
+                                <xsl:text>, </xsl:text>
+                                <a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of
+                                            select="concat(translate(../sw:clubName, ' ', ''), format-date(sw:date, '[Y0001][M01][D01]'), format-number(sw:id, '00'), '.jpeg')"
+                                        />
+                                    </xsl:attribute>
+                                    <xsl:text>JPEG</xsl:text>
+                                </a>
+                                <xsl:text>)</xsl:text>
+                            </li>
+                        </xsl:for-each>
+                    </ul>
+                </xsl:for-each-group>
                 </ul>
+                
+                
+                
+       
                 <div class="bottom">
                     <div class="footnote">made with: </div>
                     <div class="logo">
