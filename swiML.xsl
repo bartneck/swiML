@@ -472,7 +472,7 @@
             select="concat('&#160;&#9684;', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
         />-->
         <xsl:value-of
-            select="concat('&#160;<i class="fa-regular fa-timer"></i>', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
+            select="concat('&#160;&lt;i class="fa-regular fa-timer"&gt;&lt;/i&gt;', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
         />
     </xsl:template>
 
