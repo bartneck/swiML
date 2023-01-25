@@ -25,7 +25,7 @@ def sum_square(n):
   # returns false
   return False
 
-
+# the main program
 # n is the surface area of the square
 n = 18
 if (sum_square(n)):
