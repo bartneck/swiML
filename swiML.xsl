@@ -466,14 +466,14 @@
 
     <!-- Rest -->
     <xsl:template match="sw:afterStop">
-        <!--<xsl:value-of
+        <xsl:value-of
             select="concat('&#160;&#9684;', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
-        />-->
-        <xsl:text>&#160;</xsl:text>
+        />
+<!--        <xsl:text>&#160;</xsl:text>
         <i class="fa-regular fa-clock fa-1x"></i>
         <xsl:value-of
             select="concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
-        />
+        />-->
     </xsl:template>
 
     <xsl:template match="sw:sinceStart">
