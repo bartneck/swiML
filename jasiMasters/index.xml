@@ -179,4 +179,14 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
+    <session>
+        <date>2023-01-29</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2023-01-31</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
 </swimTraining>
