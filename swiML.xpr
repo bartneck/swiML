@@ -10,7 +10,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/JasiMasters2023021201.xml</String>
+                                    <String>jasiMasters/JasiMasters2023021401.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -31,6 +31,46 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>jasiMasters/JasiMasters2023020701.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>jasiMasters/index.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>index</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>jasiMasters/JasiMasters2023021201.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -75,26 +115,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/index.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>index</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -158,7 +178,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>swiMLXSL</String>
+                                    <String>index</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -176,7 +196,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsl</String>
+                                    <String>file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML/swimTraining.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
@@ -241,7 +261,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String>index</String>
+                                    <String>swiMLXSL</String>
                                 </field>
                                 <field name="baseURL">
                                     <String></String>
@@ -259,7 +279,7 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML/swimTraining.xsl</String>
+                                    <String>https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String>${currentFileURL}</String>
