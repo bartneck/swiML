@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns="http://www.garmin.com/xmlschemas/UserProfile/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.garmin.com/xmlschemas/UserProfile/v1" xmlns:up1="http://www.garmin.com/xmlschemas/UserProfile/v1"
+	elementFormDefault="qualified">
+   <xsd:element name="Profile" type="ProfileData_t"/>
+   <xsd:simpleType name="HeartRateZoneNumbers_t">
+    	<xsd:restriction base="xsd:positiveInteger">
+    		<xsd:maxInclusive value="5"/>
+    	</xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="HeartRateInBeatsPerMinute_t">
+      <xsd:sequence>
+		<xsd:element name="Value" type="positiveByte"/>
+	  </xsd:sequence>
+   </xsd:complexType>
+	<xsd:simpleType name="positiveByte">
+		<xsd:restriction base="xsd:unsignedByte">
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+  <xsd:complexType name="ProfileHeartRateZone_t">
+    	<xsd:sequence>
+    		<xsd:element name="Number" type="HeartRateZoneNumbers_t"/>
+    		<xsd:element name="ViewAs" type="HeartRateType_t"/>
+    		<xsd:element name="Low" type="HeartRateInBeatsPerMinute_t"/>
+    		<xsd:element name="High" type="HeartRateInBeatsPerMinute_t"/>
+    	</xsd:sequence>
+   </xsd:complexType>
+   <xsd:simpleType name="HeartRateType_t">
+    	<xsd:restriction base="Token_t">
+    		<xsd:enumeration value="Percent Max"/>
+    		<xsd:enumeration value="Beats Per Minute"/>
+    	</xsd:restriction>
+   </xsd:simpleType>
+ 	<xsd:simpleType name="Token_t">
+		<xsd:annotation>
+			<xsd:documentation>Token must be defined as a type because of a bug in the MSXML parser which
+                                               does not correctly process xsd:token using the whiteSpace value of "collapse"
+            </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+   <xsd:simpleType name="SpeedZoneNumbers_t">
+	<xsd:restriction base="xsd:positiveInteger">
+		<xsd:maxInclusive value="10"/>
+	</xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RestrictedToken_t">
+	<xsd:restriction base="Token_t">
+		<xsd:minLength value="1"/>
+		<xsd:maxLength value="15"/>
+	</xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="SpeedType_t">
+	<xsd:restriction base="Token_t">
+		<xsd:enumeration value="Pace"/>
+		<xsd:enumeration value="Speed"/>
+	</xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="CustomSpeedZone_t">
+ 		<xsd:sequence>
+ 			<xsd:element name="ViewAs" type="SpeedType_t"/>
+ 			<xsd:element name="LowInMetersPerSecond" type="SpeedInMetersPerSecond_t"/>
+ 			<xsd:element name="HighInMetersPerSecond" type="SpeedInMetersPerSecond_t"/>
+ 		</xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="SpeedInMetersPerSecond_t">
+ 	<xsd:restriction base="xsd:double">
+ 		<xsd:minExclusive value="0"/>
+ 	</xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ProfileSpeedZone_t">
+    	<xsd:sequence>
+    		<xsd:element name="Number" type="SpeedZoneNumbers_t"/>
+    		<xsd:element name="Name" type="RestrictedToken_t" minOccurs="0"/>
+    		<xsd:element name="Value" type="CustomSpeedZone_t"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AbstractProfileActivity_t" abstract="true">
+    	<xsd:sequence>
+    		<xsd:element name="MaximumHeartRateBpm" type="HeartRateInBeatsPerMinute_t"/>
+    		<xsd:element name="GearWeightKilograms" type="xsd:double"/>
+    		<xsd:element name="HeartRateZones" type="ProfileHeartRateZone_t" minOccurs="5" maxOccurs="5"/>
+    		<xsd:element name="SpeedZones" type="ProfileSpeedZone_t" minOccurs="10" maxOccurs="10"/>
+    		<xsd:element name="Extensions" type="Extensions_t" minOccurs="0">
+    			<xsd:annotation>
+    				<xsd:documentation>You can extend Training Center by adding your own elements from another schema here.</xsd:documentation>
+    			</xsd:annotation>
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Sport_t">
+	<xsd:restriction base="Token_t">
+		<xsd:enumeration value="Running"/>
+		<xsd:enumeration value="Biking"/>
+		<xsd:enumeration value="Other"/>
+	</xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ProfileActivity_t">
+    	<xsd:annotation>
+    		<xsd:documentation>User Activity Profile</xsd:documentation>
+    	</xsd:annotation>
+    	<xsd:complexContent>
+    		<xsd:extension base="AbstractProfileActivity_t">
+    			<xsd:attribute name="Sport" type="Sport_t" use="required"/>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="BikeProfileActivity_t">
+    	<xsd:annotation>
+    		<xsd:documentation>Profile with extensions for new bicycle specific data</xsd:documentation>
+    	</xsd:annotation>
+    	<xsd:complexContent>
+    		<xsd:extension base="AbstractProfileActivity_t">
+    			<xsd:sequence>
+    			<xsd:element name="Bike" type="BikeData_t" minOccurs="3" maxOccurs="3"/>
+    			</xsd:sequence>
+    			<xsd:attribute name="Sport" type="Sport_t" use="required" fixed="Biking"/>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="BikeData_t">
+    	<xsd:sequence>
+    		<xsd:element name="Name" type="RestrictedToken_t"/>
+    		<xsd:element name="OdometerMeters" type="xsd:double"/>
+    		<xsd:element name="WeightKilograms" type="xsd:double"/>
+    		<xsd:element name="WheelSize" type="WheelData_t"/>
+    		<xsd:element name="Extensions" type="Extensions_t" minOccurs="0">
+    			<xsd:annotation>
+    				<xsd:documentation>You can extend Training Center by adding your own elements from another schema here.</xsd:documentation>
+    			</xsd:annotation>
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="HasCadenceSensor" type="xsd:boolean" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="WheelData_t">
+    	<xsd:sequence>
+    		<xsd:element name="SizeMillimeters" type="xsd:positiveInteger"/>
+    		<xsd:element name="Extensions" type="Extensions_t" minOccurs="0">
+    			<xsd:annotation>
+    				<xsd:documentation>You can extend Training Center by adding your own elements from another schema here.</xsd:documentation>
+    			</xsd:annotation>
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="AutoWheelSize" type="xsd:boolean" use="required"/>
+    </xsd:complexType>
+    <xsd:simpleType name="Gender_t">
+	<xsd:restriction base="Token_t">
+		<xsd:enumeration value="Male"/>
+		<xsd:enumeration value="Female"/>
+	</xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ProfileData_t">
+    	<xsd:sequence>
+    		<xsd:element name="BirthDate" type="xsd:date"/>
+    		<xsd:element name="WeightKilograms" type="xsd:double"/>
+    		<xsd:element name="Gender" type="Gender_t"/>
+    		<xsd:element name="Activities" type="AbstractProfileActivity_t" minOccurs="0" maxOccurs="unbounded"/>
+    		<xsd:element name="Extensions" type="Extensions_t" minOccurs="0">
+    			<xsd:annotation>
+    				<xsd:documentation>You can extend Training Center by adding your own elements from another schema here.</xsd:documentation>
+    			</xsd:annotation>
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Extensions_t">
+	<xsd:sequence>
+		<xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+			<xsd:annotation>
+				<xsd:documentation>You can extend Training Center by adding your own elements from another schema here.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:any>
+	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
