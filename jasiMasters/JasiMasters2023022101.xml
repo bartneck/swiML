@@ -81,7 +81,7 @@
             </staticIntensity></intensity>
         <stroke><standardStroke>notFreestyle</standardStroke></stroke>
     </instruction>
-    <instruction><segmentName>Frist set</segmentName></instruction>
+    <instruction><segmentName>First set</segmentName></instruction>
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
         <intensity><dynamicAcross>false</dynamicAcross>
@@ -93,7 +93,7 @@
             </stopIntensity>
         </intensity>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
-        <instructionDescription>breath 25m as 3,5,7,3</instructionDescription>
+        <instructionDescription>breath 25m as breath 3,5,7,3</instructionDescription>
     </instruction>
     <instruction>
         <lengthAsDistance>100</lengthAsDistance>
