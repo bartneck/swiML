@@ -12,12 +12,12 @@
         <!-- ====================================================== -->
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="title" type="titleString">
+                <xs:element name="title" type="titleString" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>A short title of the program.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element maxOccurs="unbounded" minOccurs="1" name="author">
+                <xs:element maxOccurs="1" minOccurs="0" name="author">
                     <xs:annotation>
                         <xs:documentation>Each program can have one or more
                             authors.</xs:documentation>
@@ -51,7 +51,7 @@
                         <xs:documentation>A short description for the program.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element minOccurs="1" name="creationDate" type="xs:date" maxOccurs="1"
+                <xs:element minOccurs="0" name="creationDate" type="xs:date" maxOccurs="1"
                     default="2022-02-22">
                     <xs:annotation>
                         <xs:documentation>The date on which the program was
