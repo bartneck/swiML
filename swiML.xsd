@@ -510,7 +510,7 @@
             <xs:element name="sinceLastRest" type="xs:duration">
                 <xs:annotation>
                     <xs:documentation>The time since the end of the last rest. This is useful when
-                        several instructions without a rest period a swum, followed by a since start
+                        several instructions without a rest period are swum, followed by a since start
                         type rest.</xs:documentation>
                 </xs:annotation>
             </xs:element>
