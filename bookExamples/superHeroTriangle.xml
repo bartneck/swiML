@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Superhero Triangles</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swimming the Super Hero Triangles.</programDescription>
+    <creationDate>2023-02-28</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>400</lengthAsDistance>
+        <stroke><standardStroke>any</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <segmentName>First triangle</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>6</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr3</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>8</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr2</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>10</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr1</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Second triangle</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>5</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr3</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>12</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr2</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>13</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr1</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Third triangle</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>7</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr3</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>15</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr2</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>20</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr1</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Fourth triangle</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>9</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr3</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>10</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr2</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>17</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr1</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Fifth triangle</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>6</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr3</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>25</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr2</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsLaps>29</lengthAsLaps>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>nr1</standardStroke></stroke>
+    </instruction>
+</program>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program in the sun. The target duration was 60 minutes. The coach was Matt Nash.</programDescription>
+    <creationDate>2023-03-14</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>400</lengthAsDistance>
+        <intensity><staticIntensity>
+            <zone>easy</zone>
+        </staticIntensity></intensity>
+        <stroke><standardStroke>any</standardStroke></stroke>
+    </instruction>
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><drill>
+            <drillName>any</drillName>
+            <drillStroke>freestyle</drillStroke>
+        </drill></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><kicking><standardKick>individualMedleyOverlap</standardKick></kicking></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><drill>
+            <drillName>any</drillName>
+            <drillStroke>individualMedleyOverlap</drillStroke>
+        </drill></stroke>
+    </instruction>
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT15S</afterStop></rest>
+        <stroke><standardStroke>individualMedleyOverlap</standardStroke></stroke>
+    </instruction>
+    
+    <instruction><segmentName>First set</segmentName></instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <lengthAsDistance>25</lengthAsDistance>
+                <rest><afterStop>PT0S</afterStop></rest>
+                <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>75</lengthAsDistance>
+                <rest><sinceLastRest>PT1M40S</sinceLastRest></rest>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <lengthAsDistance>50</lengthAsDistance>
+                <rest><sinceStart>PT70S</sinceStart></rest>
+                <stroke><drill>
+                    <drillName>technic</drillName>
+                    <drillStroke>individualMedleyOrder</drillStroke>
+                </drill></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>50</lengthAsDistance>
+                <rest><sinceStart>PT70S</sinceStart></rest>
+                <intensity><staticIntensity><zone>racePace</zone></staticIntensity></intensity>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <lengthAsDistance>75</lengthAsDistance>
+                <rest><sinceStart>PT0S</sinceStart></rest>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>25</lengthAsDistance>
+                <rest><sinceLastRest>PT1M40S</sinceLastRest></rest>
+                <stroke><standardStroke>reverseIndividualMedleyOrder</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT20S</afterStop></rest>
+        <stroke><drill>
+            <drillName>any</drillName>
+            <drillStroke>nr1</drillStroke>
+        </drill></stroke>
+        <equipment>fins</equipment>
+        <instructionDescription>first 25m underwater</instructionDescription>
+    </instruction>
+    
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT20S</afterStop></rest>
+        <stroke><kicking><standardKick>nr1</standardKick></kicking></stroke>
+        <equipment>fins</equipment>
+        <instructionDescription>last 25m underwater</instructionDescription>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <lengthAsDistance>75</lengthAsDistance>
+                <rest><afterStop>PT20S</afterStop></rest>
+                <stroke><standardStroke>nr1</standardStroke></stroke>
+                <equipment>fins</equipment>
+                <equipment>pads</equipment>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT20S</afterStop></rest>
+        <stroke><drill>
+            <drillName>technic</drillName>
+            <drillStroke>any</drillStroke>
+        </drill></stroke>
+        <equipment>fins</equipment>
+        <instructionDescription>first 25m fast</instructionDescription>
+    </instruction>
+    
+    <instruction>
+        <lengthAsDistance>75</lengthAsDistance>
+        <rest><afterStop>PT20S</afterStop></rest>
+        <stroke><drill>
+            <drillName>technic</drillName>
+            <drillStroke>any</drillStroke>
+        </drill></stroke>
+        <equipment>fins</equipment>
+        <instructionDescription>last 25m fast</instructionDescription>
+    </instruction>
+</program>
