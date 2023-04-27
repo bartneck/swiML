@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program in the sun. The target duration was 60 minutes.</programDescription>
+    <creationDate>2023-02-07</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <!-- valild case -->
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+    </instruction>
+    
+    <!-- invalild case -->
+    <instruction>
+        <continue>
+            <totalLength>300</totalLength>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke><kicking><legMovement>flutter</legMovement></kicking></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke><drill>
+                    <drillName>any</drillName>
+                    <drillStroke>freestyle</drillStroke>
+                </drill></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+</program>
