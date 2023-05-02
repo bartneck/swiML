@@ -21,6 +21,40 @@
         <equipment>pullBuoy</equipment>
     </instruction>
     
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>6</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <lengthAsDistance>106</lengthAsDistance>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                        <equipment>pads</equipment>
+                        <equipment>pullBuoy</equipment>
+                    </instruction>
+                    <instruction>
+                        <lengthAsDistance>107</lengthAsDistance>
+                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                        <equipment>pads</equipment>
+                        <equipment>pullBuoy</equipment>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>108</lengthAsDistance>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    
     <!-- invalild case -->
     <instruction>
         <continue>

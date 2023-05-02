@@ -5,8 +5,7 @@ xmlfile = 'pythonXMLtest\sample.xml'
 tree = ET.parse(xmlfile)
 root = tree.getroot()
 
-'''ET.dump(tree)
-
+'''
 for length in root.iter('lengthAsDistance'):
     new_length = int(length.text) + 25
     length.text = str(new_length)
@@ -24,7 +23,7 @@ def to_time(time):
 
 def print_author(author):
     '''returns author string'''
-    return [f'{author[0].text} {author[1].text}',f'{author[2].text}' if len(author) > 2 else '']
+    return [(f'{author[0].text} {author[1].text}'),(f'{author[2].text}' if len(author) > 2 else '')]
 
 def print_length(length,unit):
     '''return pools length string'''
@@ -36,12 +35,11 @@ def print_total_length(length,unit):
 
 def print_stroke(stroke):
     '''returns line detailing what stroke is being swum'''
-    for  child in stroke:
-        if child.tag == 'kicking' or child.tag == 'drill':
-            for child2 in child:
-                 return (f'{child2.text} {child.tag}')
-        else:
-            return (f'{child.text} ')
+    if stroke.tag == 'kicking' or stroke.tag == 'drill':
+        for child2 in stroke:
+                return (f'{child2.text} {stroke.tag}')
+    else:
+        return (f'{stroke.text} ')
 
 def print_intensity(intensity):
     '''returns lines for both static and dynamic intenisty
@@ -54,15 +52,15 @@ def print_intensity(intensity):
 
 def print_rest(rest):
     '''returns line for rest types'''
-    for rest_type in rest:
-        if rest_type.tag == 'sinceStart':
-            return f'on {to_time(rest_type.text)}'
-        elif rest_type.tag == 'afterStop':
-            return f' take {to_time(rest_type.text)} rest'
-        elif rest_type.tag == 'sinceLastRest':
-            return f'{to_time(rest_type.text)}'
-        elif rest_type.tag == 'inOut':
-            return f'{rest_type.text} in First out'
+    
+    if rest.tag == 'sinceStart':
+        return f'on {to_time(rest.text)}'
+    elif rest.tag == 'afterStop':
+        return f' take {to_time(rest.text)} rest'
+    elif rest.tag == 'sinceLastRest':
+        return f'{to_time(rest.text)}'
+    elif rest.tag == 'inOut':
+        return f'{rest.text} in First out'
 
 def print_breath(breath):
     '''returns line for breathing style'''
@@ -112,28 +110,19 @@ def print_instuction(instruction,prefix):
         print_pyramid(instruction[0],prefix)
     else:
         r_strings=['']
-        
-        # instruction group checks
-        for child in instruction:
-            if child.tag[:6] == 'length':
-                if child.tag[-4:] == 'Time':
-                    r_strings[0]+= (f'swim for {to_time(child.text)}')
+        length_boss = instruction[0]
+        if length_boss.tag[:6] == 'length':
+                if length_boss.tag[-4:] == 'Time':
+                    r_strings[0]+= (f'swim for {to_time(length_boss[0].text)}')
                 else:
-                    r_strings[0]+= (f'{child.text} {root.find("lengthUnit").text} ')
-            elif child.tag == 'stroke':
-                r_strings[0]+= (print_stroke(child))
-            elif child.tag == 'equipment':
-                r_strings[0]+= (print_equipment(child))
-            elif child.tag == 'underwater':
-                r_strings.append(print_underwater(child))
-            elif child.tag == 'intensity':
-                r_strings.append(print_intensity(child))
-            elif child.tag == 'rest':
-                r_strings.append(print_rest(child))
-            elif child.tag == 'breath':
-                r_strings.append(print_breath(child))
-            elif child.tag == 'instructionDescription':
-                r_strings.append(print_description(child))
+                    r_strings[0]+= (f'{length_boss[0].text} {root.find("lengthUnit").text} ')
+        if (instruction.find('./stroke')) != None and len((instruction.find('./stroke'))) > 0:r_strings[0]+= (print_stroke(instruction.find('./stroke')[0]))
+        if (instruction.find('./rest')) != None and len((instruction.find('./rest'))) > 0:r_strings[0] += (print_rest(instruction.find('./rest')[0]))
+        if instruction.find('./underwater'): r_strings.append(print_underwater(instruction.find('./underwater'))) 
+        if (instruction.find('./equipment')) != None and len((instruction.find('./equipment'))) > 0:r_strings.append(print_equipment(instruction.find('./equipment')))
+        if (instruction.find('./intensity')) != None and len((instruction.find('./intensity'))) > 0:r_strings.append(print_intensity(instruction.find('./intensity')))
+        if (instruction.find('./breath')) != None and (instruction.find('./breath')).text != 'None' : r_strings.append(print_breath(instruction.find('./breath')))
+        if (instruction.find('./instructionDescription')) != None and len((instruction.find('./instructionDescription'))) > 0:r_strings.append(print_description(instruction.find('./instructionDescription')))
 
         #adds buffer for multi indented instructions for easier reading
         if len(prefix) > 1:
@@ -150,33 +139,32 @@ def print_instuction(instruction,prefix):
                     else:
                         string = (f'  {pre[0]}') + string
             print(string)
-print()
-for child2 in root:
-    if child2.tag == 'hideIntro':
-        if child2.text == 'true':
-            for child in root:
-                if child.tag == 'instruction':
-                    #print all instructions
-                    print('new instruction')
-                    print_instuction(child,[])
-        else:
-            for child in root:
-                if child.tag == 'title':
-                    print(child.text)
-                elif child.tag == 'author':
-                    for line in print_author(child):
-                        if len(line) > 0:
-                            print(line)
-                elif child.tag == 'programDescription':
-                    print(print_description(child))
-                elif child.tag == 'creationDate':
-                    print(child.text)
-                elif child.tag == 'poolLength':
-                    print(print_length(child,root.find("lengthUnit")))
-                elif child.tag == 'programLength':
-                    print(print_total_length(child,root.find("lengthUnit")))
-                elif child.tag == 'instruction':
-                    #print all instructions
-                    print(' \nnew instruction')
-                    print_instuction(child,[])
+
+def print_program(root):
+    hide_intro=False
+    print()
+    for child2 in root:
+        if child2.tag == 'hideIntro' and child2.text == 'true':
+            hide_intro = True
+        
+    for child in root:
+        if not hide_intro:
+            if child.tag == 'title':
+                print(child.text)
+            elif child.tag == 'author':
+                for line in print_author(child):
+                    if len(line) > 0:
+                        print(line)
+            elif child.tag == 'programDescription':
+                print(print_description(child))
+            elif child.tag == 'creationDate':
+                print(child.text)
+            elif child.tag == 'poolLength':
+                print(print_length(child,root.find("lengthUnit")))
+            elif child.tag == 'programLength':
+                print(print_total_length(child,root.find("lengthUnit")))
+        if child.tag == 'instruction':
+            #print all instructions
+            print(' \nnew instruction')
+            print_instuction(child,[])
             
