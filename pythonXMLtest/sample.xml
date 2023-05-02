@@ -10,7 +10,7 @@
     <creationDate>2023-02-07</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
  
     
     
@@ -57,6 +57,7 @@
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <breath>5</breath>
+                <instructionDescription>do it faster then me</instructionDescription>
             </instruction>
         </repetition>
     </instruction>
