@@ -12,57 +12,13 @@ ET.dump(tree)'''
 def get_number_of_strings(strings):
     '''returns total number of strings'''
     numberOfStrings = 0
-    for string in strings[0]:
+    for string in strings:
         if type(string) is str:
             numberOfStrings+=1
         else:
             numberOfStrings+=get_number_of_strings(string)
     return numberOfStrings
-def print_instruction_strings(strings):
-    '''prints strings for a top level instruction'''
-    prefix = []
-    #print(strings)
-    total_strings = []
-    while len(strings) == 1 and type(strings[0]) is not str:
-        [strings] = strings
-    number  = get_number_of_strings(strings)
-    print(strings)
-    for pre in strings[1]:
-        prefix.append(pre)
-    print(prefix)
-    for i,string in enumerate(strings[0]):
-        if type(string) is str:
-            for index,pre in enumerate(prefix[::-1]):
-                
-                if i == (len(strings[0])-1) // 2 and index == 0:
-                    string = (f'{pre[1]}x{pre[0]}') + string
-                else:
-                    string = (f'  {pre[0]}') + string
-                
-            total_strings.append(string)
-        elif type(string) is tuple:
-            print(string)
-            for string in print_instruction_strings(string):
-                total_strings.append(string)
-    return total_strings
 
-    '''prefix = strings[1]
-    r_strings = strings[0]
-    #adds buffer for multi indented instructions for easier reading
-    if len(prefix) > 1:
-        r_strings.insert(0,'')
-        r_strings.append('')
-    #adds needed prefixes to strings and prints strings for given instruction
-    for i,string in enumerate(r_strings):
-        for pre in prefix[::-1]:
-            if pre == ' | ':
-                string = '  '+pre + string
-            else:
-                if i == (len(r_strings)-1) // 2:
-                    string = (f'{pre[1]}x{pre[0]}') + string
-                else:
-                    string = (f'  {pre[0]}') + string
-        print(string)'''
 
 def to_time(time):
     '''converts to unit time'''
@@ -134,20 +90,85 @@ def print_description(desc):
     '''prints contents'''
     return desc.text.strip()
     
-
+def print_instruction_strings(strings):
+    '''returns strings for a repetition'''
+    prefix = []
+    #print(strings)
+    total_strings = []
+    while len(strings) == 1 and type(strings[0]) is not str:
+        [strings] = strings
+    number  = get_number_of_strings(strings)
+    for pre in strings[1]:
+        prefix.append(pre)
+    for i,string in enumerate(strings[0]):
+        if type(string) is str:
+            for index,pre in enumerate(prefix[::-1]):
+                
+                if i == (len(strings[0])-1) // 2 and index == 0:
+                    string = (f'{pre[1]}x{pre[0]}') + string
+                else:
+                    string = (f'  {pre[0]}') + string
+                
+            total_strings.append(string)
+        elif type(string) is tuple:
+            for string in print_instruction_strings(string):
+                total_strings.append(string)
+    return total_strings
 def print_repetition(child,prefix,root):
     '''adds repitition prefix to all children instructions'''
     prefix2 = prefix.copy()
-    r_strings = [[['']]]
+    r_strings = [{'blank':[['']]}]
     flat_lines = []
+    total_strings = []
     prefix2.append([' | ',child[0].text.strip()])
     for instruction in child.findall('./instruction'):
          r_strings.append(print_instruction(instruction,prefix2,root))
-         r_strings.append([['']])
+         r_strings.append({'blank':[['']]})
+    print(r_strings)
     for multiLine in r_strings:
-        for line in multiLine:
-            flat_lines.append(line[0])
-    return ([(flat_lines,prefix2)]) 
+        print(multiLine)
+        item = next(iter(multiLine.items()))
+        # stopped here --> giving me blank reps when it shouldnt
+        if item[0] == 'rep':
+            print(multiLine,'rep')
+        else:
+            print(item[1],'not')
+                
+            #flat_lines.append(line[0])
+    number  = get_number_of_strings(flat_lines)
+    for i,string in enumerate(flat_lines):
+        
+        for index,pre in enumerate(prefix2[::-1]):
+            
+            if i == (len(flat_lines)-1) // 2 and index == 0:
+                string = (f'{pre[1]}x{pre[0]}') + string
+            else:
+                string = (f'  {pre[0]}') + string
+            
+        total_strings.append(string)
+        
+    return {'rep':total_strings}
+    '''
+    total_strings = []
+    while len(strings) == 1 and type(strings[0]) is not str:
+        [strings] = strings
+    number  = get_number_of_strings(strings)
+    for pre in strings[1]:
+        prefix.append(pre)
+    for i,string in enumerate(strings[0]):
+        if type(string) is str:
+            for index,pre in enumerate(prefix[::-1]):
+                
+                if i == (len(strings[0])-1) // 2 and index == 0:
+                    string = (f'{pre[1]}x{pre[0]}') + string
+                else:
+                    string = (f'  {pre[0]}') + string
+                
+            total_strings.append(string)
+        elif type(string) is tuple:
+            for string in print_repetition(string):
+                total_strings.append(string)
+    return total_strings'''
 
 
 def print_pyramid(child,prefix):
@@ -162,7 +183,7 @@ def print_instruction(instruction,prefix,root):
     if instruction[0].tag == 'continue':
         return print_continue(instruction[0],prefix,root)
     elif instruction[0].tag == 'repetition':
-        return [print_repetition(instruction[0],prefix,root)]
+        return print_repetition(instruction[0],prefix,root)
     elif instruction[0].tag == 'pyramid':
         return print_pyramid(instruction[0],prefix,root)
     else:
@@ -183,7 +204,7 @@ def print_instruction(instruction,prefix,root):
 
         
         new_r_strings = [(string,prefix) for string in r_strings]
-        return new_r_strings
+        return {'inst':new_r_strings}
 
 def print_program(root):
     hide_intro=False
@@ -212,7 +233,7 @@ def print_program(root):
         if child.tag == 'instruction':
             #print all instructions
             print(' \nnew instruction')
-            for string in print_instruction_strings(print_instruction(child,[],root)):
+            for string in print_instruction(child,[],root):
                 print(string)
                
 
