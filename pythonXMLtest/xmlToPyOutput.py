@@ -9,12 +9,44 @@ for length in root.iter('lengthAsDistance'):
 tree.write(xmlfile)
 ET.dump(tree)'''
 
-
-
+def get_number_of_strings(strings):
+    '''returns total number of strings'''
+    numberOfStrings = 0
+    for string in strings[0]:
+        if type(string) is str:
+            numberOfStrings+=1
+        else:
+            numberOfStrings+=get_number_of_strings(string)
+    return numberOfStrings
 def print_instruction_strings(strings):
     '''prints strings for a top level instruction'''
+    prefix = []
+    #print(strings)
+    total_strings = []
+    while len(strings) == 1 and type(strings[0]) is not str:
+        [strings] = strings
+    number  = get_number_of_strings(strings)
     print(strings)
-    prefix = strings[1]
+    for pre in strings[1]:
+        prefix.append(pre)
+    print(prefix)
+    for i,string in enumerate(strings[0]):
+        if type(string) is str:
+            for index,pre in enumerate(prefix[::-1]):
+                
+                if i == (len(strings[0])-1) // 2 and index == 0:
+                    string = (f'{pre[1]}x{pre[0]}') + string
+                else:
+                    string = (f'  {pre[0]}') + string
+                
+            total_strings.append(string)
+        elif type(string) is tuple:
+            print(string)
+            for string in print_instruction_strings(string):
+                total_strings.append(string)
+    return total_strings
+
+    '''prefix = strings[1]
     r_strings = strings[0]
     #adds buffer for multi indented instructions for easier reading
     if len(prefix) > 1:
@@ -30,7 +62,7 @@ def print_instruction_strings(strings):
                     string = (f'{pre[1]}x{pre[0]}') + string
                 else:
                     string = (f'  {pre[0]}') + string
-        print(string)
+        print(string)'''
 
 def to_time(time):
     '''converts to unit time'''
@@ -105,13 +137,17 @@ def print_description(desc):
 
 def print_repetition(child,prefix,root):
     '''adds repitition prefix to all children instructions'''
+    prefix2 = prefix.copy()
     r_strings = [[['']]]
-    prefix.append([' | ',child[0].text.strip()])
+    flat_lines = []
+    prefix2.append([' | ',child[0].text.strip()])
     for instruction in child.findall('./instruction'):
-         r_strings.append(print_instruction(instruction,prefix,root))
+         r_strings.append(print_instruction(instruction,prefix2,root))
          r_strings.append([['']])
-    flat_lines = [line[0] for subinst in r_strings for line in subinst]
-    return (flat_lines,r_strings[1][0][1]) 
+    for multiLine in r_strings:
+        for line in multiLine:
+            flat_lines.append(line[0])
+    return ([(flat_lines,prefix2)]) 
 
 
 def print_pyramid(child,prefix):
@@ -126,18 +162,17 @@ def print_instruction(instruction,prefix,root):
     if instruction[0].tag == 'continue':
         return print_continue(instruction[0],prefix,root)
     elif instruction[0].tag == 'repetition':
-        return print_repetition(instruction[0],prefix,root)
+        return [print_repetition(instruction[0],prefix,root)]
     elif instruction[0].tag == 'pyramid':
         return print_pyramid(instruction[0],prefix,root)
     else:
         r_strings=['']
-        print(instruction[0])
         length_boss = instruction[0]
         if length_boss.tag[:6] == 'length':
                 if length_boss.tag[-4:] == 'Time':
-                    r_strings[0]+= (f'swim for {to_time(length_boss[0].text)}')
+                    r_strings[0]+= (f'swim for {to_time(length_boss.text)}')
                 else:
-                    r_strings[0]+= (f'{length_boss[0].text.strip()} {root.find("lengthUnit").text.strip()} ')
+                    r_strings[0]+= (f'{length_boss.text.strip()} {root.find("lengthUnit").text.strip()} ')
         if (instruction.find('./stroke')) != None and len((instruction.find('./stroke'))) > 0:r_strings[0]+= (print_stroke(instruction.find('./stroke')[0]))
         if (instruction.find('./rest')) != None and len((instruction.find('./rest'))) > 0:r_strings[0] += (print_rest(instruction.find('./rest')[0]))
         if instruction.find('./underwater'): r_strings.append(print_underwater(instruction.find('./underwater'))) 
@@ -177,7 +212,8 @@ def print_program(root):
         if child.tag == 'instruction':
             #print all instructions
             print(' \nnew instruction')
-            print_instruction_strings(print_instruction(child,[],root))
+            for string in print_instruction_strings(print_instruction(child,[],root)):
+                print(string)
                
 
 

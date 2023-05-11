@@ -99,11 +99,11 @@
 			<instruction>
 				<repetition>
 					<repetitionCount>
-						5
+						3
 					</repetitionCount>
 					<instruction>
 						<lengthAsDistance>
-							100
+							1000
 						</lengthAsDistance>
 						<rest>
 							<sinceStart>
