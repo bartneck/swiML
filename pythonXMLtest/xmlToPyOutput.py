@@ -80,7 +80,7 @@ def print_continue(child,prefix):
     adds continue prefix to children instructions'''
     print(f'{child[0].text} {root.find("lengthUnit").text} swim as')
     prefix.append(' | ')
-    for instruction in child[1:]:
+    for instruction in child.findall('./instruction'):
         print_instuction(instruction,prefix)
 
 def print_description(desc):
@@ -91,7 +91,7 @@ def print_description(desc):
 def print_repetition(child,prefix):
     '''adds repitition prefix to all children instructions'''
     prefix.append([' | ',child[0].text])
-    for instruction in child[1:]:
+    for instruction in child.findall('./instruction'):
         print_instuction(instruction,prefix)
 
 def print_pyramid(child,prefix):
@@ -142,6 +142,7 @@ def print_instuction(instruction,prefix):
 
 def print_program(root):
     hide_intro=False
+    #ET.dump(root)
     print()
     for child2 in root:
         if child2.tag == 'hideIntro' and child2.text == 'true':

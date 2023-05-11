@@ -5,18 +5,14 @@ FILENAME = ''
 LOAD_VARS = ['title','author','programDescription','poolLength','lengthUnit']
 AUTHOR_VARS = ['firstName','lastName','email']
 INSTRUCTION_VARS=['length','rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
+REPETITION_VARS = ['repetitionCount','repetitionDescription','instruction']
 
 def edit_tag(root,tag,child):
-
     act_tag = root.find(tag)
     if act_tag != None:
         if tag == 'author':
-            if len(act_tag) > 0:
-                for i,name in enumerate(child):
-                    act_tag[i].text = name
-            else:
-                for i,name in enumerate(child):
-                    ET.SubElement(act_tag,AUTHOR_VARS[i]).text = name
+            for i,name in enumerate(child):
+                act_tag[i].text = name
         else:
             act_tag.text = child
     else:
@@ -43,16 +39,32 @@ def load(filename,title = None,author = [None,None],programDescription = None,po
     FILENAME = filename
     tree = ET.parse('pythonXMLtest\\'+filename+'.xml')
     root = tree.getroot()
-
+    
     program_data = [title,author,programDescription,poolLength,lengthUnit]
     
     for index,point in enumerate(program_data):
         edit_tag(root,LOAD_VARS[index],point)
-    OUT.print_program(root)
+    #OUT.print_program(root)
     tree = ET.ElementTree(root)
     tree.write('pythonXMLtest\\'+filename+'.xml')
     
+def test_load(filename,title = None,author = [None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter'):
+    global FILENAME 
+    FILENAME = filename
+    open('pythonXMLtest\\'+filename+'.xml', 'w').close()
+    open('pythonXMLtest\\'+filename+'.xml','w')
+    root = ET.Element('program')
+
+    program_data = [title,author,programDescription,poolLength,lengthUnit]
     
+    for index,point in enumerate(program_data):
+        sub_tag(root,LOAD_VARS[index],point)
+    
+    #OUT.print_program(root)
+    tree = ET.ElementTree(root)
+    tree.write('pythonXMLtest\\'+filename+'.xml')
+
+
 def new(filename,title = None,author = None,programDescription = None,poolLength ='25',lengthUnit = 'meters'):
 
     file = open('pythonXMLtest\\'+filename+'.xml','x')
@@ -65,24 +77,41 @@ def new(filename,title = None,author = None,programDescription = None,poolLength
     for index,point in enumerate(program_data):
         sub_tag(root,LOAD_VARS[index],point)
     
-    OUT.print_program(root)
+    #OUT.print_program(root)
     tree = ET.ElementTree(root)
     tree.write('pythonXMLtest\\'+filename+'.xml')
 
-def instruction(length,rest = 'none',intensity='',stroke='freestyle',breath='Any',underwater=False,equipment=[],instructionDescription=''):
+def instruction(instruction_data,root=None):
     '''new instruction'''
-    filename = FILENAME
-    tree = ET.parse('pythonXMLtest\\'+filename+'.xml')
-    root = tree.getroot()
-
-    instruction_data=[length,rest,intensity,stroke,breath,underwater,equipment,instructionDescription]
+    tree = ET.parse('pythonXMLtest\\'+FILENAME+'.xml')
+    if not root:
+        root = tree.getroot()
     
     instruction_node = ET.SubElement(root,'instruction')
 
     for index,element in enumerate(instruction_data):
         sub_tag(instruction_node,INSTRUCTION_VARS[index],element)
-    ET.dump(root)
+    #ET.dump(root)
+    #OUT.print_program(root)
+    #tree.write('pythonXMLtest\\'+FILENAME+'.xml')
+
+def repetition(instruction_data,repetition=1,repetitionDescription=''):
+    '''A repetition of instructions'''
+    tree = ET.parse('pythonXMLtest\\'+FILENAME+'.xml')
+    root = tree.getroot()
+    repetition_data = [repetition,repetitionDescription]
+
+    instruction_node = ET.SubElement(root,'instruction')
+    repetition_node = ET.SubElement(instruction_node,'repetition')
+
+    for index,element in enumerate(repetition_data):
+        sub_tag(repetition_node,REPETITION_VARS[index],element)
+    #ET.dump(root)
+    instruction(instruction_data,root=repetition_node)
     OUT.print_program(root)
+    tree.write('pythonXMLtest\\'+FILENAME+'.xml')
+
+
 
 def close():
     '''close file'''
