@@ -1,10 +1,10 @@
-import xmlToPyOutput as OUT
+#import xmlToPyOutput as OUT
 import xml.etree.ElementTree as ET
 
 FILENAME = ''
 LOAD_VARS = ['title','author','programDescription','poolLength','lengthUnit']
 AUTHOR_VARS = ['firstName','lastName','email']
-INSTRUCTION_VARS=['length','rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
+INSTRUCTION_VARS=[['lengthAsDistance','lengthAsTime','lengthAsLaps'],'rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
 REPETITION_VARS = ['repetitionCount','repetitionDescription','instruction']
 
 def edit_tag(root,tag,child):
@@ -20,9 +20,15 @@ def edit_tag(root,tag,child):
 
 def sub_tag(root,tag,child):
     if type(child) is dict:
-        parent = ET.SubElement(root,tag)
-        for element in child:
-            sub_tag(parent,element,child[element])
+        if type(tag) is list:
+            for tag_choice in tag:
+                print(list(child.keys()))
+                if tag_choice == list(child.keys())[0]:
+                    ET.SubElement(root,tag_choice).text = str(child[tag_choice])
+        else:
+            parent = ET.SubElement(root,tag)
+            for element in child:
+                sub_tag(parent,element,child[element])
     
     elif type(child) is list:
             
@@ -107,8 +113,10 @@ def repetition(instruction_data,repetition=1,repetitionDescription=''):
     for index,element in enumerate(repetition_data):
         sub_tag(repetition_node,REPETITION_VARS[index],element)
     #ET.dump(root)
-    instruction(instruction_data,root=repetition_node)
-    OUT.print_program(root)
+    for instruc in instruction_data:
+        instruction(instruc,root=repetition_node)
+    ET.dump(root)
+    #OUT.print_program(root)
     tree.write('pythonXMLtest\\'+FILENAME+'.xml')
 
 

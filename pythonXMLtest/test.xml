@@ -1,22 +1,31 @@
 <program>
+	<!-- test program for python reading and writing -->
 	<title>
-		your new mum
+		Jasi Masters
 	</title>
-	<firstName>
-		go shawty
-	</firstName>
-	<lastName>
-		wauebgiabguer
-	</lastName>
+	<author>
+		<firstName>
+			Christoph
+		</firstName>
+		<lastName>
+			Bartneck
+		</lastName>
+	</author>
 	<programDescription>
-		nothing
+		Our Tuesday evening program in the sun. The target duration was 60 minutes.
 	</programDescription>
+	<creationDate>
+		2023-02-07
+	</creationDate>
 	<poolLength>
 		25
 	</poolLength>
 	<lengthUnit>
-		yard
+		meters
 	</lengthUnit>
+	<hideIntro>
+		false
+	</hideIntro>
 	<instruction>
 		<repetition>
 			<repetitionCount>
@@ -27,7 +36,7 @@
 			</repetitionDescription>
 			<instruction>
 				<lengthAsDistance>
-					1000
+					100
 				</lengthAsDistance>
 				<rest>
 					<sinceStart>
@@ -87,46 +96,33 @@
 					boopy doopy doop
 				</instructionDescription>
 			</instruction>
-		</repetition>
-	</instruction>
-	<instruction>
-		<repetition>
-			<repetitionCount>
-				3
-			</repetitionCount>
-			<repetitionDescription>
-				have fun
-			</repetitionDescription>
 			<instruction>
-				<lengthAsDistance>
-					200
-				</lengthAsDistance>
-				<rest>
-					<sinceStart>
-						PT1M55S
-					</sinceStart>
-				</rest>
-				<intensity>
-					<staticIntensity>
-						<percentageHeartRate>
-							60
-						</percentageHeartRate>
-					</staticIntensity>
-				</intensity>
-				<stroke>
-					<standardStroke>
-						backstroke
-					</standardStroke>
-				</stroke>
-				<breath>
-					None
-				</breath>
-				<underwater>
-					False
-				</underwater>
-				<instructionDescription>
-					boopy doopy doop
-				</instructionDescription>
+				<repetition>
+					<repetitionCount>
+						5
+					</repetitionCount>
+					<instruction>
+						<lengthAsDistance>
+							100
+						</lengthAsDistance>
+						<rest>
+							<sinceStart>
+								PT1M45S
+							</sinceStart>
+						</rest>
+						<stroke>
+							<standardStroke>
+								freestyle
+							</standardStroke>
+						</stroke>
+						<breath>
+							5
+						</breath>
+						<instructionDescription>
+							do it faster then me
+						</instructionDescription>
+					</instruction>
+				</repetition>
 			</instruction>
 		</repetition>
 	</instruction>

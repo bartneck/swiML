@@ -7,7 +7,7 @@ swiML.test_load(
     'nothing','25','yard'
     )
 instruction = [
-    {'lengthAsDistance':100},
+    {'lengthAsDistance':1000},
     {'sinceStart':'PT1M35S'},
     {'staticIntensity':{'percentageHeartRate':80}},
     {'standardStroke':'freestyle'},
@@ -26,5 +26,5 @@ instruction2 = [
     [],
     'boopy doopy doop'
 ]
-swiML.repetition(instruction,5,'have fun')
-swiML.repetition(instruction2,3,'have fun')
+swiML.repetition([instruction,instruction2],5,'have fun')
+swiML.repetition([instruction2],3,'have fun')
