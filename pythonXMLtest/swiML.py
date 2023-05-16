@@ -61,13 +61,16 @@ def expandXML(root,tags,children):
         
 
 class Program:
-    '''program'''
+    '''Defines a program'''
 
     TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poollength', 'lengthUnit',  'children']
 
 
     def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',children = []):
-        '''new program'''
+        '''program initialiser function
+            with specified program data 
+            as well as all instructions for the program
+        '''
         self.title = title
         self.author = author 
         self.programDescription = programDescription
@@ -76,7 +79,10 @@ class Program:
         self.children = children 
 
     def __str__(self):
-        '''display program to string'''
+        '''returns string for program data 
+        adds each string of all the instructions contained within the program 
+        using each individual to string function 
+        '''
         
         title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poollength} {self.lengthUnit} pool\n'
         children_string = ''.join([str(child) for child in self.children])
@@ -90,10 +96,10 @@ class Program:
         root = ET.Element('program')
         classToXML(root,self)
         tree = ET.ElementTree(root)
-        tree.write('pythonXMLtest\\sample.xml')
+        tree.write('pythonXMLtest\\'+filename)
 
 class Instruction:
-    '''instruction class'''
+    '''Defines a basic instruction'''
 
     TAG_ORDER = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
                  ('rest','c',['afterStop','sinceStart','sinceLastRest']),
@@ -105,7 +111,7 @@ class Instruction:
                  'instructionDescription']
 
     def __init__(self,length,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
-        '''create instruction'''
+        '''Initialises an instruction instance and defines all attributes'''
         self.length = length
         self.rest = rest
         self.intensity = intensity
@@ -116,7 +122,7 @@ class Instruction:
         self.instructionDescription = instructionDescription
 
     def __str__(self):
-        '''display instruction info'''
+        '''returns a string for an instruction object that can easily be read'''
 
         
         rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
@@ -136,7 +142,7 @@ class Instruction:
         return f'\n{length} {self.stroke[1]} {rest} \n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
 
 class Repetition:
-    '''repetition class'''
+    '''Defines a repetition'''
 
     TAG_ORDER = ['repetitionCount','repetitionDescription','children']
 
@@ -161,7 +167,7 @@ class Repetition:
         return '\n'+return_list[:-2]
     
 class Continue:
-    '''continue class'''
+    '''Defines a continuation'''
 
     TAG_ORDER = ['totalLength','children']
 
