@@ -1,26 +1,15 @@
-import swiMLclasstest as swiML
+import swiML as swiML
 
-instruction = [
-    {'lengthAsDistance':1000},
-    {'sinceStart':'PT1M35S'},
-    {'staticIntensity':{'percentageHeartRate':80}},
-    {'standardStroke':'freestyle'},
-    None,
-    False,
-    [],
-    'boopy doop'
-]
-instruction2 = [
-    {'lengthAsDistance':200},
-    {'sinceStart':'PT1M55S'},
-    {'staticIntensity':{'percentageHeartRate':60}},
-    {'standardStroke':'backstroke'},
+instruction = swiML.Instruction(
+    ('lengthAsDistance',200),
+    ('sinceStart','PT1M55S'),
+    ('staticIntensity',('percentageHeartRate',60)),
+    ('standardStroke','backstroke'),
     None,
     False,
     [],
     'boopy doopy doop'
-]
-
+)
 
 
 program = swiML.Program(
@@ -32,43 +21,16 @@ program = swiML.Program(
     [swiML.Repetition(3,
                      'outer repetition',
             [
-                swiML.Instruction(
-                ('lengthAsDistance',200),
-                ('sinceStart','PT1M55S'),
-                ('staticIntensity',('percentageHeartRate',60)),
-                ('standardStroke','backstroke'),
-                None,
-                False,
-                [],
-                'boopy doopy doop')
+                instruction
                 ,
-                swiML.Repetition(3,
-                                'inner repetition',
+                swiML.Continue(
                     [
-                        swiML.Instruction(
-                        ('lengthAsDistance',200),
-                        ('sinceStart','PT1M55S'),
-                        ('staticIntensity',('percentageHeartRate',60)),
-                        ('standardStroke','backstroke'),
-                        None,
-                        False,
-                        [],
-                        'boopy doopy doop')
-                        ,
-                        swiML.Instruction(
-                        ('lengthAsDistance',200),
-                        ('sinceStart','PT1M55S'),
-                        ('staticIntensity',('percentageHeartRate',60)),
-                        ('standardStroke','backstroke'),
-                        None,
-                        False,
-                        [],
-                        'boopy doopy doop')
+                        instruction,instruction
                     ]
                 )
             ]
         )
     ]
 )
-
+print(program)
 program.toXml('sample.xml')
