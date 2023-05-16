@@ -25,7 +25,12 @@ program = swiML.Program(
                 ,
                 swiML.Continue(
                     [
-                        instruction,instruction
+                        instruction,instruction,
+                        swiML.Repetition(
+                            5,
+                            'nothing much',
+                            [instruction]
+                        )
                     ]
                 )
             ]

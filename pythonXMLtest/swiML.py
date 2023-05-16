@@ -9,6 +9,18 @@ def to_time(time):
     '''converts to unit time'''
     return (f'{time[2:3]}:{time[4:6]}')
 
+def get_total_length(instructions):
+    '''returns length of given instructions'''
+    total_length = 0 
+    for inst in instructions:
+        if type(inst) is Instruction:
+            total_length += inst.length[1]
+        if type(inst) is Repetition:
+            total_length += inst.repetitionCount*get_total_length(inst.children)
+        if type(inst) is Continue:
+            total_length += inst.totalLength
+    return total_length
+
 def classToXML(root,self):
     #print(type(self).__name__) --> gives class name could just give to subelement
     if type(self) is Repetition:
@@ -134,17 +146,15 @@ class Repetition:
         '''returns string for repetition'''
         return_list =''
         #return_string = ''
-        print(self.children)
         children_string = '\n'.join(map(str,self.children))
         children = str(children_string).split('\n')
-        for i,line in enumerate(children):
-            if i == (len(children))//2:
+        for i,line in enumerate(children[1:]):
+            if i == (len(children)-1)//2:
                 return_list += (f'{self.repetitionCount}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
-        return_list += ('   | \n')
 
-        return return_list
+        return '\n'+return_list[:-2]
     
 class Continue:
     '''continue class'''
@@ -154,18 +164,14 @@ class Continue:
     def __init__(self,children=[]):
         '''create continue'''
         self.children = children
-        #make total length function here 
-        #to define total length var 
-        self.totalLength = 0
+        self.totalLength = get_total_length(children)
     def __str__(self):
         '''returns string for continue'''
         return_list =''
         #return_string = ''
-        print(self.children)
         children_string = '\n'.join(map(str,self.children))
         children = str(children_string).split('\n')
-        for i,line in enumerate(children):
+        for i,line in enumerate(children[1:]):
             return_list += (f' | {line}\n')
-        return_list += (' | \n')
 
-        return f'\n  {self.totalLength} swim as\n'+return_list
+        return f'\n{self.totalLength} swim as\n'+return_list[:-2]
