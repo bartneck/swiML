@@ -1,11 +1,5 @@
-import swiML
+import swiMLclasstest as swiML
 
-swiML.test_load(
-    'greatday',
-    'your new mum',
-    ['go shawty','wauebgiabguer'],
-    'nothing','25','yard'
-    )
 instruction = [
     {'lengthAsDistance':1000},
     {'sinceStart':'PT1M35S'},
@@ -26,5 +20,52 @@ instruction2 = [
     [],
     'boopy doopy doop'
 ]
-swiML.repetition([instruction,instruction2],5,'have fun')
-swiML.repetition([instruction2],3,'have fun')
+
+
+
+program = swiML.Program(
+    'Jasi Masters',
+    ['Callum','Lockhart'],
+    'Our Tuesday evening program in the sun. The target duration was 60 minutes.',
+    '50',
+    'meter',
+    swiML.Repetition(3,
+        [
+            swiML.Instruction(
+            ('lengthAsDistance',200),
+            ('sinceStart','PT1M55S'),
+            ('staticIntensity',('percentageHeartRate',60)),
+            ('standardStroke','backstroke'),
+            None,
+            False,
+            [],
+            'boopy doopy doop')
+            ,
+            swiML.Repetition(3,
+                [
+                    swiML.Instruction(
+                    ('lengthAsDistance',200),
+                    ('sinceStart','PT1M55S'),
+                    ('staticIntensity',('percentageHeartRate',60)),
+                    ('standardStroke','backstroke'),
+                    None,
+                    False,
+                    [],
+                    'boopy doopy doop')
+                    ,
+                    swiML.Instruction(
+                    ('lengthAsDistance',200),
+                    ('sinceStart','PT1M55S'),
+                    ('staticIntensity',('percentageHeartRate',60)),
+                    ('standardStroke','backstroke'),
+                    None,
+                    False,
+                    [],
+                    'boopy doopy doop')
+                ]
+            )
+        ]
+    )
+)
+
+program.toXml('sample.xml')
