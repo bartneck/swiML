@@ -10,27 +10,28 @@ def to_time(time):
     return (f'{time[2:3]}:{time[4:6]}')
 
 def classToXML(root,self):
+    if type(self) is Repetition:
+        root = ET.SubElement(root,'repetition')
     children = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER
+    
     expandXML(root,tags,children)
 
 def expandXML(root,tags,children):
     'converts list of tags and children to XML'
+    print(tags,children)
     for tag_index,tag in enumerate(tags):
         if type(tag) is str:
-            if type(children[tag_index]) is str:
-                if children[tag_index] != None:
-                    ET.SubElement(root,tag).text = str(children[tag_index])
-            elif type(children[tag_index]) is int:
-                if children[tag_index] != None:
-                    ET.SubElement(root,tag).text = children[tag_index]
+            if children[tag_index] == None:
+                pass
+            elif type(children[tag_index]) is str or type(children[tag_index]) is int or type(children[tag_index]) is bool:
+                ET.SubElement(root,tag).text = str(children[tag_index])
             elif type(children[tag_index]) is list:
-                
                 for child in children[tag_index]:
-                    print(child)
-                    classToXML(root,child)
+                    instruction = ET.SubElement(root,'instruction')
+                    classToXML(instruction,child)
             else:
-                classToXML(root,children[tag_index])
+                print('oh no')
         elif type(tag) is tuple:
             parent = ET.SubElement(root,tag[0])
             if tag[1] == 's':
@@ -41,7 +42,7 @@ def expandXML(root,tags,children):
             elif tag[1] == 'c':
                 for choice in tag[2]:
                     if children[tag_index][0] == choice:
-                        expandXML(root,[choice],[children[tag_index][1]]) 
+                        expandXML(parent,[choice],[children[tag_index][1]]) 
         
 
 class Program:
@@ -50,7 +51,7 @@ class Program:
     TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poollength', 'lengthUnit',  'children']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',children = None):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',children = []):
         '''new program'''
         self.title = title
         self.author = author 
@@ -71,21 +72,17 @@ class Program:
 
         global FILENAME 
         FILENAME = filename
-        open('pythonXMLtest\\'+filename+'.xml', 'w').close()
-        open('pythonXMLtest\\'+filename+'.xml','w')
         root = ET.Element('program')
-    
-        
         classToXML(root,self)
         tree = ET.ElementTree(root)
-        tree.write('pythonXMLtest\\'+filename)
+        tree.write('pythonXMLtest\\sample.xml')
 
 class Instruction:
     '''instruction class'''
 
     TAG_ORDER = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
                  ('rest','c',['afterStop','sinceStart','sinceLastRest']),
-                 ('intensity','c',['staticIntensity',('dynamicAcross','s',['startIntensity','stopIntensity'])]),
+                 ('intensity','c',[('staticIntensity','c',['percentageEffort','zone','percentageHeartRate']),('dynamicAcross','s',[('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])])]),
                  ('stroke','c',['standardStroke',('kicking','c',['standardKick',('other','s',['orientation','legMovement'])]),('drill','s',['drillName','drillStroke'])]),
                  'breath',
                  'underwater',
@@ -125,7 +122,7 @@ class Repetition:
 
     TAG_ORDER = ['repetitionCount','repetitionDescription','children']
 
-    def __init__(self,repetitions,repetitionDescription = None,children=None):
+    def __init__(self,repetitions,repetitionDescription = None,children=[]):
         '''create repetition'''
         self.repetitionCount = repetitions
         self.repetitionDescription = repetitionDescription
@@ -135,11 +132,12 @@ class Repetition:
         '''returns string for repetition'''
         return_list =''
         #return_string = ''
+        print(self.children)
         children_string = '\n'.join(map(str,self.children))
         children = str(children_string).split('\n')
         for i,line in enumerate(children):
             if i == (len(children))//2:
-                return_list += (f'{self.repetitions}x | {line}\n')
+                return_list += (f'{self.repetitionCount}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
         return_list += ('   | \n')
