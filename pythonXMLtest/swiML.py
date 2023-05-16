@@ -35,28 +35,29 @@ def classToXML(root,self):
 def expandXML(root,tags,children):
     'converts list of tags and children to XML'
     for tag_index,tag in enumerate(tags):
-        if type(tag) is str:
-            if children[tag_index] == None:
-                pass
-            elif type(children[tag_index]) is str or type(children[tag_index]) is int or type(children[tag_index]) is bool:
-                ET.SubElement(root,tag).text = str(children[tag_index])
-            elif type(children[tag_index]) is list:
-                for child in children[tag_index]:
-                    instruction = ET.SubElement(root,'instruction')
-                    classToXML(instruction,child)
-            else:
-                print('oh no')
-        elif type(tag) is tuple:
-            parent = ET.SubElement(root,tag[0])
-            if tag[1] == 's':
-                if len(tag[2]) == len(children[tag_index]):
-                    expandXML(parent,tag[2],children[tag_index])
+        if children[tag_index] != None:
+            if type(tag) is str:
+                if children[tag_index] == None:
+                    pass
+                elif type(children[tag_index]) is str or type(children[tag_index]) is int or type(children[tag_index]) is bool:
+                    ET.SubElement(root,tag).text = str(children[tag_index])
+                elif type(children[tag_index]) is list :
+                    for child in children[tag_index]:
+                        instruction = ET.SubElement(root,'instruction')
+                        classToXML(instruction,child)
                 else:
-                    expandXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
-            elif tag[1] == 'c':
-                for choice in tag[2]:
-                    if children[tag_index][0] == choice:
-                        expandXML(parent,[choice],[children[tag_index][1]]) 
+                    print('oh no')
+            elif type(tag) is tuple:
+                parent = ET.SubElement(root,tag[0])
+                if tag[1] == 's':
+                    if len(tag[2]) == len(children[tag_index]):
+                        expandXML(parent,tag[2],children[tag_index])
+                    else:
+                        expandXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
+                elif tag[1] == 'c':
+                    for choice in tag[2]:
+                        if children[tag_index][0] == choice:
+                            expandXML(parent,[choice],[children[tag_index][1]]) 
         
 
 class Program:
@@ -103,7 +104,7 @@ class Instruction:
                  'equipment',
                  'instructionDescription']
 
-    def __init__(self,length,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=None,instructionDescription=None):
+    def __init__(self,length,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
         '''create instruction'''
         self.length = length
         self.rest = rest
@@ -129,7 +130,10 @@ class Instruction:
         else:
             intensity = ''
         breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
-        return f'\n{self.length[1]} {self.stroke[1]} {rest} \n{underwater}{equipment}{intensity}{breath}{self.instructionDescription}'
+        length =f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
+        instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
+
+        return f'\n{length} {self.stroke[1]} {rest} \n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
 
 class Repetition:
     '''repetition class'''

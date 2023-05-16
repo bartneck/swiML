@@ -8,3 +8,5 @@ whereas normally it would be 1200 swim as 600 this 600 that
 
 xsd assertion needed --> all instructions in a continue must be of type Distance or laps 
 and they must all be the same type 
+
+missing 2 at the bottom of the fibonacci section in the book
