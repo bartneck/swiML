@@ -18,24 +18,22 @@ program = swiML.Program(
     'Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     '50',
     'meter',
-    [swiML.Repetition(3,
-                     'outer repetition',
-            [
-                instruction
-                ,
-                swiML.Continue(
-                    [
-                        instruction,instruction,
-                        swiML.Repetition(
-                            5,
-                            'nothing much',
-                            [instruction]
-                        )
-                    ]
-                )
-            ]
-        )
+    [swiML.Pyramid(
+    25,100,25,'meters',[
+    swiML.Instruction(
+    rest=('sinceStart','PT1M55S'),
+    stroke=('standardStroke','freestyle')
+    )]
+    ),
+    swiML.Repetition(4,'nothing',[instruction,instruction,swiML.Pyramid(
+    25,100,25,'meters',[
+    swiML.Instruction(
+    rest=('sinceStart','PT1M55S'),
+    stroke=('standardStroke','freestyle')
+    )]
+    )])
     ]
 )
+    
+
 print(program)
-program.toXml('sample.xml')

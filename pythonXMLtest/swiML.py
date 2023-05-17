@@ -27,6 +27,8 @@ def classToXML(root,self):
         root = ET.SubElement(root,'repetition')
     if type(self) is Continue:
         root = ET.SubElement(root,'continue')
+    if type(self) is Pyramid:
+        root = ET.SubElement(root,'pyramid')
     children = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER
     
@@ -83,13 +85,15 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        
+        print(len(self.children))
         title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poollength} {self.lengthUnit} pool\n'
         children_string = ''.join([str(child) for child in self.children])
+        print(self.children[1])
         return title_string+children_string+'\n'
     
     def toXml(self,filename):
-        '''converts objects to XML in specified file'''
+        '''converts objects to XML in specified file
+        takes filename as input'''
 
         global FILENAME 
         FILENAME = filename
@@ -110,7 +114,7 @@ class Instruction:
                  'equipment',
                  'instructionDescription']
 
-    def __init__(self,length,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
         '''Initialises an instruction instance and defines all attributes'''
         self.length = length
         self.rest = rest
@@ -124,7 +128,6 @@ class Instruction:
     def __str__(self):
         '''returns a string for an instruction object that can easily be read'''
 
-        
         rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
         underwater = 'underwater\n' if self.underwater else ''
         equipment = ', '.join(self.equipment)[:-2]+'\n' if len(self.equipment) > 0 and self.equipment != None else ''
@@ -136,10 +139,12 @@ class Instruction:
         else:
             intensity = ''
         breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
-        length =f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
+        length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
 
         return f'\n{length} {self.stroke[1]} {rest} \n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
+
+
 
 class Repetition:
     '''Defines a repetition'''
@@ -154,6 +159,7 @@ class Repetition:
 
     def __str__(self):
         '''returns string for repetition'''
+        print(self.children)
         return_list =''
         #return_string = ''
         children_string = '\n'.join(map(str,self.children))
@@ -185,3 +191,34 @@ class Continue:
             return_list += (f' | {line}\n')
 
         return f'\n{self.totalLength} swim as\n'+return_list[:-2]
+
+class Pyramid:
+    '''Defines a pyramid'''
+    
+    TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','children']
+    
+    def __init__(self,startLength,stopLength,increment,lengthUnit,children):
+        '''create repetition'''
+        self.startLength = startLength
+        self.stopLength = stopLength
+        self.increment = increment
+        self.lengthUnit = lengthUnit
+        self.children = children
+
+    def __str__(self):
+        '''returns string for repetition'''
+        outChildren = []
+        length = self.startLength
+        while length <= self.stopLength:
+            inst = self.children[0]
+            setattr(inst,'length',('lengthAsDistance',length))
+            outChildren.append(str(inst))
+            length += self.increment
+        length -= 2*self.increment
+        while length >= self.startLength:
+            inst = self.children[0]
+            setattr(inst,'length',('lengthAsDistance',length))
+            outChildren.append(str(inst))
+            length -= self.increment
+        rChildren = '\n'.join([f' | {line.strip()}' for line in outChildren])
+        return '\nPyramid\n'+str(rChildren)
