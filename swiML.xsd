@@ -318,7 +318,7 @@
             <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
             <!-- to do: cross check that only one stroke is defined. -->
             <!-- or check that there is at least one stroke defined and use the furthest in -->
-            <xs:element name="stroke" minOccurs="1" maxOccurs="1" type="strokeType">
+            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
                 <xs:annotation>
                     <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
                         drills.</xs:documentation>
@@ -489,9 +489,15 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="totalLength" minOccurs="1" maxOccurs="1" type="xs:nonNegativeInteger">
+            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
-                    <xs:documentation>total length to swim continuously</xs:documentation>
+                    <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="simplify" minOccurs="1" maxOccurs="1" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>determines if tag is simplifying other tags such as repetition or 
+                    to display an entire block as a single length</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"

@@ -3,10 +3,15 @@ breaths -- add bilateral as an option
 continues and repitions recurring -> maybe switch symbols side                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 could use some text recognition library so people can take photos of sets and --> into swiML                 
 
-continue of repetitions should be if 2x6x100 should say 12x100 swim as 6 of this 6 of that 
-whereas normally it would be 1200 swim as 600 this 600 that              
+continue of repetitions should be if 2x6x100 should say 12x100 swim as 6 of this 6 of that                         |
+whereas normally it would be 1200 swim as 600 this 600 that                                                        | Complete
+-> going to modify continue tag to include antoher tag specifying whether it denotes a continual block of swimming | 
+such as 1200meters or to just simplify repitition expressions from 2x6x100                                         |
+
 
 xsd assertion needed --> all instructions in a continue must be of type Distance or laps 
 and they must all be the same type 
 
 missing 2 at the bottom of the fibonacci section in the book
+
+                                                           

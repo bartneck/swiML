@@ -159,11 +159,7 @@ p.describtion {
 	display: flex;
 	align-items: center;
 	width: 1ch;
-	border-top: 0.13em solid #000000;
-	border-bottom: 0.13em solid #000000;
 	border-left: 0.13em solid #000000;
-	border-top-left-radius: 0.5em;
-	border-bottom-left-radius: 0.5em;
 }
 .continueContent {
 	display: flex;

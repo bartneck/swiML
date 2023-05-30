@@ -10,7 +10,16 @@ instruction = swiML.Instruction(
     [],
     'boopy doopy doop'
 )
-
+instruction2 = swiML.Instruction(
+    ('lengthAsDistance',100),
+    ('sinceStart','PT1M55S'),
+    ('staticIntensity',('percentageHeartRate',60)),
+    ('standardStroke','backstroke'),
+    None,
+    False,
+    [],
+    'boopy doopy doop'
+)
 
 program = swiML.Program(
     'Jasi Masters',
@@ -18,22 +27,13 @@ program = swiML.Program(
     'Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     '50',
     'meter',
-    [swiML.Pyramid(
-    25,100,25,'meters',[
-    swiML.Instruction(
-    rest=('sinceStart','PT1M55S'),
-    stroke=('standardStroke','freestyle')
-    )]
+    [swiML.Continue( simplify = True,
+    children = [swiML.Repetition(4,'nothing',[instruction]),swiML.Repetition(4,'nothing',[instruction])]
     ),
-    swiML.Repetition(4,'nothing',[instruction,instruction,swiML.Pyramid(
-    25,100,25,'meters',[
-    swiML.Instruction(
-    rest=('sinceStart','PT1M55S'),
-    stroke=('standardStroke','freestyle')
-    )]
-    )])
+    swiML.Repetition(4,'nothing',[instruction,instruction])
     ]
 )
     
 
 print(program)
+#program.toXml('sample.xml')

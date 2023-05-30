@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="maxLengthAsDistanceWidth">
@@ -73,7 +73,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="../swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -204,6 +204,7 @@
     <xsl:template match="sw:instruction">
         <xsl:apply-templates select="sw:segmentName"/>
         <xsl:apply-templates select="sw:repetition"/>
+        <xsl:apply-templates select="sw:continue"/>
         <xsl:apply-templates select="sw:lengthAsDistance"/>
         <xsl:apply-templates select="sw:lengthAsLaps"/>
         <xsl:apply-templates select="sw:lengthAsTime"/>
@@ -235,6 +236,32 @@
                 <xsl:apply-templates select="sw:instruction"/>
             </div>
         </div>
+    </xsl:template>
+    
+    <xsl:template match="sw:continue">
+        <div class="continue">
+            <div class="totalLength">
+                <xsl:choose>
+                    <xsl:when test="sw:simplify = true()">
+                        <xsl:value-of select="sum(for $l in .//sw:repetitionCount return $l)"/>
+                        x
+                        <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
+                        swim as
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="showLength"/> swim as
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+            </div>
+            <div class="continueInner">
+                <div class="continueSymbol"></div>
+                <div class="continueContent">
+                    <xsl:apply-templates select="sw:instruction"/>
+                </div>
+            </div>
+        </div>
+    
     </xsl:template>
 
     <!-- Dirct Swim Template -->
@@ -318,13 +345,13 @@
             <xsl:when test="not(sw:programLength)">
                 <xsl:value-of select="
                         sum(
-                        for $l in //sw:lengthAsDistance
+                        for $l in .//sw:instruction/sw:lengthAsDistance
                         return
                             $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
                         )
                         +
                         sum(
-                        for $l in //sw:lengthAsLaps
+                        for $l in .//sw:lengthAsLaps
                         return
                             $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
                         ) * //sw:poolLength
@@ -336,6 +363,11 @@
                 <xsl:value-of select="sw:programLength"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="simplifyLength">
+        <xsl:value-of select="sum(for $l in .//sw:repetitionCount return $l)"/>
+        
     </xsl:template>
 
 

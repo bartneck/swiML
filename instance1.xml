@@ -26,7 +26,7 @@
         <lengthAsDistance>101</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
         <intensity><staticIntensity>
-                <precentageEffort>70</precentageEffort>
+                <percentageEffort>70</percentageEffort>
             </staticIntensity></intensity>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
         <equipment>pads</equipment>
@@ -39,7 +39,7 @@
         <lengthAsDistance>102</lengthAsDistance>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
         <intensity><staticIntensity>
-                <precentageEffort>70</precentageEffort>
+                <percentageEffort>70</percentageEffort>
             </staticIntensity></intensity>
         <stroke><kicking>
                 <orientation>front</orientation>
@@ -52,10 +52,10 @@
         <intensity>
             <dynamicAcross>false</dynamicAcross>
             <startIntensity>
-                <precentageEffort>60</precentageEffort>
+                <percentageEffort>60</percentageEffort>
             </startIntensity>
             <stopIntensity>
-                <precentageEffort>100</precentageEffort>
+                <percentageEffort>100</percentageEffort>
             </stopIntensity>
         </intensity>
         <stroke><standardStroke>freestyle</standardStroke></stroke>

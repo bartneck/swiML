@@ -1,33 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="https://github.com/bartneck/swiML"
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
-    <title>Superhero Triangles</title>
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+
+    <title>Continuation</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>Swimming the Super Hero Triangles.</programDescription>
+    <programDescription>Continues test xml</programDescription>
     <creationDate>2023-02-28</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
-    
+
     <!-- valid case -->
     <instruction>
         <continue>
+            <simplify>false</simplify>
             <instruction>
                 <lengthAsDistance>100</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
+            
+            <instruction>
+                <lengthAsDistance>200</lengthAsDistance>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                <intensity><staticIntensity>
+                        <percentageEffort>70</percentageEffort>
+                    </staticIntensity></intensity>
+                <stroke><kicking>
+                        <orientation>front</orientation>
+                        <legMovement>flutter</legMovement>
+                    </kicking></stroke>
+            </instruction>
+            <instruction>
+                <lengthAsDistance>100</lengthAsDistance>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    <instruction>
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
-                    <lengthAsDistance>200</lengthAsDistance>
-                    <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    
+                    <instruction>
+                        <lengthAsDistance>100</lengthAsDistance>
+                        <rest><sinceStart>PT1M45S</sinceStart></rest>
+                        <intensity><staticIntensity>
+                            <zone>endurance</zone>
+                        </staticIntensity></intensity>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>            
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    
+                    <instruction>
+                        <lengthAsDistance>100</lengthAsDistance>
+                        <rest><sinceStart>PT1M45S</sinceStart></rest>
+                        <intensity><staticIntensity>
+                            <zone>endurance</zone>
+                        </staticIntensity></intensity>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                    </instruction>
                 </repetition>
             </instruction>
         </continue>
     </instruction>
-    
+    <instruction>
+        <lengthAsDistance>102</lengthAsDistance>
+        <rest><sinceStart>PT1M45S</sinceStart></rest>
+        <intensity><staticIntensity>
+            <percentageEffort>70</percentageEffort>
+        </staticIntensity></intensity>
+        <stroke><kicking>
+            <orientation>front</orientation>
+            <legMovement>flutter</legMovement>
+        </kicking></stroke>
+    </instruction>
+
 </program>

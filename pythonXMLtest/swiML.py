@@ -10,7 +10,8 @@ def to_time(time):
     return (f'{time[2:3]}:{time[4:6]}')
 
 def get_total_length(instructions):
-    '''returns length of given instructions'''
+    '''returns length of given instructions
+    or repetitions if '''
     total_length = 0 
     for inst in instructions:
         if type(inst) is Instruction:
@@ -20,6 +21,21 @@ def get_total_length(instructions):
         if type(inst) is Continue:
             total_length += inst.totalLength
     return total_length
+
+def continue_length(simplify,children):
+    '''returns either total length or simplified repetitions'''
+
+    if simplify:
+        total_repetition = 0
+        first_inst = children[0].children[0]
+        for repetition in children:
+            total_repetition += repetition.repetitionCount
+            for instruction in repetition.children:
+                if instruction.length != first_inst.length:
+                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {first_inst} cannot be simplified with {instruction}') 
+        return f'{total_repetition} x {first_inst.length[1]}'
+    else:
+        return get_total_length(children)
 
 def classToXML(root,self):
     #print(type(self).__name__) --> gives class name could just give to subelement
@@ -85,10 +101,8 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        print(len(self.children))
         title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poollength} {self.lengthUnit} pool\n'
         children_string = ''.join([str(child) for child in self.children])
-        print(self.children[1])
         return title_string+children_string+'\n'
     
     def toXml(self,filename):
@@ -159,7 +173,6 @@ class Repetition:
 
     def __str__(self):
         '''returns string for repetition'''
-        print(self.children)
         return_list =''
         #return_string = ''
         children_string = '\n'.join(map(str,self.children))
@@ -177,10 +190,11 @@ class Continue:
 
     TAG_ORDER = ['totalLength','children']
 
-    def __init__(self,children=[]):
+    def __init__(self,totalLength=0,simplify=False,children=[]):
         '''create continue'''
         self.children = children
-        self.totalLength = get_total_length(children)
+        self.simplify = simplify
+        self.totalLength = continue_length(simplify,children) if totalLength == 0 else totalLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
@@ -188,9 +202,9 @@ class Continue:
         children_string = '\n'.join(map(str,self.children))
         children = str(children_string).split('\n')
         for i,line in enumerate(children[1:]):
-            return_list += (f' | {line}\n')
+            return_list += (f'   | {line}\n')
 
-        return f'\n{self.totalLength} swim as\n'+return_list[:-2]
+        return f'\n{self.totalLength} swim as\n'+return_list[:-2]+'\n'
 
 class Pyramid:
     '''Defines a pyramid'''
@@ -220,5 +234,5 @@ class Pyramid:
             setattr(inst,'length',('lengthAsDistance',length))
             outChildren.append(str(inst))
             length -= self.increment
-        rChildren = '\n'.join([f' | {line.strip()}' for line in outChildren])
-        return '\nPyramid\n'+str(rChildren)
+        rChildren = '\n'.join([f'   | {line.strip()}' for line in outChildren])
+        return '\n  Pyramid\n'+str(rChildren)+'\n'
