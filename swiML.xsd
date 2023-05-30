@@ -146,7 +146,6 @@
             <xs:maxLength value="60"/>
         </xs:restriction>
     </xs:simpleType>
-
     <!-- The definition of the program description restriction in length -->
     <xs:simpleType name="descriptionString">
         <xs:annotation>
@@ -253,7 +252,14 @@
 
 
         </xs:choice>
-
+        
+        <xs:assert test="
+            count(./ancestor-or-self::*/o:stroke) >= 1 
+            or count(./o:repetition/ancestor-or-self::*/o:stroke) >= 1 
+            or count(./o:continue/ancestor-or-self::*/o:stroke) >= 1 
+            or (not(./ancestor::instruction) and ((./o:repetition) or (./o:continue)))"/>
+        
+        
         <!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
         <!--<xs:assert test="segmentName and .. is root()"/>-->
 
@@ -396,7 +402,7 @@
                         customise the repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            <xs:group ref="instructionGroup"/>
             <!-- This is the main recursion statement. Every repetition contains instructions. -->
             <!-- Every instruction can contain a repetition -->
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
@@ -500,6 +506,7 @@
                     to display an entire block as a single length</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:group ref="instructionGroup"/>
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
                 type="instructionType">
                 <xs:annotation>
