@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 
 LOAD_VARS = ['title','author','programDescription','poolLength','lengthUnit']
 AUTHOR_VARS = ['firstName','lastName','email']
-INSTRUCTION_VARS=[['lengthAsDistance','lengthAsTime','lengthAsLaps'],'rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
+INSTRUCTION_VARS=['length','rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
 REPETITION_VARS = ['repetitionCount','repetitionDescription','instruction']
 
 def to_time(time):

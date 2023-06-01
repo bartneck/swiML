@@ -116,7 +116,10 @@
 
             </xs:sequence>
 
-
+            <!-- checks that all distances are of the same unit 
+            this may not be neccas-->
+            <xs:assert test="(every $length in .//o:length satisfies name($length/*[1]) = name((.//o:length)[1]/*[1]))"/>
+            
             <!--            <xs:assert test="instruction/stroke or instruction/repetition"/>-->
             <!--            <xs:assert test=".. is root()"/>-->
         </xs:complexType>

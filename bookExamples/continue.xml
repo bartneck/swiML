@@ -38,7 +38,6 @@
                         <orientation>front</orientation>
                         <legMovement>flutter</legMovement>
                     </kicking></stroke>
-                
             </instruction>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>

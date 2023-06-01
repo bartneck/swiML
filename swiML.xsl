@@ -209,22 +209,22 @@
                 <xsl:apply-templates select="sw:continue"/>
             </xsl:when>
             <xsl:otherwise>
-                <div class="instruction">
-                    <xsl:apply-templates select="sw:length" />
-                    <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
-                    <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
-                    <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
-                    <xsl:apply-templates select="sw:stroke/sw:drill"/>
-                    <xsl:apply-templates select="sw:rest/sw:afterStop"/>
-                    <xsl:apply-templates select="sw:rest/sw:sinceLastRest"/>
-                    <xsl:apply-templates select="sw:rest/sw:sinceStart"/>
-                    <xsl:apply-templates select="sw:rest/sw:inOut"/>
-                    <xsl:call-template name="showIntensity"/>
-                    <xsl:apply-templates select="sw:breath"/>
-                    <xsl:apply-templates select="sw:underwater"/>
-                    <xsl:apply-templates select="sw:equipment"/>
-                    <xsl:apply-templates select="sw:instructionDescription"/>
-                </div>                
+                <xsl:choose>
+                    <xsl:when test="
+                        (../../sw:continue and ../sw:simplify = false())
+                        or (../../sw:continue and count(../sw:simplify) = 0 )
+                        ">
+                        <div class="contInstruction">
+                            <xsl:call-template name="displayInst"/>
+                        </div>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <div class="instruction">
+                            <xsl:call-template name="displayInst"/>
+                        </div> 
+                    </xsl:otherwise>
+                </xsl:choose>
+                               
             </xsl:otherwise>
         </xsl:choose>
         
@@ -252,14 +252,11 @@
                 <xsl:value-of
                     select="concat(sw:repetitionCount, '&#215;', sw:repetitionDescription)"/>
             </div>
-            <xsl:choose>
-                <xsl:when test="count(./sw:instruction) > 1">
-                    <div class="reptitionSymbol"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <div class="blankRepSymbol" />
-                </xsl:otherwise>
-            </xsl:choose>
+          
+            <xsl:if test="count(./sw:instruction) > 1">
+                <div class="reptitionSymbol"/>
+            </xsl:if>
+              
             
             
             <div class="repetitionContent">
@@ -271,21 +268,40 @@
     <!--Continuation Template -->
     <xsl:template match="sw:continue">
         <div class="continue">
-            <div class="totalLength">
+            
                 <xsl:choose>
                     <xsl:when test="sw:simplify = true()">
-                        <xsl:call-template name="simplifyLength"/>
-                            
-                        x
-                        <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
-                        as
+                        <div class="totalSimpleLength">
+                            <xsl:call-template name="simplifyLength"/>
+                                
+                            x
+                            <span>                
+                                <xsl:attribute name="style">
+                                    <xsl:text>width:</xsl:text>
+                                    <xsl:value-of select="//$space"/>
+                                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+                                </xsl:attribute>
+                                <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
+                            </span>
+                             as
+                        </div>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:call-template name="showLength"/> swim as
+                        <div class="totalLength">
+                            <span>                
+                                <xsl:attribute name="style">
+                                    <xsl:text>width:</xsl:text>
+                                    <xsl:value-of select="//$space"/>
+                                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+                                </xsl:attribute>
+                                <xsl:call-template name="showLength"/>
+                            </span>
+                             as
+                        </div>
+                        
                     </xsl:otherwise>
                 </xsl:choose>
                 
-            </div>
             <div class="continueInner">
                 <div class="continueSymbol"></div>
                 <div class="continueContent">
@@ -296,7 +312,22 @@
     
     </xsl:template>
     
-    
+    <xsl:template name="displayInst">
+        <xsl:apply-templates select="sw:length" />
+        <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
+        <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
+        <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
+        <xsl:apply-templates select="sw:stroke/sw:drill"/>
+        <xsl:apply-templates select="sw:rest/sw:afterStop"/>
+        <xsl:apply-templates select="sw:rest/sw:sinceLastRest"/>
+        <xsl:apply-templates select="sw:rest/sw:sinceStart"/>
+        <xsl:apply-templates select="sw:rest/sw:inOut"/>
+        <xsl:call-template name="showIntensity"/>
+        <xsl:apply-templates select="sw:breath"/>
+        <xsl:apply-templates select="sw:underwater"/>
+        <xsl:apply-templates select="sw:equipment"/>
+        <xsl:apply-templates select="sw:instructionDescription"/>
+    </xsl:template>
     
     <xsl:template match="sw:length">
         <xsl:apply-templates select="sw:lengthAsDistance"/>
@@ -305,7 +336,7 @@
     </xsl:template>
     
     
-    <!-- Dirct Swim Template -->
+    <!-- Length Templates -->
     <xsl:template match="sw:lengthAsDistance">
         <xsl:variable name="maxlengthAsDistance"
             select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
