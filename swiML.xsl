@@ -243,7 +243,8 @@
             <div class="totalLength">
                 <xsl:choose>
                     <xsl:when test="sw:simplify = true()">
-                        <xsl:value-of select="sum(for $l in .//sw:repetitionCount return $l)"/>
+                        <xsl:call-template name="simplifyLength"/>
+                            
                         x
                         <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
                         swim as
@@ -366,7 +367,13 @@
     </xsl:template>
     
     <xsl:template name="simplifyLength">
-        <xsl:value-of select="sum(for $l in .//sw:repetitionCount return $l)"/>
+        <!-- this isnt very good but it works for now 
+        I can see many problems with future features-->
+        <xsl:value-of select="sum(
+            for $l in .//sw:instruction/sw:lengthAsDistance
+            return
+            $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
+            )div(./descendant::sw:lengthAsDistance[1])"/>
         
     </xsl:template>
 

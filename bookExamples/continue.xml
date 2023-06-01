@@ -75,6 +75,45 @@
         </continue>
     </instruction>
     <instruction>
+        <continue>
+            <simplify>true</simplify>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <repetition>
+                            <repetitionCount>4</repetitionCount>
+                            
+                            <instruction>
+                                <lengthAsDistance>100</lengthAsDistance>
+                                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                                <intensity><staticIntensity>
+                                    <zone>endurance</zone>
+                                </staticIntensity></intensity>
+                                <stroke><standardStroke>any</standardStroke></stroke>
+                            </instruction>
+                        </repetition>
+                    </instruction>
+                    <instruction>
+                        <repetition>
+                            <repetitionCount>4</repetitionCount>
+                            
+                            <instruction>
+                                <lengthAsDistance>100</lengthAsDistance>
+                                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                                <intensity><staticIntensity>
+                                    <zone>endurance</zone>
+                                </staticIntensity></intensity>
+                                <stroke><standardStroke>any</standardStroke></stroke>
+                            </instruction>
+                        </repetition>
+                    </instruction>
+                </repetition>
+            </instruction>            
+            
+        </continue>
+    </instruction>
+    <instruction>
         <lengthAsDistance>102</lengthAsDistance>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
         <intensity><staticIntensity>
