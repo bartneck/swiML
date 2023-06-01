@@ -102,11 +102,11 @@
                             what to swim.</xs:documentation>
                     </xs:annotation>
 
-                    <xs:unique name="newUnique">
+                    <xs:unique name="mainEquipmentUnique">
                         <xs:annotation>
                             <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
                         </xs:annotation>
-                        <xs:selector xpath="o:equipment"/>
+                        <xs:selector xpath="./o:equipment"/>
                         <xs:field xpath="."/>
                     </xs:unique>
                 </xs:element>
@@ -224,9 +224,9 @@
                 
                 <!-- Common elements for instrucionts -->
                 <xs:group ref="instructionGroup"/>
-
+                
             </xs:sequence>
-
+            
 
         </xs:choice>
         <!-- checks every instruction has stroke,rest and length defined 
@@ -235,6 +235,7 @@
             and ./ancestor-or-self::*/o:rest
             and ./ancestor-or-self::*/o:length
             or ./o:repetition or ./o:continue"/>
+        
         
         
         <!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
@@ -278,6 +279,7 @@
         <!--        <xs:assert test="stroke or ../stroke"/>-->
         <!--        <xs:assert test="../stroke"/>-->
         <!--        <xs:assert test="stroke and not(parent::stroke) or parent::stroke and not(stroke)"/>-->
+        
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -393,6 +395,13 @@
                     <xs:documentation>A repetition can include any number of instructions, which in
                         turn can contain repetitions or continues.</xs:documentation>
                 </xs:annotation>
+                <xs:unique name="repEquipmentUnique">
+                    <xs:annotation>
+                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                    </xs:annotation>
+                    <xs:selector xpath="./o:equipment"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
             </xs:element>
         </xs:sequence>
 
@@ -495,6 +504,13 @@
                     <xs:documentation>A continue can include any number of instructions, which in
                         turn can contain repetitions or any other complex instruction type.</xs:documentation>
                 </xs:annotation>
+                <xs:unique name="contEquipmentUnique">
+                    <xs:annotation>
+                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                    </xs:annotation>
+                    <xs:selector xpath="./o:equipment"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
             </xs:element>
         </xs:sequence>
         

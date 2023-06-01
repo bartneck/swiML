@@ -38,6 +38,7 @@
                         <orientation>front</orientation>
                         <legMovement>flutter</legMovement>
                     </kicking></stroke>
+                
             </instruction>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
@@ -47,6 +48,7 @@
     </instruction>
     <instruction>
         <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
@@ -64,7 +66,7 @@
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>1050</lengthAsDistance></length>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                         <intensity><staticIntensity>
                             <zone>endurance</zone>
@@ -74,6 +76,40 @@
                 </repetition>
             </instruction>
         </continue>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                <intensity><staticIntensity>
+                    <zone>endurance</zone>
+                </staticIntensity></intensity>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                <intensity><staticIntensity>
+                    <zone>endurance</zone>
+                </staticIntensity></intensity>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
+                <intensity><staticIntensity>
+                    <zone>endurance</zone>
+                </staticIntensity></intensity>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+        </repetition>
     </instruction>
    
     

@@ -75,8 +75,6 @@ p.describtion {
 }
 .continueContent > .instruction::after {
 	
-	counter-increment: line;
-	content: none;
 	padding-left: 0em;
 	width: 0em;
 	margin-left: none;
@@ -87,8 +85,7 @@ p.describtion {
 }
 .repetitionContent > .instruction::after {
 	
-	counter-increment: line;
-	content: none;
+	
 	padding-left: 0em;
 	width: 0em;
 	margin-left: none;
@@ -131,6 +128,13 @@ p.describtion {
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
 }
+.blankRepSymbol {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	display: flex;
+	align-items: center;
+	width: 1ch;
+}
 
 .repetitionContent {
 	display: flex;
@@ -143,8 +147,6 @@ p.describtion {
 }
 .continueInner::after{
 	display: inline-block;
-	counter-increment: line;
-	content: counter(line);
 	padding-left: 2em;
 	width: 1em;
 	margin-left: auto;

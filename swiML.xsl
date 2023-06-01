@@ -252,7 +252,16 @@
                 <xsl:value-of
                     select="concat(sw:repetitionCount, '&#215;', sw:repetitionDescription)"/>
             </div>
-            <div class="reptitionSymbol"/>
+            <xsl:choose>
+                <xsl:when test="count(./sw:instruction) > 1">
+                    <div class="reptitionSymbol"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <div class="blankRepSymbol" />
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            
             <div class="repetitionContent">
                 <xsl:apply-templates select="sw:instruction"/>
             </div>
@@ -300,7 +309,6 @@
     <xsl:template match="sw:lengthAsDistance">
         <xsl:variable name="maxlengthAsDistance"
             select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
-
         <span>                
             <xsl:attribute name="style">
                 <xsl:text>width:</xsl:text>
