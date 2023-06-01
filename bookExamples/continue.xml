@@ -15,17 +15,21 @@
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
 
-    <!-- valid case -->
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>\
+        <rest><afterStop>PT20S</afterStop></rest>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
     <instruction>
         <continue>
             <simplify>false</simplify>
+            <rest><sinceStart>PT1M45S</sinceStart></rest>
             <instruction>
-                <lengthAsDistance>100</lengthAsDistance>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
-            
             <instruction>
-                <lengthAsDistance>200</lengthAsDistance>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><staticIntensity>
                         <percentageEffort>70</percentageEffort>
@@ -36,20 +40,18 @@
                     </kicking></stroke>
             </instruction>
             <instruction>
-                <lengthAsDistance>100</lengthAsDistance>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
         </continue>
     </instruction>
     <instruction>
         <continue>
-            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
-                    
                     <instruction>
-                        <lengthAsDistance>100</lengthAsDistance>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                         <intensity><staticIntensity>
                             <zone>endurance</zone>
@@ -61,9 +63,8 @@
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
-                    
                     <instruction>
-                        <lengthAsDistance>100</lengthAsDistance>
+                        <length><lengthAsDistance>1050</lengthAsDistance></length>
                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                         <intensity><staticIntensity>
                             <zone>endurance</zone>
@@ -74,55 +75,6 @@
             </instruction>
         </continue>
     </instruction>
-    <instruction>
-        <continue>
-            <simplify>true</simplify>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <repetition>
-                            <repetitionCount>4</repetitionCount>
-                            
-                            <instruction>
-                                <lengthAsDistance>100</lengthAsDistance>
-                                <rest><sinceStart>PT1M45S</sinceStart></rest>
-                                <intensity><staticIntensity>
-                                    <zone>endurance</zone>
-                                </staticIntensity></intensity>
-                                <stroke><standardStroke>any</standardStroke></stroke>
-                            </instruction>
-                        </repetition>
-                    </instruction>
-                    <instruction>
-                        <repetition>
-                            <repetitionCount>4</repetitionCount>
-                            
-                            <instruction>
-                                <lengthAsDistance>100</lengthAsDistance>
-                                <rest><sinceStart>PT1M45S</sinceStart></rest>
-                                <intensity><staticIntensity>
-                                    <zone>endurance</zone>
-                                </staticIntensity></intensity>
-                                <stroke><standardStroke>any</standardStroke></stroke>
-                            </instruction>
-                        </repetition>
-                    </instruction>
-                </repetition>
-            </instruction>            
-            
-        </continue>
-    </instruction>
-    <instruction>
-        <lengthAsDistance>102</lengthAsDistance>
-        <rest><sinceStart>PT1M45S</sinceStart></rest>
-        <intensity><staticIntensity>
-            <percentageEffort>70</percentageEffort>
-        </staticIntensity></intensity>
-        <stroke><kicking>
-            <orientation>front</orientation>
-            <legMovement>flutter</legMovement>
-        </kicking></stroke>
-    </instruction>
-
+   
+    
 </program>

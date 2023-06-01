@@ -202,12 +202,33 @@
 
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
-        <xsl:apply-templates select="sw:segmentName"/>
-        <xsl:apply-templates select="sw:repetition"/>
-        <xsl:apply-templates select="sw:continue"/>
-        <xsl:apply-templates select="sw:lengthAsDistance"/>
-        <xsl:apply-templates select="sw:lengthAsLaps"/>
-        <xsl:apply-templates select="sw:lengthAsTime"/>
+        <xsl:choose>
+            <xsl:when test="sw:segmentName or sw:repetition or sw:continue">
+                <xsl:apply-templates select="sw:segmentName"/>
+                <xsl:apply-templates select="sw:repetition"/>
+                <xsl:apply-templates select="sw:continue"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <div class="instruction">
+                    <xsl:apply-templates select="sw:length" />
+                    <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
+                    <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
+                    <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
+                    <xsl:apply-templates select="sw:stroke/sw:drill"/>
+                    <xsl:apply-templates select="sw:rest/sw:afterStop"/>
+                    <xsl:apply-templates select="sw:rest/sw:sinceLastRest"/>
+                    <xsl:apply-templates select="sw:rest/sw:sinceStart"/>
+                    <xsl:apply-templates select="sw:rest/sw:inOut"/>
+                    <xsl:call-template name="showIntensity"/>
+                    <xsl:apply-templates select="sw:breath"/>
+                    <xsl:apply-templates select="sw:underwater"/>
+                    <xsl:apply-templates select="sw:equipment"/>
+                    <xsl:apply-templates select="sw:instructionDescription"/>
+                </div>                
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        
     </xsl:template>
 
     <!-- First segment template -->
@@ -238,6 +259,7 @@
         </div>
     </xsl:template>
     
+    <!--Continuation Template -->
     <xsl:template match="sw:continue">
         <div class="continue">
             <div class="totalLength">
@@ -247,7 +269,7 @@
                             
                         x
                         <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
-                        swim as
+                        as
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="showLength"/> swim as
@@ -264,78 +286,70 @@
         </div>
     
     </xsl:template>
-
+    
+    
+    
+    <xsl:template match="sw:length">
+        <xsl:apply-templates select="sw:lengthAsDistance"/>
+        <xsl:apply-templates select="sw:lengthAsLaps"/>
+        <xsl:apply-templates select="sw:lengthAsTime"/>
+    </xsl:template>
+    
+    
     <!-- Dirct Swim Template -->
     <xsl:template match="sw:lengthAsDistance">
         <xsl:variable name="maxlengthAsDistance"
             select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
-        <div class="instruction">
-            <span>                
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="../sw:lengthAsDistance"/>
-            </span>
-            <xsl:if test="//sw:lengthUnit = 'laps'">
-                <xsl:text>&#160;&#60;-&#62;</xsl:text>
-            </xsl:if>            
-            <xsl:call-template name="directSwim"/>
-        </div>
+
+        <span>                
+            <xsl:attribute name="style">
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$space"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of select="../sw:lengthAsDistance"/>
+        </span>
+        <xsl:if test="//sw:lengthUnit = 'laps'">
+            <xsl:text>&#160;&#60;-&#62;</xsl:text>
+        </xsl:if>            
+
     </xsl:template>
 
     <xsl:template match="sw:lengthAsLaps">
-        <div class="instruction">
-            <span>
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="../sw:lengthAsLaps"/>
-            </span>
-            <xsl:if test="not(//sw:lengthUnit = 'laps')">
-                <xsl:text>&#160;</xsl:text>
-                <xsl:call-template name="toDisplay">
-                    <xsl:with-param name="fullTerm" select="'laps'"/>
-                </xsl:call-template>
-            </xsl:if>
-            <xsl:call-template name="directSwim"/>
-        </div>
+
+        <span>
+            <xsl:attribute name="style">
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$space"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of select="../sw:lengthAsLaps"/>
+        </span>
+        <xsl:if test="not(//sw:lengthUnit = 'laps')">
+            <xsl:text>&#160;</xsl:text>
+            <xsl:call-template name="toDisplay">
+                <xsl:with-param name="fullTerm" select="'laps'"/>
+            </xsl:call-template>
+        </xsl:if>
+
     </xsl:template>
 
     <xsl:template match="sw:lengthAsTime">
-        <div class="instruction">
-            <span>
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of separator=":"
-                    select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
-                />
-            </span>
-            <xsl:call-template name="directSwim"/>
-        </div>
-    </xsl:template>
 
-    <xsl:template name="directSwim">
-        <xsl:apply-templates select="../sw:stroke/sw:standardStroke"/>
-        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:orientation"/>
-        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
-        <xsl:apply-templates select="../sw:stroke/sw:drill"/>
-        <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
-        <xsl:apply-templates select="../sw:rest/sw:sinceLastRest"/>
-        <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
-        <xsl:apply-templates select="../sw:rest/sw:inOut"/>
-        <xsl:call-template name="showIntensity"/>
-        <xsl:apply-templates select="../sw:breath"/>
-        <xsl:apply-templates select="../sw:underwater"/>
-        <xsl:apply-templates select="../sw:equipment"/>
-        <xsl:apply-templates select="../sw:instructionDescription"/>
+        <span>
+            <xsl:attribute name="style">
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$space"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of separator=":"
+                select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
+            />
+        </span>
+
     </xsl:template>
+    
+
     <!-- ============================== -->
     <!-- Secondary Templates -->
     <!-- ============================== -->
@@ -346,7 +360,7 @@
             <xsl:when test="not(sw:programLength)">
                 <xsl:value-of select="
                         sum(
-                        for $l in .//sw:instruction/sw:lengthAsDistance
+                        for $l in .//sw:instruction/sw:length/sw:lengthAsDistance
                         return
                             $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
                         )
@@ -370,7 +384,7 @@
         <!-- this isnt very good but it works for now 
         I can see many problems with future features-->
         <xsl:value-of select="sum(
-            for $l in .//sw:instruction/sw:lengthAsDistance
+            for $l in .//sw:instruction/sw:length/sw:lengthAsDistance
             return
             $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
             )div(./descendant::sw:lengthAsDistance[1])"/>

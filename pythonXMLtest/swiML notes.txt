@@ -6,7 +6,16 @@ could use some text recognition library so people can take photos of sets and --
 continue of repetitions should be if 2x6x100 should say 12x100 swim as 6 of this 6 of that                         |
 whereas normally it would be 1200 swim as 600 this 600 that                                                        | Complete
 -> going to modify continue tag to include antoher tag specifying whether it denotes a continual block of swimming | 
-such as 1200meters or to just simplify repitition expressions from 2x6x100                                         |
+such as 1200meters or to just simplify repitition expressions from 2x6x100          
+
+simplify
+this could be done automatically 
+-->not defined show as not simplified
+
+--> it is defined
+-> true ->check if it is possible -> use assertion to check 
+
+-> false -> show as a continous swim not simplified
 
 xslt now does multi level repetitions but doesnt work when there are more than one base instruction within the repetition
 
