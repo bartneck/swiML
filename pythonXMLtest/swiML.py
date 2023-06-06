@@ -43,6 +43,7 @@ def classToXML(root,self):
         root = ET.SubElement(root,'repetition')
     if type(self) is Continue:
         root = ET.SubElement(root,'continue')
+        root.set('simplify',str(getattr(self,'simplify')).lower())
     if type(self) is Pyramid:
         root = ET.SubElement(root,'pyramid')
     children = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
@@ -57,8 +58,10 @@ def expandXML(root,tags,children):
             if type(tag) is str:
                 if children[tag_index] == None:
                     pass
-                elif type(children[tag_index]) is str or type(children[tag_index]) is int or type(children[tag_index]) is bool:
+                elif type(children[tag_index]) is str or type(children[tag_index]) is int:
                     ET.SubElement(root,tag).text = str(children[tag_index])
+                elif type(children[tag_index]) is bool:
+                    ET.SubElement(root,tag).text = str(children[tag_index]).lower()
                 elif type(children[tag_index]) is list :
                     for child in children[tag_index]:
                         instruction = ET.SubElement(root,'instruction')
@@ -74,14 +77,16 @@ def expandXML(root,tags,children):
                         expandXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
                 elif tag[1] == 'c':
                     for choice in tag[2]:
-                        if children[tag_index][0] == choice:
+                        if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
+                            print(parent,[choice],[children[tag_index]])
+                        if children[tag_index][0] == choice or children[tag_index][0] == choice[0]:
                             expandXML(parent,[choice],[children[tag_index][1]]) 
         
 
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poollength', 'lengthUnit',  'children']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit',  'children']
 
 
     def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',children = []):
@@ -92,7 +97,7 @@ class Program:
         self.title = title
         self.author = author 
         self.programDescription = programDescription
-        self.poollength = poolLength
+        self.poolLength = poolLength
         self.lengthUnit = lengthUnit
         self.children = children 
 
@@ -101,7 +106,7 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poollength} {self.lengthUnit} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
         children_string = ''.join([str(child) for child in self.children])
         return title_string+children_string+'\n'
     
@@ -121,7 +126,18 @@ class Instruction:
 
     TAG_ORDER = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
                  ('rest','c',['afterStop','sinceStart','sinceLastRest']),
-                 ('intensity','c',[('staticIntensity','c',['percentageEffort','zone','percentageHeartRate']),('dynamicAcross','s',[('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])])]),
+                 ('intensity','c',
+                  [
+                    ('staticIntensity','c',
+                        ['percentageEffort','zone','percentageHeartRate']),
+                    ('dynamicAcross','s',
+                     [
+                         ('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),
+                         ('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])
+                     ]
+                    )
+                  ]
+                 ),
                  ('stroke','c',['standardStroke',('kicking','c',['standardKick',('other','s',['orientation','legMovement'])]),('drill','s',['drillName','drillStroke'])]),
                  'breath',
                  'underwater',

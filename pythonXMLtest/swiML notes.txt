@@ -13,7 +13,7 @@
 \-> true ->check if it is possible -> use assertion to check 
 
 \-> false -> show as a continous swim not simplified
-
+gonna change this to an attribute
 
 \xslt now does multi level repetitions but doesnt work when there are more than one base instruction within the repetition
 

@@ -118,8 +118,10 @@
 
             <!-- checks that all distances are of the same unit 
             this may not be neccas-->
-            <xs:assert test="(every $length in .//o:length satisfies name($length/*[1]) = name((.//o:length)[1]/*[1]))"/>
-            
+            <xs:assert test="
+                    (every $length in .//o:length
+                        satisfies name($length/*[1]) = name((.//o:length)[1]/*[1]))"/>
+
             <!--            <xs:assert test="instruction/stroke or instruction/repetition"/>-->
             <!--            <xs:assert test=".. is root()"/>-->
         </xs:complexType>
@@ -224,23 +226,21 @@
                     <xs:documentation>Sequence of basic elements for an
                         instruction.</xs:documentation>
                 </xs:annotation>
-                
+
                 <!-- Common elements for instrucionts -->
                 <xs:group ref="instructionGroup"/>
-                
+
             </xs:sequence>
-            
+
 
         </xs:choice>
         <!-- checks every instruction has stroke,rest and length defined 
         any other element in an instruction doesnt have to be defined-->
-        <xs:assert test="./ancestor-or-self::*/o:stroke
-            and ./ancestor-or-self::*/o:rest
-            and ./ancestor-or-self::*/o:length
-            or ./o:repetition or ./o:continue"/>
-        
-        
-        
+        <xs:assert
+            test="./ancestor-or-self::*/o:stroke and ./ancestor-or-self::*/o:rest and ./ancestor-or-self::*/o:length or ./o:repetition or ./o:continue"/>
+
+
+
         <!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
         <!--<xs:assert test="segmentName and .. is root()"/>-->
 
@@ -282,7 +282,7 @@
         <!--        <xs:assert test="stroke or ../stroke"/>-->
         <!--        <xs:assert test="../stroke"/>-->
         <!--        <xs:assert test="stroke and not(parent::stroke) or parent::stroke and not(stroke)"/>-->
-        
+
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -292,7 +292,7 @@
 
     <xs:group name="instructionGroup">
         <xs:sequence>
-            <xs:element name="length" minOccurs="0" maxOccurs="1" type="lengthType" >
+            <xs:element name="length" minOccurs="0" maxOccurs="1" type="lengthType">
                 <xs:annotation>
                     <xs:documentation>The length of the instruction.</xs:documentation>
                 </xs:annotation>
@@ -483,21 +483,16 @@
     </xs:complexType>
 
     <xs:complexType name="continueType">
+
         <xs:annotation>
             <xs:documentation>
                 Continues for when different strokes, equipment or styles need to be swum continuously
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
+            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:string">
                 <xs:annotation>
                     <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="simplify" minOccurs="0" maxOccurs="1" type="xs:boolean">
-                <xs:annotation>
-                    <xs:documentation>determines if tag is simplifying other tags such as repetition or 
-                    to display an entire block as a single length</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:group ref="instructionGroup"/>
@@ -516,13 +511,13 @@
                 </xs:unique>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="simplify" type="xs:boolean"/>
         
+        <!-- checks all lengths within simplify are the same -->
         <xs:assert test="
-            ((./o:simplify = true()) and (every $length in .//o:length satisfies $length/*[1] = (.//o:length)[1]/*[1]))
-            or ./o:simplify = false()
-            or count(./o:simplify) = 0
-            "/>
-        
+                ((./@simplify = true()) and (every $length in .//o:length
+                    satisfies $length/*[1] = (.//o:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0"/>
+
     </xs:complexType>
 
     <!-- ====================================================== -->

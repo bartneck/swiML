@@ -21,8 +21,7 @@
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <continue>
-            <simplify>false</simplify>
+        <continue simplify="false">
             <rest><sinceStart>PT1M45S</sinceStart></rest>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
@@ -46,13 +45,13 @@
         </continue>
     </instruction>
     <instruction>
-        <continue>
-            <simplify>true</simplify>
+        <continue simplify="true">
+            
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                         <intensity><staticIntensity>
                             <zone>endurance</zone>
@@ -65,7 +64,7 @@
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                         <intensity><staticIntensity>
                             <zone>endurance</zone>

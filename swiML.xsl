@@ -250,12 +250,16 @@
         <div class="repetition">
             <div class="repetitionCount">
                 <xsl:value-of
-                    select="concat(sw:repetitionCount, '&#215;', sw:repetitionDescription)"/>
+                    select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
             </div>
-          
-            <xsl:if test="count(./sw:instruction) > 1">
-                <div class="reptitionSymbol"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="count(./sw:instruction) > 1">
+                    <div class="reptitionSymbol"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    &#160;
+                </xsl:otherwise>
+            </xsl:choose>
               
             
             
@@ -270,20 +274,18 @@
         <div class="continue">
             
                 <xsl:choose>
-                    <xsl:when test="sw:simplify = true()">
+                    <xsl:when test="@simplify = true()">
                         <div class="totalSimpleLength">
                             <xsl:call-template name="simplifyLength"/>
-                                
                             x
                             <span>                
                                 <xsl:attribute name="style">
                                     <xsl:text>width:</xsl:text>
-                                    <xsl:value-of select="//$space"/>
                                     <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
                                 </xsl:attribute>
                                 <xsl:value-of select="(./descendant::sw:lengthAsDistance[1])"/>
                             </span>
-                             as
+                            as
                         </div>
                     </xsl:when>
                     <xsl:otherwise>
@@ -291,12 +293,11 @@
                             <span>                
                                 <xsl:attribute name="style">
                                     <xsl:text>width:</xsl:text>
-                                    <xsl:value-of select="//$space"/>
                                     <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
                                 </xsl:attribute>
                                 <xsl:call-template name="showLength"/>
                             </span>
-                             as
+                            &#160;as
                         </div>
                         
                     </xsl:otherwise>
@@ -313,7 +314,7 @@
     </xsl:template>
     
     <xsl:template name="displayInst">
-        <xsl:apply-templates select="sw:length" />
+        <xsl:apply-templates select="sw:length"/>
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
@@ -343,7 +344,7 @@
         <span>                
             <xsl:attribute name="style">
                 <xsl:text>width:</xsl:text>
-                <xsl:value-of select="//$space"/>
+
                 <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
             </xsl:attribute>
             <xsl:value-of select="../sw:lengthAsDistance"/>

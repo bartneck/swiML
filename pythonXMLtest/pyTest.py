@@ -26,14 +26,22 @@ program = swiML.Program(
     ['Callum','Lockhart'],
     'Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     '50',
-    'meter',
+    'meters',
     [swiML.Continue( simplify = True,
     children = [swiML.Repetition(4,'nothing',[instruction]),swiML.Repetition(4,'nothing',[instruction])]
     ),
     swiML.Repetition(4,'nothing',[instruction,instruction])
     ]
 )
+program2 = swiML.Program(
+    'not fun',
+    ['callum','lockhart'],
+    'wednesday morning swim',
+    '20',
+    'meters',
+    [instruction]
+)
     
 
-print(program)
-#program.toXml('sample.xml')
+print(program2)
+program2.toXml('sample.xml')
