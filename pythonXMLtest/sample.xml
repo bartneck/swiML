@@ -2,4 +2,31 @@
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="file:/C:/My%20Documents/GitHub/swiML"
-	xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd"><title>not fun</title><author><firstName>callum</firstName><lastName>lockhart</lastName></author><programDescription>wednesday morning swim</programDescription><poolLength>20</poolLength><lengthUnit>meters</lengthUnit><instruction><length><lengthAsDistance>200</lengthAsDistance></length><rest><sinceStart>PT1M55S</sinceStart></rest><intensity><staticIntensity><percentageHeartRate>60</percentageHeartRate></staticIntensity></intensity><stroke><standardStroke>backstroke</standardStroke></stroke><underwater>false</underwater><instructionDescription>boopy doopy doop</instructionDescription></instruction></program>
+	xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+	<title>not fun</title>
+	<author>
+		<firstName>callum</firstName>
+		<lastName>lockhart</lastName>
+	</author>
+	<programDescription>wednesday morning swim</programDescription>
+	<poolLength>20</poolLength>
+	<lengthUnit>meters</lengthUnit>
+	<instruction>
+		<length>
+			<lengthAsDistance>200</lengthAsDistance>
+		</length>
+		<rest>
+			<sinceStart>PT1M55S</sinceStart>
+		</rest>
+		<intensity>
+			<startIntensity>
+				<percentageHeartRate>60</percentageHeartRate>
+			</startIntensity>
+		</intensity>
+		<stroke>
+			<standardStroke>backstroke</standardStroke>
+		</stroke>
+		<underwater>false</underwater>
+		<instructionDescription>boopy doopy doop</instructionDescription>
+	</instruction>
+</program>

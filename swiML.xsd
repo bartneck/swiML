@@ -236,10 +236,18 @@
         </xs:choice>
         <!-- checks every instruction has stroke,rest and length defined 
         any other element in an instruction doesnt have to be defined-->
-        <xs:assert
-            test="./ancestor-or-self::*/o:stroke and ./ancestor-or-self::*/o:rest and ./ancestor-or-self::*/o:length or ./o:repetition or ./o:continue"/>
+        <xs:assert test="
+            ./ancestor-or-self::*/o:stroke 
+            and ./ancestor-or-self::*/o:rest 
+            and ./ancestor-or-self::*/o:length 
+            or ./o:repetition 
+            or ./o:continue
+            or ./o:pyramid
+            or ./o:segmentName"/>
+        
+        <xs:assert test="every $segmentName in .//o:segmentName satisfies $segmentName/parent::*/parent::o:program "/>
 
-
+        
 
         <!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
         <!--<xs:assert test="segmentName and .. is root()"/>-->
@@ -297,6 +305,12 @@
                     <xs:documentation>The length of the instruction.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
+                <xs:annotation>
+                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
+                        drills.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="rest" minOccurs="0" maxOccurs="1" type="restType">
                 <xs:annotation>
                     <xs:documentation>The rest period after the instruction.</xs:documentation>
@@ -308,15 +322,7 @@
                         instruction.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
-            <!-- to do: cross check that only one stroke is defined. -->
-            <!-- or check that there is at least one stroke defined and use the furthest in -->
-            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
-                <xs:annotation>
-                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
-                        drills.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            
             <xs:element name="breath" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
                     <xs:documentation>Number of arm strokes per breath.</xs:documentation>
@@ -632,25 +638,19 @@
 
     <!-- Working out the build option -->
     <xs:complexType name="intensityProfile" mixed="true">
-        <xs:choice>
-            <xs:element name="staticIntensity" type="intensityType">
-                <xs:annotation>
-                    <xs:documentation>The intensity is constant during the instruction. The swimmer
-                        should swim at the same intensity.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:sequence>
-                <xs:annotation>
-                    <xs:documentation>The intensity changes from the start to the stop of the
-                        instruction. This can be used to define an increasing or decreasing
-                        intensity. The swimmer could, for example, start at 70% and speed up to
-                        100%.</xs:documentation>
-                </xs:annotation>
-                <xs:element name="dynamicAcross" minOccurs="1" maxOccurs="1" type="xs:boolean"/>
-                <xs:element name="startIntensity" minOccurs="1" maxOccurs="1" type="intensityType"/>
-                <xs:element name="stopIntensity" minOccurs="1" maxOccurs="1" type="intensityType"/>
-            </xs:sequence>
-        </xs:choice>
+        <xs:annotation>
+            <xs:documentation>The intensity of the instruction.
+            When given at the lowest level just start intensity indicates a constant intensity 
+            if the stop intensity is given then it is a build within the instruction
+            If the intensity is given at a higher level (repetition or continue)
+            just start intensity is the same constant for all child instructions
+            given a stop intensity then it is descending/ascending over the child instructions</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="startIntensity" minOccurs="1" maxOccurs="1" type="intensityType"/>
+            <xs:element name="stopIntensity" minOccurs="0" maxOccurs="1" type="intensityType"/>
+        </xs:sequence>
+        
     </xs:complexType>
 
 

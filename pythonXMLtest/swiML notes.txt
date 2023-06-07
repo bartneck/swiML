@@ -13,7 +13,7 @@
 \-> true ->check if it is possible -> use assertion to check 
 
 \-> false -> show as a continous swim not simplified
-gonna change this to an attribute
+\gonna change this to an attribute
 
 \xslt now does multi level repetitions but doesnt work when there are more than one base instruction within the repetition
 
@@ -24,15 +24,20 @@ need to check whether this needs to be thing or not
 \assertion for stroke inheritance -->
 \need to check for multiple continues or repetitions at the start as neither will have strokes defined 
 \-> maybe check for instructions with no other tag (rep or cont)
-now i gotta do the python and xslt for this so that it actually inherits it 
+now i gotta do the python and xslt for this so that it actually inherits it -> xslt is mostly done
 
-also need to repeat the stroke check for other possible points (rest, intenisty)
-so that this can replace intensity across 
+\problem with inheriting in a non-simplifying continue is that it breaks the length calculations
+\could be fixed by checking for ancestor-or-self length instead of just self 
+continues in repetitions have error when calculating totals --> too many
+
+\also need to repeat the stroke check for other possible points (rest, intenisty)
+\so that this can replace intensity across 
 
 missing 2 at the bottom of the fibonacci section in the book
 
 breaths -- add bilateral as an option 
 
-continues and repitions recurring -> maybe switch symbols side                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+continues and repitions recurring -> maybe switch symbols side    
+
 could use some text recognition library so people can take photos of sets and --> into swiML     
                                                            

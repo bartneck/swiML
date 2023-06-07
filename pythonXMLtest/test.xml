@@ -1,126 +1,66 @@
 <program>
 	<!-- test program for python reading and writing -->
-	<title>
-		Jasi Masters
-	</title>
+	<title> Jasi Masters </title>
 	<author>
-		<firstName>
-			Christoph
-		</firstName>
-		<lastName>
-			Bartneck
-		</lastName>
+		<firstName> Christoph </firstName>
+		<lastName> Bartneck </lastName>
 	</author>
-	<programDescription>
-		Our Tuesday evening program in the sun. The target duration was 60 minutes.
-	</programDescription>
-	<creationDate>
-		2023-02-07
-	</creationDate>
-	<poolLength>
-		25
-	</poolLength>
-	<lengthUnit>
-		meters
-	</lengthUnit>
-	<hideIntro>
-		false
-	</hideIntro>
+	<programDescription> Our Tuesday evening program in the sun. The target duration was 60 minutes. </programDescription>
+	<creationDate> 2023-02-07 </creationDate>
+	<poolLength> 25 </poolLength>
+	<lengthUnit> meters </lengthUnit>
+	<hideIntro> false </hideIntro>
 	<instruction>
 		<repetition>
-			<repetitionCount>
-				5
-			</repetitionCount>
-			<repetitionDescription>
-				have fun
-			</repetitionDescription>
+			<repetitionCount> 5 </repetitionCount>
+			<repetitionDescription> have fun </repetitionDescription>
 			<instruction>
-				<lengthAsDistance>
-					100
-				</lengthAsDistance>
+				<lengthAsDistance> 100 </lengthAsDistance>
 				<rest>
-					<sinceStart>
-						PT1M35S
-					</sinceStart>
+					<sinceStart> PT1M35S </sinceStart>
 				</rest>
 				<intensity>
 					<staticIntensity>
-						<percentageHeartRate>
-							80
-						</percentageHeartRate>
+						<percentageHeartRate> 80 </percentageHeartRate>
 					</staticIntensity>
 				</intensity>
 				<stroke>
-					<standardStroke>
-						freestyle
-					</standardStroke>
+					<standardStroke> freestyle </standardStroke>
 				</stroke>
-				<breath>
-					None
-				</breath>
-				<underwater>
-					False
-				</underwater>
-				<instructionDescription>
-					boopy doop
-				</instructionDescription>
+				<breath> None </breath>
+				<underwater> False </underwater>
+				<instructionDescription> boopy doop </instructionDescription>
 			</instruction>
 			<instruction>
-				<lengthAsDistance>
-					200
-				</lengthAsDistance>
+				<lengthAsDistance> 200 </lengthAsDistance>
 				<rest>
-					<sinceStart>
-						PT1M55S
-					</sinceStart>
+					<sinceStart> PT1M55S </sinceStart>
 				</rest>
 				<intensity>
 					<staticIntensity>
-						<percentageHeartRate>
-							60
-						</percentageHeartRate>
+						<percentageHeartRate> 60 </percentageHeartRate>
 					</staticIntensity>
 				</intensity>
 				<stroke>
-					<standardStroke>
-						backstroke
-					</standardStroke>
+					<standardStroke> backstroke </standardStroke>
 				</stroke>
-				<breath>
-					None
-				</breath>
-				<underwater>
-					False
-				</underwater>
-				<instructionDescription>
-					boopy doopy doop
-				</instructionDescription>
+				<breath> None </breath>
+				<underwater> False </underwater>
+				<instructionDescription> boopy doopy doop </instructionDescription>
 			</instruction>
 			<instruction>
 				<repetition>
-					<repetitionCount>
-						3
-					</repetitionCount>
+					<repetitionCount> 3 </repetitionCount>
 					<instruction>
-						<lengthAsDistance>
-							1000
-						</lengthAsDistance>
+						<lengthAsDistance> 1000 </lengthAsDistance>
 						<rest>
-							<sinceStart>
-								PT1M45S
-							</sinceStart>
+							<sinceStart> PT1M45S </sinceStart>
 						</rest>
 						<stroke>
-							<standardStroke>
-								freestyle
-							</standardStroke>
+							<standardStroke> freestyle </standardStroke>
 						</stroke>
-						<breath>
-							5
-						</breath>
-						<instructionDescription>
-							do it faster then me
-						</instructionDescription>
+						<breath> 5 </breath>
+						<instructionDescription> do it faster then me </instructionDescription>
 					</instruction>
 				</repetition>
 			</instruction>

@@ -29,115 +29,23 @@
       <meta name="msapplication-TileColor" content="#FFFFFF">
       <meta name="msapplication-TileImage" content="/swiML/favicon/favicon-144.png">
       <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml">
-      <title>Continuation</title>
+      <title>not fun</title>
    </head>
    <body>
       <div class="intro">
-         <h1>Continuation</h1>
-         <p class="authorName">Christoph Bartneck</p>
+         <h1>not fun</h1>
+         <p class="authorName">callum lockhart</p>
          <p class="authorEmail"></p>
-         <p class="describtion">Continues test xml</p>
+         <p class="describtion">wednesday morning swim</p>
          <ul>
-            <li><span style="font-weight: 600">Date:</span>28 February 2023</li>
-            <li><span style="font-weight: 600">Pool Size:</span>25</li>
+            <li><span style="font-weight: 600">Date:</span></li>
+            <li><span style="font-weight: 600">Pool Size:</span>20</li>
             <li><span style="font-weight: 600">Units:</span>meters</li>
-            <li><span style="font-weight: 600">Length:</span>67800</li>
+            <li><span style="font-weight: 600">Length:</span>200</li>
          </ul>
       </div>
       <div class="program">
-         <div class="instruction"><span style="text-align:right;font-weight:900">200</span>&nbsp;FR&nbsp;◔0:20</div>
-         <div class="continue">
-            <div class="totalLength"><span style="text-align:right;font-weight:900">400</span>&nbsp;@_1:45
-               &nbsp;as
-               </div>
-            <div class="continueInner">
-               <div class="continueSymbol"></div>
-               <div class="continueContent">
-                  <div class="contInstruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;FR</div>
-                  <div class="contInstruction"><span style="text-align:right;font-weight:900">200</span>&nbsp;K&nbsp;Front&nbsp;Flutter&nbsp;@_1:45&nbsp;70%</div>
-                  <div class="contInstruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;FR</div>
-               </div>
-            </div>
-         </div>
-         <div class="continue">
-            <div class="totalSimpleLength">8
-               ×
-               <span style="text-align:right;font-weight:900">100</span>
-               as
-               </div>
-            <div class="continueInner">
-               <div class="continueSymbol"></div>
-               <div class="continueContent">
-                  <div class="repetition">
-                     <div class="repetitionCount">4&nbsp;</div>
-                     <div class="repetitionContent">
-                        <div class="instruction">&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                     </div>
-                  </div>
-                  <div class="repetition">
-                     <div class="repetitionCount">4&nbsp;</div>
-                     <div class="repetitionContent">
-                        <div class="instruction">&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="repetition">
-            <div class="repetitionCount">4&nbsp;×</div>
-            &nbsp;
-            
-            <div class="repetitionContent">
-               <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-            </div>
-         </div>
-         <div class="repetition">
-            <div class="repetitionCount">4&nbsp;×</div>
-            <div class="reptitionSymbol"></div>
-            <div class="repetitionContent">
-               <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-               <div class="repetition">
-                  <div class="repetitionCount">4&nbsp;×</div>
-                  <div class="reptitionSymbol"></div>
-                  <div class="repetitionContent">
-                     <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                     <div class="continue">
-                        <div class="totalLength"><span style="text-align:right;font-weight:900">4000</span>
-                           &nbsp;as
-                           </div>
-                        <div class="continueInner">
-                           <div class="continueSymbol"></div>
-                           <div class="continueContent">
-                              <div class="repetition">
-                                 <div class="repetitionCount">4&nbsp;×</div>
-                                 &nbsp;
-                                 
-                                 <div class="repetitionContent">
-                                    <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                                 </div>
-                              </div>
-                              <div class="repetition">
-                                 <div class="repetitionCount">4&nbsp;×</div>
-                                 <div class="reptitionSymbol"></div>
-                                 <div class="repetitionContent">
-                                    <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                                    <div class="repetition">
-                                       <div class="repetitionCount">4&nbsp;×</div>
-                                       <div class="reptitionSymbol"></div>
-                                       <div class="repetitionContent">
-                                          <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                                          <div class="instruction"><span style="text-align:right;font-weight:900">100</span>&nbsp;Any&nbsp;@_1:45&nbsp;Endurance</div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <div class="instruction"><span style="width:ch; text-align:right;font-weight:900">200</span>&nbsp;BK&nbsp;@_1:55&nbsp;↧<span style="font-style: italic;">&nbsp;boopy doopy doop</span></div>
       </div>
       <div class="bottom">
          <div class="footnote">made with: </div>

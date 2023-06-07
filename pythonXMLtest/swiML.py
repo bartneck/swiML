@@ -125,6 +125,7 @@ class Instruction:
     '''Defines a basic instruction'''
 
     TAG_ORDER = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
+                 ('stroke','c',['standardStroke',('kicking','c',['standardKick',('other','s',['orientation','legMovement'])]),('drill','s',['drillName','drillStroke'])]),
                  ('rest','c',['afterStop','sinceStart','sinceLastRest']),
                  ('intensity','c',
                   [
@@ -138,7 +139,7 @@ class Instruction:
                     )
                   ]
                  ),
-                 ('stroke','c',['standardStroke',('kicking','c',['standardKick',('other','s',['orientation','legMovement'])]),('drill','s',['drillName','drillStroke'])]),
+                 
                  'breath',
                  'underwater',
                  'equipment',

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ./swiML.xsd">
+    
+    <title>Testing xslt</title>
+    <author>
+        <firstName>Callum</firstName>
+        <lastName>Lockhart</lastName>
+    </author>
+    <programDescription>xslt test xml</programDescription>
+    <creationDate>2023-02-28</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <rest><sinceStart>PT1M45S</sinceStart></rest>
+        <intensity>
+            <startIntensity><percentageEffort>60</percentageEffort></startIntensity>
+        </intensity>
+        
+    </instruction>
+    <instruction><segmentName>Main</segmentName></instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+                <rest><afterStop>PT20S</afterStop></rest>
+                <intensity>
+                    <startIntensity><zone>easy</zone></startIntensity>
+                </intensity>                
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <continue simplify="false">
+            <length><lengthAsDistance>300</lengthAsDistance></length>
+            <intensity>
+                <startIntensity><percentageEffort>50</percentageEffort></startIntensity>
+                <stopIntensity><percentageEffort>90</percentageEffort></stopIntensity>
+            </intensity>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>300</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                        <rest><afterStop>PT20S</afterStop></rest>
+                        <intensity>
+                            <startIntensity><zone>easy</zone></startIntensity>
+                        </intensity>                
+                    </instruction>
+                    <instruction>
+                        
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                        <rest><afterStop>PT230S</afterStop></rest>
+                        <intensity>
+                            <startIntensity><zone>easy</zone></startIntensity>
+                        </intensity>                
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    
+</program>
