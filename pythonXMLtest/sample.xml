@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="file:/C:/My%20Documents/GitHub/swiML"
-	xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+<program>
 	<title>not fun</title>
 	<author>
 		<firstName>callum</firstName>
@@ -11,7 +8,6 @@
 	<programDescription>wednesday morning swim</programDescription>
 	<poolLength>20</poolLength>
 	<lengthUnit>meters</lengthUnit>
-	<!--
 	<instruction>
 		<length>
 			<lengthAsDistance>200</lengthAsDistance>
@@ -29,5 +25,5 @@
 		</stroke>
 		<underwater>false</underwater>
 		<instructionDescription>boopy doopy doop</instructionDescription>
-	</instruction>-->
+	</instruction>
 </program>

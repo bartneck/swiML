@@ -40,6 +40,18 @@ def to_time(time):
     '''converts to unit time'''
     return (f'{time[2:3]}:{time[4:6]}')
 
+def firstInstruction(children):
+    '''given a list of children objects returns the first occurence of a normal instruction'''
+    for child in children:
+        if type(child) is Instruction:
+            return child
+        else:
+            if child.children != None:
+                return firstInstruction(child.children)
+            else:
+                return child
+
+
 def get_total_length(instructions):
     '''returns length of given instructions
     or repetitions if '''
@@ -55,18 +67,18 @@ def get_total_length(instructions):
 
 def continue_length(simplify,children):
     '''returns either total length or simplified repetitions'''
-
     if simplify:
         total_repetition = 0
-        first_inst = children[0].children[0]
+        first_inst = firstInstruction(children)
         for repetition in children:
             total_repetition += repetition.repetitionCount
             for instruction in repetition.children:
                 if instruction.length != first_inst.length:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {first_inst} cannot be simplified with {instruction}') 
-        return f'{total_repetition} x {first_inst.length[1]}'
+        return f'{total_repetition} x {first_inst.length}'
     else:
         return get_total_length(children)
+
 
 def classToXML(root,self):
     #print(type(self).__name__) --> gives class name could just give to subelement
@@ -111,41 +123,64 @@ def ObjToXML(root,tags,children):
                 elif tag[1] == 'c':
                     for choice in tag[2]:
                         if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
+                            #idk what i didnt finish here
                             print(parent,[choice],[children[tag_index]])
                         if children[tag_index][0] == choice or children[tag_index][0] == choice[0]:
                             ObjToXML(parent,[choice],[children[tag_index][1]]) 
         
 
-def XMLToObj(node,curr=[]):
+def XMLToObj(node,curr):
     '''Takes XML input and outputs objects for the contents'''
-    curr=[]
-    curr.append(node.tag.split('}')[1])
-    if len(node.findall('*')) > 0:
-        for child in node:
-            curr.append([])
-            print(curr)
-            XMLToObj(child,curr[1])
-        return curr
+    curr.append(node.tag)
+    if len(node.findall('*')) > 1:
+        curr.append([])
+        for child in node:            
+            curr[-1].append(XMLToObj(child,[]))
+        return tuple(curr)
+    elif len(node.findall('*')) > 0:
+        for child in node:            
+            curr.append(XMLToObj(child,[]))
+        return tuple(curr)
     else:
         curr.append(node.text)
-        return curr
-
+        return tuple(curr)
+    
+def nodeToDict(node):
+    '''takes XML node and return dictionary of elements and list of children classse'''
+    data = []
+    children = []
+    for child in node:
+        if child.tag == 'instruction':
+            children.append(XMLToClass(child))
+        else:
+            data.append(XMLToObj(child,[]))
+    return {tup[0]:tup[1] for tup in data},children
+    
 def XMLToClass(node):
     '''takes XML input and outputs class of the contents'''
 
+    instType = node.findall('*')
+    
+    if len(instType) > 1:
+        instDict,children = nodeToDict(node)
+        return Instruction(**instDict)
+    else:
+        instDict,children = nodeToDict(instType[0])
+        if instType[0].tag == 'repetition':
+            return Repetition(**instDict,children=children)
+        elif instType[0].tag == 'continue':
+            return Continue(**instDict,children=children)
+        elif instType[0].tag == 'pyramid':
+            return Pyramid(**instDict,children=children)
+
+
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
-    tree = ET.parse('pythonXMLtest\\'+filename)
+    tree = ET.parse(filename)
     root = tree.getroot()
 
-    programData = []
-    children = []
-    for child in root:
-        if child.tag == 'instruction':
-            children.append(XMLToClass(child,()))
-        else:
-            programData.append(XMLToObj(child))
-            print(programData)
+    programDict,children = nodeToDict(root)
+    return Program(**programDict,children=children)
 
 class Program:
     '''Defines a program'''
@@ -170,7 +205,7 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0]} {self.author[1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
         children_string = ''.join([str(child) for child in self.children])
         return title_string+children_string+'\n'
     
@@ -205,32 +240,43 @@ class Instruction:
         '''returns a string for an instruction object that can easily be read'''
 
         rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
-        underwater = 'underwater\n' if self.underwater else ''
+        underwater = 'underwater\n' if self.underwater == True else ''
         equipment = ', '.join(self.equipment)[:-2]+'\n' if len(self.equipment) > 0 and self.equipment != None else ''
         if self.intensity != None:
-            if self.intensity[0] == 'staticIntensity':
+            if type(self.intensity) is tuple:
                 intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}\n'
             else:
-                intensity =  f'Start: {intensity[1][1]}{"%" if intensity[1][1] == "percentageEffort" else "% of max HR" if intensity[1][1] == "percentageHeartRate" else ""} \n End:{intensity[2][1]}{"%" if intensity[2][0] == "percentageEffort" else "% of max HR" if intensity[2][0] == "percentageHeartRate" else ""}\n'
+                intensity =  f'Start: {self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""} \n End:{self.intensity[2][1]}{"%" if self.intensity[2][0] == "percentageEffort" else "% of max HR" if self.intensity[2][0] == "percentageHeartRate" else ""}\n'
         else:
             intensity = ''
+        
         breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
+        #need to get length units in here somehow
         length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
-
-        return f'\n{length} {self.stroke[1]} {rest} \n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
+        stroke = '' if self.stroke == None else self.stroke[1]
+        line1 = f'\n{length} {stroke} {rest} '
+        line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
+        return line1 if len(line1) > 0 else ''+line2 if len(line2) > 0 else ''
 
 
 
 class Repetition:
     '''Defines a repetition'''
 
-    TAG_ORDER = ['repetitionCount','repetitionDescription','children']
+    TAG_ORDER = ['repetitionCount','repetitionDescription']+INSTRUCTION_GROUP+['children']
 
-    def __init__(self,repetitionCount,repetitionDescription = None,children=[]):
+    def __init__(self,repetitionCount,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
         '''create repetition'''
         self.repetitionCount = repetitionCount
         self.repetitionDescription = repetitionDescription
+        self.length = length
+        self.rest = rest
+        self.intensity = intensity
+        self.stroke = stroke
+        self.breath = breath
+        self.underwater = underwater
+        self.equipment = equipment
         self.children = children
 
     def __str__(self):
@@ -252,9 +298,16 @@ class Continue:
 
     TAG_ORDER = ['totalLength','children']
 
-    def __init__(self,totalLength=0,simplify=False,children=[]):
+    def __init__(self,totalLength=0,simplify=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
         '''create continue'''
         self.children = children
+        self.length = length
+        self.rest = rest
+        self.intensity = intensity
+        self.stroke = stroke
+        self.breath = breath
+        self.underwater = underwater
+        self.equipment = equipment
         self.simplify = simplify
         self.totalLength = continue_length(simplify,children) if totalLength == 0 else totalLength
     def __str__(self):
@@ -273,12 +326,19 @@ class Pyramid:
     
     TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','children']
     
-    def __init__(self,startLength,stopLength,increment,lengthUnit,children):
+    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
         '''create repetition'''
         self.startLength = startLength
         self.stopLength = stopLength
         self.increment = increment
         self.lengthUnit = lengthUnit
+        self.length = length
+        self.rest = rest
+        self.intensity = intensity
+        self.stroke = stroke
+        self.breath = breath
+        self.underwater = underwater
+        self.equipment = equipment
         self.children = children
 
     def __str__(self):

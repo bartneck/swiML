@@ -28,14 +28,14 @@ program = swiML.Program(
     poolLength='50',
     lengthUnit='meters',
     children=[swiML.Continue( simplify = True,
-    children = [swiML.Repetition(4,'nothing',[instruction]),swiML.Repetition(4,'nothing',[instruction])]
+    children = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction])]
     ),
     swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction])
     ]
 )
 program2 = swiML.Program(
     'not fun',
-    ['callum','lockhart'],
+    [('firstName','Callum'),('lastName','Lockhart')],
     'wednesday morning swim',
     '20',
     'meters',
@@ -43,4 +43,6 @@ program2 = swiML.Program(
 )
     
 
-swiML.readXML('sample.xml')
+program = swiML.readXML('asserttests.xml')
+
+print(program)

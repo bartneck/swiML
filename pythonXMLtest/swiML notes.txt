@@ -45,4 +45,7 @@ When using non-simplifying continue not sure if it makes sense to have rests
 if not then get rid of them -> uses assertion 
 but could but i would need to modify checks for stroke,rest and length as rest may not be defined in this case 
 rest may not need to be defined at all 
+
+in python top level tags (kind of) arent represented in tuples but in the values of the objects 
+the only issue is this isnt constant so i may need to simplify it 
                                                            

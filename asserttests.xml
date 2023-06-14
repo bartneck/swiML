@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="file:/C:/My%20Documents/GitHub/swiML"
     xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ./swiML.xsd">
 
     <title>Continuation</title>
@@ -10,10 +9,9 @@
         <lastName>Bartneck</lastName>
     </author>
     <programDescription>Continues test xml</programDescription>
-    <creationDate>2023-02-28</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    
     
     <instruction>
         <repetition>
