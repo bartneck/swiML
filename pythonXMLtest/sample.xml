@@ -11,6 +11,7 @@
 	<programDescription>wednesday morning swim</programDescription>
 	<poolLength>20</poolLength>
 	<lengthUnit>meters</lengthUnit>
+	<!--
 	<instruction>
 		<length>
 			<lengthAsDistance>200</lengthAsDistance>
@@ -28,5 +29,5 @@
 		</stroke>
 		<underwater>false</underwater>
 		<instructionDescription>boopy doopy doop</instructionDescription>
-	</instruction>
+	</instruction>-->
 </program>

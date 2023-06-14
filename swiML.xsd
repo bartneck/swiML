@@ -248,7 +248,9 @@
         <xs:assert test="every $segmentName in .//o:segmentName satisfies $segmentName/parent::*/parent::o:program "/>
 
         
-
+        <xs:assert test="every $stroke in ./o:stroke satisfies
+            if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
+            then($stroke/parent::o:repetition) else($stroke/parent::*)"/>
         <!--        <xs:assert test="not(./repetition//instruction/segmentName)"/>-->
         <!--<xs:assert test="segmentName and .. is root()"/>-->
 

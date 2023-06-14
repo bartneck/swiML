@@ -1,9 +1,40 @@
 import xml.etree.ElementTree as ET
 
-LOAD_VARS = ['title','author','programDescription','poolLength','lengthUnit']
-AUTHOR_VARS = ['firstName','lastName','email']
-INSTRUCTION_VARS=['length','rest','intensity','stroke','breath','underwater','equipment','instructionDescription']
-REPETITION_VARS = ['repetitionCount','repetitionDescription','instruction']
+INSTRUCTION_GROUP = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
+                 ('stroke','c',
+                  ['standardStroke',
+                   ('kicking','c',
+                    ['standardKick',
+                     ('other','s',
+                      ['orientation','legMovement']
+                     )
+                    ]
+                   ),
+                   ('drill','s',
+                    ['drillName','drillStroke']
+                   )
+                  ]
+                 ),
+                 ('rest','c',
+                  ['afterStop','sinceStart','sinceLastRest']
+                 ),
+                 ('intensity','c',
+                  [
+                    ('staticIntensity','c',
+                        ['percentageEffort','zone','percentageHeartRate']),
+                    ('dynamicAcross','s',
+                     [
+                         ('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),
+                         ('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])
+                     ]
+                    )
+                  ]
+                 ),
+                 
+                 'breath',
+                 'underwater',
+                 'equipment',
+                 'instructionDescription']
 
 def to_time(time):
     '''converts to unit time'''
@@ -49,9 +80,9 @@ def classToXML(root,self):
     children = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER
     
-    expandXML(root,tags,children)
+    ObjToXML(root,tags,children)
 
-def expandXML(root,tags,children):
+def ObjToXML(root,tags,children):
     'converts list of tags and children to XML'
     for tag_index,tag in enumerate(tags):
         if children[tag_index] != None:
@@ -71,17 +102,50 @@ def expandXML(root,tags,children):
             elif type(tag) is tuple:
                 parent = ET.SubElement(root,tag[0])
                 if tag[1] == 's':
+                    #this is a very bad way of removing tags as not always the end tag is removed 
                     if len(tag[2]) == len(children[tag_index]):
-                        expandXML(parent,tag[2],children[tag_index])
+                        ObjToXML(parent,tag[2],children[tag_index])
                     else:
-                        expandXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
+
+                        ObjToXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
                 elif tag[1] == 'c':
                     for choice in tag[2]:
                         if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
                             print(parent,[choice],[children[tag_index]])
                         if children[tag_index][0] == choice or children[tag_index][0] == choice[0]:
-                            expandXML(parent,[choice],[children[tag_index][1]]) 
+                            ObjToXML(parent,[choice],[children[tag_index][1]]) 
         
+
+def XMLToObj(node,curr=[]):
+    '''Takes XML input and outputs objects for the contents'''
+    curr=[]
+    curr.append(node.tag.split('}')[1])
+    if len(node.findall('*')) > 0:
+        for child in node:
+            curr.append([])
+            print(curr)
+            XMLToObj(child,curr[1])
+        return curr
+    else:
+        curr.append(node.text)
+        return curr
+
+def XMLToClass(node):
+    '''takes XML input and outputs class of the contents'''
+
+def readXML(filename):
+    '''Parses Xml file to Python Classes'''
+    tree = ET.parse('pythonXMLtest\\'+filename)
+    root = tree.getroot()
+
+    programData = []
+    children = []
+    for child in root:
+        if child.tag == 'instruction':
+            children.append(XMLToClass(child,()))
+        else:
+            programData.append(XMLToObj(child))
+            print(programData)
 
 class Program:
     '''Defines a program'''
@@ -124,26 +188,7 @@ class Program:
 class Instruction:
     '''Defines a basic instruction'''
 
-    TAG_ORDER = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
-                 ('stroke','c',['standardStroke',('kicking','c',['standardKick',('other','s',['orientation','legMovement'])]),('drill','s',['drillName','drillStroke'])]),
-                 ('rest','c',['afterStop','sinceStart','sinceLastRest']),
-                 ('intensity','c',
-                  [
-                    ('staticIntensity','c',
-                        ['percentageEffort','zone','percentageHeartRate']),
-                    ('dynamicAcross','s',
-                     [
-                         ('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),
-                         ('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])
-                     ]
-                    )
-                  ]
-                 ),
-                 
-                 'breath',
-                 'underwater',
-                 'equipment',
-                 'instructionDescription']
+    TAG_ORDER = INSTRUCTION_GROUP
 
     def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
         '''Initialises an instruction instance and defines all attributes'''
@@ -182,9 +227,9 @@ class Repetition:
 
     TAG_ORDER = ['repetitionCount','repetitionDescription','children']
 
-    def __init__(self,repetitions,repetitionDescription = None,children=[]):
+    def __init__(self,repetitionCount,repetitionDescription = None,children=[]):
         '''create repetition'''
-        self.repetitionCount = repetitions
+        self.repetitionCount = repetitionCount
         self.repetitionDescription = repetitionDescription
         self.children = children
 

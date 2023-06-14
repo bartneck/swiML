@@ -40,4 +40,9 @@ breaths -- add bilateral as an option
 continues and repitions recurring -> maybe switch symbols side    
 
 could use some text recognition library so people can take photos of sets and --> into swiML     
+
+When using non-simplifying continue not sure if it makes sense to have rests 
+if not then get rid of them -> uses assertion 
+but could but i would need to modify checks for stroke,rest and length as rest may not be defined in this case 
+rest may not need to be defined at all 
                                                            

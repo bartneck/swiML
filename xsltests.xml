@@ -50,7 +50,6 @@
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>300</lengthAsDistance></length>
                         <stroke><standardStroke>any</standardStroke></stroke>
                         <rest><afterStop>PT20S</afterStop></rest>
                         <intensity>

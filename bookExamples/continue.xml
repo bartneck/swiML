@@ -96,9 +96,10 @@
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
+            <stroke><standardStroke>individualMedleyOverlap</standardStroke></stroke>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                <stroke><standardStroke>any</standardStroke></stroke>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><startIntensity>
                     <zone>endurance</zone>
@@ -108,6 +109,7 @@
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
+                    <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
                     <instruction>
                         <length><lengthAsDistance>100</lengthAsDistance></length>
                         <stroke><standardStroke>any</standardStroke></stroke>
@@ -139,7 +141,7 @@
                                     <repetitionCount>4</repetitionCount>
                                     <instruction>
                                         <length><lengthAsDistance>100</lengthAsDistance></length>
-                                        <stroke><standardStroke>any</standardStroke></stroke>
+                                        <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
                                         <rest><sinceStart>PT1M45S</sinceStart></rest>
                                         <intensity><startIntensity>
                                             <zone>endurance</zone>
