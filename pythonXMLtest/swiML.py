@@ -40,14 +40,14 @@ def to_time(time):
     '''converts to unit time'''
     return (f'{time[2:3]}:{time[4:6]}')
 
-def firstInstruction(children):
-    '''given a list of children objects returns the first occurence of a normal instruction'''
-    for child in children:
+def firstInstruction(instructions):
+    '''given a list of instructions objects returns the first occurence of a normal instruction'''
+    for child in instructions:
         if type(child) is Instruction:
             return child
         else:
-            if child.children != None:
-                return firstInstruction(child.children)
+            if child.instructions != None:
+                return firstInstruction(child.instructions)
             else:
                 return child
 
@@ -60,24 +60,24 @@ def get_total_length(instructions):
         if type(inst) is Instruction:
             total_length += inst.length[1]
         if type(inst) is Repetition:
-            total_length += inst.repetitionCount*get_total_length(inst.children)
+            total_length += inst.repetitionCount*get_total_length(inst.instructions)
         if type(inst) is Continue:
             total_length += inst.totalLength
     return total_length
 
-def continue_length(simplify,children):
+def continue_length(simplify,instructions):
     '''returns either total length or simplified repetitions'''
     if simplify:
         total_repetition = 0
-        first_inst = firstInstruction(children)
-        for repetition in children:
+        first_inst = firstInstruction(instructions)
+        for repetition in instructions:
             total_repetition += repetition.repetitionCount
-            for instruction in repetition.children:
+            for instruction in repetition.instructions:
                 if instruction.length != first_inst.length:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {first_inst} cannot be simplified with {instruction}') 
         return f'{total_repetition} x {first_inst.length}'
     else:
-        return get_total_length(children)
+        return get_total_length(instructions)
 
 
 def classToXML(root,self):
@@ -89,24 +89,24 @@ def classToXML(root,self):
         root.set('simplify',str(getattr(self,'simplify')).lower())
     if type(self) is Pyramid:
         root = ET.SubElement(root,'pyramid')
-    children = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
+    instructions = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER
     
-    ObjToXML(root,tags,children)
+    ObjToXML(root,tags,instructions)
 
-def ObjToXML(root,tags,children):
-    'converts list of tags and children to XML'
+def ObjToXML(root,tags,instructions):
+    'converts list of tags and instructions to XML'
     for tag_index,tag in enumerate(tags):
-        if children[tag_index] != None:
+        if instructions[tag_index] != None:
             if type(tag) is str:
-                if children[tag_index] == None:
+                if instructions[tag_index] == None:
                     pass
-                elif type(children[tag_index]) is str or type(children[tag_index]) is int:
-                    ET.SubElement(root,tag).text = str(children[tag_index])
-                elif type(children[tag_index]) is bool:
-                    ET.SubElement(root,tag).text = str(children[tag_index]).lower()
-                elif type(children[tag_index]) is list :
-                    for child in children[tag_index]:
+                elif type(instructions[tag_index]) is str or type(instructions[tag_index]) is int:
+                    ET.SubElement(root,tag).text = str(instructions[tag_index])
+                elif type(instructions[tag_index]) is bool:
+                    ET.SubElement(root,tag).text = str(instructions[tag_index]).lower()
+                elif type(instructions[tag_index]) is list :
+                    for child in instructions[tag_index]:
                         instruction = ET.SubElement(root,'instruction')
                         classToXML(instruction,child)
                 else:
@@ -115,18 +115,18 @@ def ObjToXML(root,tags,children):
                 parent = ET.SubElement(root,tag[0])
                 if tag[1] == 's':
                     #this is a very bad way of removing tags as not always the end tag is removed 
-                    if len(tag[2]) == len(children[tag_index]):
-                        ObjToXML(parent,tag[2],children[tag_index])
+                    if len(tag[2]) == len(instructions[tag_index]):
+                        ObjToXML(parent,tag[2],instructions[tag_index])
                     else:
 
-                        ObjToXML(parent,tag[2][:-(len(tag[2])-len(children[tag_index]))],children[tag_index])
+                        ObjToXML(parent,tag[2][:-(len(tag[2])-len(instructions[tag_index]))],instructions[tag_index])
                 elif tag[1] == 'c':
                     for choice in tag[2]:
                         if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
                             #idk what i didnt finish here
-                            print(parent,[choice],[children[tag_index]])
-                        if children[tag_index][0] == choice or children[tag_index][0] == choice[0]:
-                            ObjToXML(parent,[choice],[children[tag_index][1]]) 
+                            print(parent,[choice],[instructions[tag_index]])
+                        if instructions[tag_index][0] == choice or instructions[tag_index][0] == choice[0]:
+                            ObjToXML(parent,[choice],[instructions[tag_index][1]]) 
         
 
 def XMLToObj(node,curr):
@@ -146,15 +146,15 @@ def XMLToObj(node,curr):
         return tuple(curr)
     
 def nodeToDict(node):
-    '''takes XML node and return dictionary of elements and list of children classse'''
+    '''takes XML node and return dictionary of elements and list of instructions classse'''
     data = []
-    children = []
+    instructions = []
     for child in node:
         if child.tag == 'instruction':
-            children.append(XMLToClass(child))
+            instructions.append(XMLToClass(child))
         else:
             data.append(XMLToObj(child,[]))
-    return {tup[0]:tup[1] for tup in data},children
+    return {tup[0]:tup[1] for tup in data},instructions
     
 def XMLToClass(node):
     '''takes XML input and outputs class of the contents'''
@@ -162,33 +162,35 @@ def XMLToClass(node):
     instType = node.findall('*')
     
     if len(instType) > 1:
-        instDict,children = nodeToDict(node)
+        instDict,instructions = nodeToDict(node)
         return Instruction(**instDict)
     else:
-        instDict,children = nodeToDict(instType[0])
+        instDict,instructions = nodeToDict(instType[0])
         if instType[0].tag == 'repetition':
-            return Repetition(**instDict,children=children)
+            return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
-            return Continue(**instDict,children=children)
+            return Continue(**instDict,instructions=instructions)
         elif instType[0].tag == 'pyramid':
-            return Pyramid(**instDict,children=children)
+            return Pyramid(**instDict,instructions=instructions)
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
     tree = ET.parse(filename)
     root = tree.getroot()
-
-    programDict,children = nodeToDict(root)
-    return Program(**programDict,children=children)
+    if root.tag == 'program':
+        programDict,instructions = nodeToDict(root)
+        return Program(**programDict,instructions=instructions)
+    else:
+        return XMLToClass(root)
 
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit',  'children']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit',  'instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',children = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -198,7 +200,7 @@ class Program:
         self.programDescription = programDescription
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
-        self.children = children 
+        self.instructions = instructions
 
     def __str__(self):
         '''returns string for program data 
@@ -206,8 +208,8 @@ class Program:
         using each individual to string function 
         '''
         title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
-        children_string = ''.join([str(child) for child in self.children])
-        return title_string+children_string+'\n'
+        instructions_string = ''.join([str(child) for child in self.instructions])
+        return title_string+instructions_string+'\n'
     
     def toXml(self,filename):
         '''converts objects to XML in specified file
@@ -219,6 +221,20 @@ class Program:
         classToXML(root,self)
         tree = ET.ElementTree(root)
         tree.write('pythonXMLtest\\'+filename)
+
+    def add(self,instruction=None,index=0):
+        '''adds instruction to specified index or end of program if unspecified'''
+        if index > len(self.instructions):
+            index = 0
+        if type(instruction) is Instruction:
+            if index == 0:
+                self.instructions.append(instruction)
+            else:
+                self.instructions.insert(index-1,instruction)
+        else:
+            print('invalid instruciton input')
+
+        print(self)
 
 class Instruction:
     '''Defines a basic instruction'''
@@ -264,9 +280,9 @@ class Instruction:
 class Repetition:
     '''Defines a repetition'''
 
-    TAG_ORDER = ['repetitionCount','repetitionDescription']+INSTRUCTION_GROUP+['children']
+    TAG_ORDER = ['repetitionCount','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
+    def __init__(self,repetitionCount,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create repetition'''
         self.repetitionCount = repetitionCount
         self.repetitionDescription = repetitionDescription
@@ -277,30 +293,44 @@ class Repetition:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
-        self.children = children
+        self.instructions = instructions
 
     def __str__(self):
         '''returns string for repetition'''
         return_list =''
         #return_string = ''
-        children_string = '\n'.join(map(str,self.children))
-        children = str(children_string).split('\n')
-        for i,line in enumerate(children[1:]):
-            if i == (len(children)-1)//2:
+        instructions_string = '\n'.join(map(str,self.instructions))
+        instructions = str(instructions_string).split('\n')
+        for i,line in enumerate(instructions[1:]):
+            if i == (len(instructions)-1)//2:
                 return_list += (f'{self.repetitionCount}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
 
         return '\n'+return_list[:-2]
     
+    def add(self,instruction=None,index=0):
+        '''adds instruction to specified index or end of repetition if unspecified'''
+        if index > len(self.instructions):
+            index = 0
+        if type(instruction) is Instruction:
+            if index == 0:
+                self.instructions.append(instruction)
+            else:
+                self.instructions.insert(index-1,instruction)
+        else:
+            print('invalid instruciton input')
+
+        print(self)
+    
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER = ['totalLength','children']
+    TAG_ORDER = ['totalLength','instructions']
 
-    def __init__(self,totalLength=0,simplify=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
+    def __init__(self,totalLength=0,simplify=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create continue'''
-        self.children = children
+        self.instructions = instructions
         self.length = length
         self.rest = rest
         self.intensity = intensity
@@ -309,24 +339,38 @@ class Continue:
         self.underwater = underwater
         self.equipment = equipment
         self.simplify = simplify
-        self.totalLength = continue_length(simplify,children) if totalLength == 0 else totalLength
+        self.totalLength = continue_length(simplify,instructions) if totalLength == 0 else totalLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
         #return_string = ''
-        children_string = '\n'.join(map(str,self.children))
-        children = str(children_string).split('\n')
-        for i,line in enumerate(children[1:]):
+        instructions_string = '\n'.join(map(str,self.instructions))
+        instructions = str(instructions_string).split('\n')
+        for i,line in enumerate(instructions[1:]):
             return_list += (f'   | {line}\n')
 
         return f'\n{self.totalLength} swim as\n'+return_list[:-2]+'\n'
+    
+    def add(self,instruction=None,index=0):
+        '''adds instruction to specified index or end of continue if unspecified'''
+        if index > len(self.instructions):
+            index = 0
+        if type(instruction) is Instruction:
+            if index == 0:
+                self.instructions.append(instruction)
+            else:
+                self.instructions.insert(index-1,instruction)
+        else:
+            print('invalid instruciton input')
+
+        print(self)
 
 class Pyramid:
     '''Defines a pyramid'''
     
-    TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','children']
+    TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','instructions']
     
-    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],children=[]):
+    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create repetition'''
         self.startLength = startLength
         self.stopLength = stopLength
@@ -339,22 +383,22 @@ class Pyramid:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
-        self.children = children
+        self.instructions = instructions
 
     def __str__(self):
         '''returns string for repetition'''
-        outChildren = []
+        outinstructions = []
         length = self.startLength
         while length <= self.stopLength:
-            inst = self.children[0]
+            inst = self.instructions[0]
             setattr(inst,'length',('lengthAsDistance',length))
-            outChildren.append(str(inst))
+            outinstructions.append(str(inst))
             length += self.increment
         length -= 2*self.increment
         while length >= self.startLength:
-            inst = self.children[0]
+            inst = self.instructions[0]
             setattr(inst,'length',('lengthAsDistance',length))
-            outChildren.append(str(inst))
+            outinstructions.append(str(inst))
             length -= self.increment
-        rChildren = '\n'.join([f'   | {line.strip()}' for line in outChildren])
-        return '\n  Pyramid\n'+str(rChildren)+'\n'
+        rinstructions = '\n'.join([f'   | {line.strip()}' for line in outinstructions])
+        return '\n  Pyramid\n'+str(rinstructions)+'\n'

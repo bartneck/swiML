@@ -27,10 +27,10 @@ program = swiML.Program(
     programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     poolLength='50',
     lengthUnit='meters',
-    children=[swiML.Continue( simplify = True,
-    children = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction])]
+    instructions=[swiML.Continue( simplify = True,
+    instructions = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction])]
     ),
-    swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',children=[instruction,instruction])
+    swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction])
     ]
 )
 program2 = swiML.Program(
@@ -43,6 +43,5 @@ program2 = swiML.Program(
 )
     
 
-program = swiML.readXML('asserttests.xml')
-
+program = swiML.readXML('pythonXMLtest/sample.xml')
 print(program)

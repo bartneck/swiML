@@ -10,7 +10,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/continue.xml</String>
+                                    <String>xsltests.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -30,7 +30,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>xsltests.xml</String>
+                                    <String>bookExamples/continue.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
