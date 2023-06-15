@@ -1,55 +1,75 @@
 import xml.etree.ElementTree as ET
 
-INSTRUCTION_GROUP = [('length','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),
-                 ('stroke','c',
-                  ['standardStroke',
-                   ('kicking','c',
-                    ['standardKick',
-                     ('other','s',
-                      ['orientation','legMovement']
+INSTRUCTION_GROUP = [
+                     ('length','c',
+                      ['lengthAsDistance','lengthAsTime','lengthAsLaps']
+                     ),
+                     ('stroke','c',
+                     ['standardStroke',
+                     ('kicking','c',
+                         ['standardKick',
+                         ('other','s',
+                         ['orientation','legMovement']
+                         )
+                         ]
+                     ),
+                     ('drill','s',
+                         ['drillName','drillStroke']
                      )
-                    ]
-                   ),
-                   ('drill','s',
-                    ['drillName','drillStroke']
-                   )
-                  ]
-                 ),
-                 ('rest','c',
-                  ['afterStop','sinceStart','sinceLastRest']
-                 ),
-                 ('intensity','c',
-                  [
-                    ('staticIntensity','c',
-                        ['percentageEffort','zone','percentageHeartRate']),
-                    ('dynamicAcross','s',
-                     [
-                         ('startIntensity','c',['percentageEffort','zone','percentageHeartRate']),
-                         ('stopIntensity','c',['percentageEffort','zone','percentageHeartRate'])
                      ]
-                    )
-                  ]
-                 ),
-                 
-                 'breath',
-                 'underwater',
-                 'equipment',
-                 'instructionDescription']
+                     ),
+                     ('rest','c',
+                     ['afterStop','sinceStart','sinceLastRest']
+                     ),
+                     ('intensity','c',
+                      [
+                       ('staticIntensity','c',
+                        ['percentageEffort','zone','percentageHeartRate']
+                       ),
+                       ('dynamicAcross','s',
+                        [
+                         ('startIntensity','c',
+                          ['percentageEffort','zone','percentageHeartRate']
+                         ),
+                         ('stopIntensity','c',
+                          ['percentageEffort','zone','percentageHeartRate']
+                         )
+                        ]
+                       )
+                      ]
+                     ),
+                     'breath',
+                     'underwater',
+                     'equipment',
+                     'instructionDescription'
+                   ]
 
 def to_time(time):
     '''converts to unit time'''
     return (f'{time[2:3]}:{time[4:6]}')
 
-def firstInstruction(instructions):
-    '''given a list of instructions objects returns the first occurence of a normal instruction'''
+def basicInstructions(instructions,parents=[]):
+    '''given a list of normal instructions objects contained within an instruction class and any data on parent classes '''
+    instructionList = []
     for child in instructions:
         if type(child) is Instruction:
-            return child
+            instructionList.append((child,parents))
         else:
             if child.instructions != None:
-                return firstInstruction(child.instructions)
+                instructionList.extend(basicInstructions(child.instructions,parents+[type(child)]))
             else:
-                return child
+                instructionList.append((child,parents))
+    return instructionList
+def nonBasicInstructions(instructions):
+    '''given a list of normal instructions objects contained within an instruction class '''
+    instructionList = []
+    for child in instructions:
+        if type(child) is not Instruction:
+            instructionList.append(child)
+        else:
+            if child.instructions != None:
+                instructionList.extend(basicInstructions(child.instructions))
+    return instructionList
 
 
 def get_total_length(instructions):
@@ -67,15 +87,17 @@ def get_total_length(instructions):
 
 def continue_length(simplify,instructions):
     '''returns either total length or simplified repetitions'''
+
+    #this function isnt perfect as it fails on multiple nested repetitions still
     if simplify:
         total_repetition = 0
-        first_inst = firstInstruction(instructions)
+        basicInsts = basicInstructions(instructions)
         for repetition in instructions:
             total_repetition += repetition.repetitionCount
             for instruction in repetition.instructions:
-                if instruction.length != first_inst.length:
-                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {first_inst} cannot be simplified with {instruction}') 
-        return f'{total_repetition} x {first_inst.length}'
+                if instruction.length != basicInsts[0][0].length:
+                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+        return f'{total_repetition*len(basicInsts)} x {basicInsts[0][0].length[1]}'
     else:
         return get_total_length(instructions)
 
@@ -293,7 +315,13 @@ class Repetition:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
+        
         self.instructions = instructions
+        basicInsts = basicInstructions(instructions)
+        for inst in basicInsts:
+            if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
+                inst[0].length = self.length 
+                print(inst[0],'insti')  
 
     def __str__(self):
         '''returns string for repetition'''
@@ -330,7 +358,7 @@ class Continue:
 
     def __init__(self,totalLength=0,simplify=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create continue'''
-        self.instructions = instructions
+        
         self.length = length
         self.rest = rest
         self.intensity = intensity
@@ -339,6 +367,12 @@ class Continue:
         self.underwater = underwater
         self.equipment = equipment
         self.simplify = simplify
+        self.instructions = instructions
+        basicInsts = basicInstructions(instructions)
+        for inst in basicInsts:
+            if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
+                inst[0].length = self.length
+                print(inst,'insti')  
         self.totalLength = continue_length(simplify,instructions) if totalLength == 0 else totalLength
     def __str__(self):
         '''returns string for continue'''
@@ -402,3 +436,47 @@ class Pyramid:
             length -= self.increment
         rinstructions = '\n'.join([f'   | {line.strip()}' for line in outinstructions])
         return '\n  Pyramid\n'+str(rinstructions)+'\n'
+    
+instruction = Instruction(
+    length=('lengthAsDistance',200),
+    rest=('sinceStart','PT1M55S'),
+    intensity=('startIntensity',('percentageHeartRate',60)),
+    stroke=('standardStroke','backstroke'),
+    breath=None,
+    underwater=False,
+    equipment=[],
+    instructionDescription='boopy doopy doop'
+)
+noLengthInstruction = Instruction(
+    rest=('sinceStart','PT1M55S'),
+    intensity=('startIntensity',('percentageHeartRate',60)),
+    stroke=('standardStroke','backstroke'),
+    breath=None,
+    underwater=False,
+    equipment=[],
+    instructionDescription='boopy doopy doop'
+)
+instruction2 = Instruction(
+    length=('lengthAsDistance',100),
+    rest=('sinceStart','PT1M55S'),
+    intensity=('startIntensity',('percentageHeartRate',60)),
+    stroke=('standardStroke','backstroke'),
+    breath=None,
+    underwater=False,
+    equipment=[],
+    instructionDescription='boopy doopy doop'
+)
+
+
+repetition = Repetition(
+    repetitionCount=4,
+    repetitionDescription='repetition test',
+    length=('lengthAsDistance',100),
+    instructions=[noLengthInstruction,instruction2]
+)
+
+cont = Continue(
+    simplify=True,
+    instructions=[repetition]
+)
+print(noLengthInstruction)
