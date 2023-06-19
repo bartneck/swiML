@@ -24,13 +24,13 @@ need to check whether this needs to be thing or not
 \assertion for stroke inheritance -->
 \need to check for multiple continues or repetitions at the start as neither will have strokes defined 
 \-> maybe check for instructions with no other tag (rep or cont)
-now i gotta do the python and xslt for this so that it actually inherits it -> xslt is done
-inheritance of instruction elements might be very difficult in python as all the elements are stored as seperate 
-it works but cant be undone when exported to xml
-need to add inherited tag so that it can be removed when exporting 
+\now i gotta do the python and xslt for this so that it actually inherits it -> xslt is done
+\inheritance of instruction elements might be very difficult in python as all the elements are stored as seperate 
+\it works but cant be undone when exported to xml
+\need to add inherited tag so that it can be removed when exporting 
 
 -> also for xml parsing in python need to add
-ability to parse smaller parts of xml not just a whole program
+\ability to parse smaller parts of xml not just a whole program
 \functions to edit program meta data as well as any data within a program 
 might need an easier way of navigating the xml in python as it isnt readable when parsed 
 could just access directly from instructions array 

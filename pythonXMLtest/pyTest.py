@@ -3,7 +3,6 @@ import swiML
 instruction = swiML.Instruction(
     length=('lengthAsDistance',200),
     rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
     stroke=('standardStroke','backstroke'),
     breath=None,
     underwater=False,
@@ -12,7 +11,6 @@ instruction = swiML.Instruction(
 )
 noLengthInstruction = swiML.Instruction(
     rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
     stroke=('standardStroke','backstroke'),
     breath=None,
     underwater=False,
@@ -22,7 +20,6 @@ noLengthInstruction = swiML.Instruction(
 instruction2 = swiML.Instruction(
     length=('lengthAsDistance',100),
     rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
     stroke=('standardStroke','backstroke'),
     breath=None,
     underwater=False,
@@ -42,5 +39,6 @@ cont = swiML.Continue(
     instructions=[repetition]
 )
 
+print(program)
 #print(cont)
 #print(repetition)

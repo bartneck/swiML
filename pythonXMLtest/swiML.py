@@ -62,6 +62,7 @@ def basicInstructions(instructions,parents=[]):
     return instructionList
 def nonBasicInstructions(instructions):
     '''given a list of normal instructions objects contained within an instruction class '''
+    #currently unused and is not different from basicInstructions
     instructionList = []
     for child in instructions:
         if type(child) is not Instruction:
@@ -102,19 +103,30 @@ def continue_length(simplify,instructions):
         return get_total_length(instructions)
 
 
-def classToXML(root,self):
-    #print(type(self).__name__) --> gives class name could just give to subelement
-    if type(self) is Repetition:
-        root = ET.SubElement(root,'repetition')
-    if type(self) is Continue:
-        root = ET.SubElement(root,'continue')
-        root.set('simplify',str(getattr(self,'simplify')).lower())
-    if type(self) is Pyramid:
-        root = ET.SubElement(root,'pyramid')
+def classToXML(self,root=None):
+    if type(self) is not Instruction:
+        if root == None:
+            root = ET.Element(type(self).__name__.lower())
+        else:
+            root = ET.SubElement(root,type(self).__name__.lower())
+        if type(self) is Continue:
+            root.set('simplify',str(getattr(self,'simplify')).lower())
     instructions = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
-    tags = self.TAG_ORDER
-    
+    tags = self.TAG_ORDER[:]
+
+
+    if type(self) is Instruction:
+        if len(self.inherited) > 0:
+            for inherited_element in self.inherited:
+                for tag_index,tag in enumerate(tags):
+                    if (tag if type(tag) is str else tag[0]) == inherited_element:
+                        tags.pop(tag_index)
+                        instructions.pop(tag_index)
+                
+        
+
     ObjToXML(root,tags,instructions)
+    return ET.ElementTree(root)
 
 def ObjToXML(root,tags,instructions):
     'converts list of tags and instructions to XML'
@@ -130,7 +142,10 @@ def ObjToXML(root,tags,instructions):
                 elif type(instructions[tag_index]) is list :
                     for child in instructions[tag_index]:
                         instruction = ET.SubElement(root,'instruction')
-                        classToXML(instruction,child)
+                        classToXML(child,instruction)
+                elif type(instructions[tag_index]) is tuple :
+                    if tag == instructions[tag_index][0]:
+                        ET.SubElement(root,tag).text = str(instructions[tag_index][1])        
                 else:
                     print('oh no')
             elif type(tag) is tuple:
@@ -140,13 +155,13 @@ def ObjToXML(root,tags,instructions):
                     if len(tag[2]) == len(instructions[tag_index]):
                         ObjToXML(parent,tag[2],instructions[tag_index])
                     else:
-
                         ObjToXML(parent,tag[2][:-(len(tag[2])-len(instructions[tag_index]))],instructions[tag_index])
                 elif tag[1] == 'c':
                     for choice in tag[2]:
                         if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
                             #idk what i didnt finish here
-                            print(parent,[choice],[instructions[tag_index]])
+                            #print(parent,[choice],[instructions[tag_index]])
+                            pass
                         if instructions[tag_index][0] == choice or instructions[tag_index][0] == choice[0]:
                             ObjToXML(parent,[choice],[instructions[tag_index][1]]) 
         
@@ -206,6 +221,13 @@ def readXML(filename):
     else:
         return XMLToClass(root)
 
+def writeXML(filename,node):
+    '''converts objects to XML in specified file
+        takes filename as input'''
+    
+    tree = classToXML(node)
+    tree.write('pythonXMLtest\\'+filename)
+
 class Program:
     '''Defines a program'''
 
@@ -223,26 +245,16 @@ class Program:
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
         self.instructions = instructions
-
+        
     def __str__(self):
         '''returns string for program data 
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
         title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
-        instructions_string = ''.join([str(child) for child in self.instructions])
+        instructions_string = '\n'.join([str(child) for child in self.instructions])
         return title_string+instructions_string+'\n'
     
-    def toXml(self,filename):
-        '''converts objects to XML in specified file
-        takes filename as input'''
-
-        global FILENAME 
-        FILENAME = filename
-        root = ET.Element('program')
-        classToXML(root,self)
-        tree = ET.ElementTree(root)
-        tree.write('pythonXMLtest\\'+filename)
 
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of program if unspecified'''
@@ -273,10 +285,10 @@ class Instruction:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = instructionDescription
+        self.inherited = []
 
     def __str__(self):
         '''returns a string for an instruction object that can easily be read'''
-
         rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
         underwater = 'underwater\n' if self.underwater == True else ''
         equipment = ', '.join(self.equipment)[:-2]+'\n' if len(self.equipment) > 0 and self.equipment != None else ''
@@ -293,9 +305,12 @@ class Instruction:
         length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
         stroke = '' if self.stroke == None else self.stroke[1]
+        inherit = '' if len(self.inherited) == 0 else self.inherited
         line1 = f'\n{length} {stroke} {rest} '
-        line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}'
-        return line1 if len(line1) > 0 else ''+line2 if len(line2) > 0 else ''
+        line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}{inherit}'
+        line1 = line1 if len(line1) > 0 else ''
+        line2 = line2 if len(line2) > 0 else ''
+        return line1 + line2 
 
 
 
@@ -315,13 +330,15 @@ class Repetition:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
-        
+        self.instructionDescription = None
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
-            if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
-                inst[0].length = self.length 
-                print(inst[0],'insti')  
+            for tag in self.TAG_ORDER[2:-2]:
+                tag = tag if type(tag) is str else tag[0]
+                if getattr(inst[0],tag) == None and getattr(self,tag) != None and all([getattr(parent,tag) == None for parent in inst[1][1:]]):
+                    setattr(inst[0],tag,getattr(self,tag))
+                    inst[0].inherited.append(tag)
 
     def __str__(self):
         '''returns string for repetition'''
@@ -330,7 +347,7 @@ class Repetition:
         instructions_string = '\n'.join(map(str,self.instructions))
         instructions = str(instructions_string).split('\n')
         for i,line in enumerate(instructions[1:]):
-            if i == (len(instructions)-1)//2:
+            if i+1 == (len(instructions)-1)//2:
                 return_list += (f'{self.repetitionCount}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
@@ -366,13 +383,14 @@ class Continue:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
+        self.instructionDescription = None
         self.simplify = simplify
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
-                print(inst,'insti')  
+                inst[0].inherited.append('length')
         self.totalLength = continue_length(simplify,instructions) if totalLength == 0 else totalLength
     def __str__(self):
         '''returns string for continue'''
@@ -447,6 +465,15 @@ instruction = Instruction(
     equipment=[],
     instructionDescription='boopy doopy doop'
 )
+noRestInstruction = Instruction(
+    length=('lengthAsDistance',200),
+    intensity=('startIntensity',('percentageHeartRate',60)),
+    stroke=('standardStroke','backstroke'),
+    breath=None,
+    underwater=False,
+    equipment=[],
+    instructionDescription='boopy doopy doop'
+)
 noLengthInstruction = Instruction(
     rest=('sinceStart','PT1M55S'),
     intensity=('startIntensity',('percentageHeartRate',60)),
@@ -468,15 +495,14 @@ instruction2 = Instruction(
 )
 
 
-repetition = Repetition(
-    repetitionCount=4,
-    repetitionDescription='repetition test',
-    length=('lengthAsDistance',100),
-    instructions=[noLengthInstruction,instruction2]
+
+program = Program(
+    title='Jasi Masters',
+    author=[('firstName','Callum'),('lastName','Lockhart')],
+    programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
+    poolLength='50',
+    lengthUnit='meters',
+    instructions = [Repetition(repetitionCount=4,repetitionDescription='nothing',length=('lengthAsDistance',200),instructions=[noLengthInstruction,noRestInstruction]),Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction])],
 )
 
-cont = Continue(
-    simplify=True,
-    instructions=[repetition]
-)
-print(noLengthInstruction)
+writeXML('sample.xml',program)
