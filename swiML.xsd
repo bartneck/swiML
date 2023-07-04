@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    xmlns:o="file:/C:/My%20Documents/GitHub/swiML"
     vc:minVersion="1.1" targetNamespace="https://github.com/bartneck/swiML"
     xmlns="https://github.com/bartneck/swiML">
 
@@ -100,6 +101,13 @@
                         <xs:documentation>The basic elements for programs. Each instruction defines
                             what to swim.</xs:documentation>
                     </xs:annotation>
+                    <xs:unique name="mainEquipmentUnique">
+                        <xs:annotation>
+                            <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                        </xs:annotation>
+                        <xs:selector xpath="./o:equipment"/>
+                        <xs:field xpath="."/>
+                    </xs:unique>
 
                 </xs:element>
 
@@ -382,6 +390,13 @@
                     <xs:documentation>A repetition can include any number of instructions, which in
                         turn can contain repetitions.</xs:documentation>
                 </xs:annotation>
+                <xs:unique name="repEquipmentUnique">
+                    <xs:annotation>
+                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                    </xs:annotation>
+                    <xs:selector xpath="./o:equipment"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
             </xs:element>
         </xs:sequence>
 
