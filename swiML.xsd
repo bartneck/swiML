@@ -208,6 +208,12 @@
                         pyramid.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+             <xs:element name="continue" type="continueType">
+                <xs:annotation>
+                    <xs:documentation>Instruction process element to swim a
+                        pyramid.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <!-- Direct instruction on what to swim -->
             <xs:sequence>
                 <xs:annotation>
@@ -388,7 +394,7 @@
                 type="instructionType">
                 <xs:annotation>
                     <xs:documentation>A repetition can include any number of instructions, which in
-                        turn can contain repetitions.</xs:documentation>
+                        turn can contain repetitions or continues.</xs:documentation>
                 </xs:annotation>
                 <xs:unique name="repEquipmentUnique">
                     <xs:annotation>
@@ -472,6 +478,45 @@
             <xs:group ref="instructionGroup"/>
         </xs:sequence>
     </xs:complexType>
+
+
+    <xs:complexType name="continueType">
+
+        <xs:annotation>
+            <xs:documentation>
+                Continues for when different strokes, equipment or styles need to be swum continuously
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
+                type="instructionType">
+                <xs:annotation>
+                    <xs:documentation>A continue can include any number of instructions, which in
+                        turn can contain repetitions or any other complex instruction type.</xs:documentation>
+                </xs:annotation>
+                <xs:unique name="contEquipmentUnique">
+                    <xs:annotation>
+                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                    </xs:annotation>
+                    <xs:selector xpath="./o:equipment"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="simplify" type="xs:boolean"/>
+        
+        <!-- checks all lengths within simplify are the same
+        <xs:assert test="
+                ((./@simplify = true()) and (every $length in .//o:length
+                    satisfies $length/*[1] = (.//o:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0"/>-->
+
+    </xs:complexType>
+
 
     <!-- ====================================================== -->
     <!-- The types used for the instructions -->
