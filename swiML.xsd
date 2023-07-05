@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    xmlns:o="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns:sw="https://github.com/bartneck/swiML"
     vc:minVersion="1.1" targetNamespace="https://github.com/bartneck/swiML"
     xmlns="https://github.com/bartneck/swiML">
 
@@ -105,7 +105,7 @@
                         <xs:annotation>
                             <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
                         </xs:annotation>
-                        <xs:selector xpath="./o:equipment"/>
+                        <xs:selector xpath="./sw:equipment"/>
                         <xs:field xpath="."/>
                     </xs:unique>
 
@@ -400,7 +400,7 @@
                     <xs:annotation>
                         <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
                     </xs:annotation>
-                    <xs:selector xpath="./o:equipment"/>
+                    <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
             </xs:element>
@@ -503,7 +503,7 @@
                     <xs:annotation>
                         <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
                     </xs:annotation>
-                    <xs:selector xpath="./o:equipment"/>
+                    <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
             </xs:element>
