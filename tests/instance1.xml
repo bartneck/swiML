@@ -23,12 +23,13 @@
     
 
     <instruction>
-        <lengthAsDistance>101</lengthAsDistance>
+        <length><lengthAsDistance>101</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
         <rest><afterStop>PT20S</afterStop></rest>
         <intensity><startIntensity>
                 <percentageEffort>70</percentageEffort>
             </startIntensity></intensity>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        
         <equipment>pads</equipment>
         <equipment>pullBuoy</equipment>
     </instruction>
@@ -36,18 +37,20 @@
         <segmentName>Warm Up</segmentName>
     </instruction>
     <instruction>
-        <lengthAsDistance>102</lengthAsDistance>
+        <length><lengthAsDistance>102</lengthAsDistance></length>
+        <stroke><kicking>
+            <orientation>front</orientation>
+            <legMovement>flutter</legMovement>
+        </kicking></stroke>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
         <intensity><startIntensity>
                 <percentageEffort>70</percentageEffort>
             </startIntensity></intensity>
-        <stroke><kicking>
-                <orientation>front</orientation>
-                <legMovement>flutter</legMovement>
-            </kicking></stroke>
+        
     </instruction>
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
         <rest><inOut>3</inOut></rest>
         <intensity>
             <startIntensity>
@@ -57,7 +60,7 @@
                 <percentageEffort>100</percentageEffort>
             </stopIntensity>
         </intensity>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        
     </instruction>
 
     <instruction>
@@ -71,12 +74,13 @@
             <repetitionCount>4</repetitionCount>
             <repetitionDescription>Hello</repetitionDescription>
             <instruction>
-                <lengthAsDistance>104</lengthAsDistance>
+                <length><lengthAsDistance>104</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><startIntensity>
                         <zone>easy</zone>
                     </startIntensity></intensity>
-                <stroke><standardStroke>any</standardStroke></stroke>
+                
             </instruction>
         </repetition>
     </instruction>
@@ -87,7 +91,7 @@
         <repetition>
             <repetitionCount>5</repetitionCount>
             <instruction>
-                <lengthAsDistance>105</lengthAsDistance>
+                <length><lengthAsDistance>105</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <breath>5</breath>
             </instruction>
@@ -102,17 +106,17 @@
                 <repetition>
                     <repetitionCount>2</repetitionCount>
                     <instruction>
-                        <lengthAsDistance>106</lengthAsDistance>
+                        <length><lengthAsDistance>106</lengthAsDistance></length>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <lengthAsDistance>107</lengthAsDistance>
+                        <length><lengthAsDistance>107</lengthAsDistance></length>
                         <stroke><standardStroke>breaststroke</standardStroke></stroke>
                     </instruction>
                 </repetition>
             </instruction>
             <instruction>
-                <lengthAsDistance>108</lengthAsDistance>
+                <length><lengthAsDistance>108</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
         </repetition>
@@ -120,18 +124,21 @@
 
     <!-- some basic instructions -->
     <instruction>
-        <lengthAsTime>PT2M30S</lengthAsTime>
+        <length><lengthAsTime>PT2M30S</lengthAsTime></length>
+        
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <lengthAsTime>PT1M30S</lengthAsTime>
+        <length><lengthAsTime>PT1M30S</lengthAsTime></length>
+        
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <lengthAsLaps>8</lengthAsLaps>
+        <length><lengthAsLaps>8</lengthAsLaps></length>
+        <stroke><standardStroke>backstroke</standardStroke></stroke>
         <intensity><startIntensity>
                 <zone>endurance</zone>
             </startIntensity></intensity>
-        <stroke><standardStroke>backstroke</standardStroke></stroke>
+        
     </instruction>
 </program>
