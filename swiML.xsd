@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1"
-    xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
+    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML">
     
 
 
@@ -221,37 +220,14 @@
                     <xs:documentation>Sequence of basic elements for an
                         instruction.</xs:documentation>
                 </xs:annotation>
-                <!-- Length as either distance, laps or time -->
-                <xs:choice>
-                    <xs:annotation>
-                        <xs:documentation>Length can be descriped as distance or
-                            time.</xs:documentation>
-                    </xs:annotation>
-                    <xs:element name="lengthAsDistance" type="xs:nonNegativeInteger">
-                        <xs:annotation>
-                            <xs:documentation>Length of instruction as distance.</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="lengthAsTime" type="xs:duration">
-                        <xs:annotation>
-                            <xs:documentation>Duration starts with PT followed by int M and int S.
-                                For example PT1M30S for 1:30.</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                    <xs:element name="lengthAsLaps" type="xs:nonNegativeInteger">
-                        <xs:annotation>
-                            <xs:documentation>Length of instruction in number of
-                                laps.</xs:documentation>
-                        </xs:annotation>
-                    </xs:element>
-                </xs:choice>
+                
                 <!-- Common elements for instrucionts -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
 
         </xs:choice>
         
-        <xs:assert test="every $segmentName in .//o:segmentName satisfies $segmentName/parent::*/parent::o:program "/>
+        <xs:assert test="every $segmentName in ./sw:segmentName satisfies $segmentName/parent::*/parent::sw:program "/>
         
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
@@ -268,6 +244,20 @@
 
     <xs:group name="instructionGroup">
         <xs:sequence>
+            <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
+            <!-- to do: cross check that only one stroke is defined. -->
+            <xs:element name="length" minOccurs="0" maxOccurs="1" type="lengthType">
+                <xs:annotation>
+                    <xs:documentation>The length of the instruction.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stroke" minOccurs="0" maxOccurs="1" type="strokeType">
+                <xs:annotation>
+                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
+                        drills.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
             <xs:element name="rest" minOccurs="0" maxOccurs="1" type="restType">
                 <xs:annotation>
                     <xs:documentation>The rest period after the instruction.</xs:documentation>
@@ -279,14 +269,7 @@
                         instruction.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
-            <!-- to do: cross check that only one stroke is defined. -->
-            <xs:element name="stroke" minOccurs="1" maxOccurs="1" type="strokeType">
-                <xs:annotation>
-                    <xs:documentation>The stroke to swim. This includes basic strokes, kicking and
-                        drills.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            
             <xs:element name="breath" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
                     <xs:documentation>Number of arm strokes per breath.</xs:documentation>
@@ -449,15 +432,36 @@
     <!-- Swimming instructions can be given in these units -->
     <!-- this is currently not used. It would force the unit to be  -->
     <!-- explicit with any lenth. Using a default length is better -->
+    <!-- Swimming instructions can be given in these units -->
+    <!-- this is currently not used. It would force the unit to be  -->
+    <!-- explicit with any lenth. Using a default length is better -->
     <xs:complexType name="lengthType" mixed="true">
         <xs:annotation>
-            <xs:documentation>The length units for a swimming instruction.</xs:documentation>
+            <xs:documentation>The length for a swimming instruction.</xs:documentation>
         </xs:annotation>
+        <!-- Length as either distance, laps or time -->
         <xs:choice>
-            <xs:element name="meters" type="xs:nonNegativeInteger"/>
-            <xs:element name="laps" type="xs:nonNegativeInteger"/>
-            <xs:element name="yards" type="xs:nonNegativeInteger"/>
-            <xs:element name="swimDuration" type="xs:duration"/>
+            <xs:annotation>
+                <xs:documentation>Length can be descriped as distance or
+                    time.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="lengthAsDistance" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Length of instruction as distance.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="lengthAsTime" type="xs:duration">
+                <xs:annotation>
+                    <xs:documentation>Duration starts with PT followed by int M and int S.
+                        For example PT1M30S for 1:30.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="lengthAsLaps" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Length of instruction in number of
+                        laps.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:choice>
     </xs:complexType>
 
