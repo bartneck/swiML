@@ -2,8 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="swiML.xsl"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
-    xmlns="https://github.com/bartneck/swiML">
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
     
     <!-- Complex program with repetitions and loops -->
 
@@ -12,11 +12,6 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
         <email>christoph@bartneck.de</email>
-    </author>
-    <author>
-        <firstName>Matthias</firstName>
-        <lastName>MccCurdy</lastName>
-        <email>mc@swim.com</email>
     </author>
     <programDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</programDescription>
     <creationDate>2022-06-30</creationDate>
@@ -30,9 +25,9 @@
     <instruction>
         <lengthAsDistance>101</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
-        <intensity><staticIntensity>
-                <precentageEffort>70</precentageEffort>
-            </staticIntensity></intensity>
+        <intensity><startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity></intensity>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
         <equipment>pads</equipment>
         <equipment>pullBuoy</equipment>
@@ -43,9 +38,9 @@
     <instruction>
         <lengthAsDistance>102</lengthAsDistance>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
-        <intensity><staticIntensity>
-                <precentageEffort>70</precentageEffort>
-            </staticIntensity></intensity>
+        <intensity><startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity></intensity>
         <stroke><kicking>
                 <orientation>front</orientation>
                 <legMovement>flutter</legMovement>
@@ -55,12 +50,11 @@
         <lengthAsDistance>100</lengthAsDistance>
         <rest><inOut>3</inOut></rest>
         <intensity>
-            <dynamicAcross>false</dynamicAcross>
             <startIntensity>
-                <precentageEffort>60</precentageEffort>
+                <percentageEffort>60</percentageEffort>
             </startIntensity>
             <stopIntensity>
-                <precentageEffort>100</precentageEffort>
+                <percentageEffort>100</percentageEffort>
             </stopIntensity>
         </intensity>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -79,9 +73,9 @@
             <instruction>
                 <lengthAsDistance>104</lengthAsDistance>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
-                <intensity><staticIntensity>
-                        <zone>tempo</zone>
-                    </staticIntensity></intensity>
+                <intensity><startIntensity>
+                        <zone>easy</zone>
+                    </startIntensity></intensity>
                 <stroke><standardStroke>any</standardStroke></stroke>
             </instruction>
         </repetition>
@@ -135,9 +129,9 @@
     </instruction>
     <instruction>
         <lengthAsLaps>8</lengthAsLaps>
-        <intensity><staticIntensity>
+        <intensity><startIntensity>
                 <zone>endurance</zone>
-            </staticIntensity></intensity>
+            </startIntensity></intensity>
         <stroke><standardStroke>backstroke</standardStroke></stroke>
     </instruction>
 </program>
