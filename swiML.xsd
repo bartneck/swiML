@@ -188,7 +188,7 @@
     <!-- The fundamental building block of all swimmming programs -->
     <xs:complexType name="instructionType" mixed="true">
         <xs:annotation>
-            <xs:documentation>An instruction can consiset of process or a direct instruction on what
+            <xs:documentation>An instruction can consists of process or a direct instruction on what
                 to swim.</xs:documentation>
         </xs:annotation>
         <xs:choice>
@@ -228,7 +228,13 @@
 
         </xs:choice>
         
-        <xs:assert test="every $segmentName in .//sw:segmentName satisfies $segmentName/parent::*/parent::sw:program "/>
+        <xs:assert test="name(.) = 'instruction'"/>
+        
+        <!-- This is broken?  it works in the XML file but not here idk why 
+        <xs:assert test="
+            every $segmentName in(./sw:segmentName) satisfies name($segmentName/parent::*/parent::*) = 'program'
+         "/>
+        -->
         
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
@@ -560,9 +566,7 @@
     <xs:simpleType name="segmentNameType">
         <xs:restriction base="xs:string">
             <xs:maxLength value=" 30"/>
-            <!--            <xs:assertion test="ancestor::repetition"/>-->
         </xs:restriction>
-        <!--        <xs:assert test="ancestor::repetition"/>-->
     </xs:simpleType>
 
     <!-- Swimming instructions can be given in these units -->
