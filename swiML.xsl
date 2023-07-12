@@ -367,14 +367,14 @@
     <!-- Intensity -->
     <xsl:template name="showIntensity">
         <!-- static intensity profile -->
-        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:precentageEffort">
+        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:percentageEffort">
             <xsl:value-of
-                select="concat('&#160;', ../sw:intensity/sw:staticIntensity/sw:precentageEffort, '%')"
+                select="concat('&#160;', ../sw:intensity/sw:staticIntensity/sw:percentageEffort, '%')"
             />
         </xsl:if>
-        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:precentageHeartRate">
+        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:percentageHeartRate">
             <xsl:value-of
-                select="concat('&#160;&#9829;', ../sw:intensity/sw:staticIntensity/sw:precentageHeartRate, '%')"
+                select="concat('&#160;&#9829;', ../sw:intensity/sw:staticIntensity/sw:percentageHeartRate, '%')"
             />
         </xsl:if>
         <xsl:if test="../sw:intensity/sw:staticIntensity/sw:zone">
@@ -389,14 +389,14 @@
         <!-- to do: add assertion for across -->
         <xsl:choose>
             <xsl:when test="../sw:intensity/sw:dynamicAcross = 'true'">
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageEffort">
+                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
                     <xsl:value-of
-                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:precentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageEffort, '% Across')"
+                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '% Across')"
                     />
                 </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageHeartRate">
+                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
                     <xsl:value-of
-                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:precentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageHeartRate, '% Across')"
+                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '% Across')"
                     />
                 </xsl:if>
                 <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
@@ -414,14 +414,14 @@
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageEffort">
+                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
                     <xsl:value-of
-                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:precentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageEffort, '% Within')"
+                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '% Within')"
                     />
                 </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageHeartRate">
+                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
                     <xsl:value-of
-                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:precentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageHeartRate, '% Within')"
+                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '% Within')"
                     />
                 </xsl:if>
                 <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
@@ -440,14 +440,14 @@
             </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="../sw:intensity/dynamicAcross">
-            <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageEffort">
+            <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
                 <xsl:value-of
-                    select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:precentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageEffort, '%')"
+                    select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '%')"
                 />
             </xsl:if>
-            <xsl:if test="../sw:intensity/sw:startIntensity/sw:precentageHeartRate">
+            <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
                 <xsl:value-of
-                    select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:precentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:precentageHeartRate, '%')"
+                    select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '%')"
                 />
             </xsl:if>
             <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
