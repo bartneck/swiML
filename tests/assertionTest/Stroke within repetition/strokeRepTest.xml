@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../../swiML.xsd">
+    
+    <!-- Complex program with repetitions and loops -->
+    
+    <title>Complex Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <author>
+        <firstName>Matthias</firstName>
+        <lastName>MccCurdy</lastName>
+        <email>mc@swim.com</email>
+    </author>
+    <programDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</programDescription>
+    <creationDate>2022-06-30</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <instruction>
+        <lengthAsDistance>100</lengthAsDistance>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    
+    <instruction><repetition>
+        <repetitionCount>4</repetitionCount>
+        <instruction>
+            <lengthAsDistance>100</lengthAsDistance>
+            <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
+        </instruction>
+    </repetition></instruction>
+</program>
