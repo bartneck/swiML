@@ -251,6 +251,8 @@
 
         </xs:choice>
         
+        <xs:assert test="every $segmentName in .//o:segmentName satisfies $segmentName/parent::*/parent::o:program "/>
+        
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
             if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
