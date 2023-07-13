@@ -75,12 +75,15 @@
             <repetitionDescription>Hello</repetitionDescription>
             <instruction>
                 <length><lengthAsDistance>104</lengthAsDistance></length>
-                <stroke><standardStroke>any</standardStroke></stroke>
+                <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><startIntensity>
                         <zone>easy</zone>
                     </startIntensity></intensity>
                 
+            </instruction>
+            <instruction>
+                <segmentName>Main Program</segmentName>
             </instruction>
         </repetition>
     </instruction>
