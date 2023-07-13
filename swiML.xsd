@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1"
-    xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
+    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML">
     
 
 
@@ -222,13 +221,24 @@
                         instruction.</xs:documentation>
                 </xs:annotation>
                 
-                <!-- Common elements for instrucionts -->
+                <!-- Common elements for instructions -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
 
         </xs:choice>
         
-        <xs:assert test="name(.) = 'instruction'"/>
+        <!-- checks every instruction has stroke,rest and length defined 
+        any other element in an instruction doesnt have to be defined-->
+        <!-- This also seems to not work here 
+        but both this and the segment name assertions work when manually testing xpath-->
+        <xs:assert test="
+            (./ancestor-or-self::*/sw:stroke 
+            and ./ancestor-or-self::*/sw:rest 
+            and ./ancestor-or-self::*/sw:length) 
+            or ./sw:repetition 
+            or ./sw:continue
+            or ./sw:pyramid
+            or ./sw:segmentName"/>
         
         <!-- This is broken?  it works in the XML file but not here idk why 
         <xs:assert test="
@@ -236,6 +246,7 @@
          "/>
         -->
         
+        <!-- but for some reason this assertion is working -->
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
             if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
@@ -330,7 +341,10 @@
                         customise the repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            
+            <!-- Common elements for instructions -->
+            <xs:group ref="instructionGroup"/>
+            
             <!-- This is the main recursion statement. Every repetition contains instructions. -->
             <!-- Every instruction can contain a repetition -->
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
@@ -346,6 +360,7 @@
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
+                
             </xs:element>
         </xs:sequence>
 
@@ -407,6 +422,10 @@
                     <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
+            <!-- Common elements for instructions -->
+            <xs:group ref="instructionGroup"/>
+            
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
                 type="instructionType">
                 <xs:annotation>
@@ -422,13 +441,19 @@
                 </xs:unique>
             </xs:element>
         </xs:sequence>
+        
+        <!--
         <xs:attribute name="simplify" type="xs:boolean"/>
         
-        <!-- checks all lengths within simplify are the same
+         checks all lengths within simplify are the same 
         <xs:assert test="
-                ((./@simplify = true()) and (every $length in .//o:length
-                    satisfies $length/*[1] = (.//o:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0"/>-->
-
+            ((./@simplify = true()) and 
+            (every $length in .//sw:length
+             satisfies $length/*[1] = (.//sw:length)[1]/*[1])) 
+             or ./@simplify = false() 
+             or count(./@simplify) = 0
+        "/>-->
+ 
     </xs:complexType>
 
 

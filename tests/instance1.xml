@@ -73,8 +73,9 @@
         <repetition>
             <repetitionCount>4</repetitionCount>
             <repetitionDescription>Hello</repetitionDescription>
+            
             <instruction>
-                <length><lengthAsDistance>104</lengthAsDistance></length>
+                
                 <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
                 <intensity><startIntensity>
