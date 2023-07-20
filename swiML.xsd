@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1"
-    xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
+    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML">
     
 
 
@@ -229,8 +228,7 @@
         </xs:choice>
         
         <xs:assert test="name(.) = 'instruction'"/>
-        
-        <!-- This is broken?  it works in the XML file but not here idk why 
+        <!-- This is broken?  it works in the XML file but not here idk why
         <xs:assert test="
             every $segmentName in(./sw:segmentName) satisfies name($segmentName/parent::*/parent::*) = 'program'
          "/>
@@ -422,12 +420,14 @@
                 </xs:unique>
             </xs:element>
         </xs:sequence>
+        
         <xs:attribute name="simplify" type="xs:boolean"/>
         
-        <!-- checks all lengths within simplify are the same
+        <!-- checks all lengths within simplify are the same-->
         <xs:assert test="
-                ((./@simplify = true()) and (every $length in .//o:length
-                    satisfies $length/*[1] = (.//o:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0"/>-->
+                ((./@simplify = true()) and (every $length in .//sw:length
+                    satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0
+                    "/>
 
     </xs:complexType>
 
