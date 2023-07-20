@@ -211,8 +211,7 @@
             </xs:element>
              <xs:element name="continue" type="continueType">
                 <xs:annotation>
-                    <xs:documentation>Instruction process element to swim a
-                        pyramid.</xs:documentation>
+                    <xs:documentation>Instruction process element to denote a continuosly swum block of instructions.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <!-- Direct instruction on what to swim -->
@@ -402,9 +401,10 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:string">
+            <xs:element name="continueLength" minOccurs="0" maxOccurs="1" type="xs:string">
                 <xs:annotation>
-                    <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
+                    <xs:documentation>total length to swim continuously or total number of repetitions
+                    May or may not be defined but if not it will automatically calculated from given instructions</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
