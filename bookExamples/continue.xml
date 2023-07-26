@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="file:/C:/My%20Documents/GitHub/swiML"
     xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
-    <title>Superhero Triangles</title>
+    <title>Continues testing</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
@@ -23,6 +23,27 @@
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <rest><sinceStart>PT1M35S</sinceStart> </rest>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
+                    </instruction>
+                    
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    <instruction>
+        <continue simplify="false">
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                
                 <stroke><standardStroke>freestyle</standardStroke></stroke>\
                 <rest><sinceStart>PT1M35S</sinceStart> </rest>
             </instruction>
@@ -32,6 +53,32 @@
                     <instruction>
                         <length><lengthAsDistance>100</lengthAsDistance></length>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
+                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
+                    </instruction>
+                    
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    <instruction>
+        <continue simplify="false">
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                
+                <stroke><standardStroke>freestyle</standardStroke></stroke>\
+                <rest><sinceStart>PT1M35S</sinceStart> </rest>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
                         <rest><sinceStart>PT1M35S</sinceStart> </rest>
                     </instruction>
                     
