@@ -3,7 +3,7 @@
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="file:/C:/My%20Documents/GitHub/swiML"
-    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML swiML.xsd">
     
     <!-- Complex program with repetitions and loops -->
 

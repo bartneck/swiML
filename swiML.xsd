@@ -229,11 +229,8 @@
         
         <!-- checks every instruction has stroke,rest and length defined 
         any other element in an instruction doesnt have to be defined-->
-        <!-- This also seems to not work here 
-        but both this and the segment name assertions work when manually testing xpath-->
         <xs:assert test="
-            (./ancestor-or-self::*/sw:stroke 
-            and ./ancestor-or-self::*/sw:rest 
+            (./ancestor-or-self::*/sw:stroke
             and ./ancestor-or-self::*/sw:length) 
             or ./sw:repetition 
             or ./sw:continue
@@ -242,9 +239,9 @@
         
         <!-- This is broken?  it works in the XML file but not here idk why 
         <xs:assert test="
-            every $segmentName in(./sw:segmentName) satisfies name($segmentName/parent::*/parent::*) = 'program'
-         "/>
-        -->
+            every $segmentName in ./sw:segmentName satisfies name($segmentName/parent::*/parent::*) = 'program'
+         "/>-->
+        
         
         <!-- but for some reason this assertion is working -->
         <xs:assert test="
