@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="maxLengthAsDistanceWidth">
@@ -73,7 +73,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="../swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -202,11 +202,21 @@
 
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
-        <xsl:apply-templates select="sw:segmentName"/>
-        <xsl:apply-templates select="sw:repetition"/>
-        <xsl:apply-templates select="sw:lengthAsDistance"/>
-        <xsl:apply-templates select="sw:lengthAsLaps"/>
-        <xsl:apply-templates select="sw:lengthAsTime"/>
+        <xsl:choose>
+            <xsl:when test="sw:segmentName or sw:repetition or sw:continue">
+                <xsl:apply-templates select="sw:segmentName"/>
+                <xsl:apply-templates select="sw:repetition"/>
+                <xsl:apply-templates select="sw:continue"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <div class="instruction">
+                    <xsl:call-template name="displayInst"/>
+                </div> 
+                
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        
     </xsl:template>
 
     <!-- First segment template -->
@@ -226,116 +236,236 @@
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
         <div class="repetition">
-            <div class="repetitionCount">
-                <xsl:value-of
-                    select="concat(sw:repetitionCount, '&#215;', sw:repetitionDescription)"/>
-            </div>
-            <div class="reptitionSymbol"/>
+            
+            <xsl:if test="not(../..[@simplify=false()]) or (count(../../../sw:continue) = 1 and count(.//sw:instruction) > 1)">
+                    <div class="repetitionCount">
+                        <xsl:choose>
+                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../..[@simplify=true()]) ">
+                                <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:choose>
+                                    <xsl:when test=".//repetitionDescription">
+                                        <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
+                    </div>
+                    <xsl:choose>
+                        <xsl:when test="count(./sw:instruction) > 1">
+                            <div class="reptitionSymbol"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../..[@simplify=true()]) ">
+                                &#160;
+                            </xsl:if>
+                            
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:if>
             <div class="repetitionContent">
                 <xsl:apply-templates select="sw:instruction"/>
             </div>
         </div>
     </xsl:template>
+    
+    <!--Continuation Template -->
+    <xsl:template match="sw:continue">
+        <div class="continue">
+            
+            <xsl:choose>
+                <xsl:when test="@simplify = true()">
+                    <div class="continueLength">
+                        <xsl:call-template name="simplifyLength"/>
+                        <xsl:text>&#160;&#215;&#160;</xsl:text>
+                        
+                        <xsl:if test="not(./sw:length)">
+                            <span>                
+                                <xsl:attribute name="style">
+                                    <xsl:text>text-align:right;font-weight:900</xsl:text>
+                                </xsl:attribute>
+                                <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
+                                <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
+                            </span>
+                        </xsl:if>
+                        <xsl:call-template name="displayInst"/>
+                        &#160;as
+                    </div>
+                </xsl:when>
+                <xsl:otherwise>
+                    <div class="continueLength">
+                        <span>                
+                            <xsl:attribute name="style">
+                                <xsl:text>text-align:right;font-weight:900</xsl:text>
+                            </xsl:attribute>
+                            <xsl:call-template name="showLength"/>
+                        </span>
+                        <xsl:call-template name="displayInst"/>
+                        &#160;as
+                    </div>
+                    
+                </xsl:otherwise>
+            </xsl:choose>
+            
 
-    <!-- Dirct Swim Template -->
+                <div class="continueSymbol"></div>
+                <div class="continueContent">
+                    <xsl:apply-templates select="sw:instruction"/>
+                </div>
+        </div>
+        
+    </xsl:template>
+    
+    <xsl:template name="displayInst">
+        <xsl:if test="not(./ancestor::sw:continue[@simplify=true()])">
+            <xsl:choose>
+                <xsl:when test=" (count(ancestor::sw:continue) = 1 and ((not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1)))) or count(ancestor::sw:continue) = 0">
+                    <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <span>                
+                        <xsl:attribute name="style">
+                            <xsl:text>text-align:right;font-weight:900</xsl:text>
+                        </xsl:attribute>
+                        <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
+                    </span>
+                    
+                </xsl:otherwise>
+            </xsl:choose>
+            
+        </xsl:if>
+        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:continue[@simplify=true()]">1</xsl:if>
+        <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
+        <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
+        <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
+        <xsl:apply-templates select="sw:stroke/sw:drill"/>
+        <xsl:apply-templates select="sw:rest/sw:afterStop"/>
+        <xsl:apply-templates select="sw:rest/sw:sinceLastRest"/>
+        <xsl:apply-templates select="sw:rest/sw:sinceStart"/>
+        <xsl:apply-templates select="sw:rest/sw:inOut"/>
+        <xsl:call-template name="showIntensity"/>
+        <xsl:apply-templates select="sw:breath"/>
+        <xsl:apply-templates select="sw:underwater"/>
+        <xsl:apply-templates select="sw:equipment"/>
+        <xsl:apply-templates select="sw:instructionDescription"/>
+    </xsl:template>
+    
+    <xsl:template match="sw:length">
+        <xsl:apply-templates select="sw:lengthAsDistance"/>
+        <xsl:apply-templates select="sw:lengthAsLaps"/>
+        <xsl:apply-templates select="sw:lengthAsTime"/>
+    </xsl:template>
+    
+    
+    <!-- Length Templates -->
     <xsl:template match="sw:lengthAsDistance">
         <xsl:variable name="maxlengthAsDistance"
             select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
-        <div class="instruction">
-            <span>                
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="../sw:lengthAsDistance"/>
-            </span>
-            <xsl:if test="//sw:lengthUnit = 'laps'">
-                <xsl:text>&#160;&#60;-&#62;</xsl:text>
-            </xsl:if>            
-            <xsl:call-template name="directSwim"/>
-        </div>
+        <span>                
+            <xsl:attribute name="style">
+                <xsl:text>text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsDistance]"/>
+        </span>
+        <xsl:if test="//sw:lengthUnit = 'laps'">
+            <xsl:text>&#160;&#60;-&#62;</xsl:text>
+        </xsl:if>            
+        
     </xsl:template>
-
+    
     <xsl:template match="sw:lengthAsLaps">
-        <div class="instruction">
-            <span>
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="../sw:lengthAsLaps"/>
-            </span>
-            <xsl:if test="not(//sw:lengthUnit = 'laps')">
-                <xsl:text>&#160;</xsl:text>
-                <xsl:call-template name="toDisplay">
-                    <xsl:with-param name="fullTerm" select="'laps'"/>
-                </xsl:call-template>
-            </xsl:if>
-            <xsl:call-template name="directSwim"/>
-        </div>
+        
+        <span>
+            <xsl:attribute name="style">
+                <xsl:text>text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of select="../sw:lengthAsLaps"/>
+        </span>
+        <xsl:if test="not(//sw:lengthUnit = 'laps')">
+            <xsl:text>&#160;</xsl:text>
+            <xsl:call-template name="toDisplay">
+                <xsl:with-param name="fullTerm" select="'laps'"/>
+            </xsl:call-template>
+        </xsl:if>
+        
     </xsl:template>
-
+    
     <xsl:template match="sw:lengthAsTime">
-        <div class="instruction">
-            <span>
-                <xsl:attribute name="style">
-                    <xsl:text>width:</xsl:text>
-                    <xsl:value-of select="//$space"/>
-                    <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of separator=":"
-                    select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
-                />
-            </span>
-            <xsl:call-template name="directSwim"/>
-        </div>
+        
+        <span>
+            <xsl:attribute name="style">
+                <xsl:text>text-align:right;font-weight:900</xsl:text>
+            </xsl:attribute>
+            <xsl:value-of separator=":"
+                select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
+            />
+        </span>
+        
     </xsl:template>
-
-    <xsl:template name="directSwim">
-        <xsl:apply-templates select="../sw:stroke/sw:standardStroke"/>
-        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:orientation"/>
-        <xsl:apply-templates select="../sw:stroke/sw:kicking/sw:standardKick"/>
-        <xsl:apply-templates select="../sw:stroke/sw:drill"/>
-        <xsl:apply-templates select="../sw:rest/sw:afterStop"/>
-        <xsl:apply-templates select="../sw:rest/sw:sinceLastRest"/>
-        <xsl:apply-templates select="../sw:rest/sw:sinceStart"/>
-        <xsl:apply-templates select="../sw:rest/sw:inOut"/>
-        <xsl:call-template name="showIntensity"/>
-        <xsl:apply-templates select="../sw:breath"/>
-        <xsl:apply-templates select="../sw:underwater"/>
-        <xsl:apply-templates select="../sw:equipment"/>
-        <xsl:apply-templates select="../sw:instructionDescription"/>
-    </xsl:template>
+    
     <!-- ============================== -->
     <!-- Secondary Templates -->
     <!-- ============================== -->
 
     <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
     <xsl:template name="showLength">
-        <xsl:choose>
-            <xsl:when test="not(sw:programLength)">
-                <xsl:value-of select="
-                        sum(
-                        for $l in //sw:lengthAsDistance
-                        return
-                            $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
-                        )
-                        +
-                        sum(
-                        for $l in //sw:lengthAsLaps
-                        return
-                            $l * myData:product($l/ancestor::sw:repetition/sw:repetitionCount)
-                        ) * //sw:poolLength
-                        
-                        
-                        "/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="sw:programLength"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        
+        <xsl:value-of select="
+            sum(
+            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
+            * myData:product(
+            if 
+            (../sw:continue) 
+            then 
+            ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            else
+            ($l/ancestor::sw:repetition/sw:repetitionCount))
+            )
+            +
+            sum(
+            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
+            * myData:product(
+            if 
+            (../sw:continue) 
+            then 
+            ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            else
+            ($l/ancestor::sw:repetition/sw:repetitionCount))
+            ) * //sw:poolLength
+            
+            
+            "/>
+        
+    </xsl:template>
+    
+    <xsl:template name="simplifyLength">
+        <xsl:value-of select="
+            (if(./descendant-or-self::sw:lengthAsDistance) then (
+            sum(
+            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
+            * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            )div(./descendant-or-self::sw:lengthAsDistance[1])) else (0))
+            +
+            (if(./descendant-or-self::sw:lengthAsLaps) then (
+            (sum(
+            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
+            * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            )div(./descendant-or-self::sw:lengthAsLaps[1])))  else (0))"
+        />
+        
     </xsl:template>
 
 
@@ -366,101 +496,67 @@
 
     <!-- Intensity -->
     <xsl:template name="showIntensity">
-        <!-- static intensity profile -->
-        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:percentageEffort">
-            <xsl:value-of
-                select="concat('&#160;', ../sw:intensity/sw:staticIntensity/sw:percentageEffort, '%')"
-            />
-        </xsl:if>
-        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:percentageHeartRate">
-            <xsl:value-of
-                select="concat('&#160;&#9829;', ../sw:intensity/sw:staticIntensity/sw:percentageHeartRate, '%')"
-            />
-        </xsl:if>
-        <xsl:if test="../sw:intensity/sw:staticIntensity/sw:zone">
-            <xsl:text>&#160;</xsl:text>
-            <xsl:call-template name="toDisplay">
-                <xsl:with-param name="fullTerm" select="../sw:intensity/sw:staticIntensity/sw:zone"
-                />
-            </xsl:call-template>
-        </xsl:if>
-        <!-- dynamic intensity profile -->
-        <!-- The dynamic intensity across may only occur within a repetition -->
-        <!-- to do: add assertion for across -->
         <xsl:choose>
-            <xsl:when test="../sw:intensity/sw:dynamicAcross = 'true'">
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
-                    <xsl:value-of
-                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '% Across')"
-                    />
-                </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
-                    <xsl:value-of
-                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '% Across')"
-                    />
-                </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
-                    <xsl:text>&#160;</xsl:text>
-                    <xsl:call-template name="toDisplay">
-                        <xsl:with-param name="fullTerm"
-                            select="../sw:intensity/sw:startIntensity/sw:zone"/>
-                    </xsl:call-template>
-                    <xsl:text>&#8230;</xsl:text>
-                    <xsl:call-template name="toDisplay">
-                        <xsl:with-param name="fullTerm"
-                            select="../sw:intensity/sw:stopIntensity/sw:zone"/>
-                    </xsl:call-template>
-                    <xsl:text> Across</xsl:text>
-                </xsl:if>
+            <xsl:when test="not(./sw:intensity/sw:stopIntensity)">
+                <xsl:call-template name="staticIntensity"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
-                    <xsl:value-of
-                        select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '% Within')"
-                    />
-                </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
-                    <xsl:value-of
-                        select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '% Within')"
-                    />
-                </xsl:if>
-                <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
-                    <xsl:text>&#160;</xsl:text>
-                    <xsl:call-template name="toDisplay">
-                        <xsl:with-param name="fullTerm"
-                            select="../sw:intensity/sw:startIntensity/sw:zone"/>
-                    </xsl:call-template>
-                    <xsl:text>&#8230;</xsl:text>
-                    <xsl:call-template name="toDisplay">
-                        <xsl:with-param name="fullTerm"
-                            select="../sw:intensity/sw:stopIntensity/sw:zone"/>
-                    </xsl:call-template>
-                    <xsl:text> Within</xsl:text>
+                <xsl:if test="./sw:intensity">
+                    <xsl:choose>
+                        <!-- this is gonna change not sure what too yet -->
+                        <xsl:when test="../sw:repetition/sw:intensity or ../sw:continue/sw:intensity">
+                            <xsl:call-template name="dynamicIntensity"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="dynamicIntensity"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
-        <xsl:if test="../sw:intensity/dynamicAcross">
-            <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageEffort">
-                <xsl:value-of
-                    select="concat('&#160;', ../sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageEffort, '%')"
-                />
-            </xsl:if>
-            <xsl:if test="../sw:intensity/sw:startIntensity/sw:percentageHeartRate">
-                <xsl:value-of
-                    select="concat('&#160;&#9829;', ../sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ../sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '%')"
-                />
-            </xsl:if>
-            <xsl:if test="../sw:intensity/sw:startIntensity/sw:zone">
-                <xsl:text>&#160;</xsl:text>
-                <xsl:call-template name="toDisplay">
-                    <xsl:with-param name="fullTerm"
-                        select="../sw:intensity/sw:startIntensity/sw:zone"/>
-                </xsl:call-template>
-                <xsl:call-template name="toDisplay">
-                    <xsl:with-param name="fullTerm"
-                        select="../sw:intensity/sw:stopIntensity/sw:zone"/>
-                </xsl:call-template>
-            </xsl:if>
+    </xsl:template>
+    <xsl:template name="staticIntensity">
+        <!-- static intensity profile -->
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageEffort">
+            
+            <xsl:value-of
+                select="concat('&#160;', ./sw:intensity/sw:startIntensity/sw:percentageEffort, '%')"
+            />
+        </xsl:if>
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageHeartRate">
+            <xsl:value-of
+                select="concat('&#160;&#9829;', ./sw:intensity/sw:startIntensity/sw:percentageHeartRate, '%')"
+            />
+        </xsl:if>
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:zone">
+            <xsl:text>&#160;</xsl:text>
+            <xsl:call-template name="toDisplay">
+                <xsl:with-param name="fullTerm" select="./sw:intensity/sw:startIntensity/sw:zone"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template name="dynamicIntensity">
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageEffort">
+            <xsl:value-of
+                select="concat('&#160;', ./sw:intensity/sw:startIntensity/sw:percentageEffort, '&#8230;', ./sw:intensity/sw:stopIntensity/sw:percentageEffort, '%')"
+            />
+        </xsl:if>
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageHeartRate">
+            <xsl:value-of
+                select="concat('&#160;&#9829;', ./sw:intensity/sw:startIntensity/sw:percentageHeartRate, '&#8230;', ./sw:intensity/sw:stopIntensity/sw:percentageHeartRate, '%')"
+            />
+        </xsl:if>
+        <xsl:if test="./sw:intensity/sw:startIntensity/sw:zone">
+            <xsl:text>&#160;</xsl:text>
+            <xsl:call-template name="toDisplay">
+                <xsl:with-param name="fullTerm"
+                    select="./sw:intensity/sw:startIntensity/sw:zone"/>
+            </xsl:call-template>
+            <xsl:text>&#8230;</xsl:text>
+            <xsl:call-template name="toDisplay">
+                <xsl:with-param name="fullTerm"
+                    select="./sw:intensity/sw:stopIntensity/sw:zone"/>
+            </xsl:call-template>
         </xsl:if>
     </xsl:template>
 
@@ -549,7 +645,7 @@
     </xsl:template>
 
     <myData:translation>
-        <term index="butterfly">FL</term>
+        <term index="butterfly">FLY</term>
         <term index="backstroke">BK</term>
         <term index="breaststroke">BR</term>
         <term index="freestyle">FR</term>
@@ -563,7 +659,7 @@
         <term index="nr2">Nr 2</term>
         <term index="nr3">Nr 3</term>
         <term index="nr4">Nr 4</term>
-        <term index="notButterfly">Not FL</term>
+        <term index="notButterfly">Not FLY</term>
         <term index="notBackstroke">Not BK</term>
         <term index="notBreaststroke">Not BR</term>
         <term index="notFreestyle">Not FR</term>
@@ -579,10 +675,15 @@
         <term index="easy">Easy</term>
         <term index="threshold">Threshold</term>
         <term index="endurance">Endurance</term>
+        <term index="strong">Strong</term>
         <term index="racePace">Race Pace</term>
         <term index="max">Max</term>
         <term index="6KickDrill">6KD</term>
+        <term index="8KickDrill">8KD</term>
+        <term index="10KickDrill">10KD</term>
+        <term index="12KickDrill">12KD</term>
         <term index="fingerTrails">FT</term>
+        <term index="fingerDrag">FD</term>
         <term index="123">123</term>
         <term index="bigDog">Big Dog</term>
         <term index="scull">Scull</term>
