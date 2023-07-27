@@ -227,7 +227,6 @@
 
         </xs:choice>
         
-        <xs:assert test="name(.) = 'instruction'"/>
         
         <!-- This is broken?  it works in the XML file but not here idk why 
         <xs:assert test="
@@ -239,7 +238,7 @@
             every $stroke in ./sw:stroke satisfies
             if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
             then($stroke/parent::*/parent::sw:repetition) else($stroke/parent::*)
-            "/>
+            "><xs:annotation><xs:documentation>checks all strokes to make sure medley order or overlaps are only used in a repetition</xs:documentation></xs:annotation></xs:assert>
         
     </xs:complexType>
 
@@ -308,7 +307,7 @@
     <!-- instructions.  -->
     <!-- ====================================================== -->
 
-    <!-- descriptions of these types arent very good -->
+    <!-- descriptions of these types arent very good -> to fix  -->
     <!-- The repetitionType is one of the major process elements -->
     <xs:complexType name="repetitionType">
         <xs:annotation>
@@ -423,10 +422,11 @@
         </xs:sequence>
         <xs:attribute name="simplify" type="xs:boolean"/>
         
-        <!-- checks all lengths within simplify are the same
         <xs:assert test="
-                ((./@simplify = true()) and (every $length in .//o:length
-                    satisfies $length/*[1] = (.//o:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0"/>-->
+                ((./@simplify = true()) and (every $length in .//sw:length
+                    satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0">
+            <xs:annotation> <xs:documentation>checks all lengths ithin simplified continue are the same</xs:documentation> </xs:annotation>
+        </xs:assert>
 
     </xs:complexType>
 
@@ -577,6 +577,7 @@
             <xs:enumeration value="easy"/>
             <xs:enumeration value="threshold"/>
             <xs:enumeration value="endurance"/>
+            <xs:enumeration value="strong"/>
             <xs:enumeration value="racePace"/>
             <xs:enumeration value="max"/>
         </xs:restriction>
@@ -704,7 +705,11 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="6KickDrill"/>
+            <xs:enumeration value="8KickDrill"/>
+            <xs:enumeration value="10KickDrill"/>
+            <xs:enumeration value="12KickDrill"/>
             <xs:enumeration value="fingerTrails"/>
+            <xs:enumeration value="fingerDrag"/>
             <xs:enumeration value="123"/>
             <xs:enumeration value="bigDog"/>
             <xs:enumeration value="scull"/>

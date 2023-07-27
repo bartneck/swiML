@@ -209,21 +209,9 @@
                 <xsl:apply-templates select="sw:continue"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="
-                        (../../sw:continue and ../sw:simplify = false())
-                        or (../../sw:continue and count(../sw:simplify) = 0 )
-                        ">
-                        <div class="contInstruction">
-                            <xsl:call-template name="displayInst"/>
-                        </div>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <div class="instruction">
-                            <xsl:call-template name="displayInst"/>
-                        </div> 
-                    </xsl:otherwise>
-                </xsl:choose>
+                <div class="instruction">
+                    <xsl:call-template name="displayInst"/>
+                </div> 
                 
             </xsl:otherwise>
         </xsl:choose>
@@ -292,9 +280,10 @@
             
             <xsl:choose>
                 <xsl:when test="@simplify = true()">
-                    <div class="totalSimpleLength">
+                    <div class="continueLength">
                         <xsl:call-template name="simplifyLength"/>
-                        &#215;
+                        <xsl:text>&#160;&#215;&#160;</xsl:text>
+                        
                         <xsl:if test="not(./sw:length)">
                             <span>                
                                 <xsl:attribute name="style">
@@ -305,7 +294,7 @@
                             </span>
                         </xsl:if>
                         <xsl:call-template name="displayInst"/>
-                        as
+                        &#160;as
                     </div>
                 </xsl:when>
                 <xsl:otherwise>
@@ -323,12 +312,11 @@
                 </xsl:otherwise>
             </xsl:choose>
             
-            <div class="continueInner">
+
                 <div class="continueSymbol"></div>
                 <div class="continueContent">
                     <xsl:apply-templates select="sw:instruction"/>
                 </div>
-            </div>
         </div>
         
     </xsl:template>
@@ -336,7 +324,7 @@
     <xsl:template name="displayInst">
         <xsl:if test="not(./ancestor::sw:continue[@simplify=true()])">
             <xsl:choose>
-                <xsl:when test=" count(ancestor::sw:continue) = 1 and (not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1))">
+                <xsl:when test=" (count(ancestor::sw:continue) = 1 and ((not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1)))) or count(ancestor::sw:continue) = 0">
                     <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -351,7 +339,7 @@
             </xsl:choose>
             
         </xsl:if>
-        <xsl:if test="(name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') and ancestor::sw:continue[@simplify=true()]">1</xsl:if>
+        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:continue[@simplify=true()]">1</xsl:if>
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
@@ -657,7 +645,7 @@
     </xsl:template>
 
     <myData:translation>
-        <term index="butterfly">FL</term>
+        <term index="butterfly">FLY</term>
         <term index="backstroke">BK</term>
         <term index="breaststroke">BR</term>
         <term index="freestyle">FR</term>
@@ -671,7 +659,7 @@
         <term index="nr2">Nr 2</term>
         <term index="nr3">Nr 3</term>
         <term index="nr4">Nr 4</term>
-        <term index="notButterfly">Not FL</term>
+        <term index="notButterfly">Not FLY</term>
         <term index="notBackstroke">Not BK</term>
         <term index="notBreaststroke">Not BR</term>
         <term index="notFreestyle">Not FR</term>
@@ -687,10 +675,15 @@
         <term index="easy">Easy</term>
         <term index="threshold">Threshold</term>
         <term index="endurance">Endurance</term>
+        <term index="strong">Strong</term>
         <term index="racePace">Race Pace</term>
         <term index="max">Max</term>
         <term index="6KickDrill">6KD</term>
+        <term index="8KickDrill">8KD</term>
+        <term index="10KickDrill">10KD</term>
+        <term index="12KickDrill">12KD</term>
         <term index="fingerTrails">FT</term>
+        <term index="fingerDrag">FD</term>
         <term index="123">123</term>
         <term index="bigDog">Big Dog</term>
         <term index="scull">Scull</term>

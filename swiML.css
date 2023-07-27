@@ -86,30 +86,21 @@ p.describtion {
 	color: grey;
 }
 .continueLength {
-    display:flex;
-	margin-top: 0.2em;
-}
-.continueLengthSide {
-    display:flex;
-	margin-top: 0.2em;
-	margin-right: 0.5em;
-}
-.continueLength::after{
-	display: inline-block;
-	counter-increment: line;
-	content: counter(line);
-	padding-left: 2em;
-	width: 1em;
-	margin-left: auto;
-	text-align: right;
-	font-weight: 100;
-	color: grey;
-}
-.repetition {
-	display: flex;
-	margin-top: 0.2em;
+    display: flex;
+    align-items: center;
 }
 
+
+.repetition {
+	display: flex;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+}
+.continue {
+    display: flex;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+}
 .repetitionCount {
     display: flex;
     align-items: center;
@@ -127,6 +118,14 @@ p.describtion {
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
 }
+.continueSymbol {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	display: flex;
+	align-items: center;
+	width: 1ch;
+	border-left: 0.13em solid #000000;
+}
 .blankRepSymbol {
 	margin-left: 0.3em;
 	margin-right: 0.3em;
@@ -139,44 +138,7 @@ p.describtion {
 	flex-direction: column;
 	width: 100%;
 }
-.continueInner {
-	display: flex;
-	margin-top: 0.2em;
-}
-.continueSideInner {
-	display: flex;
-	margin-top: 0.2em;
-}
-.continueSideInner::after{
-	counter-increment: line;
-	content: counter(line);
-	display: inline-block;
-	padding-left: 2em;
-	width: 1em;
-	margin-left: auto;
-	text-align: right;
-	font-weight: 100;
-	color: grey;
-}
-.continueInner::after{
-    
-	display: inline-block;
-	padding-left: 2em;
-	width: 1em;
-	margin-left: auto;
-	text-align: right;
-	font-weight: 100;
-	color: grey;
-}
 
-.continueSymbol {
-	margin-left: 0.3em;
-	margin-right: 0.3em;
-	display: flex;
-	align-items: center;
-	width: 1ch;
-	border-left: 0.13em solid #000000;
-}
 .continueContent {
 	display: flex;
 	flex-direction: column;
