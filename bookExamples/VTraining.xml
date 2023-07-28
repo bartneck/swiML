@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+    <title>Vikings Training</title>
+    <author>
+        <firstName>Callum</firstName>
+        <lastName>Lockhart</lastName>
+    </author>
+    <programDescription>Vikings Morning Training</programDescription>
+    <creationDate>2023-07-27</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm Up</segmentName>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>500</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <breath>3</breath>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>150</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+                <rest><sinceStart>PT2M15S</sinceStart></rest>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>75</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <rest><sinceStart>PT1M15S</sinceStart></rest>
+                        <equipment>pullBuoy</equipment>
+                        <equipment>pads</equipment>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                        <rest><sinceStart>PT1M0S</sinceStart></rest>
+                        <intensity>
+                            <startIntensity><zone>easy</zone></startIntensity>
+                            <stopIntensity><zone>max</zone></stopIntensity>
+                        </intensity>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <segmentName>Main set</segmentName>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>20</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>nr1</standardStroke></stroke>
+                <rest><sinceStart>PT1M30S</sinceStart></rest>
+                <intensity>
+                    <startIntensity><zone>max</zone></startIntensity>
+                </intensity>
+                <equipment>fins</equipment>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <segmentName>Warm Down</segmentName>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke> </stroke>
+        <intensity>
+            <startIntensity><zone>easy</zone></startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
+                <rest><sinceStart>PT1M10S</sinceStart></rest>
+                <intensity>
+                    <startIntensity><zone>strong</zone></startIntensity>
+                </intensity>
+            </instruction>
+            <instruction>
+                <continue simplify="true">
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>butterfly</standardStroke></stroke>
+                        <rest><sinceStart>PT35S</sinceStart></rest>
+                        <intensity>
+                            <startIntensity><zone>strong</zone></startIntensity>
+                        </intensity>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                        <rest><sinceStart>PT35S</sinceStart></rest>
+                        <intensity>
+                            <startIntensity><zone>strong</zone></startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
+                <rest><sinceStart>PT1M10S</sinceStart></rest>
+                <intensity>
+                    <startIntensity><zone>strong</zone></startIntensity>
+                </intensity>
+            </instruction>
+            <instruction>
+                <continue simplify="true">
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                        <rest><sinceStart>PT35S</sinceStart></rest>
+                        <intensity>
+                            <startIntensity><zone>strong</zone></startIntensity>
+                        </intensity>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <rest><sinceStart>PT35S</sinceStart></rest>
+                        <intensity>
+                            <startIntensity><zone>strong</zone></startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    
+</program>

@@ -228,13 +228,13 @@
 
         </xs:choice>
         
-        <xs:assert test="name(.) = 'instruction'"/>
         
-        <!-- This is broken?  it works in the XML file but not here idk why 
         <xs:assert test="
-            every $segmentName in(./sw:segmentName) satisfies name($segmentName/parent::*/parent::*) = 'program'
+            if (count(./sw:segmentName) > 0)
+            then (count(./sw:segmentName/../../ancestor::*) = 0)
+            else(true())
          "/>
-        -->
+        
         
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
