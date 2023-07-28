@@ -85,12 +85,22 @@ p.describtion {
 	font-weight: 100;
 	color: grey;
 }
+.continueLength {
+    display: flex;
+    align-items: center;
+}
+
 
 .repetition {
 	display: flex;
-	margin-top: 0.2em;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
 }
-
+.continue {
+    display: flex;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+}
 .repetitionCount {
     display: flex;
     align-items: center;
@@ -108,13 +118,32 @@ p.describtion {
 	border-top-left-radius: 0.5em;
 	border-bottom-left-radius: 0.5em;
 }
-
+.continueSymbol {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	display: flex;
+	align-items: center;
+	width: 1ch;
+	border-left: 0.13em solid #000000;
+}
+.blankRepSymbol {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	display: flex;
+	align-items: center;
+	width: 1ch;
+}
 .repetitionContent {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
 
+.continueContent {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
 .firstSegmentName {
 	display: block;
 	text-align: center;

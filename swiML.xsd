@@ -210,8 +210,7 @@
             </xs:element>
              <xs:element name="continue" type="continueType">
                 <xs:annotation>
-                    <xs:documentation>Instruction process element to swim a
-                        pyramid.</xs:documentation>
+                    <xs:documentation>Instruction process element to denote a continuosly swum block of instructions.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <!-- Direct instruction on what to swim -->
@@ -221,24 +220,37 @@
                         instruction.</xs:documentation>
                 </xs:annotation>
                 
-                <!-- Common elements for instrucionts -->
+                <!-- Common elements for instructions -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
 
         </xs:choice>
         
-        <xs:assert test="name(.) = 'instruction'"/>
-        <!-- This is broken?  it works in the XML file but not here idk why
+        <!-- checks every instruction has stroke,rest and length defined 
+        any other element in an instruction doesnt have to be defined-->
         <xs:assert test="
-            every $segmentName in(./sw:segmentName) satisfies name($segmentName/parent::*/parent::*) = 'program'
-         "/>
-        -->
+            (./ancestor-or-self::*/sw:stroke
+            and ./ancestor-or-self::*/sw:length) 
+            or ./sw:repetition 
+            or ./sw:continue
+            or ./sw:pyramid
+            or ./sw:segmentName"/>
         
+        <!--checks all segment names are only at top level-->
+        <xs:assert test="
+            if (count(./sw:segmentName) > 0)
+            then (count(./sw:segmentName/../../ancestor::*) = 0)
+            else(true())
+         "/>
+        
+        
+        
+        <!-- but for some reason this assertion is working -->
         <xs:assert test="
             every $stroke in ./sw:stroke satisfies
             if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
             then($stroke/parent::*/parent::sw:repetition) else($stroke/parent::*)
-            "/>
+            "><xs:annotation><xs:documentation>checks all strokes to make sure medley order or overlaps are only used in a repetition</xs:documentation></xs:annotation></xs:assert>
         
     </xs:complexType>
 
@@ -307,7 +319,7 @@
     <!-- instructions.  -->
     <!-- ====================================================== -->
 
-    <!-- descriptions of these types arent very good -->
+    <!-- descriptions of these types arent very good -> to fix  -->
     <!-- The repetitionType is one of the major process elements -->
     <xs:complexType name="repetitionType">
         <xs:annotation>
@@ -328,7 +340,10 @@
                         customise the repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            
+            <!-- Common elements for instructions -->
+            <xs:group ref="instructionGroup"/>
+            
             <!-- This is the main recursion statement. Every repetition contains instructions. -->
             <!-- Every instruction can contain a repetition -->
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
@@ -344,6 +359,7 @@
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
+                
             </xs:element>
         </xs:sequence>
 
@@ -400,11 +416,16 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="totalLength" minOccurs="0" maxOccurs="1" type="xs:string">
+            <xs:element name="continueLength" minOccurs="0" maxOccurs="1" type="xs:string">
                 <xs:annotation>
-                    <xs:documentation>total length to swim continuously or total number of repetitions</xs:documentation>
+                    <xs:documentation>total length to swim continuously or total number of repetitions
+                    May or may not be defined but if not it will automatically calculated from given instructions</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
+            <!-- Common elements for instructions -->
+            <xs:group ref="instructionGroup"/>
+            
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
                 type="instructionType">
                 <xs:annotation>
@@ -421,13 +442,14 @@
             </xs:element>
         </xs:sequence>
         
+        
         <xs:attribute name="simplify" type="xs:boolean"/>
         
-        <!-- checks all lengths within simplify are the same-->
         <xs:assert test="
                 ((./@simplify = true()) and (every $length in .//sw:length
-                    satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0
-                    "/>
+                    satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./@simplify = false() or count(./@simplify) = 0">
+            <xs:annotation> <xs:documentation>checks all lengths ithin simplified continue are the same</xs:documentation> </xs:annotation>
+        </xs:assert>
 
     </xs:complexType>
 
@@ -578,6 +600,7 @@
             <xs:enumeration value="easy"/>
             <xs:enumeration value="threshold"/>
             <xs:enumeration value="endurance"/>
+            <xs:enumeration value="strong"/>
             <xs:enumeration value="racePace"/>
             <xs:enumeration value="max"/>
         </xs:restriction>
@@ -705,7 +728,11 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="6KickDrill"/>
+            <xs:enumeration value="8KickDrill"/>
+            <xs:enumeration value="10KickDrill"/>
+            <xs:enumeration value="12KickDrill"/>
             <xs:enumeration value="fingerTrails"/>
+            <xs:enumeration value="fingerDrag"/>
             <xs:enumeration value="123"/>
             <xs:enumeration value="bigDog"/>
             <xs:enumeration value="scull"/>
