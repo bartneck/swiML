@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="maxLengthAsDistanceWidth">
@@ -73,7 +73,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="../swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -154,7 +154,7 @@
                             <div class="logo">
                                 <a href="https://github.com/bartneck/swiML">
                                     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 1219.33 460.35" >
+                                        viewBox="0 0 1219.33 460.35"  >
                                         <defs>
                                             <style>
                                                 .cls-1 {
