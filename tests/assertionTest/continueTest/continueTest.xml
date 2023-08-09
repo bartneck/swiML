@@ -89,4 +89,50 @@
             </instruction>
         </continue>
     </instruction>
+    
+    <!-- This should be summarised as 8 times 200 -->
+    <instruction>
+        <continue>
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                        <stroke><standardStroke>butterfly</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>5</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <!-- I removed the strokes and it still valides okay. This should not happen -->
+    <instruction>
+        <continue>
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>5</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
 </program>
