@@ -8,7 +8,7 @@
         <lastName>Bartneck</lastName>
         <email>christoph@bartneck.de</email>
     </author>
-    <programDescription>This is the test of the continue element.</programDescription>
+    <programDescription>This is the test of the continue element. This is the test of the continue element. This is the test of the continue element. This is the test of the continue element. This is the test of the continue element. This is the test of the continue element.</programDescription>
     <creationDate>2023-08-02</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
@@ -20,7 +20,7 @@
 
     <!-- valid - simple continue , this should be summarised to 2 times 100-->
     <instruction>
-        <continue>
+        <continue simplify="true">
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -31,10 +31,10 @@
             </instruction>
         </continue>
     </instruction>
-    
+
     <!-- valid - continue with repetition-->
     <instruction>
-        <continue>
+        <continue simplify="false">
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -47,14 +47,14 @@
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
                         <stroke><standardStroke>individualMedley</standardStroke></stroke>
                     </instruction>
                 </repetition>
             </instruction>
         </continue>
     </instruction>
-    
+
     <!-- valid - nested continue with repetition-->
     <instruction>
         <continue>
@@ -89,7 +89,7 @@
             </instruction>
         </continue>
     </instruction>
-    
+
     <!-- This should be summarised as 8 times 200 -->
     <instruction>
         <continue>
@@ -113,32 +113,35 @@
             </instruction>
         </continue>
     </instruction>
-    
+
+
     <!-- I removed the strokes and it still valides okay. This should not happen -->
     <instruction>
-        <continue>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
             <instruction>
-                <repetition>
-                    <repetitionCount>3</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>200</lengthAsDistance></length>
-                    </instruction>
-                </repetition>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
             </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>5</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>200</lengthAsDistance></length>
-                    </instruction>
-                </repetition>
-            </instruction>
-        </continue>
+        </repetition>
     </instruction>
-    
+    <instruction>
+        <repetition>
+            <repetitionCount>5</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
+            </instruction>
+        </repetition>
+    </instruction>
+
+
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+    </instruction>
+
+
     <!-- it shows 6 times 600 BR. this is wrong -->
     <instruction>
-        <continue>
+        <continue simplify="true">
             <instruction>
                 <repetition>
                     <repetitionCount>6</repetitionCount>
