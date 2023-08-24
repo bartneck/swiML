@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="maxLengthAsDistanceWidth">
@@ -73,7 +73,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="\\file\Usersc$\clo85\Home\My Documents\GitHub\swiML\swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -237,10 +237,10 @@
     <xsl:template match="sw:repetition">
         <div class="repetition">
             
-            <xsl:if test="not(../..[@simplify=false()]) or (count(../../../sw:continue) = 1 and count(.//sw:instruction) > 1)">
+            <xsl:if test="../../sw:simplify[text()='true'] or (count(../../../sw:continue) = 1 and count(.//sw:instruction) > 1)">
                     <div class="repetitionCount">
                         <xsl:choose>
-                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../..[@simplify=true()]) ">
+                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
                                 <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -261,7 +261,7 @@
                             <div class="reptitionSymbol"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../..[@simplify=true()]) ">
+                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
                                 &#160;
                             </xsl:if>
                             
@@ -279,7 +279,7 @@
         <div class="continue">
             
             <xsl:choose>
-                <xsl:when test="@simplify = true()">
+                <xsl:when test="./sw:simplify[text()='true']">
                     <div class="continueLength">
                         <xsl:call-template name="simplifyLength"/>
                         <xsl:text>&#160;&#215;&#160;</xsl:text>
@@ -322,9 +322,10 @@
     </xsl:template>
     
     <xsl:template name="displayInst">
-        <xsl:if test="not(./ancestor::sw:continue[@simplify=true()])">
+        <xsl:if test="not(./ancestor::sw:continue/sw:simplify[text()='true'])">
             <xsl:choose>
-                <xsl:when test=" (count(ancestor::sw:continue) = 1 and ((not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1)))) or count(ancestor::sw:continue) = 0">
+                <!-- Pretty sure this is doing too much, i think i just need to check the parent is a continue, not far ancestor -->
+                <xsl:when test=" (count(ancestor::sw:continue) > 0 and ((not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1)))) or count(ancestor::sw:continue) = 0">
                     <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -339,7 +340,7 @@
             </xsl:choose>
             
         </xsl:if>
-        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:continue[@simplify=true()]">1</xsl:if>
+        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:continue/sw:simplify[text()='true']">1</xsl:if>
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="https://github.com/bartneck/swiML"
+<program
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
     <title>Continue Test</title>
     <author>
         <firstName>Christoph</firstName>
@@ -20,7 +21,8 @@
 
     <!-- valid - simple continue , this should be summarised to 2 times 100-->
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -34,7 +36,7 @@
 
     <!-- valid - continue with repetition-->
     <instruction>
-        <continue simplify="false">
+        <continue>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -79,6 +81,48 @@
                     <instruction>
                         <repetition>
                             <repetitionCount>4</repetitionCount>
+                            <instruction>
+                                <continue>
+                                    <instruction>
+                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                                    </instruction>
+                                    <instruction>
+                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                                    </instruction>
+                                    <instruction>
+                                        <repetition>
+                                            <repetitionCount>4</repetitionCount>
+                                            <instruction>
+                                                <continue>
+                                                    <instruction>
+                                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                                                    </instruction>
+                                                    <instruction>
+                                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                                                    </instruction>
+                                                    <instruction>
+                                                        <repetition>
+                                                            <repetitionCount>4</repetitionCount>
+                                                            <instruction>
+                                                                <length><lengthAsDistance>100</lengthAsDistance></length>
+                                                                <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                                            </instruction>
+                                                        </repetition>
+                                                    </instruction>
+                                                </continue>
+                                            </instruction>
+                                            <instruction>
+                                                <length><lengthAsDistance>100</lengthAsDistance></length>
+                                                <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                            </instruction>
+                                        </repetition>
+                                    </instruction>
+                                </continue>
+                            </instruction>
                             <instruction>
                                 <length><lengthAsDistance>100</lengthAsDistance></length>
                                 <stroke><standardStroke>individualMedley</standardStroke></stroke>
@@ -141,7 +185,8 @@
 
     <!-- it shows 6 times 600 BR. this is wrong -->
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>6</repetitionCount>

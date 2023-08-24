@@ -163,7 +163,9 @@ p.describtion {
 	padding: 1em;
 	border: solid;
 	border-width: thin;
+	max-width: 11cm;
 	width: fit-content;
+	margin: auto;
 	/*min-width: 30em;*/
 }
 
@@ -174,7 +176,10 @@ p.describtion {
 	font-size: 120%;
 }
 
-
+@page {
+  size: 7in 9.25in;
+  margin: 27mm 16mm 27mm 16mm;
+}
 
 @media print {
 	@page {
