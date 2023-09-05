@@ -237,7 +237,7 @@
     <xsl:template match="sw:repetition">
         <div class="repetition">
             
-            <xsl:if test="../../sw:simplify[text()='true'] or (count(../../../sw:continue) = 1 and count(.//sw:instruction) > 1)">
+            <xsl:if test="not(count(../../../sw:continue) = 1 and (count(.//sw:instruction) = 1 or ../../simplify[text()='true']))">
                     <div class="repetitionCount">
                         <xsl:choose>
                             <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
@@ -324,17 +324,17 @@
     <xsl:template name="displayInst">
         <xsl:if test="not(./ancestor::sw:continue/sw:simplify[text()='true'])">
             <xsl:choose>
-                <!-- Pretty sure this is doing too much, i think i just need to check the parent is a continue, not far ancestor -->
-                <xsl:when test=" (count(ancestor::sw:continue) > 0 and ((not(../../sw:repetition) or (../../sw:repetition and count(..//sw:instruction) > 1)))) or count(ancestor::sw:continue) = 0">
-                    <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
-                </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
                         <xsl:attribute name="style">
                             <xsl:text>text-align:right;font-weight:900</xsl:text>
                         </xsl:attribute>
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                     </span>
+                    
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
                     
                 </xsl:otherwise>
             </xsl:choose>
@@ -415,19 +415,26 @@
 
     <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
     <xsl:template name="showLength">
-        
+
         <xsl:value-of select="
             sum(
+            for $depth in count(./ancestor-or-self::*)
+            return 
             for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
             * myData:product(
-            if 
+            if
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            then
+            (1)
+            else
+            (if 
             (../sw:continue) 
             then 
-            ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]/sw:repetitionCount))
             else
-            ($l/ancestor::sw:repetition/sw:repetitionCount))
+            ($l/ancestor::sw:repetition/sw:repetitionCount)))
             )
             +
             sum(
@@ -441,7 +448,7 @@
             ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
             else
             ($l/ancestor::sw:repetition/sw:repetitionCount))
-            ) * //sw:poolLength
+            ) * //sw:poolLength  
             
             
             "/>
@@ -450,7 +457,10 @@
     
     <xsl:template name="simplifyLength">
         <xsl:value-of select="
-            (if(./descendant-or-self::sw:lengthAsDistance) then (
+            (
+            if
+            (./descendant-or-self::sw:lengthAsDistance) 
+            then(
             sum(
             for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
@@ -458,13 +468,16 @@
             * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
             )div(./descendant-or-self::sw:lengthAsDistance[1])) else (0))
             +
-            (if(./descendant-or-self::sw:lengthAsLaps) then (
-            (sum(
+            (if
+            (./descendant-or-self::sw:lengthAsLaps) then (
+            (
+            sum(
             for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
             * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
-            )div(./descendant-or-self::sw:lengthAsLaps[1])))  else (0))"
+            )div(./descendant-or-self::sw:lengthAsLaps[1]))) 
+            else (0))"
         />
         
     </xsl:template>

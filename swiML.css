@@ -6,6 +6,9 @@ body {
 	font-weight: 400;
 	font-style: normal;
 	counter-reset: line;
+	width: 7in;
+    height: 9.25in;
+    margin: 27mm 16mm 27mm 16mm;
 }
 
 ul {
@@ -176,10 +179,6 @@ p.describtion {
 	font-size: 120%;
 }
 
-@page {
-  size: 7in 9.25in;
-  margin: 27mm 16mm 27mm 16mm;
-}
 
 @media print {
 	@page {
