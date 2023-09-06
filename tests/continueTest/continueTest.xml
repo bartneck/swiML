@@ -95,6 +95,7 @@
     <!-- This should be summarised as 8 times 200 -->
     <instruction>
         <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>3</repetitionCount>
