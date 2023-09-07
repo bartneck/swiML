@@ -45,7 +45,8 @@
         </repetition>
     </instruction>
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 
@@ -66,7 +67,8 @@
         </continue>
     </instruction>
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 
@@ -92,7 +94,7 @@
         </continue>
     </instruction>
     <instruction>
-        <continue simplify="false">
+        <continue>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 
@@ -113,7 +115,7 @@
         </continue>
     </instruction>
     <instruction>
-        <continue simplify="false">
+        <continue>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 

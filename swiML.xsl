@@ -2,13 +2,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="maxLengthAsDistanceWidth">
         <xsl:choose>
-            <xsl:when test="//sw:lengthAsDistance">
-                <xsl:for-each select="//sw:lengthAsDistance">
+            <xsl:when test="//sw:length/sw:lengthAsDistance[count(ancestor-or-self::*) = 4]">
+                <xsl:for-each select="//sw:length/sw:lengthAsDistance[count(ancestor-or-self::*) = 4]">
                     <xsl:sort select="string-length(.)" order="ascending" data-type="number"/>
                     <xsl:if test="position() = last()">
                         <xsl:value-of select="string-length(.)"/>
@@ -21,8 +21,8 @@
 
     <xsl:variable name="maxLengthAsLapsWidth">
         <xsl:choose>
-            <xsl:when test="//sw:lengthAsLaps">
-                <xsl:for-each select="//sw:lengthAsLaps">
+            <xsl:when test="//sw:length/sw:lengthAsLaps[count(ancestor-or-self::*) = 4]">
+                <xsl:for-each select="//sw:length/sw:lengthAsLaps[count(ancestor-or-self::*) = 4]">
                     <xsl:sort select="string-length(.)" order="ascending" data-type="number"/>
                     <xsl:if test="position() = last()">
                         <xsl:value-of select="string-length(.)"/>
@@ -35,8 +35,8 @@
 
     <xsl:variable name="maxLengthAsTime">
         <xsl:choose>
-            <xsl:when test="//sw:lengthAsTime">
-                <xsl:for-each select="//sw:lengthAsTime">
+            <xsl:when test="//sw:length/sw:lengthAsLaps[count(ancestor-or-self::*) = 4]">
+                <xsl:for-each select="//sw:length/sw:lengthAsLaps[count(ancestor-or-self::*) = 4]">
                     <xsl:sort
                         select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))"
                         order="ascending" data-type="number"/>
@@ -51,9 +51,25 @@
         </xsl:choose>
     </xsl:variable>
 
-    <xsl:variable name="space">
+    <xsl:variable name="firstInstSpace">
         <xsl:value-of
             select="max(($maxLengthAsDistanceWidth, $maxLengthAsLapsWidth, $maxLengthAsTime))"/>
+    </xsl:variable>
+    
+    <xsl:variable name="firstContSpace">
+        <xsl:choose>
+            <xsl:when test="//sw:continue[count(ancestor-or-self::*) = 3][./sw:simplify[text()='true']]">
+                <xsl:for-each select="//sw:continue[count(ancestor-or-self::*) = 3][./sw:simplify[text()='true']]">
+                    
+                    <xsl:sort select="string-length(string(myData:showLength(.)))" order="ascending" data-type="number"/>
+                    <xsl:value-of select="myData:showLength(.)"/>
+                    <xsl:value-of select="concat(string-length(string(myData:showLength(.))),'&#160;')"/>
+                    
+                    
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
     </xsl:variable>
 
 
@@ -63,7 +79,7 @@
         <!-- ============================== -->
         <!-- HTML Document -->
         <!-- ============================== -->
-
+        
 
         <html>
             <head>
@@ -73,7 +89,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="\\file\Usersc$\clo85\Home\My Documents\GitHub\swiML\swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -142,9 +158,10 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
+                    <xsl:value-of select="$firstContSpace"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
-
+                
                 <xsl:choose>
                     <xsl:when test="sw:program/sw:hideIntro = 'true'"/>
                     <xsl:otherwise>
@@ -237,10 +254,10 @@
     <xsl:template match="sw:repetition">
         <div class="repetition">
             
-            <xsl:if test="not(count(../../../sw:continue) = 1 and (count(.//sw:instruction) = 1 or ../../simplify[text()='true']))">
+            <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
                     <div class="repetitionCount">
                         <xsl:choose>
-                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
+                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
                                 <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -277,7 +294,6 @@
     <!--Continuation Template -->
     <xsl:template match="sw:continue">
         <div class="continue">
-            
             <xsl:choose>
                 <xsl:when test="./sw:simplify[text()='true']">
                     <div class="continueLength">
@@ -369,7 +385,9 @@
             select="//sw:lengthAsDistance[not(. &lt; //sw:lengthAsDistance)][1]"/>
         <span>                
             <xsl:attribute name="style">
-                <xsl:text>text-align:right;font-weight:900</xsl:text>
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$firstInstSpace"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
             </xsl:attribute>
             <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsDistance]"/>
         </span>
@@ -383,7 +401,9 @@
         
         <span>
             <xsl:attribute name="style">
-                <xsl:text>text-align:right;font-weight:900</xsl:text>
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$firstInstSpace"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
             </xsl:attribute>
             <xsl:value-of select="../sw:lengthAsLaps"/>
         </span>
@@ -400,7 +420,9 @@
         
         <span>
             <xsl:attribute name="style">
-                <xsl:text>text-align:right;font-weight:900</xsl:text>
+                <xsl:text>width:</xsl:text>
+                <xsl:value-of select="//$firstInstSpace"/>
+                <xsl:text>ch; text-align:right;font-weight:900</xsl:text>
             </xsl:attribute>
             <xsl:value-of separator=":"
                 select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
@@ -417,38 +439,7 @@
     <xsl:template name="showLength">
 
         <xsl:value-of select="
-            sum(
-            for $depth in count(./ancestor-or-self::*)
-            return 
-            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
-            return
-            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
-            * myData:product(
-            if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
-            then
-            (1)
-            else
-            (if 
-            (../sw:continue) 
-            then 
-            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]/sw:repetitionCount))
-            else
-            ($l/ancestor::sw:repetition/sw:repetitionCount)))
-            )
-            +
-            sum(
-            for $l in .//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
-            return
-            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
-            * myData:product(
-            if 
-            (../sw:continue) 
-            then 
-            ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
-            else
-            ($l/ancestor::sw:repetition/sw:repetitionCount))
-            ) * //sw:poolLength  
+            myData:showLength(.) 
             
             
             "/>
@@ -659,7 +650,7 @@
     </xsl:template>
 
     <myData:translation>
-        <term index="butterfly">FLY</term>
+        <term index="butterfly">FL</term>
         <term index="backstroke">BK</term>
         <term index="breaststroke">BR</term>
         <term index="freestyle">FR</term>
@@ -673,7 +664,7 @@
         <term index="nr2">Nr 2</term>
         <term index="nr3">Nr 3</term>
         <term index="nr4">Nr 4</term>
-        <term index="notButterfly">Not FLY</term>
+        <term index="notButterfly">Not FL</term>
         <term index="notBackstroke">Not BK</term>
         <term index="notBreaststroke">Not BR</term>
         <term index="notFreestyle">Not FR</term>
@@ -732,4 +723,43 @@
                 else
                     $numbers[1] * myData:product($numbers[position() gt 1])"/>
     </xsl:function>
+    
+    <xsl:function name="myData:showLength">
+        <xsl:param name="root" as="node()"/>
+
+        <xsl:sequence select="sum(
+            for $depth in count($root/ancestor-or-self::*)
+            return 
+            for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
+            * myData:product(
+            if
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            then
+            (1)
+            else
+            (if 
+            (name($root) = 'continue') 
+            then 
+            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]/sw:repetitionCount))
+            else
+            ($l/ancestor::sw:repetition/sw:repetitionCount)))
+            )
+            +
+            sum(
+            for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
+            return
+            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
+            * myData:product(
+            if 
+            (name($root) = 'continue')  
+            then 
+            ($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            else
+            ($l/ancestor::sw:repetition/sw:repetitionCount))
+            ) * $root/ancestor::sw:program//sw:poolLength  
+            "/>
+    </xsl:function>
+    
 </xsl:stylesheet>
