@@ -161,4 +161,19 @@
             </instruction>
         </continue>
     </instruction>
+    
+    <instruction>
+        <continue>
+            <simplify>true</simplify>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>1000</lengthAsDistance></length>
+                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
 </program>
