@@ -29,7 +29,7 @@
     </instruction>
     <instruction>
         <repetition>
-            <repetitionCount>3</repetitionCount>
+            <repetitionCount>12</repetitionCount>
             <instruction>
                 <continue>
                     <instruction>

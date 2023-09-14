@@ -63,7 +63,15 @@
                     <xsl:for-each select="//sw:continue[not(./sw:simplify[text()='true'])]">
                         <Item>
                             <Item><xsl:value-of select="myData:depth(.)"/></Item>
-                            <Item><xsl:value-of select="string-length(string(myData:showLength(.)))+3"/> </Item>
+                            <xsl:choose>
+                                <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1">
+                                    <Item><xsl:value-of select="string-length(string(myData:showLength(.)))+6+string-length(../../sw:repetitionCount)"/> </Item>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <Item><xsl:value-of select="string-length(string(myData:showLength(.)))+3"/> </Item>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            
                         </Item>
                     </xsl:for-each>
                 </xsl:if>
@@ -84,8 +92,10 @@
     
     <xsl:variable name="maxContLengths" as="element()*">
         <xsl:for-each-group select="$ContLengths" group-by="./*[1]">
+            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
             <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
         </xsl:for-each-group>
+        
     </xsl:variable>
 
 
@@ -133,6 +143,7 @@
                 <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml"/>
                 
                 <title>
+                    
                     <xsl:value-of select="sw:program/sw:title"/>
                 </title>
             </head>
@@ -174,7 +185,8 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
-
+                    <xsl:value-of select="$ContLengths"/>
+                    <xsl:value-of select="$maxContLengths"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
@@ -765,7 +777,17 @@
     
     <xsl:function name="myData:depth">
         <xsl:param name="node" as="node()"></xsl:param>
-        <xsl:value-of select="count($node/ancestor::*) div 2"/>
+        <xsl:choose>
+            <xsl:when test="name($node) = 'continue'  and $node/../../../sw:repetition and count($node/../../sw:instruction) = 1">
+                <xsl:value-of select="(count($node/ancestor::*) div 2)-1"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="count($node/ancestor::*) div 2"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+            
+        
         
     </xsl:function>
     

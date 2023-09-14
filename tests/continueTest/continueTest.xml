@@ -50,6 +50,14 @@
                 <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
             <instruction>
+                <continue>
+                    <instruction>
+                        <length><lengthAsDistance>1060</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
                     <instruction>
