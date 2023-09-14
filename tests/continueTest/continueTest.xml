@@ -75,7 +75,7 @@
             <instruction>
                 <continue>
                     <instruction>
-                        <length><lengthAsDistance>1000</lengthAsDistance></length>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
                         <stroke><standardStroke>freestyle</standardStroke></stroke>
                     </instruction>
                     <instruction>
@@ -83,13 +83,25 @@
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <repetition>
-                            <repetitionCount>4</repetitionCount>
+                        <continue>
                             <instruction>
                                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                                <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                <stroke><standardStroke>freestyle</standardStroke></stroke>
                             </instruction>
-                        </repetition>
+                            <instruction>
+                                <length><lengthAsDistance>100</lengthAsDistance></length>
+                                <stroke><standardStroke>backstroke</standardStroke></stroke>
+                            </instruction>
+                            <instruction>
+                                <repetition>
+                                    <repetitionCount>4</repetitionCount>
+                                    <instruction>
+                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                        <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                    </instruction>
+                                </repetition>
+                            </instruction>
+                        </continue>
                     </instruction>
                 </continue>
             </instruction>
