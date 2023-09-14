@@ -29,116 +29,38 @@
     </instruction>
     <instruction>
         <repetition>
-            <repetitionCount>12</repetitionCount>
+            <repetitionCount>132</repetitionCount>
             <instruction>
-                <continue>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
-                    </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                    </instruction>
-                </continue>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
     <instruction>
-        <continue>
-            <simplify>true</simplify>
+        <repetition>
+            <repetitionCount>12</repetitionCount>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
             <instruction>
                 <repetition>
-                    <repetitionCount>4</repetitionCount>
+                    <repetitionCount>12</repetitionCount>
                     <instruction>
                         <length><lengthAsDistance>100</lengthAsDistance></length>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
                     </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <simplify>true</simplify>
-            <instruction>
-                <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
                     <instruction>
                         <length><lengthAsDistance>100</lengthAsDistance></length>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
                     </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>freestyle</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
                 </repetition>
             </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <instruction>
-                <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>\
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <instruction>
-                <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>\
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>freestyle</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
+        </repetition>
     </instruction>
     
 </program>

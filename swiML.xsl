@@ -84,7 +84,7 @@
                     </xsl:for-each>
                 </xsl:if>
             </xsl:when>           
-            <xsl:otherwise>0</xsl:otherwise>
+            <xsl:otherwise><Item>0</Item></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     
@@ -95,8 +95,30 @@
             <xsl:sort select='./*[1]' order="ascending" data-type="number" />
             <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
         </xsl:for-each-group>
-        
     </xsl:variable>
+    
+    <xsl:variable name="RepLengths" as="element()*">
+        <xsl:choose>
+            <xsl:when test="//sw:repetition">
+                <xsl:for-each select="//sw:repetition">
+                    <Item>
+                        <Item><xsl:value-of select="myData:depth(.)"/></Item>
+                        <Item><xsl:value-of select="string-length(./sw:repetitionCount)+2"/></Item>
+                    </Item>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise><Item>0</Item></xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    
+    <xsl:variable name="maxRepLengths" as="element()*">
+        <xsl:for-each-group select="$RepLengths" group-by="./*[1]">
+            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
+            <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
+        </xsl:for-each-group>
+    </xsl:variable>
+    
+    
 
 
 
@@ -185,8 +207,8 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
-                    <xsl:value-of select="$ContLengths"/>
-                    <xsl:value-of select="$maxContLengths"/>
+                    <xsl:value-of select="$RepLengths"/>
+                    <xsl:value-of select="$maxRepLengths"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
@@ -280,25 +302,37 @@
 
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
+        <xsl:variable name="depth">
+            <xsl:value-of select="myData:depth(.)"/>
+        </xsl:variable>
         <div class="repetition">
             
             <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
                     <div class="repetitionCount">
-                        <xsl:choose>
-                            <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
-                                <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:choose>
-                                    <xsl:when test=".//repetitionDescription">
-                                        <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:attribute name="style">
+                            <xsl:text>min-width:</xsl:text>
+                            <xsl:value-of select="$maxRepLengths[number($depth)]"/>
+                            <xsl:text>ch;</xsl:text>
+                        </xsl:attribute>
+                        <div>
+                            <xsl:attribute name="style">margin-left:auto</xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
+                                    <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:choose>
+                                        <xsl:when test=".//repetitionDescription">
+                                            <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </div>
+                        
                         
                     </div>
                     <xsl:choose>
