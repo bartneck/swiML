@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="file:/C:/My%20Documents/GitHub/swiML"
-    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
     <title>Continues testing</title>
     <author>
         <firstName>Christoph</firstName>
@@ -15,8 +15,30 @@
     <hideIntro>false</hideIntro>
     
     <!-- valid case -->
+
+
     <instruction>
-        <segmentName>Main set</segmentName>
+        <continue>
+            <simplify>true</simplify>
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                        <stroke><standardStroke>butterfly</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>5</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
     </instruction>
     <instruction>
         <repetition>
@@ -29,114 +51,84 @@
     </instruction>
     <instruction>
         <repetition>
-            <repetitionCount>3</repetitionCount>
+            <repetitionCount>132</repetitionCount>
             <instruction>
-                <continue>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
-                    </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                    </instruction>
-                </continue>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
     <instruction>
-        <continue simplify="true">
+        <repetition>
+            <repetitionCount>12</repetitionCount>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>12</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <segmentName>Main set</segmentName>
+    </instruction>
+    <instruction>
+        <continue>
+            <simplify>true</simplify>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
             </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue simplify="true">
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>freestyle</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue simplify="false">
-            <instruction>
-                <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>\
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue simplify="false">
-            <instruction>
-                <length><lengthAsDistance>100</lengthAsDistance></length>
-                
-                <stroke><standardStroke>freestyle</standardStroke></stroke>\
-                <rest><sinceStart>PT1M35S</sinceStart> </rest>
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>backstroke</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    <instruction>
-                        <length><lengthAsDistance>100</lengthAsDistance></length>
-                        <stroke><standardStroke>freestyle</standardStroke></stroke>
-                        <rest><sinceStart>PT1M35S</sinceStart> </rest>
-                    </instruction>
-                    
-                </repetition>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
         </continue>
     </instruction>
     
+    <!-- valid - continue with repetition-->
+    <instruction>
+        <continue>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length><lengthAsDistance>1060</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>200</lengthAsDistance></length>
+                        <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
 </program>
