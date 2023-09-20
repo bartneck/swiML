@@ -207,8 +207,6 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
-                    <xsl:value-of select="$RepLengths"/>
-                    <xsl:value-of select="$maxRepLengths"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
@@ -220,7 +218,7 @@
                             <div class="footnote">made with: </div>
                             <div class="logo">
                                 <a href="https://github.com/bartneck/swiML">
-                                    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    <svg class='logoSvg' id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 1219.33 460.35" >
                                         <defs>
                                             <style>
@@ -309,11 +307,17 @@
             
             <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
                     <div class="repetitionCount">
-                        <xsl:attribute name="style">
-                            <xsl:text>min-width:</xsl:text>
-                            <xsl:value-of select="$maxRepLengths[number($depth)]"/>
-                            <xsl:text>ch;</xsl:text>
-                        </xsl:attribute>
+                        <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">
+                            
+                            <xsl:attribute name="style">
+                                <xsl:text>min-width:</xsl:text>
+                                
+                                <xsl:value-of select="$maxRepLengths[number($depth)]"/>
+                                
+                                <xsl:text>ch;</xsl:text>
+                            </xsl:attribute>
+                        </xsl:if>
+                        
                         <div>
                             <xsl:attribute name="style">margin-left:auto</xsl:attribute>
                             <xsl:choose>

@@ -39,6 +39,7 @@ p.authorEmail {
 
 .intro {
 	width: 32em;
+	margin: 0px auto;
 }
 p.describtion {
 	line-height: 120%;
@@ -58,8 +59,10 @@ p.describtion {
 .logo {
 	display: inline-block;
 	vertical-align: middle;
-	height: 5%;
-	width: 5%;
+}
+
+.logoSvg{
+    width: 3.5em;
 }
 
 .lengthAsDistance {
@@ -72,8 +75,7 @@ p.describtion {
 .instruction {
 	display: flex;
 	flex-direction: row;
-	margin-top: 0.2em;
-	margin-bottom: 0.2em;
+	margin: 0.2em 0em;
 	vertical-align: middle;
 }
 
@@ -100,8 +102,6 @@ p.describtion {
 }
 .continue {
     display: flex;
-	margin-top: 0.4em;
-	margin-bottom: 0.4em;
 }
 .repetitionCount {
     display: flex;
@@ -109,8 +109,7 @@ p.describtion {
 }
 
 .reptitionSymbol {
-	margin-left: 0.3em;
-	margin-right: 0.3em;
+	margin: 0.2em;
 	display: flex;
 	align-items: center;
 	width: 1ch;
@@ -121,16 +120,14 @@ p.describtion {
 	border-bottom-left-radius: 0.5em;
 }
 .continueSymbol {
-	margin-left: 0.3em;
-	margin-right: 0.3em;
+	margin: 0.2em;
 	display: flex;
 	align-items: center;
 	width: 1ch;
 	border-left: 0.13em solid #000000;
 }
 .blankRepSymbol {
-	margin-left: 0.3em;
-	margin-right: 0.3em;
+	margin: 0.2em;
 	display: flex;
 	align-items: center;
 	width: 1ch;
@@ -151,14 +148,16 @@ p.describtion {
 	text-align: center;
 	border-bottom: solid 1px black;
 	font-weight: 600;
+	
+	margin: 0.2em;
 }
 
 .segmentName {
 	display: block;
 	text-align: center;
 	border-bottom: solid 1px black;
-	padding-top: 0.9em;
 	font-weight: 600;
+	margin: 0.2em;
 }
 
 .program {
