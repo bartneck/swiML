@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="https://github.com/bartneck/swiML"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
     <title>Continue Test</title>
     <author>
         <firstName>Christoph</firstName>
