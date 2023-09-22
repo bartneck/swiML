@@ -301,7 +301,7 @@
                             <xsl:attribute name="style">
                                 <xsl:text>min-width:</xsl:text>
                                 
-                                <xsl:value-of select="$maxRepLengths[number($depth)]"/>
+                                <xsl:value-of select="$maxContLengths[number($depth)]"/>
                                 
                                 <xsl:text>ch;</xsl:text>
                             </xsl:attribute>

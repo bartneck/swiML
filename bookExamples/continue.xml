@@ -88,6 +88,19 @@
         <segmentName>Main set</segmentName>
     </instruction>
     <instruction>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>10000</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>backstroke</standardStroke></stroke>
+    </instruction>
+    
+    <instruction>
         <continue>
             <simplify>true</simplify>
             <instruction>
@@ -130,5 +143,9 @@
                 </repetition>
             </instruction>
         </continue>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>400</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
 </program>
