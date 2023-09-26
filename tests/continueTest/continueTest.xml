@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
@@ -17,10 +18,15 @@
         <length><lengthAsDistance>100</lengthAsDistance></length>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
-
+    <instruction>
+        <length><lengthAsDistance>10000</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    
     <!-- valid - simple continue , this should be summarised to 2 times 100-->
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -31,10 +37,10 @@
             </instruction>
         </continue>
     </instruction>
-
+    
     <!-- valid - continue with repetition-->
     <instruction>
-        <continue simplify="false">
+        <continue>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
@@ -42,6 +48,14 @@
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length><lengthAsDistance>1060</lengthAsDistance></length>
+                        <stroke><standardStroke>backstroke</standardStroke></stroke>
+                    </instruction>
+                </continue>
             </instruction>
             <instruction>
                 <repetition>
@@ -54,7 +68,7 @@
             </instruction>
         </continue>
     </instruction>
-
+    
     <!-- valid - nested continue with repetition-->
     <instruction>
         <continue>
@@ -77,22 +91,35 @@
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <repetition>
-                            <repetitionCount>4</repetitionCount>
+                        <continue>
                             <instruction>
                                 <length><lengthAsDistance>100</lengthAsDistance></length>
-                                <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                <stroke><standardStroke>freestyle</standardStroke></stroke>
                             </instruction>
-                        </repetition>
+                            <instruction>
+                                <length><lengthAsDistance>100</lengthAsDistance></length>
+                                <stroke><standardStroke>backstroke</standardStroke></stroke>
+                            </instruction>
+                            <instruction>
+                                <repetition>
+                                    <repetitionCount>4</repetitionCount>
+                                    <instruction>
+                                        <length><lengthAsDistance>100</lengthAsDistance></length>
+                                        <stroke><standardStroke>individualMedley</standardStroke></stroke>
+                                    </instruction>
+                                </repetition>
+                            </instruction>
+                        </continue>
                     </instruction>
                 </continue>
             </instruction>
         </continue>
     </instruction>
-
+    
     <!-- This should be summarised as 8 times 200 -->
     <instruction>
         <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>3</repetitionCount>
@@ -113,8 +140,8 @@
             </instruction>
         </continue>
     </instruction>
-
-
+    
+    
     <!-- I removed the strokes and it still valides okay. This should not happen -->
     <instruction>
         <repetition>
@@ -132,21 +159,37 @@
             </instruction>
         </repetition>
     </instruction>
-
-
+    
+    
     <instruction>
         <length><lengthAsDistance>200</lengthAsDistance></length>
     </instruction>
-
-
+    
+    
     <!-- it shows 6 times 600 BR. this is wrong -->
     <instruction>
-        <continue simplify="true">
+        <continue>
+            <simplify>true</simplify>
             <instruction>
                 <repetition>
                     <repetitionCount>6</repetitionCount>
                     <instruction>
                         <length><lengthAsDistance>100</lengthAsDistance></length>
+                        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <simplify>true</simplify>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>1000</lengthAsDistance></length>
                         <stroke><standardStroke>breaststroke</standardStroke></stroke>
                     </instruction>
                 </repetition>
