@@ -173,7 +173,6 @@ p.describtion {
 .pyramid {
 	display: flex;
 	flex-direction: column;
-	font-weight: thin;
 	font-size: 120%;
 }
 

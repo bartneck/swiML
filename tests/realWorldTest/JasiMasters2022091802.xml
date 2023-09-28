@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="https://github.com/bartneck/swiML"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+<program xmlns="file:/C:/My%20Documents/GitHub/swiML"
+   xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <title>Jasi Masters</title>
    <author>
       <firstName>Christoph</firstName>
@@ -19,9 +19,22 @@
    <instruction>
       <length><lengthAsDistance>400</lengthAsDistance></length>
       <stroke><standardStroke>any</standardStroke></stroke>
-      <intensity><startIntensity>
-            <zone>easy</zone>
-         </startIntensity></intensity>
+      <rest><afterStop>PT1M45S</afterStop></rest>
+   </instruction>
+   <instruction>
+      <length><lengthAsDistance>400</lengthAsDistance></length>
+      <stroke><standardStroke>any</standardStroke></stroke>
+      <rest><sinceLastRest>PT1M45S</sinceLastRest></rest>
+   </instruction>
+   <instruction>
+      <length><lengthAsDistance>400</lengthAsDistance></length>
+      <stroke><standardStroke>any</standardStroke></stroke>
+      <rest><sinceStart>PT1M45S</sinceStart></rest>
+   </instruction>
+   <instruction>
+      <length><lengthAsDistance>400</lengthAsDistance></length>
+      <stroke><standardStroke>any</standardStroke></stroke>
+      <rest><inOut>4</inOut></rest>
    </instruction>
    <instruction>
       <length><lengthAsDistance>200</lengthAsDistance></length>
@@ -29,6 +42,7 @@
             <standardKick>backstroke</standardKick>
          </kicking></stroke>
       <equipment>fins</equipment>
+      <equipment>pads</equipment>
    </instruction>
 
 
@@ -36,6 +50,7 @@
       <continue>
          <simplify>true</simplify>
          <equipment>fins</equipment>
+         <equipment>pads</equipment>
          <instruction>
             <length><lengthAsDistance>50</lengthAsDistance></length>
             <stroke><drill>
@@ -73,6 +88,7 @@
 
    <instruction>
       <continue>
+         <rest><afterStop>PT1M45S</afterStop></rest>
          <instruction>
             <length><lengthAsDistance>100</lengthAsDistance></length>
             <stroke><kicking>
@@ -104,15 +120,37 @@
          <instruction>
             <repetition>
                <repetitionCount>3</repetitionCount>
-               <rest><afterStop>PT1M45S</afterStop></rest>
                <instruction>
                   <continue>
+                     <rest><afterStop>PT1M45S</afterStop></rest>
                      <instruction>
                         <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke><drill>
                               <drillName>technic</drillName>
                               <drillStroke>freestyle</drillStroke>
                            </drill></stroke>
+                     </instruction>
+                     <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                     </instruction>
+                  </continue>
+               </instruction>
+            </repetition>
+         </instruction>
+         <instruction>
+            <repetition>
+               <repetitionCount>3</repetitionCount>
+               <instruction>
+                  <continue>
+                     <simplify>true</simplify>
+                     <rest><afterStop>PT1M45S</afterStop></rest>
+                     <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><drill>
+                           <drillName>technic</drillName>
+                           <drillStroke>freestyle</drillStroke>
+                        </drill></stroke>
                      </instruction>
                      <instruction>
                         <length><lengthAsDistance>50</lengthAsDistance></length>
