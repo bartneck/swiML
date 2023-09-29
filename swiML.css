@@ -36,18 +36,31 @@ p.authorEmail {
 	line-height: 80%;
 	margin-top: -1em;
 }
-
-.intro {
-	width: 32em;
-	margin: 0px auto;
-}
 p.describtion {
 	line-height: 120%;
 	margin-bottom: 2em;
 }
+.intro {
+    padding: 1ch;
+	width: 50ch;
+	margin: 0px auto;
+	
+}
+
+.program {
+	padding: 1ch;
+	border: solid;
+	border-width: thin;
+	width: 48ch;
+	margin: auto;
+	display:flex;
+	flex-direction:column;
+}
 
 .bottom {
-	margin-top: 0.2em;
+    width: 50ch;
+    margin: auto;
+	margin-top: 0.2ch;
 }
 
 .footnote {
@@ -108,10 +121,8 @@ p.describtion {
     align-items: center;
 }
 
-.reptitionSymbol {
-	margin: 0.2em;
-	display: flex;
-	align-items: center;
+.repetitionSymbol {
+	margin: 0.6ch;
 	width: 1ch;
 	border-top: 0.13em solid #000000;
 	border-bottom: 0.13em solid #000000;
@@ -120,14 +131,11 @@ p.describtion {
 	border-bottom-left-radius: 0.5em;
 }
 .continueSymbol {
-	margin: 0.2em;
-	display: flex;
-	align-items: center;
-	width: 1ch;
+	margin: 0.6ch;
 	border-left: 0.13em solid #000000;
 }
 .blankRepSymbol {
-	margin: 0.2em;
+	margin: 0.6ch;
 	display: flex;
 	align-items: center;
 	width: 1ch;
@@ -160,15 +168,6 @@ p.describtion {
 	margin: 0.2em;
 }
 
-.program {
-	padding: 1em;
-	border: solid;
-	border-width: thin;
-	max-width: 11cm;
-	width: fit-content;
-	margin: auto;
-	/*min-width: 30em;*/
-}
 
 .pyramid {
 	display: flex;
