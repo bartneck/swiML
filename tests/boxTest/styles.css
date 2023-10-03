@@ -1,0 +1,30 @@
+/* styles.css */
+.box1 {
+    max-width: 11cm;
+    height: 2cm; /* You can adjust the height as needed */
+    border: 1px solid #000000;
+	margin-bottom: 1em;
+	font-size: 3.67mm;
+}
+
+.box3 {
+    width: 105.6mm;
+    height: 2cm; /* You can adjust the height as needed */
+	padding: 2.2mm;
+    border: 1px solid #000000;
+	font-size: 3.67mm;
+	margin-bottom: 1em;
+}
+
+.text {
+	background: #F38F91;
+	display: inline;
+}
+
+
+
+body {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 400;
+	font-style: normal;
+}
