@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="instLengths" as="element()*">
@@ -179,7 +179,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="\\file\Usersc$\clo85\Home\My Documents\GitHub\swiML\swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -413,15 +413,7 @@
                     
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
-                        <xsl:choose>
-                            <xsl:when test="../../../sw:repetition and ./sw:simplify[text() = 'true'] and count(../../sw:instruction) = 1">
-                                <xsl:value-of select="$maxContLengths[number($depth)]-1"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="$maxContLengths[number($depth)]"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
+                        <xsl:value-of select="$maxContLengths[number($depth)]"/>
                         <xsl:text>ch; text-align:center</xsl:text>
                     </xsl:attribute>
 
@@ -489,7 +481,7 @@
                 <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
                         <xsl:attribute name="style">
-                            <xsl:text>text-align:center;font-weight:900</xsl:text>
+                            <xsl:text>text-align:right;font-weight:900</xsl:text>
                         </xsl:attribute>
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                     </span>
@@ -536,12 +528,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[number($depth)]"/>
-                        <xsl:text>ch;text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -565,12 +557,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[number($depth)]"/>
-                        <xsl:text>ch;text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -595,12 +587,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[number($depth)]"/>
-                        <xsl:text>ch;text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:center;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
