@@ -326,13 +326,18 @@
             <xs:documentation/>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="repetitionCount" type="xs:nonNegativeInteger" minOccurs="1"
-                maxOccurs="1">
+            <xs:element name="repetitionCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Count of repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
+            <xs:element name="simplify" minOccurs="0" maxOccurs="1" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>true -> repetition tag is simplifying a larger set of repetitions
+                        false -> normal repetition
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="repetitionDescription" minOccurs="0" maxOccurs="1"
                 type="instructionDescriptionType">
                 <xs:annotation>
@@ -422,13 +427,7 @@
                     May or may not be defined but if not it will automatically calculated from given instructions</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="simplify" minOccurs="0" maxOccurs="1" type="xs:boolean">
-                <xs:annotation>
-                    <xs:documentation>true -> continue tag is simplifying a larger set of repetitions
-                        false -> continue tag represents a continuous length of swimming
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            
             
             <!-- Common elements for instructions -->
             <xs:group ref="instructionGroup"/>

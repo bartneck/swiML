@@ -47,7 +47,7 @@
 
 
    <instruction>
-      <continue>
+      <repetition>
          <simplify>true</simplify>
          <rest><afterStop>PT1M45S</afterStop></rest>
          <equipment>fins</equipment>
@@ -73,7 +73,7 @@
                   <drillStroke>freestyle</drillStroke>
                </drill></stroke>
          </instruction>
-      </continue>
+      </repetition>
    </instruction>
 
    <instruction>
@@ -140,7 +140,7 @@
             <repetition>
                <repetitionCount>3</repetitionCount>
                <instruction>
-                  <continue>
+                  <repetition>
                      <simplify>true</simplify>
                      <rest><sinceLastRest>PT1M45S</sinceLastRest></rest>
                      <instruction>
@@ -154,7 +154,7 @@
                         <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke><standardStroke>freestyle</standardStroke></stroke>
                      </instruction>
-                  </continue>
+                  </repetition>
                </instruction>
             </repetition>
          </instruction>

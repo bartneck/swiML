@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-    xmlns="https://github.com/bartneck/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
     <title>Continues testing</title>
     <author>
         <firstName>Christoph</firstName>
@@ -18,7 +18,7 @@
 
 
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <repetition>
@@ -38,7 +38,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
     <instruction>
         <repetition>
@@ -101,7 +101,7 @@
     </instruction>
     
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
@@ -111,7 +111,7 @@
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
     
     <!-- valid - continue with repetition-->
