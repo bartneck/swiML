@@ -86,6 +86,7 @@ p.describtion {
 }
 
 .instruction {
+    max-width:48ch;
 	display: flex;
 	flex-direction: row;
 	margin: 0.2em 0em;
@@ -96,7 +97,6 @@ p.describtion {
 	display: inline-block;
 	counter-increment: line;
 	content: counter(line);
-	padding-left: 2em;
 	width: 1em;
 	margin-left: auto;
 	text-align: right;
@@ -111,9 +111,11 @@ p.describtion {
 
 
 .repetition {
+    max-width:48ch;
 	display: flex;
 }
 .continue {
+    max-width:48ch;
     display: flex;
 }
 .repetitionCount {
@@ -122,8 +124,9 @@ p.describtion {
 }
 
 .repetitionSymbol {
+
 	margin: 0.6ch;
-	width: 1ch;
+	width: 0.8ch;
 	border-top: 0.13em solid #000000;
 	border-bottom: 0.13em solid #000000;
 	border-left: 0.13em solid #000000;
@@ -141,9 +144,7 @@ p.describtion {
 	width: 1ch;
 }
 .repetitionContent {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    width:100%;
 }
 
 .continueContent {
@@ -156,11 +157,12 @@ p.describtion {
 	text-align: center;
 	border-bottom: solid 1px black;
 	font-weight: 600;
-	
+	max-width:48ch;
 	margin: 0.2em;
 }
 
 .segmentName {
+    max-width:48ch;
 	display: block;
 	text-align: center;
 	border-bottom: solid 1px black;
