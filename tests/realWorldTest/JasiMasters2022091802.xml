@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="file:/C:/My%20Documents/GitHub/swiML"
-   xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"  
+   xmlns="https://github.com/bartneck/swiML"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
    <title>Jasi Masters</title>
    <author>
       <firstName>Christoph</firstName>
@@ -47,7 +48,7 @@
 
 
    <instruction>
-      <continue>
+      <repetition>
          <simplify>true</simplify>
          <rest><afterStop>PT1M45S</afterStop></rest>
          <equipment>fins</equipment>
@@ -73,7 +74,7 @@
                   <drillStroke>freestyle</drillStroke>
                </drill></stroke>
          </instruction>
-      </continue>
+      </repetition>
    </instruction>
 
    <instruction>
@@ -140,7 +141,7 @@
             <repetition>
                <repetitionCount>3</repetitionCount>
                <instruction>
-                  <continue>
+                  <repetition>
                      <simplify>true</simplify>
                      <rest><sinceLastRest>PT1M45S</sinceLastRest></rest>
                      <instruction>
@@ -154,7 +155,7 @@
                         <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke><standardStroke>freestyle</standardStroke></stroke>
                      </instruction>
-                  </continue>
+                  </repetition>
                </instruction>
             </repetition>
          </instruction>
