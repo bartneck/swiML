@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="instLengths" as="element()*">
@@ -203,7 +203,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="\\file\Usersc$\clo85\Home\My Documents\GitHub\swiML\swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -264,7 +264,8 @@
                                 </li>
                                 <li>
                                     <span style="font-weight: 600">Length:</span>
-                                    <xsl:call-template name="showLength"/>
+                                    <xsl:value-of select="myData:showLength(sw:program)"/>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -638,13 +639,9 @@
 
     <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
     <xsl:template name="showLength">
-
         <xsl:value-of select="
-            myData:showLength(.) 
-            
-            
+            myData:showLength(.)
             "/>
-        
     </xsl:template>
     
     <xsl:template name="simplifyLength">
@@ -956,19 +953,22 @@
             return 
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
+            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
+            then(
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $depth][not(./sw:simplify = 'true')]) = 0)
             then
             (1)
             else
             (if 
             (name($root) = 'continue') 
             then 
-            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]/sw:repetitionCount))
+            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $depth][not(./sw:simplify = 'true')]/sw:repetitionCount))
             else
-            ($l/ancestor::sw:repetition/sw:repetitionCount)))
+            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount))))
+            else(0)
             )
             +
             sum(
@@ -976,20 +976,23 @@
             return 
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
+            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps)
+            then(
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $depth][not(./sw:simplify = 'true')]) = 0)
             then
             (1)
             else
             if 
             (name($root) = 'continue')  
             then 
-            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) > $depth]/sw:repetitionCount)
+            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $depth][not(./sw:simplify = 'true')]/sw:repetitionCount)
             else
-            ($l/ancestor::sw:repetition/sw:repetitionCount))
-            ) * $root/ancestor::sw:program//sw:poolLength  
+            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount)))
+            else (0)
+            ) * $root/ancestor-or-self::sw:program//sw:poolLength  
             "/>
     </xsl:function>
     
