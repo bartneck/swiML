@@ -370,15 +370,9 @@
         <xs:assert test="
             ((./sw:simplify = true()) and (every $length in .//sw:length
             satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
-            <xs:annotation> <xs:documentation>checks all lengths ithin simplified continue are the same</xs:documentation> </xs:annotation>
+            <xs:annotation> <xs:documentation>checks all lengths within simplified repetition are the same</xs:documentation> </xs:annotation>
         </xs:assert>
-        <xs:assert test="
-            if (not(./sw:simplify[text() = 'true']))
-            then(count(.//sw:instruction/sw:rest) = 0)
-            else name(.) = 'repetition'
-            ">
-            <xs:annotation><xs:documentation>ensures no rest tags occur within the instructions of a continue only at top level</xs:documentation></xs:annotation>
-        </xs:assert>
+        
         
         <!--
             work in progress:
@@ -472,7 +466,11 @@
         </xs:sequence>
         
         
-        
+        <xs:assert test="
+           (count(.//sw:instruction/sw:rest) = 0)
+            ">
+            <xs:annotation><xs:documentation>ensures no rest tags occur within the instructions of a continue only at top level</xs:documentation></xs:annotation>
+        </xs:assert>
         
         
     </xs:complexType>
