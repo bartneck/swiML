@@ -5,6 +5,7 @@
     xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML"
     xmlns="https://github.com/bartneck/swiML">
+
     
 
 
@@ -117,7 +118,17 @@
 
 
             </xs:sequence>
-            
+            <!-- checks every instruction has stroke,rest and length defined 
+            any other element in an instruction doesnt have to be defined
+            for some reason adding this makes it work?-->
+            <xs:assert test="
+                every $inst in .//sw:instruction satisfies(
+                ($inst/ancestor-or-self::*/sw:stroke
+                and $inst/ancestor-or-self::*/sw:length) 
+                or $inst/sw:repetition 
+                or $inst/sw:continue
+                or $inst/sw:pyramid
+                or $inst/sw:segmentName)"/>
         </xs:complexType>
 
     </xs:element>
@@ -710,6 +721,7 @@
             <xs:enumeration value="right"/>
             <xs:enumeration value="side"/>
             <xs:enumeration value="vertical"/>
+            <xs:enumeration value="waka"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -767,6 +779,7 @@
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
             <xs:enumeration value="6666"/>
+            <xs:enumeration value="other"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
