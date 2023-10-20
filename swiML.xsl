@@ -505,7 +505,7 @@
     </xsl:template>
     
     <xsl:template name="displayInst">
-        <xsl:if test="not(./ancestor::sw:continue/sw:simplify[text()='true'])">
+        <xsl:if test="not(./ancestor::sw:repetition/sw:simplify[text()='true'])">
             <xsl:choose>
                 <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
@@ -523,7 +523,14 @@
             </xsl:choose>
             
         </xsl:if>
-        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'continue') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:continue/sw:simplify[text()='true']">1</xsl:if>
+        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'repetition') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:repetition/sw:simplify[text()='true']">
+            <span>                
+                <xsl:attribute name="style">
+                    <xsl:text>text-align:right;font-weight:900</xsl:text>
+                </xsl:attribute>
+                1
+            </span>
+        </xsl:if>
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>

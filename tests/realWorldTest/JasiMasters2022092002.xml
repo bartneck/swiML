@@ -47,11 +47,8 @@
             </instruction>
         </repetition>
     </instruction>
-
-
     <instruction>
         <continue>
-            <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>50</lengthAsDistance></length>
                 <stroke><kicking>
