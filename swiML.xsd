@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1"
-    xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
+    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML">
 
     
 
@@ -248,6 +247,20 @@
             or ./sw:pyramid
             or ./sw:segmentName"/>
         
+        <!-- checks every instruction doesnt have repetitions of elements defined -->
+        <xs:assert test="
+            if(not(./sw:repetition 
+            or ./sw:continue
+            or ./sw:pyramid
+            or ./sw:segmentName))
+            then(
+            every $element in ./* satisfies(
+            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue:' or name() = 'pyramid'][not(./repetition or ./continue or ./pyramid or ./segmentName)]/*[not(name() = 'instruction' or name() = 'repetitionCount' or name() = 'simplify')] satisfies
+            not(name($element) = name($match))
+            ))
+            else(true())
+            " />
+        
         <!--checks all segment names are only at top level-->
         <xs:assert test="
             if (count(./sw:segmentName) > 0)
@@ -379,7 +392,24 @@
                 
             </xs:element>
         </xs:sequence>
-
+        <xs:assert test="
+            ((./sw:simplify = true()) and (every $length in .//sw:length
+            satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
+            <xs:annotation> <xs:documentation>checks all lengths within simplified repetition are the same</xs:documentation> </xs:annotation>
+        </xs:assert>
+        
+        
+        <!--
+            work in progress:
+            <xs:assert test="
+            if (./*[not(name(.) = 'instruction' or name(.) = 'simplify')])
+            then(
+            every $tag in ./*[not(name(.) = 'instruction' or name(.) = 'simplify')] satisfies
+            count( .//descendant::*[name(.) = name($tag)]) = 1)
+            else(name(.) = 'continue')
+            ">
+            
+        </xs:assert>-->
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->
@@ -459,34 +489,9 @@
                 </xs:unique>
             </xs:element>
         </xs:sequence>
-        
-        
-        
-        
-        <xs:assert test="
-                ((./sw:simplify = true()) and (every $length in .//sw:length
-                satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
-            <xs:annotation> <xs:documentation>checks all lengths ithin simplified continue are the same</xs:documentation> </xs:annotation>
-        </xs:assert>
-        <xs:assert test="
-            if (not(./sw:simplify[text() = 'true']))
-            then(count(.//sw:instruction/sw:rest) = 0)
-            else name(.) = 'continue'
-            ">
+        <xs:assert test="(count(.//sw:instruction/sw:rest) = 0)">
             <xs:annotation><xs:documentation>ensures no rest tags occur within the instructions of a continue only at top level</xs:documentation></xs:annotation>
         </xs:assert>
-
-        <!--
-            work in progress:
-            <xs:assert test="
-            if (./*[not(name(.) = 'instruction' or name(.) = 'simplify')])
-            then(
-            every $tag in ./*[not(name(.) = 'instruction' or name(.) = 'simplify')] satisfies
-            count( .//descendant::*[name(.) = name($tag)]) = 1)
-            else(name(.) = 'continue')
-            ">
-            
-        </xs:assert>-->
     </xs:complexType>
 
 
