@@ -255,7 +255,7 @@
             or ./sw:segmentName))
             then(
             every $element in ./* satisfies(
-            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue:' or name() = 'pyramid'][not(./repetition or ./continue or ./pyramid or ./segmentName)]/*[not(name() = 'instruction' or name() = 'repetitionCount' or name() = 'simplify')] satisfies
+            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[not(name() = 'instruction' or name() = 'repetitionCount' or name() = 'simplify')] satisfies
             not(name($element) = name($match))
             ))
             else(true())
