@@ -286,4 +286,37 @@
                 <zone>easy</zone>
             </startIntensity></intensity>
     </instruction>
+    
+    <instruction>
+        <length><lengthAsDistance>50</lengthAsDistance></length>
+        <stroke><kicking><standardKick>backstroke</standardKick></kicking></stroke>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>50</lengthAsDistance></length>
+        <stroke><standardStroke>breaststroke</standardStroke></stroke>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
+        <stroke><drill>
+            <drillName>any</drillName>
+            <drillStroke>any</drillStroke>
+        </drill></stroke>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <stroke><kicking><standardKick>breaststroke</standardKick></kicking></stroke>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>butterfly</standardStroke></stroke>
+            </instruction>
+            
+        </repetition>
+    </instruction>
+    
 </program>
