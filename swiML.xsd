@@ -5,6 +5,7 @@
     xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML"
     xmlns="https://github.com/bartneck/swiML">
+
     
 
 
@@ -117,7 +118,17 @@
 
 
             </xs:sequence>
-            
+            <!-- checks every instruction has stroke,rest and length defined 
+            any other element in an instruction doesnt have to be defined
+            for some reason adding this makes it work?-->
+            <xs:assert test="
+                every $inst in .//sw:instruction satisfies(
+                ($inst/ancestor-or-self::*/sw:stroke
+                and $inst/ancestor-or-self::*/sw:length) 
+                or $inst/sw:repetition 
+                or $inst/sw:continue
+                or $inst/sw:pyramid
+                or $inst/sw:segmentName)"/>
         </xs:complexType>
 
     </xs:element>
@@ -237,6 +248,20 @@
             or ./sw:pyramid
             or ./sw:segmentName"/>
         
+        <!-- checks every instruction doesnt have repetitions of elements defined -->
+        <xs:assert test="
+            if(not(./sw:repetition 
+            or ./sw:continue
+            or ./sw:pyramid
+            or ./sw:segmentName))
+            then(
+            every $element in ./* satisfies(
+            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[not(name() = 'instruction' or name() = 'repetitionCount' or name() = 'simplify')] satisfies
+            not(name($element) = name($match))
+            ))
+            else(true())
+            " />
+        
         <!--checks all segment names are only at top level-->
         <xs:assert test="
             if (count(./sw:segmentName) > 0)
@@ -310,6 +335,11 @@
                     <xs:documentation>Short description to modify the instrution.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="excludeAlign" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         
     </xs:group>
@@ -367,8 +397,30 @@
                 </xs:unique>
                 
             </xs:element>
+            <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
-
+        <xs:assert test="
+            ((./sw:simplify = true()) and (every $length in .//sw:length
+            satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
+            <xs:annotation> <xs:documentation>checks all lengths within simplified repetition are the same</xs:documentation> </xs:annotation>
+        </xs:assert>
+        
+        <xs:assert test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"></xs:assert>
+        <!--
+            work in progress:
+            <xs:assert test="
+            if (./*[not(name(.) = 'instruction' or name(.) = 'simplify')])
+            then(
+            every $tag in ./*[not(name(.) = 'instruction' or name(.) = 'simplify')] satisfies
+            count( .//descendant::*[name(.) = name($tag)]) = 1)
+            else(name(.) = 'continue')
+            ">
+            
+        </xs:assert>-->
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->
@@ -409,7 +461,13 @@
                         pyramid swims the stop length twice.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="excludeAlignPyramid" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:group ref="instructionGroup"/>
+            
         </xs:sequence>
     </xs:complexType>
 
@@ -447,35 +505,15 @@
                     <xs:field xpath="."/>
                 </xs:unique>
             </xs:element>
+            <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
-        
-        
-        
-        
-        <xs:assert test="
-                ((./sw:simplify = true()) and (every $length in .//sw:length
-                satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
-            <xs:annotation> <xs:documentation>checks all lengths ithin simplified continue are the same</xs:documentation> </xs:annotation>
-        </xs:assert>
-        <xs:assert test="
-            if (not(./sw:simplify[text() = 'true']))
-            then(count(.//sw:instruction/sw:rest) = 0)
-            else name(.) = 'continue'
-            ">
+        <xs:assert test="(count(.//sw:instruction/sw:rest) = 0)">
             <xs:annotation><xs:documentation>ensures no rest tags occur within the instructions of a continue only at top level</xs:documentation></xs:annotation>
         </xs:assert>
-
-        <!--
-            work in progress:
-            <xs:assert test="
-            if (./*[not(name(.) = 'instruction' or name(.) = 'simplify')])
-            then(
-            every $tag in ./*[not(name(.) = 'instruction' or name(.) = 'simplify')] satisfies
-            count( .//descendant::*[name(.) = name($tag)]) = 1)
-            else(name(.) = 'continue')
-            ">
-            
-        </xs:assert>-->
     </xs:complexType>
 
 
@@ -710,6 +748,7 @@
             <xs:enumeration value="right"/>
             <xs:enumeration value="side"/>
             <xs:enumeration value="vertical"/>
+            <xs:enumeration value="waka"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -767,6 +806,7 @@
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
             <xs:enumeration value="6666"/>
+            <xs:enumeration value="other"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 

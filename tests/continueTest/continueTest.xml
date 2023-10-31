@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"  
     xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
@@ -25,7 +25,7 @@
     
     <!-- valid - simple continue , this should be summarised to 2 times 100-->
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
@@ -35,7 +35,7 @@
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>backstroke</standardStroke></stroke>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
     
     <!-- valid - continue with repetition-->
@@ -118,7 +118,7 @@
     
     <!-- This should be summarised as 8 times 200 -->
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <repetition>
@@ -138,7 +138,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
     
     
@@ -148,6 +148,7 @@
             <repetitionCount>3</repetitionCount>
             <instruction>
                 <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><standardStroke>breaststroke</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
@@ -156,6 +157,7 @@
             <repetitionCount>5</repetitionCount>
             <instruction>
                 <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><standardStroke>breaststroke</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
@@ -163,12 +165,13 @@
     
     <instruction>
         <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>breaststroke</standardStroke></stroke>
     </instruction>
     
     
     <!-- it shows 6 times 600 BR. this is wrong -->
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <repetition>
@@ -179,11 +182,10 @@
                     </instruction>
                 </repetition>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
-    
     <instruction>
-        <continue>
+        <repetition>
             <simplify>true</simplify>
             <instruction>
                 <repetition>
@@ -194,6 +196,6 @@
                     </instruction>
                 </repetition>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
 </program>

@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="https://github.com/bartneck/swiML">
+    xmlns:sw="https://github.com/bartneck/swiML">>
 
     <!-- global variables for space calculation -->
     <xsl:variable name="instLengths" as="element()*">
@@ -12,23 +12,29 @@
                 //sw:length/sw:lengthAsLaps">
                 <xsl:for-each select="//sw:length/sw:lengthAsDistance">
                     <Item>
-                        <Item><xsl:value-of select="myData:depth(.)"/></Item>
-                        <Item><xsl:value-of select="string-length(.)"/></Item>
+                        <Length><xsl:value-of select="string-length(.)"/></Length>
+                        <Section><xsl:value-of select="myData:section(.)"/></Section>
+                        <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                        <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
                 </xsl:for-each>
                 <xsl:if test="//sw:length/sw:lengthAsLaps">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps">
                         <Item>
-                            <Item><xsl:value-of select="myData:depth(.)"/></Item>
-                            <Item><xsl:value-of select="string-length(.)"/></Item>
+                            <Length><xsl:value-of select="string-length(.)"/></Length>
+                            <Section><xsl:value-of select="myData:section(.)"/></Section>
+                            <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                            <Location><xsl:value-of select="myData:location(.)"/></Location>
                         </Item>
                     </xsl:for-each>
                 </xsl:if>
                 <xsl:if test="//sw:length/sw:lengthAsTime">
                     <xsl:for-each select="//sw:length/sw:lengthAsTime">
                         <Item>
-                            <Item><xsl:value-of select="myData:depth(.)"/></Item>
-                            <Item><xsl:value-of select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))" /></Item>
+                            <Length><xsl:value-of select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))" /></Length>
+                            <Section><xsl:value-of select="myData:section(.)"/></Section>
+                            <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                            <Location><xsl:value-of select="myData:location(.)"/></Location>
                         </Item>
                     </xsl:for-each>
                 </xsl:if>
@@ -36,11 +42,34 @@
             <xsl:otherwise>0</xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
-
+    
+    <xsl:template name="instNodes">
+        <xsl:param name="nodes"/>
+        <xsl:param name="element"></xsl:param>
+        <xsl:if test="$element">
+            <xsl:for-each select="$element[./*[1] > max($element/*[1])-9 ]">
+                <Item>
+                    <Location><xsl:value-of select="./*[4]"/></Location>
+                    <Length><xsl:value-of select="max($element/*[1])"/></Length>
+                </Item>
+            </xsl:for-each>
+            
+            <xsl:call-template name="instNodes">
+                <xsl:with-param name="nodes" select="$nodes"/>
+                <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:variable name="maxInstLengths" as="element()*">
-        <xsl:for-each-group select="$instLengths" group-by="./*[1]">
-            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
-            <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
+        <xsl:for-each-group select="$instLengths" group-by="./*[2]">
+            <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+            <xsl:for-each-group select="$instLengths" group-by="./*[3][../Section = current-grouping-key()]">
+                <xsl:call-template name="instNodes">
+                    <xsl:with-param name="nodes" select="."/>
+                    <xsl:with-param name="element" select="current-group()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>          
         </xsl:for-each-group>
     </xsl:variable>
     
@@ -49,22 +78,22 @@
             <xsl:when test="//sw:continue">
                 <xsl:for-each select="//sw:continue[not(./sw:simplify[text()='true'])]">
                     <xsl:variable name="contInstLength">
-
                         <xsl:call-template name="sumItems">
                             <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction')]"/>
                         </xsl:call-template>
                     </xsl:variable>
                     <Item>
-                        <Item><xsl:value-of select="myData:depth(.)"/></Item>
                         <xsl:choose>
                             <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1 and count(./sw:instruction) = 1">
-                                <Item><xsl:value-of select="string-length(string(myData:showLength(.)))+6+string-length(../../sw:repetitionCount)+$contInstLength+count(./*[not(name(.) = 'instruction')])"/> </Item>
+                                <Length><xsl:value-of select="string-length(string(myData:showLength(.)))+6+string-length(../../sw:repetitionCount)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' )])"/> </Length>
                             </xsl:when>
                             <xsl:otherwise>
-                                <Item><xsl:value-of select="string-length(string(myData:showLength(.)))+3+$contInstLength+count(./*[not(name(.) = 'instruction')])"/> </Item>
+                                <Length><xsl:value-of select="string-length(string(myData:showLength(.)))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' )])"/> </Length>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <Item><xsl:value-of select="$contInstLength"/></Item>
+                        <Section><xsl:value-of select="myData:section(.)"/></Section>
+                        <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                        <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
                 </xsl:for-each>
             </xsl:when>           
@@ -72,10 +101,32 @@
         </xsl:choose>
     </xsl:variable>
     
+    <xsl:template name="contNodes">
+        <xsl:param name="nodes"/>
+        <xsl:param name="element"></xsl:param>
+        <xsl:if test="$element">
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+                <Item>
+                    <Location><xsl:value-of select="./*[4]"/></Location>
+                    <Length><xsl:value-of select="max($element/*[1])"/></Length>
+                </Item>
+            </xsl:for-each>
+            <xsl:call-template name="contNodes">
+                <xsl:with-param name="nodes" select="$nodes"/>
+                <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:variable name="maxContLengths" as="element()*">
-        <xsl:for-each-group select="$contLengths" group-by="./*[1]">
-            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
-            <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
+        <xsl:for-each-group select="$contLengths" group-by="./*[2]">
+            <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+            <xsl:for-each-group select="$contLengths" group-by="./*[3][../Section = current-grouping-key()]">
+                <xsl:call-template name="contNodes">
+                    <xsl:with-param name="nodes" select="."/>
+                    <xsl:with-param name="element" select="current-group()"/>
+                </xsl:call-template>                
+            </xsl:for-each-group>           
         </xsl:for-each-group>
     </xsl:variable>
     
@@ -89,9 +140,10 @@
                         </xsl:call-template>
                     </xsl:variable>
                     <Item>
-                        <Item><xsl:value-of select="myData:depth(.)"/></Item>
-                        <Item><xsl:value-of select="string-length(concat(string(myData:simpLength(.)),string((.//sw:length)[1])))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify')])"/></Item>
-                        <Item><xsl:value-of select="$simpInstLength"/></Item>
+                        <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
+                        <Section><xsl:value-of select="myData:section(.)"/></Section>
+                        <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                        <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
                 </xsl:for-each>
             </xsl:when>
@@ -101,10 +153,32 @@
         </xsl:choose>
     </xsl:variable>
     
+    <xsl:template name="simpNodes">
+        <xsl:param name="nodes"/>
+        <xsl:param name="element"></xsl:param>
+        <xsl:if test="$element">
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+                <Item>
+                    <Location><xsl:value-of select="./*[4]"/></Location>
+                    <Length><xsl:value-of select="max($element/*[1])"/></Length>
+                </Item>
+            </xsl:for-each>
+            <xsl:call-template name="simpNodes">
+                <xsl:with-param name="nodes" select="$nodes"/>
+                <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:variable name="maxSimpLengths" as="element()*">
-        <xsl:for-each-group select="$simpLengths" group-by="./*[1]">
-            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
-            <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
+        <xsl:for-each-group select="$simpLengths" group-by="./*[2]">
+            <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+            <xsl:for-each-group select="$simpLengths" group-by="./*[3][../Section = current-grouping-key()]">
+                <xsl:call-template name="simpNodes">
+                    <xsl:with-param name="nodes" select="."/>
+                    <xsl:with-param name="element" select="current-group()"/>
+                </xsl:call-template>  
+            </xsl:for-each-group>          
         </xsl:for-each-group>
     </xsl:variable>
     
@@ -114,20 +188,21 @@
                 <xsl:for-each select="//sw:repetition[not(./sw:simplify[text()='true'])]">
                     <xsl:variable name="repInstLength">
                         <xsl:call-template name="sumItems">
-                            <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'simplify')]"/>
+                            <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'simplify') or name(.) = 'repetitionCount']"/>
                         </xsl:call-template>
                     </xsl:variable>
                     <Item>
-                        <Item><xsl:value-of select="myData:depth(.)"/></Item>
                         <xsl:choose>
                             <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1 and count(./sw:instruction) = 1">
-                                <Item><xsl:value-of select="string-length(string(./sw:repetitionCount))+6+string-length(../../sw:repetitionCount)+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify')])"/> </Item>
+                                <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+6+string-length(../../sw:repetitionCount)+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
                             </xsl:when>
                             <xsl:otherwise>
-                                <Item><xsl:value-of select="string-length(string(./sw:repetitionCount))+1+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify')])"/> </Item>
+                                <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <Item><xsl:value-of select="$repInstLength"/></Item>
+                        <Section><xsl:value-of select="myData:section(.)"/></Section>
+                        <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                        <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
                 </xsl:for-each>                
             </xsl:when>
@@ -135,13 +210,55 @@
         </xsl:choose>
     </xsl:variable>
     
+    <xsl:template name="repNodes">
+        <xsl:param name="nodes"/>
+        <xsl:param name="element"></xsl:param>
+        <xsl:if test="$element">
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+                <Item>
+                    <Location><xsl:value-of select="./*[4]"/></Location>
+                    <Length><xsl:value-of select="max($element/*[1])"/></Length>
+                </Item>
+            </xsl:for-each>
+            <xsl:call-template name="repNodes">
+                <xsl:with-param name="nodes" select="$nodes"/>
+                <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:variable name="maxRepLengths" as="element()*">
-        <xsl:for-each-group select="$repLengths" group-by="./*[1]">
-            <xsl:sort select='./*[1]' order="ascending" data-type="number" />
-            <Item><xsl:value-of select="max(current-group()/*[2])"/></Item>            
+        <xsl:for-each-group select="$repLengths" group-by="./*[2]">
+            <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+            <xsl:for-each-group select="$repLengths" group-by="./*[3][../Section = current-grouping-key()]">
+                <xsl:call-template name="repNodes">
+                    <xsl:with-param name="nodes" select="."/>
+                    <xsl:with-param name="element" select="current-group()"/>
+                </xsl:call-template>  
+            </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
     
+    <xsl:template name="sumExtras">
+        <xsl:param name="nodes"/>
+        <xsl:param name="tempSum" select="0" />
+        <xsl:choose>
+            <xsl:when test="not($nodes)">
+                <xsl:value-of select="$tempSum" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="product">
+                    <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodes[1])])"/>
+                </xsl:variable>
+                <xsl:call-template name="sumExtras">
+                    <xsl:with-param name="nodes" select="$nodes[position() > 1]" />
+                    <xsl:with-param name="tempSum" select="$tempSum + $product" />
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        
+    </xsl:template>
     
     <xsl:template name="sumItems">
         <xsl:param name="nodeSet" />
@@ -171,10 +288,18 @@
                             </xsl:choose>
                         </xsl:when>
                         <xsl:when test="name($nodeSet[1]) = 'intensity'">
+                            <!-- todo -->
                             <xsl:value-of select="1"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/text())])"/>
+                            <xsl:choose>
+                                <xsl:when test="name($nodeSet[1]) != 'length'">
+                                    <xsl:call-template name="sumExtras">
+                                        <xsl:with-param name="nodes" select="$nodeSet[1]//text()" />
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise><xsl:value-of select="string-length(translate(normalize-space(string($nodeSet[1])), ' ', ''))"/></xsl:otherwise>
+                            </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
                     
@@ -264,7 +389,7 @@
                                 </li>
                                 <li>
                                     <span style="font-weight: 600">Length:</span>
-                                    <xsl:call-template name="showLength"/>
+                                    <xsl:value-of select="myData:showLength(sw:program)"/>
                                 </li>
                             </ul>
                         </div>
@@ -366,19 +491,27 @@
 
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
-        <xsl:variable name="depth">
-            <xsl:value-of select="myData:depth(.)"/>
+        <xsl:variable name="location">
+            <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <div class="repetition">
             <xsl:choose>
                 <xsl:when test="./sw:simplify[text() = 'true']">
                     <div class="repetitionCount">
-                        <xsl:attribute name="style">
-                            <xsl:text>min-width:</xsl:text>
-                            <xsl:value-of select="$maxSimpLengths[number($depth)]"/>
-                            <xsl:text>ch; text-align:center</xsl:text>
-                        </xsl:attribute>
-                        
+                        <xsl:choose>
+                            <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
+                                <xsl:attribute name="style">
+                                    <xsl:text>text-align:center;</xsl:text>
+                                </xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="style">
+                                    <xsl:text>min-width:</xsl:text>
+                                    <xsl:value-of select="$maxSimpLengths[./*[../Location = $location]]/Length"/>
+                                    <xsl:text>ch; text-align:center</xsl:text>
+                                </xsl:attribute>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         
                         <div>
                             <xsl:attribute name="style">
@@ -418,13 +551,21 @@
                     <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
                         <div class="repetitionCount">
                             <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">
+                                <xsl:choose>
+                                    <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
+                                        <xsl:attribute name="style">
+                                            <xsl:text>text-align:center;</xsl:text>
+                                        </xsl:attribute>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:attribute name="style">
+                                            <xsl:text>min-width:</xsl:text>
+                                            <xsl:value-of select="$maxRepLengths[./*[../Location = $location]]/Length"/>
+                                            <xsl:text>ch;</xsl:text>
+                                        </xsl:attribute>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                                 
-                                <xsl:attribute name="style">
-                                    <xsl:text>min-width:</xsl:text>
-                                    
-                                    <xsl:value-of select="$maxRepLengths[number($depth)]"/>
-                                    <xsl:text>ch;</xsl:text>
-                                </xsl:attribute>
                             </xsl:if>
                             
                             <div>
@@ -472,19 +613,25 @@
     
     <!--Continuation Template -->
     <xsl:template match="sw:continue">
-        <xsl:variable name="depth">
-            <xsl:value-of select="myData:depth(.)"/>
+        <xsl:variable name="location">
+            <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <div class="continue">
             <div class="continueLength">
-                    
-                <xsl:attribute name="style">
-                    <xsl:text>min-width:</xsl:text>
-                    <xsl:value-of select="$maxContLengths[number($depth)]"/>
-                    
-                    <xsl:text>ch; text-align:center</xsl:text>
-                </xsl:attribute>
-
+                <xsl:choose>
+                    <xsl:when test="./sw:excludeAlignContinue[text() = 'true']">
+                        <xsl:attribute name="style">
+                            <xsl:text>text-align:center;</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="style">
+                            <xsl:text>min-width:</xsl:text>
+                            <xsl:value-of select="$maxContLengths[./*[../Location = $location]]/Length"/>
+                            <xsl:text>ch; text-align:center</xsl:text>
+                        </xsl:attribute>
+                    </xsl:otherwise>
+                </xsl:choose>   
                 <span>                
                     <xsl:attribute name="style">
                         <xsl:text>margin-left: auto; font-weight:900</xsl:text>
@@ -523,7 +670,7 @@
             </xsl:choose>
             
         </xsl:if>
-        <xsl:if test="((name(ancestor::*[name() = 'repetition' or name() = 'continue'][1]) = 'repetition') or (../../sw:repetition and count(..//sw:instruction) > 1)) and ancestor::sw:repetition/sw:simplify[text()='true']">
+        <xsl:if test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
             <span>                
                 <xsl:attribute name="style">
                     <xsl:text>text-align:right;font-weight:900</xsl:text>
@@ -555,15 +702,16 @@
     
     <!-- Length Templates -->
     <xsl:template match="sw:lengthAsDistance">
-        <xsl:variable name="depth">
-            <xsl:value-of select="myData:depth(.)"/>
+        <xsl:variable name="location">
+            <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
             <xsl:choose>
-                <xsl:when test="not(../../../sw:repetition)">
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+                    
                     <xsl:attribute name="style">
-                        <xsl:text>width:</xsl:text>
-                        <xsl:value-of select="$maxInstLengths[number($depth)]"/>
+                        <xsl:text>min-width:</xsl:text>
+                        <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
                         <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
@@ -584,15 +732,15 @@
     </xsl:template>
     
     <xsl:template match="sw:lengthAsLaps">
-        <xsl:variable name="depth">
-            <xsl:value-of select="myData:depth(.)"/>
+        <xsl:variable name="location">
+            <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
             <xsl:choose>
-                <xsl:when test="not(../../../../sw:repetition)">
+                <xsl:when test="not(../../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
                     <xsl:attribute name="style">
-                        <xsl:text>width:</xsl:text>
-                        <xsl:value-of select="$maxInstLengths[number($depth)]"/>
+                        <xsl:text>min-width:</xsl:text>
+                        <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
                         <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
@@ -602,7 +750,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:value-of select="../sw:lengthAsLaps"/>
+            <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsLaps]"/>
         </span>
         <xsl:if test="not(//sw:lengthUnit = 'laps')">
             <xsl:text>&#160;</xsl:text>
@@ -614,15 +762,16 @@
     </xsl:template>
     
     <xsl:template match="sw:lengthAsTime">
-        <xsl:variable name="depth">
-            <xsl:value-of select="myData:depth(.)"/>
+        <!-- not setup for inheritance -->
+        <xsl:variable name="location">
+            <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
             <xsl:choose>
-                <xsl:when test="not(../../../../sw:repetition)">
+                <xsl:when test="not(../../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
                     <xsl:attribute name="style">
-                        <xsl:text>width:</xsl:text>
-                        <xsl:value-of select="$maxInstLengths[number($depth)]"/>
+                        <xsl:text>min-width:</xsl:text>
+                        <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
                         <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
@@ -632,9 +781,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:value-of separator=":"
-                select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"
-            />
+            <xsl:value-of separator=":" select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"/>
         </span>
         
     </xsl:template>
@@ -645,13 +792,7 @@
 
     <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
     <xsl:template name="showLength">
-
-        <xsl:value-of select="
-            myData:showLength(.) 
-            
-            
-            "/>
-        
+        <xsl:value-of select="myData:showLength(.)"/>
     </xsl:template>
     
     <xsl:template name="simplifyLength">
@@ -891,6 +1032,7 @@
         <term index="snorkle">Snorkle</term>
         <term index="chute">Chute</term>
         <term index="stretchCord">Stretch Cord</term>
+        <term index="other">?</term>
         <term index="breath">b</term>
         <term index="laps">laps</term>
         <term index="meters">m</term>
@@ -911,8 +1053,8 @@
                     $numbers[1] * myData:product($numbers[position() gt 1])"/>
     </xsl:function>
     
-    <xsl:function name="myData:depth">
-        <xsl:param name="node" as="node()"></xsl:param>
+    <xsl:function name="myData:breadth">
+        <xsl:param name="node" as="node()"/>
         <xsl:choose>
             <xsl:when test="name($node/../..) = 'instruction'">
                 <xsl:value-of select="(count($node/ancestor::*)-1) div 2"/>
@@ -922,10 +1064,49 @@
             </xsl:otherwise>
         </xsl:choose>
         
-        
-            
-        
-        
+    </xsl:function>
+    
+    <xsl:function name="myData:parents">
+        <xsl:param name="node" as="node()"/>
+        <xsl:value-of select="
+            string-join(
+            for $parent in $node/ancestor-or-self::sw:instruction return
+            if ($parent/sw:continue)
+            then 
+            (1)
+            else
+            if ($parent/sw:repetition)
+            then
+            (2)
+            else
+            if($parent/sw:pyramid)
+            then
+            (3)
+            else
+            if ($parent/sw:segmentName)
+            then
+            (4)
+            else(0),'')
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="myData:location">
+        <xsl:param name="node" as="node()"/>
+        <xsl:value-of select="
+            string-join(
+            for $parent in $node/ancestor-or-self::sw:instruction return
+            myData:depth($parent),'')
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="myData:section">
+        <xsl:param name="node" as="node()"/>
+        <xsl:value-of select="count($node/ancestor-or-self::sw:instruction[last()]/preceding-sibling::sw:instruction/sw:segmentName)"/>
+    </xsl:function>
+    
+    <xsl:function name="myData:depth">
+        <xsl:param name="node" as="node()" />
+        <xsl:value-of select="count($node/ancestor-or-self::sw:instruction[1]/preceding-sibling::sw:instruction)"/>
     </xsl:function>
     
     
@@ -940,7 +1121,7 @@
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
-            * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            * myData:product($l/ancestor::sw:repetition[ancestor::sw:repetition/sw:simplify[text() = 'true']]/sw:repetitionCount)
             )div($root/descendant-or-self::sw:lengthAsDistance[1])) else (0))
             +
             (if
@@ -950,7 +1131,7 @@
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
-            * myData:product($l/ancestor::sw:repetition[ancestor::sw:continue]/sw:repetitionCount)
+            * myData:product($l/ancestor::sw:repetition[ancestor::sw:repetition/sw:simplify[text() = 'true']]/sw:repetitionCount)
             )div($root/descendant-or-self::sw:lengthAsLaps[1]))) 
             else (0))"/>
     </xsl:function>
@@ -959,44 +1140,50 @@
         <xsl:param name="root" as="node()"/>
 
         <xsl:sequence select="sum(
-            for $depth in count($root/ancestor-or-self::*)
+            for $breadth in count($root/ancestor-or-self::*)
             return 
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
+            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
+            then(
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]) = 0)
             then
             (1)
             else
             (if 
             (name($root) = 'continue') 
             then 
-            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]/sw:repetitionCount))
+            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]/sw:repetitionCount))
             else
-            ($l/ancestor::sw:repetition/sw:repetitionCount)))
+            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount))))
+            else(0)
             )
             +
             sum(
-            for $depth in count($root/ancestor-or-self::*)
+            for $breadth in count($root/ancestor-or-self::*)
             return 
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
+            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps)
+            then(
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) > $depth]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]) = 0)
             then
             (1)
             else
             if 
             (name($root) = 'continue')  
             then 
-            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) > $depth]/sw:repetitionCount)
+            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]/sw:repetitionCount)
             else
-            ($l/ancestor::sw:repetition/sw:repetitionCount))
-            ) * $root/ancestor::sw:program//sw:poolLength  
+            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount)))
+            else (0)
+            ) * $root/ancestor-or-self::sw:program//sw:poolLength  
             "/>
     </xsl:function>
     
