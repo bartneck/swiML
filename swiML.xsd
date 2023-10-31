@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
-    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
-    xmlns="file:/C:/My%20Documents/GitHub/swiML">
+    vc:minVersion="1.1"
+    xmlns:sw="https://github.com/bartneck/swiML"
+    targetNamespace="https://github.com/bartneck/swiML"
+    xmlns="https://github.com/bartneck/swiML">
 
     
 
@@ -334,6 +335,11 @@
                     <xs:documentation>Short description to modify the instrution.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="excludeAlign" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         
     </xs:group>
@@ -391,6 +397,11 @@
                 </xs:unique>
                 
             </xs:element>
+            <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
         <xs:assert test="
             ((./sw:simplify = true()) and (every $length in .//sw:length
@@ -398,7 +409,7 @@
             <xs:annotation> <xs:documentation>checks all lengths within simplified repetition are the same</xs:documentation> </xs:annotation>
         </xs:assert>
         
-        
+        <xs:assert test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"></xs:assert>
         <!--
             work in progress:
             <xs:assert test="
@@ -450,7 +461,13 @@
                         pyramid swims the stop length twice.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="excludeAlignPyramid" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:group ref="instructionGroup"/>
+            
         </xs:sequence>
     </xs:complexType>
 
@@ -487,6 +504,11 @@
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
+            </xs:element>
+            <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                </xs:annotation>
             </xs:element>
         </xs:sequence>
         <xs:assert test="(count(.//sw:instruction/sw:rest) = 0)">

@@ -62,6 +62,7 @@
                 <lengthAsDistance>100</lengthAsDistance>
             </length>
             <rest><afterStop>PT10S</afterStop></rest>
+            
             <instruction>
                 <stroke>
                     <standardStroke>backstroke</standardStroke>
