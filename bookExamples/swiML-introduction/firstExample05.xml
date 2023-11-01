@@ -1,0 +1,13 @@
+<instruction>
+    <length>
+        <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+        <standardStroke>freestyle</standardStroke>
+    </stroke>
+    <intensity>
+        <startIntensity>
+            <zone>easy</zone>
+        </startIntensity>
+    </intensity>
+</instruction>
