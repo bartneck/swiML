@@ -13,17 +13,12 @@
     <lengthUnit>meters</lengthUnit>
     <hideIntro>true</hideIntro>
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
-        <rest><sinceStart>PT1M45S</sinceStart></rest>
-        <intensity><dynamicAcross>false</dynamicAcross>
-            <startIntensity>
-                <zone>easy</zone>
-            </startIntensity>
-            <stopIntensity>
-                <zone>max</zone>
-            </stopIntensity>
-        </intensity>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
     </instruction>
-    
 </program>

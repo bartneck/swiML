@@ -1,0 +1,13 @@
+<instruction>
+    <repetition>
+        <repetitionCount>4</repetitionCount>
+        <instruction>
+            <length>
+                <lengthAsDistance>100</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+        </instruction>
+    </repetition>
+</instruction>

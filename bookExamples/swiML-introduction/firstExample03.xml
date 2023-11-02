@@ -2,10 +2,18 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program in the sun. The target duration was 60 minutes.</programDescription>
+    <creationDate>2023-02-07</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
     <instruction>
-        <lengthAsDistance>100</lengthAsDistance>
+        <length><lengthAsDistance>100</lengthAsDistance></length>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
 </program>

@@ -1,0 +1,34 @@
+<instruction>
+    <repetition>
+        <repetitionCount>4</repetitionCount>
+        <instruction>
+            <length>
+                <lengthAsDistance>100</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+        </instruction>
+        <instruction>
+            <repetition>
+                <repetitionCount>2</repetitionCount>
+                <instruction>
+                    <length>
+                        <lengthAsDistance>50</lengthAsDistance>
+                    </length>
+                    <stroke>
+                        <standardStroke>backstroke</standardStroke>
+                    </stroke>
+                </instruction>
+                <instruction>
+                    <length>
+                        <lengthAsDistance>50</lengthAsDistance>
+                    </length>
+                    <stroke>
+                        <standardStroke>breaststroke</standardStroke>
+                    </stroke>
+                </instruction>
+            </repetition>
+        </instruction>
+    </repetition>
+</instruction>

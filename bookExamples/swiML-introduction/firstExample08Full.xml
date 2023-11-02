@@ -16,18 +16,18 @@
         <repetition>
             <repetitionCount>4</repetitionCount>
             <instruction>
-                <lengthAsDistance>100</lengthAsDistance>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
             <instruction>
                 <repetition>
                     <repetitionCount>2</repetitionCount>
                     <instruction>
-                        <lengthAsDistance>50</lengthAsDistance>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <lengthAsDistance>50</lengthAsDistance>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke><standardStroke>breaststroke</standardStroke></stroke>
                     </instruction>
                 </repetition>
