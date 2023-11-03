@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
-    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
-    xmlns="file:/C:/My%20Documents/GitHub/swiML">
+    vc:minVersion="1.1"
+    xmlns:sw="https://github.com/bartneck/swiML"
+    targetNamespace="https://github.com/bartneck/swiML"
+    xmlns="https://github.com/bartneck/swiML">
 
     
 
@@ -247,7 +248,7 @@
             or ./sw:pyramid
             or ./sw:segmentName"/>
         
-        <!-- checks every instruction doesnt have repetitions of elements defined -->
+        <!-- checks every instruction doesnt have repetitions of elements defined and cannot be extended -->
         <xs:assert test="
             if(not(./sw:repetition 
             or ./sw:continue
@@ -255,11 +256,24 @@
             or ./sw:segmentName))
             then(
             every $element in ./* satisfies(
-            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[not(name() = 'instruction' or name() = 'repetitionCount' or name() = 'simplify')] satisfies
+            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'length' or name() = 'stroke' or name() = 'rest' or name() = 'intensity' or name() = 'breath' or name() = 'underwater'] satisfies
             not(name($element) = name($match))
             ))
             else(true())
             " />
+        
+        <xs:assert test="
+            if(not(./sw:repetition 
+            or ./sw:continue
+            or ./sw:pyramid
+            or ./sw:segmentName))
+            then(
+            every $element in ./* satisfies(
+            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'equipment'] satisfies
+            not($element = $match)
+            ))
+            else(true())
+            "/>
         
         <!--checks all segment names are only at top level-->
         <xs:assert test="
@@ -409,17 +423,7 @@
         </xs:assert>
         
         <xs:assert test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"></xs:assert>
-        <!--
-            work in progress:
-            <xs:assert test="
-            if (./*[not(name(.) = 'instruction' or name(.) = 'simplify')])
-            then(
-            every $tag in ./*[not(name(.) = 'instruction' or name(.) = 'simplify')] satisfies
-            count( .//descendant::*[name(.) = name($tag)]) = 1)
-            else(name(.) = 'continue')
-            ">
-            
-        </xs:assert>-->
+
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->

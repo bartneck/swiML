@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
+    xmlns:sw="https://github.com/bartneck/swiML">
 
     <!-- global variables for space calculation -->
     <xsl:variable name="instLengths" as="element()*">
@@ -192,14 +192,7 @@
                         </xsl:call-template>
                     </xsl:variable>
                     <Item>
-                        <xsl:choose>
-                            <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1 and count(./sw:instruction) = 1">
-                                <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+6+string-length(../../sw:repetitionCount)+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -315,7 +308,7 @@
                                         <xsl:with-param name="nodes" select="$nodeSet[1]//text()" />
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:otherwise><xsl:value-of select="string-length(translate(normalize-space(string($nodeSet[1])), ' ', ''))"/></xsl:otherwise>
+                                <xsl:otherwise>0</xsl:otherwise>
                             </xsl:choose>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -345,7 +338,7 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
-                <link href="\\file\Usersc$\clo85\Home\My Documents\GitHub\swiML\swiML.css" rel="stylesheet" type="text/css"/>
+                <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
@@ -535,6 +528,7 @@
                                 <xsl:text>margin-left: auto; </xsl:text>
                             </xsl:attribute>
                             <xsl:call-template name="simplifyLength"/>
+                            
                             <xsl:text>&#160;&#215;&#160;</xsl:text>
                         </div>
                         <xsl:if test="not(./sw:length)">
@@ -681,7 +675,10 @@
                     
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
+                    <xsl:if test="not(../sw:repetition)">
+                        <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
+                    </xsl:if>
+                    
                     
                 </xsl:otherwise>
             </xsl:choose>
