@@ -6,7 +6,7 @@ body {
     font-weight: 400;
     font-style: normal;
     counter-reset: line;
-    /* 
+    /* Not sure why we need this (cb)
 	width: 7in;
     height: 9.25in;
     margin: 27mm 16mm 27mm 16mm;
@@ -189,35 +189,16 @@ p.describtion {
     }
 
     .program {
-        padding: 1ch;
-        border: solid;
-        border-width: thin;
         width: 105.6mm;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
     }
 
 
     .intro {
-        padding: 1ch;
         width: 105.6mm;
-        margin: 0px auto;
     }
 
     .bottom {
         width: 11cm;
-        margin: auto;
-        margin-top: 0.2ch;
     }
-
-
-    /* 
-	.instruction {
-	display: flex;
-	flex-direction: row;
-	color:red;
-}
-*/
 
 }

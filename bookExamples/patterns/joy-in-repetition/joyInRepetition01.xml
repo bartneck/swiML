@@ -11,7 +11,7 @@
     <creationDate>2023-11-03</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <instruction>
         <repetition>
             <repetitionCount>12</repetitionCount>
