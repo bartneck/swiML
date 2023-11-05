@@ -6,9 +6,11 @@ body {
 	font-weight: 400;
 	font-style: normal;
 	counter-reset: line;
+	/* 
 	width: 7in;
     height: 9.25in;
     margin: 27mm 16mm 27mm 16mm;
+     */
 }
 
 ul {
@@ -51,7 +53,7 @@ p.describtion {
 	padding: 1ch;
 	border: solid;
 	border-width: thin;
-	width: 48ch;
+	width: 105.6mm;
 	margin: auto;
 	display:flex;
 	flex-direction:column;
@@ -185,8 +187,19 @@ p.describtion {
 	}
 	
 	body {
-	    font-size: 9pt;
+	    font-size: 3.67mm;
 	}
+	
+	.program {
+	padding: 1ch;
+	border: solid;
+	border-width: thin;
+	width: 11cm;
+	margin: auto;
+	display:flex;
+	flex-direction:column;
+}
+
 	/* 
 	.instruction {
 	display: flex;
