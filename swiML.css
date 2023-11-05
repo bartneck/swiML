@@ -60,7 +60,9 @@ p.describtion {
 }
 
 .bottom {
-    width: 50ch;
+    /* 
+    width: 50ch;\
+     */
     margin: auto;
 	margin-top: 0.2ch;
 }
