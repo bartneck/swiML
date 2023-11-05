@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
 body {
-	font-family: 'JetBrains Mono', monospace;
-	font-size: 3.67mm;
-	font-weight: 400;
-	font-style: normal;
-	counter-reset: line;
-	/* 
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3.67mm;
+    font-weight: 400;
+    font-style: normal;
+    counter-reset: line;
+    /* 
 	width: 7in;
     height: 9.25in;
     margin: 27mm 16mm 27mm 16mm;
@@ -14,110 +14,109 @@ body {
 }
 
 ul {
-	line-height: 110%;
-	list-style-type: "~>";
+    line-height: 110%;
+    list-style-type: "~>";
 }
 
 li {
-	font-size: 90%;
-	margin: 0.3em;
+    font-size: 90%;
+    margin: 0.3em;
 }
 
 h1 {
-	text-transform: capitalize;
-	text-align: center;
+    text-transform: capitalize;
+    text-align: center;
 }
 
 p.authorName {
-	text-align: center;
-	font-weight: 600;
+    text-align: center;
+    font-weight: 600;
 }
 
 p.authorEmail {
-	text-align: center;
-	line-height: 80%;
-	margin-top: -1em;
+    text-align: center;
+    line-height: 80%;
+    margin-top: -1em;
 }
 p.describtion {
-	line-height: 120%;
-	margin-bottom: 2em;
+    line-height: 120%;
+    margin-bottom: 2em;
 }
 .intro {
     padding: 1ch;
-	width: 48ch;
-	margin: 0px auto;
-	
+    width: 50ch;
+    margin: 0px auto;
+
 }
 
 .program {
-	padding: 1ch;
-	border: solid;
-	border-width: thin;
-	width: 105.6mm;
-	margin: auto;
-	display:flex;
-	flex-direction:column;
+    padding: 1ch;
+    border: solid;
+    border-width: thin;
+    width: 48ch;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .bottom {
-    width: 11cm;
+    width: 50ch;
     margin: auto;
-	margin-top: 0.2ch;
+    margin-top: 0.2ch;
 }
 
 .footnote {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 70%;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 70%;
 }
 
 .logo {
-	display: inline-block;
-	vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.logoSvg{
+.logoSvg {
     width: 3.5em;
 }
 
 .lengthAsDistance {
-    display:inline-block;
+    display: inline-block;
     font-weight: 900;
-    text-align:right;
+    text-align: right;
     background-color: red;
 }
 
 .instruction {
-    max-width:48ch;
-	display: flex;
-	flex-direction: row;
-	margin: 0.2em 0em;
-	vertical-align: middle;
+    max-width: 48ch;
+    display: flex;
+    flex-direction: row;
+    margin: 0.2em 0em;
+    vertical-align: middle;
 }
 
 .instruction::after {
-	display: inline-block;
-	counter-increment: line;
-	content: counter(line);
-	width: 1em;
-	margin-left: auto;
-	text-align: right;
-	font-weight: 100;
-	color: grey;
+    display: inline-block;
+    counter-increment: line;
+    content: counter(line);
+    width: 1em;
+    margin-left: auto;
+    text-align: right;
+    font-weight: 100;
+    color: grey;
 }
 .continueLength {
     display: flex;
     align-items: center;
-    
 }
 
 
 .repetition {
-    max-width:48ch;
-	display: flex;
+    max-width: 48ch;
+    display: flex;
 }
 .continue {
-    max-width:48ch;
+    max-width: 48ch;
     display: flex;
 }
 .repetitionCount {
@@ -126,86 +125,99 @@ p.describtion {
 }
 
 .repetitionSymbol {
-
-	margin: 0.6ch;
-	width: 0.8ch;
-	border-top: 0.13em solid #000000;
-	border-bottom: 0.13em solid #000000;
-	border-left: 0.13em solid #000000;
-	border-top-left-radius: 0.5em;
-	border-bottom-left-radius: 0.5em;
+    margin: 0.6ch;
+    width: 0.8ch;
+    border-top: 0.13em solid #000000;
+    border-bottom: 0.13em solid #000000;
+    border-left: 0.13em solid #000000;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
 }
 .continueSymbol {
-	margin: 0.6ch;
-	border-left: 0.13em solid #000000;
+    margin: 0.6ch;
+    border-left: 0.13em solid #000000;
 }
 .blankRepSymbol {
-	margin: 0.6ch;
-	display: flex;
-	align-items: center;
-	width: 1ch;
+    margin: 0.6ch;
+    display: flex;
+    align-items: center;
+    width: 1ch;
 }
 .repetitionContent {
-    width:100%;
+    width: 100%;
 }
 
 .continueContent {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .firstSegmentName {
-	display: block;
-	text-align: center;
-	border-bottom: solid 1px black;
-	font-weight: 600;
-	max-width:48ch;
-	margin: 0.2em;
+    display: block;
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-weight: 600;
+    max-width: 48ch;
+    margin: 0.2em;
 }
 
 .segmentName {
-    max-width:48ch;
-	display: block;
-	text-align: center;
-	border-bottom: solid 1px black;
-	font-weight: 600;
-	margin: 0.2em;
+    max-width: 48ch;
+    display: block;
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-weight: 600;
+    margin: 0.2em;
 }
 
 
 .pyramid {
-	display: flex;
-	flex-direction: column;
-	font-size: 120%;
+    display: flex;
+    flex-direction: column;
+    font-size: 120%;
 }
 
 
 @media print {
-	@page {
-		size: A4;
-		margin: 0cm;
-	}
-	
-	body {
-	    font-size: 3.67mm;
-	}
-	
-	.program {
-	padding: 1ch;
-	border: solid;
-	border-width: thin;
-	width: 105.6mm;
-	margin: auto;
-	display:flex;
-	flex-direction:column;
-}
+    @page {
+        size: A4;
+        margin: 0cm;
+    }
 
-	/* 
+    body {
+        font-size: 3.67mm;
+    }
+
+    .program {
+        padding: 1ch;
+        border: solid;
+        border-width: thin;
+        width: 105.6mm;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .intro {
+        padding: 1ch;
+        width: 105.6mm;
+        margin: 0px auto;
+    }
+
+    .bottom {
+        width: 11cm;
+        margin: auto;
+        margin-top: 0.2ch;
+    }
+
+
+    /* 
 	.instruction {
 	display: flex;
 	flex-direction: row;
 	color:red;
 }
 */
-	
+
 }
