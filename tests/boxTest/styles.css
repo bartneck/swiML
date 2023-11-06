@@ -21,10 +21,38 @@
 	display: inline;
 }
 
+.boldy {
+	font-weight: 800;
+	font-family: 'JetBrains Mono ExtraBold';
+}
 
 
 body {
 	font-family: 'JetBrains Mono', monospace;
-	font-weight: 400;
-	font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: "JetBrains Mono ExtraBold";
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-ExtraBold.otf")
+		format("opentype"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+		format("woff2"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+		format("woff"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf")
+		format("truetype");
+}
+
+@font-face {
+  font-family: "JetBrains Mono Thin";
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-Thin.otf")
+		format("opentype"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+		format("woff2"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+		format("woff"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
+		format("truetype");
 }

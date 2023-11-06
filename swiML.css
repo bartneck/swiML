@@ -13,6 +13,7 @@ body {
      */
 }
 
+/* meta information styling */
 ul {
     line-height: 110%;
     list-style-type: "~>";
@@ -49,16 +50,7 @@ p.describtion {
 
 }
 
-.program {
-    padding: 1ch;
-    border: solid;
-    border-width: thin;
-    width: 48ch;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-
+/* footer stying */
 .bottom {
     width: 50ch;
     margin: auto;
@@ -80,9 +72,20 @@ p.describtion {
     width: 3.5em;
 }
 
+/* main program styling */
+.program {
+    padding: 1ch;
+    border: solid;
+    border-width: thin;
+    width: 48ch;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .lengthAsDistance {
     display: inline-block;
-    font-weight: 900;
+    font-weight: 800;
     text-align: right;
     background-color: red;
 }
@@ -110,7 +113,6 @@ p.describtion {
     align-items: center;
 }
 
-
 .repetition {
     max-width: 48ch;
     display: flex;
@@ -133,16 +135,19 @@ p.describtion {
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
 }
+
 .continueSymbol {
     margin: 0.6ch;
     border-left: 0.13em solid #000000;
 }
+
 .blankRepSymbol {
     margin: 0.6ch;
     display: flex;
     align-items: center;
     width: 1ch;
 }
+
 .repetitionContent {
     width: 100%;
 }
@@ -152,6 +157,7 @@ p.describtion {
     flex-direction: column;
     width: 100%;
 }
+
 .firstSegmentName {
     display: block;
     text-align: center;
@@ -170,14 +176,40 @@ p.describtion {
     margin: 0.2em;
 }
 
-
 .pyramid {
     display: flex;
     flex-direction: column;
     font-size: 120%;
 }
 
+/* Fonts */
+@font-face {
+  font-family: "JetBrains Mono ExtraBold";
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-ExtraBold.otf")
+		format("opentype"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+		format("woff2"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+		format("woff"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf")
+		format("truetype");
+}
 
+@font-face {
+  font-family: "JetBrains Mono Thin";
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-Thin.otf")
+		format("opentype"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+		format("woff2"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+		format("woff"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
+		format("truetype");
+}
+
+
+
+/* CSS for printing. */
 @media print {
     @page {
         size: A4;

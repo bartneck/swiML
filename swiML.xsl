@@ -534,7 +534,7 @@
                         <xsl:if test="not(./sw:length)">
                             <span>                
                                 <xsl:attribute name="style">
-                                    <xsl:text>text-align:center;font-weight:900</xsl:text>
+                                    <xsl:text>text-align:center;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                                 </xsl:attribute>
                                 <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
                                 <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
@@ -645,7 +645,7 @@
                 </xsl:choose>   
                 <span>                
                     <xsl:attribute name="style">
-                        <xsl:text>margin-left: auto; font-weight:900</xsl:text>
+                        <xsl:text>margin-left: auto; font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                     <xsl:call-template name="showLength"/>
                 </span>
@@ -668,7 +668,7 @@
                 <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
                         <xsl:attribute name="style">
-                            <xsl:text>text-align:right;font-weight:900</xsl:text>
+                            <xsl:text>text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                         </xsl:attribute>
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                     </span>
@@ -687,7 +687,7 @@
         <xsl:if test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
             <span>                
                 <xsl:attribute name="style">
-                    <xsl:text>text-align:right;font-weight:900</xsl:text>
+                    <xsl:text>text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                 </xsl:attribute>
                 1
             </span>
@@ -726,12 +726,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
-                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -755,12 +755,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
-                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -786,12 +786,12 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
-                        <xsl:text>ch;text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>ch;text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:900</xsl:text>
+                        <xsl:text>text-align:right;font-family:'JetBrains Mono ExtraBold'</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
