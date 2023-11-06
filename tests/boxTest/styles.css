@@ -21,8 +21,33 @@
 	display: inline;
 }
 
-.boldy {
-	font-family: 'JetBrains Mono ExtraBold';
+
+.boldy1 {
+	font-family: 'JetBrains Mono ExtraBold1';
+	font-weight: 800;
+}
+/*
+.boldy2 {
+	font-family: 'JetBrains Mono ExtraBold2';
+	font-weight: 800;
+}
+
+.boldy3 {
+	font-family: 'JetBrains Mono ExtraBold3';
+	font-weight: 800;
+}
+
+.boldy4 {
+	font-family: 'JetBrains Mono ExtraBold4';
+	font-weight: 800;
+}
+.boldy5 {
+	font-family: 'JetBrains Mono ExtraBold5';
+	font-weight: 800;
+}
+*/
+.boldy6 {
+	font-family: 'JetBrains Mono ExtraBold6';
 	font-weight: 800;
 }
 
@@ -31,19 +56,68 @@ body {
 	font-family: 'JetBrains Mono', monospace;
 }
 
+/*
+@font-face {
+font-family: 'JetBrains Mono ExtraBold5';
+src: url('https://github.com/JetBrains/JetBrainsMono/blob/8c3ccf768d899b989a8843ae6bfaad3177c82303/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+') format('woff2'),
+url('https://github.com/JetBrains/JetBrainsMono/blob/8c3ccf768d899b989a8843ae6bfaad3177c82303/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+') format('woff');
+font-weight: 800;
+font-style: normal;
+}
+*/
+
+/*
+@font-face {
+  font-family: 'JetBrains Mono ExtraBold2';
+  src: url('https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'),
+       url('https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff') format('woff'),
+       url('https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+  font-weight: 800; 
+  font-style: normal; 
+}
 
 @font-face {
-  font-family: "JetBrains Mono ExtraBold";
-	/*
-	src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-ExtraBold.otf")
+  font-family: "JetBrains Mono ExtraBold3";
+	src url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-Thin.otf")
 		format("opentype"),
-	*/
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
-		format("woff2"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
-		format("woff"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf")
-		format("truetype");
+	url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2") format("woff2"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2") format("woff"),
+    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf") format("truetype");
+	  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+font-family: "JetBrains Mono ExtraBold4";
+src: url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/eot/JetBrainsMono-ExtraBold.eot")
+format("embedded-opentype"),
+url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/woff2/JetBrainsMono-ExtraBold.woff2")
+format("woff2"),
+url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/woff/JetBrainsMono-ExtraBold.woff")
+format("woff"),
+url("https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/ttf/JetBrainsMono-ExtraBold.ttf")
+format("truetype");
+}
+
+*/
+
+@font-face {
+font-family: 'JetBrains Mono ExtraBold6';
+src: 	url('https://www.bartneck.de/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'),
+		url('https://www.bartneck.de/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+		font-weight: 800;
+		font-style: normal;
+		font-display: swap;
+}
+@font-face {
+font-family: 'JetBrains Mono ExtraBold1';
+src: 	url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-ExtraBold.woff2') format('woff2'),
+/*		url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-ExtraBold.woff') format('woff');*/
+		font-weight: 800;
+		font-style: normal;
+		font-display: swap;
 }
 
 @font-face {
