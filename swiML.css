@@ -192,6 +192,8 @@ p.describtion {
  format("woff2"), 
 url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-ExtraBold.woff")
  format("woff");
+    font-weight: 800;
+    font-style: normal;
 }
 
 @font-face {
@@ -200,6 +202,8 @@ url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-
  format("woff2"), 
 url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Thin.woff")
  format("woff");
+    font-weight: 100;
+    font-style: normal;
 }
 
 
