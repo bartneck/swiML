@@ -105,7 +105,7 @@ p.describtion {
     width: 1em;
     margin-left: auto;
     text-align: right;
-    font-family:'JetBrains Mono Thin';
+    font-family: 'JetBrains Mono Thin';
     color: grey;
 }
 
@@ -187,27 +187,27 @@ p.describtion {
 
 /* Fonts */
 @font-face {
-  font-family: "JetBrains Mono ExtraBold";
-	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-ExtraBold.otf")
-		format("opentype"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
-		format("woff2"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
-		format("woff"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf")
-		format("truetype");
+    font-family: "JetBrains Mono ExtraBold";
+    src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-ExtraBold.otf")
+ format("opentype"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+ format("woff2"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
+ format("woff"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-ExtraBold.ttf")
+ format("truetype");
 }
 
 @font-face {
-  font-family: "JetBrains Mono Thin";
-	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-Thin.otf")
-		format("opentype"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
-		format("woff2"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
-		format("woff"),
-    url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
-		format("truetype");
+    font-family: "JetBrains Mono Thin";
+    src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-Thin.otf")
+ format("opentype"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+ format("woff2"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
+ format("woff"), 
+url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
+ format("truetype");
 }
 
 

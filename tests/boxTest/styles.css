@@ -32,11 +32,14 @@ body {
 }
 
 
+fonts/otf
+
+https://github.com/JetBrains/JetBrainsMono/blob/8c3ccf768d899b989a8843ae6bfaad3177c82303/fonts/otf/JetBrainsMono-ExtraBold.otf
 
 @font-face {
   font-family: "JetBrains Mono ExtraBold";
-	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-ExtraBold.otf")
-		format("opentype"),
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-ExtraBold.otf")
+		format("opentype"),*/
     url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
 		format("woff2"),
     url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-ExtraBold.woff2")
@@ -47,7 +50,7 @@ body {
 
 @font-face {
   font-family: "JetBrains Mono Thin";
-	src: url("https://github.com/JetBrains/JetBrainsMono/raw/masterfonts/otf/JetBrainsMono-Thin.otf")
+	src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-Thin.otf")
 		format("opentype"),
     url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/webfonts/JetBrainsMono-Thin.woff2")
 		format("woff2"),
@@ -56,3 +59,4 @@ body {
     url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
 		format("truetype");
 }
+*/
