@@ -1,4 +1,11 @@
 /* styles.css */
+
+/*
+html {
+  font-family: JetBrainsMonoExtraBold6, monospace;
+}
+*/
+
 .box1 {
     max-width: 11cm;
     height: 2cm; /* You can adjust the height as needed */
@@ -47,13 +54,13 @@
 }
 */
 .boldy6 {
-	font-family: 'JetBrains Mono ExtraBold6';
+	font-family: 'JetBrainsMonoExtraBold6';
 	font-weight: 800;
 }
 
 
 body {
-	font-family: 'JetBrains Mono', monospace;
+/*	font-family: 'JetBrains Mono', monospace;*/
 }
 
 /*
@@ -104,7 +111,7 @@ format("truetype");
 */
 
 @font-face {
-font-family: 'JetBrains Mono ExtraBold6';
+font-family: 'JetBrainsMonoExtraBold6', monospace;
 src: 	url('https://www.bartneck.de/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'),
 		url('https://www.bartneck.de/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
 		font-weight: 800;
@@ -113,6 +120,10 @@ src: 	url('https://www.bartneck.de/JetBrainsMono/fonts/webfonts/JetBrainsMono-Ex
 }
 @font-face {
 font-family: 'JetBrains Mono ExtraBold1';
+/*
+	src: 	url('https://www.bartneck.de/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'),
+		url('https://www.bartneck.de/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+*/
 src: 	url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-ExtraBold.woff2') format('woff2'),
 /*		url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-ExtraBold.woff') format('woff');*/
 		font-weight: 800;
@@ -120,6 +131,7 @@ src: 	url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrai
 		font-display: swap;
 }
 
+/*
 @font-face {
   font-family: "JetBrains Mono Thin";
 	src: url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/otf/JetBrainsMono-Thin.otf")
@@ -130,4 +142,4 @@ src: 	url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrai
 		format("woff"),
     url("https://github.com/JetBrains/JetBrainsMono/raw/master/fonts/ttf/JetBrainsMono-Thin.ttf")
 		format("truetype");
-}
+}*/
