@@ -105,9 +105,10 @@ p.describtion {
     width: 1em;
     margin-left: auto;
     text-align: right;
-    font-weight: 100;
+    font-family:'JetBrains Mono Thin';
     color: grey;
 }
+
 .continueLength {
     display: flex;
     align-items: center;
@@ -117,10 +118,12 @@ p.describtion {
     max-width: 48ch;
     display: flex;
 }
+
 .continue {
     max-width: 48ch;
     display: flex;
 }
+
 .repetitionCount {
     display: flex;
     align-items: center;
