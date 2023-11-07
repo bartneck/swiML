@@ -230,13 +230,13 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
  
 @font-face {
     font-family: 'JetBrains Mono ExtraBold';
+    /* 
         src: url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
 		 url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
-	/* 	 
-    src: url('/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
-		 url('/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+		  */ 
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
    	font-weight: 800;
-   */
 	font-style: normal;
 	font-display: swap;
 }
