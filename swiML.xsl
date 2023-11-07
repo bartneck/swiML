@@ -384,21 +384,21 @@
                             </p>
                             <ul>
                                 <li>
-                                    <span style="font-weight: 600">Date:</span>
+                                    <span class="semiBoldTypeFace">Date:</span>
                                     <xsl:value-of
                                         select="format-date(sw:program/sw:creationDate, '[D01] [MNn] [Y0001]')"
                                     />
                                 </li>
                                 <li>
-                                    <span style="font-weight: 600">Pool Size:</span>
+                                    <span class="semiBoldTypeFace">Pool Size:</span>
                                     <xsl:value-of select="sw:program/sw:poolLength"/>
                                 </li>
                                 <li>
-                                    <span style="font-weight: 600">Units:</span>
+                                    <span class="semiBoldTypeFace">Units:</span>
                                     <xsl:value-of select="sw:program/sw:lengthUnit"/>
                                 </li>
                                 <li>
-                                    <span style="font-weight: 600">Length:</span>
+                                    <span class="semiBoldTypeFace">Length:</span>
                                     <xsl:value-of select="myData:showLength(sw:program)"/>
                                 </li>
                             </ul>
@@ -533,8 +533,8 @@
                         </div>
                         <xsl:if test="not(./sw:length)">
                             <span>                
-                                <xsl:attribute name="style">
-                                    <xsl:text>text-align:center;font-weight:800</xsl:text>
+                                <xsl:attribute name="class">
+                                    <xsl:text>extraBoldTypeFaceCenter</xsl:text>
                                 </xsl:attribute>
                                 <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
                                 <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
@@ -644,8 +644,8 @@
                     </xsl:otherwise>
                 </xsl:choose>   
                 <span>                
-                    <xsl:attribute name="style">
-                        <xsl:text>margin-left: auto; font-weight:800</xsl:text>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceMarginLeft</xsl:text>
                     </xsl:attribute>
                     <xsl:call-template name="showLength"/>
                 </span>
@@ -667,8 +667,8 @@
             <xsl:choose>
                 <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
-                        <xsl:attribute name="style">
-                            <xsl:text>text-align:right;font-weight:800</xsl:text>
+                        <xsl:attribute name="class">
+                            <xsl:text>extraBoldTypeFaceRight</xsl:text>
                         </xsl:attribute>
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                     </span>
@@ -686,8 +686,8 @@
         </xsl:if>
         <xsl:if test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
             <span>                
-                <xsl:attribute name="style">
-                    <xsl:text>text-align:right;font-weight:800</xsl:text>
+                <xsl:attribute name="class">
+                    <xsl:text>extraBoldTypeFaceRight</xsl:text>
                 </xsl:attribute>
                 1
             </span>
@@ -726,12 +726,14 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
-                        <xsl:text>ch;text-align:right;font-weight:800</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
-                    <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:800</xsl:text>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -755,12 +757,14 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
-                        <xsl:text>ch;text-align:right;font-weight:800</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
-                    <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:800</xsl:text>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
@@ -786,12 +790,14 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
-                        <xsl:text>ch;text-align:right;font-weight:800</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:when> 
                 <xsl:otherwise>
-                    <xsl:attribute name="style">
-                        <xsl:text>text-align:right;font-weight:800</xsl:text>
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>

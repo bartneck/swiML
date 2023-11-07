@@ -210,7 +210,10 @@ p.describtion {
 	text-align:center;
 }
 
-
+.semiBoldTypeFace {
+	font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
+}
 
 
 .thinTypeFace {
@@ -218,11 +221,22 @@ p.describtion {
 	font-weight: 100;
 }
 
+/* 
+fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+https://github.com/bartneck/swiML/blob/0f957d35e0e93624e0e18e4a3bd7e86da7293296/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+ */
+ 
 @font-face {
     font-family: 'JetBrains Mono ExtraBold';
+        src: url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
+		 url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+	/* 	 
     src: url('/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
 		 url('/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
    	font-weight: 800;
+   */
 	font-style: normal;
 	font-display: swap;
 }
@@ -232,6 +246,15 @@ p.describtion {
     src: url('/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-Thin.woff2') format('woff2'), 
 		 url('/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Thin.ttf') format('truetype');
    	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono SemiBold';
+    src: url('/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-SemiBold.woff2') format('woff2'), 
+		 url('/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-SemiBold.ttf') format('truetype');
+   	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
