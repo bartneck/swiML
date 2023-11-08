@@ -224,6 +224,7 @@ p.describtion {
 .italicTypeFace {
     font-family: 'JetBrains Mono Italic';
     font-weight: 400;
+    font-style: italic;
 }
 
 /* 
