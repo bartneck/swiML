@@ -338,12 +338,20 @@
                 <meta property="og:image:type" content="image/png"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="630"/>
+                
+                <!-- Main CSS  -->
                 <link href="https://bartneck.github.io/swiML/swiML.css" rel="stylesheet" type="text/css"/>
+                
+                <!-- Google fonts -->
+                <!--
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link
                     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800"
                     rel="stylesheet"/>
+                -->
+                
+                <!-- Favicon icons -->
                 <link rel="shortcut icon" href="/swiML/favicon/favicon.ico"/>
                 <link rel="icon" sizes="16x16 32x32 64x64" href="/swiML/favicon/favicon.ico"/>
                 <link rel="icon" type="image/png" sizes="196x196" href="/swiML/favicon/favicon-192.png"/>
@@ -366,7 +374,6 @@
                 <meta name="msapplication-config" content="/swiML/favicon/browserconfig.xml"/>
                 
                 <title>
-                    
                     <xsl:value-of select="sw:program/sw:title"/>
                 </title>
             </head>
@@ -411,6 +418,7 @@
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
+                <!-- footer -->
                 <xsl:choose>
                     <xsl:when test="sw:program/sw:hideIntro = 'true'"/>
                     <xsl:otherwise>
@@ -444,10 +452,6 @@
                         </div>
                     </xsl:otherwise>
                 </xsl:choose>
-
-
-
-                <!--                <p class="footnote">made with:<a href="https://github.com/bartneck/swiML"><img class="swiML-logo-bw" src="swiML-logo-bw.svg"/></a></p>-->
             </body>
         </html>
     </xsl:template>
