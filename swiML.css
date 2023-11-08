@@ -221,6 +221,11 @@ p.describtion {
 	font-weight: 100;
 }
 
+.italicTypeFace {
+    font-family: 'JetBrains Mono Italic';
+    font-weight: 400;
+}
+
 /* 
 fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
 fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
@@ -243,6 +248,15 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
 		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
    	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono Italic';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-Italic.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+   	font-weight: 400;
+	font-style: italic;
 	font-display: swap;
 }
 

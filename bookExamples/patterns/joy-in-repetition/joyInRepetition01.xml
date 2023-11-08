@@ -21,6 +21,7 @@
                     <instruction>
                         <length><lengthAsDistance>25</lengthAsDistance></length>
                         <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <instructionDescription>Italic Test</instructionDescription>
                     </instruction>
                 </repetition>
             </instruction>

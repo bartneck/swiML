@@ -827,7 +827,7 @@
 
 
     <xsl:template match="sw:instructionDescription">
-        <span style="font-style: italic;">
+        <span class="italicTypeFace">
             <xsl:value-of select="concat('&#160;', ../sw:instructionDescription)"/>
         </span>
     </xsl:template>
