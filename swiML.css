@@ -76,7 +76,7 @@ p.describtion {
 .program {
     padding: 1ch;
     border: solid;
-    border-width: thin;
+    border-width: 0.2mm;
     width: 48ch;
     margin: auto;
     display: flex;
@@ -230,10 +230,6 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
  
 @font-face {
     font-family: 'JetBrains Mono ExtraBold';
-    /* 
-        src: url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
-		 url('https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
-		  */ 
     src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
 		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
    	font-weight: 800;
@@ -252,8 +248,8 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
 
 @font-face {
     font-family: 'JetBrains Mono SemiBold';
-    src: url('/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-SemiBold.woff2') format('woff2'), 
-		 url('/fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-SemiBold.ttf') format('truetype');
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-SemiBold.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-SemiBold.ttf') format('truetype');
    	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
