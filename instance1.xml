@@ -2,8 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="swiML.xsl"?>
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="file:/C:/My%20Documents/GitHub/swiML"
-    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML.xsd"
+    xmlns="https://github.com/bartneck/swiML">
     
     <!-- Complex program with repetitions and loops -->
 
@@ -12,6 +12,11 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
         <email>christoph@bartneck.de</email>
+    </author>
+    <author>
+        <firstName>Matthias</firstName>
+        <lastName>MccCurdy</lastName>
+        <email>mc@swim.com</email>
     </author>
     <programDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</programDescription>
     <creationDate>2022-06-30</creationDate>
@@ -23,13 +28,12 @@
     
 
     <instruction>
-        <length><lengthAsDistance>101</lengthAsDistance></length>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <lengthAsDistance>101</lengthAsDistance>
         <rest><afterStop>PT20S</afterStop></rest>
-        <intensity><startIntensity>
-                <percentageEffort>70</percentageEffort>
-            </startIntensity></intensity>
-        
+        <intensity><staticIntensity>
+                <precentageEffort>70</precentageEffort>
+            </staticIntensity></intensity>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
         <equipment>pads</equipment>
         <equipment>pullBuoy</equipment>
     </instruction>
@@ -37,30 +41,29 @@
         <segmentName>Warm Up</segmentName>
     </instruction>
     <instruction>
-        <length><lengthAsDistance>102</lengthAsDistance></length>
-        <stroke><kicking>
-            <orientation>front</orientation>
-            <legMovement>flutter</legMovement>
-        </kicking></stroke>
+        <lengthAsDistance>102</lengthAsDistance>
         <rest><sinceStart>PT1M45S</sinceStart></rest>
-        <intensity><startIntensity>
-                <percentageEffort>70</percentageEffort>
-            </startIntensity></intensity>
-        
+        <intensity><staticIntensity>
+                <precentageEffort>70</precentageEffort>
+            </staticIntensity></intensity>
+        <stroke><kicking>
+                <orientation>front</orientation>
+                <legMovement>flutter</legMovement>
+            </kicking></stroke>
     </instruction>
     <instruction>
-        <length><lengthAsDistance>100</lengthAsDistance></length>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <lengthAsDistance>100</lengthAsDistance>
         <rest><inOut>3</inOut></rest>
         <intensity>
+            <dynamicAcross>false</dynamicAcross>
             <startIntensity>
-                <percentageEffort>60</percentageEffort>
+                <precentageEffort>60</precentageEffort>
             </startIntensity>
             <stopIntensity>
-                <percentageEffort>100</percentageEffort>
+                <precentageEffort>100</precentageEffort>
             </stopIntensity>
         </intensity>
-        
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
 
     <instruction>
@@ -73,18 +76,13 @@
         <repetition>
             <repetitionCount>4</repetitionCount>
             <repetitionDescription>Hello</repetitionDescription>
-            
             <instruction>
-                
-                <stroke><standardStroke>individualMedleyOrder</standardStroke></stroke>
+                <lengthAsDistance>104</lengthAsDistance>
                 <rest><sinceStart>PT1M45S</sinceStart></rest>
-                <intensity><startIntensity>
-                        <zone>easy</zone>
-                    </startIntensity></intensity>
-                
-            </instruction>
-            <instruction>
-                <segmentName>Main Program</segmentName>
+                <intensity><staticIntensity>
+                        <zone>tempo</zone>
+                    </staticIntensity></intensity>
+                <stroke><standardStroke>any</standardStroke></stroke>
             </instruction>
         </repetition>
     </instruction>
@@ -95,7 +93,7 @@
         <repetition>
             <repetitionCount>5</repetitionCount>
             <instruction>
-                <length><lengthAsDistance>105</lengthAsDistance></length>
+                <lengthAsDistance>105</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <breath>5</breath>
             </instruction>
@@ -110,17 +108,17 @@
                 <repetition>
                     <repetitionCount>2</repetitionCount>
                     <instruction>
-                        <length><lengthAsDistance>106</lengthAsDistance></length>
+                        <lengthAsDistance>106</lengthAsDistance>
                         <stroke><standardStroke>backstroke</standardStroke></stroke>
                     </instruction>
                     <instruction>
-                        <length><lengthAsDistance>107</lengthAsDistance></length>
+                        <lengthAsDistance>107</lengthAsDistance>
                         <stroke><standardStroke>breaststroke</standardStroke></stroke>
                     </instruction>
                 </repetition>
             </instruction>
             <instruction>
-                <length><lengthAsDistance>108</lengthAsDistance></length>
+                <lengthAsDistance>108</lengthAsDistance>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
             </instruction>
         </repetition>
@@ -128,21 +126,18 @@
 
     <!-- some basic instructions -->
     <instruction>
-        <length><lengthAsTime>PT2M30S</lengthAsTime></length>
-        
+        <lengthAsTime>PT2M30S</lengthAsTime>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <length><lengthAsTime>PT1M30S</lengthAsTime></length>
-        
+        <lengthAsTime>PT1M30S</lengthAsTime>
         <stroke><standardStroke>freestyle</standardStroke></stroke>
     </instruction>
     <instruction>
-        <length><lengthAsLaps>8</lengthAsLaps></length>
-        <stroke><standardStroke>backstroke</standardStroke></stroke>
-        <intensity><startIntensity>
+        <lengthAsLaps>8</lengthAsLaps>
+        <intensity><staticIntensity>
                 <zone>endurance</zone>
-            </startIntensity></intensity>
-        
+            </staticIntensity></intensity>
+        <stroke><standardStroke>backstroke</standardStroke></stroke>
     </instruction>
 </program>
