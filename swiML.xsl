@@ -5,11 +5,21 @@
     xmlns:sw="https://github.com/bartneck/swiML">
 
     <!-- global variables for space calculation -->
+
+    <!-- variable for length of distance tags in any instruction -->
     <xsl:variable name="instLengths" as="element()*">
+
+        <!-- check if there are any distance tags present -->
         <xsl:choose>
             <xsl:when test="//sw:length/sw:lengthAsDistance or
                 //sw:length/sw:lengthAsLaps or
                 //sw:length/sw:lengthAsLaps">
+                <!-- there are distance tags so the result is not 0 -->
+                <!-- select each type of tag and add data to array -->
+                <!-- this data is the length of the string, section of tag, what parents the tag has and, unique location of tag -->
+                <!-- for each type of distance tag this is repeated and added to resultant array -->
+
+                <!-- length as distance tags-->
                 <xsl:for-each select="//sw:length/sw:lengthAsDistance">
                     <Item>
                         <Length><xsl:value-of select="string-length(.)"/></Length>
@@ -18,6 +28,8 @@
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
                 </xsl:for-each>
+
+                <!-- length as laps tags -->
                 <xsl:if test="//sw:length/sw:lengthAsLaps">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps">
                         <Item>
@@ -28,6 +40,8 @@
                         </Item>
                     </xsl:for-each>
                 </xsl:if>
+
+                <!-- length as time tags -->
                 <xsl:if test="//sw:length/sw:lengthAsTime">
                     <xsl:for-each select="//sw:length/sw:lengthAsTime">
                         <Item>
@@ -38,52 +52,95 @@
                         </Item>
                     </xsl:for-each>
                 </xsl:if>
+
             </xsl:when>
+            <!-- if no distance tags present return 0 -->
             <xsl:otherwise>0</xsl:otherwise>
+
         </xsl:choose>
+
     </xsl:variable>
     
+    <!-- this function is repeated four times when i only really need one -> fix it (instNodes, contNodes, simpNodes, repNodes are all identical)  note > not >= in instNodes -->
+    <!-- helper function for returning lengths within groupings of 10 characters -->
+    <!-- given array of nodes from instLengths will return each location with length given as max length within it group of 10 characters  -->
     <xsl:template name="instNodes">
+
+        <!-- uneeded paramater? its unused -->
         <xsl:param name="nodes"/>
-        <xsl:param name="element"></xsl:param>
+
+        <!-- array of nodes to adjust lengths -->
+        <xsl:param name="element"/>
+        
+        <!-- only run function if there are still elements left in the array -->
         <xsl:if test="$element">
+            <!-- for elements within 10 characters of the first element in the array -->
             <xsl:for-each select="$element[./*[1] > max($element/*[1])-9 ]">
+
+                <!-- return location of element and the max length of node within 10 characters-->
                 <Item>
                     <Location><xsl:value-of select="./*[4]"/></Location>
                     <Length><xsl:value-of select="max($element/*[1])"/></Length>
                 </Item>
             </xsl:for-each>
             
+            <!-- recursively call function with any elements that were more than 10 characters longer than the first in the elements array-->
             <xsl:call-template name="instNodes">
                 <xsl:with-param name="nodes" select="$nodes"/>
                 <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
             </xsl:call-template>
+
         </xsl:if>
+
     </xsl:template>
     
+    <!-- variable for the lengths each instruction distance node needs to be -->
+    <!-- this variable is used for display -->
     <xsl:variable name="maxInstLengths" as="element()*">
+
+        <!-- sort all distance nodes by what section they are in -->
         <xsl:for-each-group select="$instLengths" group-by="./*[2]">
             <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+
+            <!-- sort all nodes again this time by what parents the have -->
+            <!-- this is stored as a numerical value so can be sorted so the nodes with the same parents will have the same lengths-->
             <xsl:for-each-group select="$instLengths" group-by="./*[3][../Section = current-grouping-key()]">
+
+                <!-- call helper function for each set of nodes that have the same section and parents -->
                 <xsl:call-template name="instNodes">
                     <xsl:with-param name="nodes" select="."/>
                     <xsl:with-param name="element" select="current-group()"/>
                 </xsl:call-template>
-            </xsl:for-each-group>          
+
+            </xsl:for-each-group> 
+
         </xsl:for-each-group>
+
     </xsl:variable>
     
+
+    <!-- variable for length of continue tags -->
     <xsl:variable name="contLengths" as="element()*">
         <xsl:choose>
+        
+            <!-- check if there are any continue tags in the program-->
             <xsl:when test="//sw:continue">
+                <!-- check if simplify tag is still needed here cos i dont think it is -->
                 <xsl:for-each select="//sw:continue[not(./sw:simplify[text()='true'])]">
+
+                    <!-- calculate sum of any inst tags that are top level in the continue -->
                     <xsl:variable name="contInstLength">
                         <xsl:call-template name="sumItems">
                             <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction')]"/>
                         </xsl:call-template>
                     </xsl:variable>
+
+                    <!-- add data for each continue tag to the array -->
+                    <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <xsl:choose>
+                            <!-- different length is given when continue is child of a repetition and only has 1 child instruction as it displays differently (extra addition of repetition count)  this could change-->
+                            <!-- length is the length of calculated length node, 3 characters for as, length of any top level instruction tags and the extra spaces they need -->
                             <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1 and count(./sw:instruction) = 1">
                                 <Length><xsl:value-of select="string-length(string(myData:showLength(.)))+6+string-length(../../sw:repetitionCount)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' )])"/> </Length>
                             </xsl:when>
@@ -95,230 +152,415 @@
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
+
                 </xsl:for-each>
-            </xsl:when>           
-            <xsl:otherwise><Item>0</Item></xsl:otherwise>
+
+            </xsl:when>
+
+            <!-- return array with 0 if no continue tags in the program -->
+            <xsl:otherwise>
+                <Item>0</Item>
+            </xsl:otherwise>
+
         </xsl:choose>
     </xsl:variable>
-    
+
+
+    <!-- helper function for returning lengths within groupings of 10 characters -->
+    <!-- given array of nodes from contLengths will return each location with length given as max length within it group of 10 characters  -->
     <xsl:template name="contNodes">
+
+        <!-- uneeded paramater? its unused -->
         <xsl:param name="nodes"/>
-        <xsl:param name="element"></xsl:param>
+
+        <!-- array of nodes to adjust lengths -->
+        <xsl:param name="element"/>
+        <!-- only run function if there are still elements left in the array -->
         <xsl:if test="$element">
-            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+            <!-- for elements within 10 characters of the first element in the array -->
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9 ]">
+
+                <!-- return location of element and the max length of node within 10 characters-->
                 <Item>
                     <Location><xsl:value-of select="./*[4]"/></Location>
                     <Length><xsl:value-of select="max($element/*[1])"/></Length>
                 </Item>
             </xsl:for-each>
+            
+            <!-- recursively call function with any elements that were more than 10 characters longer than the first in the elements array-->
             <xsl:call-template name="contNodes">
                 <xsl:with-param name="nodes" select="$nodes"/>
                 <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
             </xsl:call-template>
+
         </xsl:if>
     </xsl:template>
-    
+
+    <!-- variable for the lengths each continue distance node needs to be -->
+    <!-- this variable is used for display -->
     <xsl:variable name="maxContLengths" as="element()*">
+
+        <!-- sort all distance nodes by what section they are in -->
         <xsl:for-each-group select="$contLengths" group-by="./*[2]">
             <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+
+            <!-- sort all nodes again this time by what parents the have -->
+            <!-- this is stored as a numerical value so can be sorted so the nodes with the same parents will have the same lengths-->
             <xsl:for-each-group select="$contLengths" group-by="./*[3][../Section = current-grouping-key()]">
+
+                <!-- call helper function for each set of nodes that have the same section and parents -->
                 <xsl:call-template name="contNodes">
                     <xsl:with-param name="nodes" select="."/>
                     <xsl:with-param name="element" select="current-group()"/>
-                </xsl:call-template>                
-            </xsl:for-each-group>           
+                </xsl:call-template>
+
+            </xsl:for-each-group> 
+
         </xsl:for-each-group>
+
     </xsl:variable>
-    
+
+    <!-- variable for length of simplifying repetition tags -->
     <xsl:variable name="simpLengths" as="element()*">
         <xsl:choose>
+
+            <!-- check if there are any simplifying tags in the program-->
             <xsl:when test=" //sw:repetition[./sw:simplify[text()='true']]">
+            
                 <xsl:for-each select="//sw:repetition[./sw:simplify[text()='true']]">
+
+                    <!-- calculate sum of any inst tags that are top level in the simplifying repetition -->
                     <xsl:variable name="simpInstLength">
                         <xsl:call-template name="sumItems">
                             <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'simplify')]"/>
                         </xsl:call-template>
                     </xsl:variable>
+                    
+                    <!-- add data for each simplifying tag to the array -->
+                    <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
+                        <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
                         <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
+
                 </xsl:for-each>
+
             </xsl:when>
+
+            <!-- return array with 0 if no simplifying repetititon tags in the program -->
             <xsl:otherwise>
                 <Item>0</Item>
             </xsl:otherwise>
+
         </xsl:choose>
     </xsl:variable>
     
+    <!-- helper function for returning lengths within groupings of 10 characters -->
+    <!-- given array of nodes from simpLengths will return each location with length given as max length within it group of 10 characters  -->
     <xsl:template name="simpNodes">
+
+        <!-- uneeded paramater? its unused -->
         <xsl:param name="nodes"/>
-        <xsl:param name="element"></xsl:param>
+
+        <!-- array of nodes to adjust lengths -->
+        <xsl:param name="element"/>
+        <!-- only run function if there are still elements left in the array -->
         <xsl:if test="$element">
-            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+            <!-- for elements within 10 characters of the first element in the array -->
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9 ]">
+
+                <!-- return location of element and the max length of node within 10 characters-->
                 <Item>
                     <Location><xsl:value-of select="./*[4]"/></Location>
                     <Length><xsl:value-of select="max($element/*[1])"/></Length>
                 </Item>
             </xsl:for-each>
+            
+            <!-- recursively call function with any elements that were more than 10 characters longer than the first in the elements array-->
             <xsl:call-template name="simpNodes">
                 <xsl:with-param name="nodes" select="$nodes"/>
                 <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
             </xsl:call-template>
+
         </xsl:if>
     </xsl:template>
-    
+
+    <!-- variable for the lengths each simplifying repetition distance node needs to be -->
+    <!-- this variable is used for display -->
     <xsl:variable name="maxSimpLengths" as="element()*">
+
+        <!-- sort all distance nodes by what section they are in -->
         <xsl:for-each-group select="$simpLengths" group-by="./*[2]">
             <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+
+            <!-- sort all nodes again this time by what parents the have -->
+            <!-- this is stored as a numerical value so can be sorted so the nodes with the same parents will have the same lengths-->
             <xsl:for-each-group select="$simpLengths" group-by="./*[3][../Section = current-grouping-key()]">
+
+                <!-- call helper function for each set of nodes that have the same section and parents -->
                 <xsl:call-template name="simpNodes">
                     <xsl:with-param name="nodes" select="."/>
                     <xsl:with-param name="element" select="current-group()"/>
-                </xsl:call-template>  
-            </xsl:for-each-group>          
+                </xsl:call-template>
+
+            </xsl:for-each-group> 
+
         </xsl:for-each-group>
+
     </xsl:variable>
     
+    <!-- variable for length of repetition tags -->
     <xsl:variable name="repLengths" as="element()*">
         <xsl:choose>
+
+            <!-- check if there are any repetition tags in the program-->
             <xsl:when test="//sw:repetition[not(./sw:simplify[text()='true'])]">
+
                 <xsl:for-each select="//sw:repetition[not(./sw:simplify[text()='true'])]">
+
+                    <!-- calculate sum of any inst tags that are top level in the repetition -->
                     <xsl:variable name="repInstLength">
                         <xsl:call-template name="sumItems">
                             <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount')]"/>
                         </xsl:call-template>
                     </xsl:variable>
+
+                    <!-- add data for each repetition tag to the array -->
+                    <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
+                        <!-- length is the length of calculated repetition count, 2 characters for multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
                         <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
                     </Item>
-                </xsl:for-each>                
+
+                </xsl:for-each>       
+
             </xsl:when>
-            <xsl:otherwise><Item>0</Item></xsl:otherwise>
+
+            <!-- return array with 0 if no simplifying repetititon tags in the program -->
+            <xsl:otherwise>
+                <Item>0</Item>
+            </xsl:otherwise>
+
         </xsl:choose>
     </xsl:variable>
-    
+
+    <!-- helper function for returning lengths within groupings of 10 characters -->
+    <!-- given array of nodes from repLengths will return each location with length given as max length within it group of 10 characters  -->
     <xsl:template name="repNodes">
+
+        <!-- uneeded paramater? its unused -->
         <xsl:param name="nodes"/>
-        <xsl:param name="element"></xsl:param>
+
+        <!-- array of nodes to adjust lengths -->
+        <xsl:param name="element"/>
+        <!-- only run function if there are still elements left in the array -->
         <xsl:if test="$element">
-            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9]">
+            <!-- for elements within 10 characters of the first element in the array -->
+            <xsl:for-each select="$element[./*[1] >= max($element/*[1])-9 ]">
+
+                <!-- return location of element and the max length of node within 10 characters-->
                 <Item>
                     <Location><xsl:value-of select="./*[4]"/></Location>
                     <Length><xsl:value-of select="max($element/*[1])"/></Length>
                 </Item>
             </xsl:for-each>
+            
+            <!-- recursively call function with any elements that were more than 10 characters longer than the first in the elements array-->
             <xsl:call-template name="repNodes">
                 <xsl:with-param name="nodes" select="$nodes"/>
                 <xsl:with-param name="element" select="$element[max($element/*[1]) > ./*[1]+9 ]"/>
             </xsl:call-template>
+
         </xsl:if>
     </xsl:template>
-    
+
+    <!-- variable for the lengths each repetition node needs to be -->
+    <!-- this variable is used for display -->
     <xsl:variable name="maxRepLengths" as="element()*">
+
+        <!-- sort all distance nodes by what section they are in -->
         <xsl:for-each-group select="$repLengths" group-by="./*[2]">
             <xsl:sort select='./*[2]' order="ascending" data-type="number" />
+
+            <!-- sort all nodes again this time by what parents the have -->
+            <!-- this is stored as a numerical value so can be sorted so the nodes with the same parents will have the same lengths-->
             <xsl:for-each-group select="$repLengths" group-by="./*[3][../Section = current-grouping-key()]">
+
+                <!-- call helper function for each set of nodes that have the same section and parents -->
                 <xsl:call-template name="repNodes">
                     <xsl:with-param name="nodes" select="."/>
                     <xsl:with-param name="element" select="current-group()"/>
-                </xsl:call-template>  
-            </xsl:for-each-group>
+                </xsl:call-template>
+
+            </xsl:for-each-group> 
+
         </xsl:for-each-group>
+
     </xsl:variable>
     
+    <!-- helper function for adding length of instruction elements together -->
+    <!-- this works by adding the translation of each of the nodes to the total length and repeating recurtsively -->
+    <!-- some elements may still not work here as they have different formats, e.g drill or kick-->
     <xsl:template name="sumExtras">
+
+        <!-- nodes param gives array of nodes to add lengths of-->
         <xsl:param name="nodes"/>
+
+        <!-- sum of lengths, defaults to 0 when first called-->
         <xsl:param name="tempSum" select="0" />
+
         <xsl:choose>
+
+        <!-- checks to see if there is another node to add-->
             <xsl:when test="not($nodes)">
+
+                <!-- no more nodes so return counting sum of lengths-->
                 <xsl:value-of select="$tempSum" />
+
             </xsl:when>
             <xsl:otherwise>
+
+                <!--more nodes do add so calculate length of the current node-->
                 <xsl:variable name="product">
                     <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodes[1])])"/>
                 </xsl:variable>
+
+                <!-- recursively call self with next node and current nodes length added to sum-->
                 <xsl:call-template name="sumExtras">
                     <xsl:with-param name="nodes" select="$nodes[position() > 1]" />
                     <xsl:with-param name="tempSum" select="$tempSum + $product" />
                 </xsl:call-template>
+
             </xsl:otherwise>
+
         </xsl:choose>
-        
-        
+
     </xsl:template>
     
+
+    <!-- function returns length of all instruction element nodes given -->
     <xsl:template name="sumItems">
+
+        <!-- nodeSet is an array of nodes which are all instruction elements-->
         <xsl:param name="nodeSet" />
+
+        <!-- sum of lengths, defaults to 0 when first called-->
         <xsl:param name="tempSum" select="0" />
         
         <xsl:choose>
+
+            <!-- check to see if there is another node -->
             <xsl:when test="not($nodeSet)">
+
+                <!-- no more nodes so return the running count-->
                 <xsl:value-of select="$tempSum" />
+
             </xsl:when>
+
             <xsl:otherwise>
+
+                <!-- there is another node so find its length-->
+                <!-- whatever is returned in this variable is the length of the current node-->
                 <xsl:variable name="product">
                     <xsl:choose>
+
+                        <!-- is element type is rest return length based on pre-determined formatting -->
                         <xsl:when test="name($nodeSet[1]) = 'rest'">
                             <xsl:choose>
+
+                                <!-- finding the type of rest given -->
+
                                 <xsl:when test="$nodeSet[1]/sw:sinceStart">
                                     <xsl:value-of select="2+string-length(concat(minutes-from-duration(./sw:sinceStart), ':', format-number(seconds-from-duration(./sw:sinceStart), '00')))"/>
                                 </xsl:when>
+
                                 <xsl:when test="$nodeSet[1]/sw:afterStop">
                                     <xsl:value-of select="1+string-length(concat(minutes-from-duration(./sw:afterStop), ':', format-number(seconds-from-duration(./sw:afterStop), '00')))"/>
                                 </xsl:when>
+
                                 <xsl:when test="$nodeSet[1]/sw:sinceLastRest">
                                     <xsl:value-of select="3+string-length(concat(minutes-from-duration(./sw:sinceLastRest), ':', format-number(seconds-from-duration(./sw:sinceLastRest), '00')))"/>
                                 </xsl:when>
+
                                 <xsl:otherwise>
                                     <xsl:value-of select="8+string-length(./sw:inOut)"/>
                                 </xsl:otherwise>
+
                             </xsl:choose>
                         </xsl:when>
+
+                        <!-- intensity elements have pre-determined formatting-->
                         <xsl:when test="name($nodeSet[1]) = 'intensity'">
                             <!-- todo -->
                             <xsl:value-of select="1"/>
                         </xsl:when>
+
+                        <!-- check is remaining node is a stroke element-->
                         <xsl:when test="name($nodeSet[1]) = 'stroke'">
                             <xsl:choose>
+
+                                <!--checking if stroke is kick/drill or standard-->
                                 <xsl:when test="name($nodeSet[1]/*[1]) = 'kicking' or name($nodeSet[1]/*[1]) = 'drill'">
+
+                                    <!-- return length of kick/drill stroke-->
                                     <xsl:variable name="strokeExtra">
                                         <xsl:call-template name="sumExtras">
                                             <xsl:with-param name="nodes" select="$nodeSet[1]//text()" />
                                         </xsl:call-template>
                                     </xsl:variable>
+
                                     <xsl:value-of select="$strokeExtra+2"/>
+
                                 </xsl:when>
                                 <xsl:otherwise>
+
+                                    <!-- return length of standard stroke -->
                                     <xsl:call-template name="sumExtras">
                                         <xsl:with-param name="nodes" select="$nodeSet[1]//text()" />
                                     </xsl:call-template>
+
                                 </xsl:otherwise>
+
                             </xsl:choose>
                         </xsl:when>
+
                         <xsl:otherwise>
                             <xsl:choose>
+
+                                <!-- check if element is length -->
                                 <xsl:when test="name($nodeSet[1]) != 'length'">
+
+                                    <!-- for element types not above (not rest, intensity, stroke or length) return length of string translation-->
                                     <xsl:call-template name="sumExtras">
                                         <xsl:with-param name="nodes" select="$nodeSet[1]//text()" />
                                     </xsl:call-template>
+
                                 </xsl:when>
+
+                                <!-- length elements dont appear in continues or repetition as the total length is calculated separately-->
                                 <xsl:otherwise>0</xsl:otherwise>
+
                             </xsl:choose>
                         </xsl:otherwise>
+
                     </xsl:choose>
                     
                 </xsl:variable>
+
+                <!-- recursively call function with next node and with addition to running count -->
                 <xsl:call-template name="sumItems">
                     <xsl:with-param name="nodeSet" select="$nodeSet[position() > 1]" />
                     <xsl:with-param name="tempSum" select="$tempSum + $product" />
                 </xsl:call-template>
+
             </xsl:otherwise>
+            
         </xsl:choose>
     </xsl:template>
 
