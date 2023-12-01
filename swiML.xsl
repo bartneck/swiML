@@ -747,13 +747,21 @@
 
     <!-- Repetition Template -->
     <xsl:template match="sw:repetition">
+
+        <!-- gets location int for repetition-->
         <xsl:variable name="location">
             <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
+
         <div class="repetition">
+
+            <!-- seperate template for simplifying repetition and for non-simplifying-->
             <xsl:choose>
                 <xsl:when test="./sw:simplify[text() = 'true']">
+
                     <div class="repetitionCount">
+
+                        <!-- check if aligning repetition or not-->
                         <xsl:choose>
                             <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
                                 <xsl:attribute name="style">
@@ -777,6 +785,8 @@
                             
                             <xsl:text>&#160;&#215;&#160;</xsl:text>
                         </div>
+
+                        <!-- only display distance if one isnt defined at the repetitions level -->
                         <xsl:if test="not(./sw:length)">
                             <span>                
                                 <xsl:attribute name="class">
@@ -786,9 +796,13 @@
                                 <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
                             </span>
                         </xsl:if>
+
                         <xsl:call-template name="displayInst"/>
                         <xsl:text>&#160;as</xsl:text>
+
                     </div>
+
+                    <!-- only display repetition symbol if more than one child instruction-->
                     <xsl:choose>
                         <xsl:when test="count(./sw:instruction) > 1">
                             <div class="repetitionSymbol"><xsl:text>&#160;</xsl:text></div>
@@ -797,17 +811,26 @@
                             <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
                                 <xsl:text>&#160;</xsl:text>
                             </xsl:if>
-                            
                         </xsl:otherwise>
                     </xsl:choose>
+
                     <div class="repetitionContent">
                         <xsl:apply-templates select="sw:instruction"/>
                     </div>
+
                 </xsl:when>
+
                 <xsl:otherwise>
+
+                    <!-- display inner if not in a continue with only one child instruction -->
+                    <!-- this if statment may be outdated i need to check -->
                     <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
                         <div class="repetitionCount">
-                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">
+
+                            <!-- might be another counter intuitive if statement as its kinda already done is the one above-->
+                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">\
+
+                                <!-- check for excluding alignment-->
                                 <xsl:choose>
                                     <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
                                         <xsl:attribute name="style">
@@ -826,26 +849,40 @@
                             </xsl:if>
                             
                             <div>
+
                                 <xsl:attribute name="style">margin-left:auto</xsl:attribute>
+
+                                <!-- same as if statement above, unsure if its necessary-->
                                 <xsl:choose>
+
                                     <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
                                         <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
                                     </xsl:when>
+
                                     <xsl:otherwise>
+                                        <!-- add extra spacing if theres a repetition description , extra note could possibly simplify all instruction descriptions to a single template and element-->
                                         <xsl:choose>
+
                                             <xsl:when test=".//repetitionDescription">
                                                 <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
                                             </xsl:when>
+
                                             <xsl:otherwise>
                                                 <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
                                             </xsl:otherwise>
+
                                         </xsl:choose>
+
                                     </xsl:otherwise>
+
                                 </xsl:choose>
+
                             </div>
                             
                             <xsl:call-template name="displayInst"/>
                         </div>
+
+                        <!-- only use repetition symbol for more than one child instruction-->
                         <xsl:choose>
                             <xsl:when test="count(./sw:instruction) > 1">
                                 <div class="repetitionSymbol"><xsl:text>&#160;</xsl:text></div>
@@ -868,19 +905,26 @@
         </div>
     </xsl:template>
     
-    <!--Continuation Template -->
+    <!-- Continuation Template -->
     <xsl:template match="sw:continue">
+
+        <!-- gets location int for continue-->
         <xsl:variable name="location">
             <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
+
         <div class="continue">
             <div class="continueLength">
+
+                <!-- check for alingment exclusion-->
                 <xsl:choose>
+
                     <xsl:when test="./sw:excludeAlignContinue[text() = 'true']">
                         <xsl:attribute name="style">
                             <xsl:text>text-align:center;</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
+
                     <xsl:otherwise>
                         <xsl:attribute name="style">
                             <xsl:text>min-width:</xsl:text>
@@ -888,7 +932,9 @@
                             <xsl:text>ch; text-align:center</xsl:text>
                         </xsl:attribute>
                     </xsl:otherwise>
-                </xsl:choose>   
+
+                </xsl:choose> 
+
                 <span>                
                     <xsl:attribute name="class">
                         <xsl:text>extraBoldTypeFaceMarginLeft</xsl:text>
@@ -908,9 +954,17 @@
         
     </xsl:template>
     
+
+    <!-- Instruction Template -->
     <xsl:template name="displayInst">
+
+        <!-- check inst is not a child of a simplifying repetition-->
         <xsl:if test="not(./ancestor::sw:repetition/sw:simplify[text()='true'])">
+
+            <!--  check if grandchild of continue, child of repetition and has no siblings -->
+            <!-- this means the length needs to be multiplied by repetition count as it isnt displayed in the repetition part-->
             <xsl:choose>
+
                 <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
                     <span>                
                         <xsl:attribute name="class">
@@ -918,18 +972,20 @@
                         </xsl:attribute>
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                     </span>
-                    
                 </xsl:when>
+
                 <xsl:otherwise>
                     <xsl:if test="not(../sw:repetition)">
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
                     </xsl:if>
-                    
-                    
                 </xsl:otherwise>
+
             </xsl:choose>
             
         </xsl:if>
+
+        <!-- display 1 as length when in a simplifying repetition and it has siblings -->
+        <!-- this should be fine as base level instructions can only be 1 set of a repetition but this needs to be checked -->
         <xsl:if test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
             <span>                
                 <xsl:attribute name="class">
@@ -938,6 +994,8 @@
                 1
             </span>
         </xsl:if>
+
+        <!-- the rest of the instruction element templates-->
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
         <xsl:apply-templates select="sw:stroke/sw:kicking/sw:standardKick"/>
@@ -954,6 +1012,7 @@
     </xsl:template>
     
     <xsl:template match="sw:length">
+        <!-- different length templates-->
         <xsl:apply-templates select="sw:lengthAsDistance"/>
         <xsl:apply-templates select="sw:lengthAsLaps"/>
         <xsl:apply-templates select="sw:lengthAsTime"/>
@@ -966,7 +1025,8 @@
             <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
-            <xsl:choose>
+            <xsl:choose> 
+
                 <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
                     
                     <xsl:attribute name="style">
@@ -1056,15 +1116,16 @@
     <!-- Secondary Templates -->
     <!-- ============================== -->
 
-    <!-- Show the programLength if it is declared. Otherwise calcualte length. -->
+    <!-- returns total length of the given node -->
     <xsl:template name="showLength">
         <xsl:value-of select="myData:showLength(.)"/>
     </xsl:template>
     
+
+    <!-- returns the number of repetitions needed for a node-->
+    <!-- used in simpifying repetitions-->
     <xsl:template name="simplifyLength">
-        <xsl:value-of select="myData:simpLength(.)"
-        />
-        
+        <xsl:value-of select="myData:simpLength(.)"/>
     </xsl:template>
 
 
@@ -1318,22 +1379,39 @@
                 else
                     $numbers[1] * myData:product($numbers[position() gt 1])"/>
     </xsl:function>
-    
+
+
+    <!-- Returns how far right a node is -->
+    <!-- This is almost number of parents // 2 as each 
+    continue/repetition has instruction element then continue/repetition element-->
     <xsl:function name="myData:breadth">
+
+        <!-- node parameter is the node which depth will be returned-->
         <xsl:param name="node" as="node()"/>
+
         <xsl:choose>
+
+            <!-- when direct parent node is instruction then -1 from # of ancestors to give correct number-->
             <xsl:when test="name($node/../..) = 'instruction'">
                 <xsl:value-of select="(count($node/ancestor::*)-1) div 2"/>
             </xsl:when>
+
             <xsl:otherwise>
                 <xsl:value-of select="count($node/ancestor::*) div 2"/>
             </xsl:otherwise>
+
         </xsl:choose>
-        
+
     </xsl:function>
     
+
+    <!-- returns number denoting the parents of a given node and what type of node it is-->
+    <!-- each digit in the node represents a different parent-->
+    <!-- 0:Instruction,1:continue,2:repetition,3:pyramid,4:segmentName-->
     <xsl:function name="myData:parents">
+
         <xsl:param name="node" as="node()"/>
+
         <xsl:value-of select="
             string-join(
             for $parent in $node/ancestor-or-self::sw:instruction return
@@ -1354,8 +1432,12 @@
             (4)
             else(0),'')
             "/>
+
     </xsl:function>
     
+
+    <!-- returns location of a node as a number, by returning the depth at which each parent and itself is located -->
+    <!-- this results in each node returning a unique number from this function -->
     <xsl:function name="myData:location">
         <xsl:param name="node" as="node()"/>
         <xsl:value-of select="
@@ -1364,18 +1446,29 @@
             myData:depth($parent),'')
             "/>
     </xsl:function>
-    
+     
+
+     <!-- return what section a node is in -->
+     <!-- section is defined by the number of segment names above it -->
+     <!-- so section 0 has none and section 2 is below the second segment name -->
     <xsl:function name="myData:section">
         <xsl:param name="node" as="node()"/>
         <xsl:value-of select="count($node/ancestor-or-self::sw:instruction[last()]/preceding-sibling::sw:instruction/sw:segmentName)"/>
     </xsl:function>
     
+
+    <!-- returns how many top level instructions are above a node -->
+    <!-- the first instruction will be 0 the last will be n-1-->
+    <!-- any children instructions have the same depth as parent instruction -->
+    <!-- may need change to make relative depth, so depth inside current instruction/program-->
     <xsl:function name="myData:depth">
         <xsl:param name="node" as="node()" />
         <xsl:value-of select="count($node/ancestor-or-self::sw:instruction[1]/preceding-sibling::sw:instruction)"/>
     </xsl:function>
     
-    
+
+    <!-- returns total number of repetitions needed for a simplifying continue -->
+    <!-- achieved by getting total length of children then dividing by length of single instruction to give how many times it needs to be repeated -->  
     <xsl:function name="myData:simpLength">
         <xsl:param name="root" as="node()"/>
         
@@ -1402,6 +1495,9 @@
             else (0))"/>
     </xsl:function>
     
+
+    <!-- return total length of children elements -->
+    <!-- adds all length element while multiplying by any repetition elements that contain them -->
     <xsl:function name="myData:showLength">
         <xsl:param name="root" as="node()"/>
 
