@@ -1,0 +1,18 @@
+import drawSvg as draw
+
+def draw_waves():
+    # Create a drawing with a white background
+    d = draw.Drawing(200, 100, origin='center', displayInline=False)
+    d.append(draw.Rectangle(-100, -50, 200, 100, fill='white'))
+
+    # Draw waves using Bezier curves
+    for i in range(10):
+        x = i * 20 - 100
+        y = (-1) ** i * 10
+        d.append(draw.BezierPath(draw.PathData().move(0, 0).cubicCubic(5, y, 15, y, 20, 0), stroke='black'))
+
+    # Save the drawing as an SVG file
+    d.saveSvg('waves_pattern.svg')
+
+if __name__ == "__main__":
+    draw_waves()
