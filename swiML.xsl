@@ -240,7 +240,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(./descendant::sw:length[1]/*[1]))+7+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -657,6 +657,7 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
+                    <xsl:value-of select="$simpLengths"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
@@ -786,16 +787,16 @@
                             <xsl:text>&#160;&#215;&#160;</xsl:text>
                         </div>
 
-                        <!-- only display distance if one isnt defined at the repetitions level -->
-                        <xsl:if test="not(./sw:length)">
-                            <span>                
-                                <xsl:attribute name="class">
-                                    <xsl:text>extraBoldTypeFaceCenter</xsl:text>
-                                </xsl:attribute>
-                                <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
-                                <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
-                            </span>
-                        </xsl:if>
+                        <!-- only display distance if one isnt defined at the repetitions level  REMOVED i did this twice so it wouldnt display anything -->
+                        
+                        <span>                
+                            <xsl:attribute name="class">
+                                <xsl:text>extraBoldTypeFaceCenter</xsl:text>
+                            </xsl:attribute>
+                            <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
+                            <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
+                        </span>
+                       
 
                         <xsl:call-template name="displayInst"/>
                         <xsl:text>&#160;as</xsl:text>
@@ -828,7 +829,7 @@
                         <div class="repetitionCount">
 
                             <!-- might be another counter intuitive if statement as its kinda already done is the one above-->
-                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">\
+                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">
 
                                 <!-- check for excluding alignment-->
                                 <xsl:choose>
