@@ -1336,7 +1336,6 @@
         <term index="easy">Easy</term>
         <term index="threshold">Threshold</term>
         <term index="endurance">Endurance</term>
-        <term index="strong">Strong</term>
         <term index="racePace">Race Pace</term>
         <term index="max">Max</term>
         <term index="6KickDrill">6KD</term>

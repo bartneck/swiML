@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1"
-    xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML"
-    xmlns="https://github.com/bartneck/swiML">
-
-    
-
-
+    vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
+    targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML">
 
     <xs:element name="program">
-
         <!-- ====================================================== -->
         <!-- The meta information for each program -->
         <!-- ====================================================== -->
         <xs:complexType>
             <xs:sequence>
+                <!-- The title of the program -->
                 <xs:element name="title" type="titleString" minOccurs="0" maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>A short title of the program.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <!-- The author(s) of the program -->
                 <xs:element maxOccurs="unbounded" minOccurs="0" name="author">
                     <xs:annotation>
                         <xs:documentation>Each program can have one or more
@@ -50,12 +45,14 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                <!-- The description of the program -->
                 <xs:element name="programDescription" type="descriptionString" minOccurs="0"
                     maxOccurs="1">
                     <xs:annotation>
                         <xs:documentation>A short description for the program.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <!-- The date -->
                 <xs:element minOccurs="0" name="creationDate" type="xs:date" maxOccurs="1"
                     default="2022-02-22">
                     <xs:annotation>
@@ -93,11 +90,11 @@
                             output.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                
                 <!-- ====================================================== -->
                 <!-- The main element(s) for each program. Each instruction can contain instructions. This is recursion. -->
                 <!-- This is the main recursive element for a program -->
                 <!-- ====================================================== -->
-
 
                 <xs:element name="instruction" type="instructionType" minOccurs="1"
                     maxOccurs="unbounded">
@@ -107,30 +104,31 @@
                     </xs:annotation>
                     <xs:unique name="mainEquipmentUnique">
                         <xs:annotation>
-                            <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                            <xs:documentation>Ensures all equipment values in an instruction are
+                                unique</xs:documentation>
                         </xs:annotation>
                         <xs:selector xpath="./sw:equipment"/>
                         <xs:field xpath="."/>
                     </xs:unique>
-
                 </xs:element>
-
-
-
             </xs:sequence>
-            <!-- checks every instruction has stroke,rest and length defined 
+            
+            <!-- ====================================================== -->
+            <!-- Assertion -->
+            <!-- checks every instruction has stroke, rest and length defined 
             any other element in an instruction doesnt have to be defined
             for some reason adding this makes it work?-->
+            <!-- ====================================================== -->
             <xs:assert test="
-                every $inst in .//sw:instruction satisfies(
-                ($inst/ancestor-or-self::*/sw:stroke
-                and $inst/ancestor-or-self::*/sw:length) 
-                or $inst/sw:repetition 
-                or $inst/sw:continue
-                or $inst/sw:pyramid
-                or $inst/sw:segmentName)"/>
+                    every $inst in .//sw:instruction
+                        satisfies (
+                        ($inst/ancestor-or-self::*/sw:stroke
+                        and $inst/ancestor-or-self::*/sw:length)
+                        or $inst/sw:repetition
+                        or $inst/sw:continue
+                        or $inst/sw:pyramid
+                        or $inst/sw:segmentName)"/>
         </xs:complexType>
-
     </xs:element>
 
     <!-- ====================================================== -->
@@ -181,16 +179,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- The offical pool length sizes (not yet used) -->
-    <!-- to do: co-occurance of official and unofficial pool length -->
-    <xs:simpleType name="poolLengthSizes">
-        <xs:restriction base="xs:decimal">
-            <xs:enumeration value="25"/>
-            <xs:enumeration value="33.3"/>
-            <xs:enumeration value="50"/>
-        </xs:restriction>
-    </xs:simpleType>
-
     <!-- ====================================================== -->
     <!-- The basic type for all instructions. It can be either a -->
     <!-- process element or a direction instruction on what to swim -->
@@ -206,6 +194,8 @@
             <xs:annotation>
                 <xs:documentation>The different types of instructions,</xs:documentation>
             </xs:annotation>
+            
+            <!-- ====================================================== -->
             <!-- Process based elements for instructions -->
             <xs:element name="segmentName" minOccurs="0" maxOccurs="1" type="segmentNameType"/>
             <xs:element name="repetition" type="repetitionType">
@@ -220,77 +210,96 @@
                         pyramid.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-             <xs:element name="continue" type="continueType">
+            <xs:element name="continue" type="continueType">
                 <xs:annotation>
-                    <xs:documentation>Instruction process element to denote a continuosly swum block of instructions.</xs:documentation>
+                    <xs:documentation>Instruction process element to denote a continuosly swum block
+                        of instructions.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
+            <!-- ====================================================== -->
             <!-- Direct instruction on what to swim -->
             <xs:sequence>
                 <xs:annotation>
                     <xs:documentation>Sequence of basic elements for an
                         instruction.</xs:documentation>
                 </xs:annotation>
-                
                 <!-- Common elements for instructions -->
                 <xs:group ref="instructionGroup"/>
             </xs:sequence>
 
         </xs:choice>
-        
-        <!-- checks every instruction has stroke,rest and length defined 
+
+        <!-- checks every instruction has stroke, rest and length defined 
         any other element in an instruction doesnt have to be defined-->
         <xs:assert test="
-            (./ancestor-or-self::*/sw:stroke
-            and ./ancestor-or-self::*/sw:length) 
-            or ./sw:repetition 
-            or ./sw:continue
-            or ./sw:pyramid
-            or ./sw:segmentName"/>
-        
+                (./ancestor-or-self::*/sw:stroke
+                and ./ancestor-or-self::*/sw:length)
+                or ./sw:repetition
+                or ./sw:continue
+                or ./sw:pyramid
+                or ./sw:segmentName"/>
+
         <!-- checks every instruction doesnt have repetitions of elements defined and cannot be extended -->
         <xs:assert test="
-            if(not(./sw:repetition 
-            or ./sw:continue
-            or ./sw:pyramid
-            or ./sw:segmentName))
-            then(
-            every $element in ./* satisfies(
-            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'length' or name() = 'stroke' or name() = 'rest' or name() = 'intensity' or name() = 'breath' or name() = 'underwater'] satisfies
-            not(name($element) = name($match))
-            ))
-            else(true())
-            " />
-        
+                if (not(./sw:repetition
+                or ./sw:continue
+                or ./sw:pyramid
+                or ./sw:segmentName))
+                then
+                    (
+                    every $element in ./*
+                        satisfies (
+                        every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'length' or name() = 'stroke' or name() = 'rest' or name() = 'intensity' or name() = 'breath' or name() = 'underwater']
+                            satisfies
+                            not(name($element) = name($match))
+                        ))
+                else
+                    (true())
+                "/>
+
         <xs:assert test="
-            if(not(./sw:repetition 
-            or ./sw:continue
-            or ./sw:pyramid
-            or ./sw:segmentName))
-            then(
-            every $element in ./* satisfies(
-            every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'equipment'] satisfies
-            not($element = $match)
-            ))
-            else(true())
-            "/>
-        
+                if (not(./sw:repetition
+                or ./sw:continue
+                or ./sw:pyramid
+                or ./sw:segmentName))
+                then
+                    (
+                    every $element in ./*
+                        satisfies (
+                        every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'equipment']
+                            satisfies
+                            not($element = $match)
+                        ))
+                else
+                    (true())
+                "/>
+
         <!--checks all segment names are only at top level-->
         <xs:assert test="
-            if (count(./sw:segmentName) > 0)
-            then (count(./sw:segmentName/../../ancestor::*) = 0)
-            else(true())
-         "/>
-        
-        
-        
+                if (count(./sw:segmentName) > 0)
+                then
+                    (count(./sw:segmentName/../../ancestor::*) = 0)
+                else
+                    (true())
+                "/>
+
         <!-- but for some reason this assertion is working -->
         <xs:assert test="
-            every $stroke in ./sw:stroke satisfies
-            if($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
-            then($stroke/parent::*/parent::sw:repetition) else($stroke/parent::*)
-            "><xs:annotation><xs:documentation>checks all strokes to make sure medley order or overlaps are only used in a repetition</xs:documentation></xs:annotation></xs:assert>
-        
+                every $stroke in ./sw:stroke
+                    satisfies
+                    if ($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
+                    then
+                        ($stroke/parent::*/parent::sw:repetition)
+                    else
+                        ($stroke/parent::*)
+                ">
+            <xs:annotation>
+                <xs:documentation>checks all strokes to make sure medley order or overlaps are only
+                    used in a repetition</xs:documentation>
+            </xs:annotation>
+        </xs:assert>
+
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -313,7 +322,6 @@
                         drills.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
             <xs:element name="rest" minOccurs="0" maxOccurs="1" type="restType">
                 <xs:annotation>
                     <xs:documentation>The rest period after the instruction.</xs:documentation>
@@ -325,7 +333,6 @@
                         instruction.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
             <xs:element name="breath" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger">
                 <xs:annotation>
                     <xs:documentation>Number of arm strokes per breath.</xs:documentation>
@@ -350,11 +357,11 @@
             </xs:element>
             <xs:element name="excludeAlign" type="xs:boolean" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
-        
     </xs:group>
 
     <!-- ====================================================== -->
@@ -370,18 +377,20 @@
             <xs:documentation/>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="repetitionCount" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
+            <xs:element name="repetitionCount" type="xs:nonNegativeInteger" minOccurs="0"
+                maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Count of repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
             <xs:element name="simplify" minOccurs="0" maxOccurs="1" type="xs:boolean">
                 <xs:annotation>
-                    <xs:documentation>true -> repetition tag is simplifying a larger set of repetitions
-                        false -> normal repetition
-                    </xs:documentation>
+                    <xs:documentation>true -> repetition tag is simplifying a larger set of
+                        repetitions false -> normal repetition </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            
             <xs:element name="repetitionDescription" minOccurs="0" maxOccurs="1"
                 type="instructionDescriptionType">
                 <xs:annotation>
@@ -389,10 +398,10 @@
                         customise the repetition.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
+
             <!-- Common elements for instructions -->
             <xs:group ref="instructionGroup"/>
-            
+
             <!-- This is the main recursion statement. Every repetition contains instructions. -->
             <!-- Every instruction can contain a repetition -->
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
@@ -403,27 +412,37 @@
                 </xs:annotation>
                 <xs:unique name="repEquipmentUnique">
                     <xs:annotation>
-                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                        <xs:documentation>Ensures all equipment values in an instruction are
+                            unique</xs:documentation>
                     </xs:annotation>
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
-                
             </xs:element>
+            
             <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        
+        <!-- ====================================================== -->
+        <!-- Assertions -->
+        <!-- Explain what this assertion does -->
         <xs:assert test="
-            ((./sw:simplify = true()) and (every $length in .//sw:length
-            satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
-            <xs:annotation> <xs:documentation>checks all lengths within simplified repetition are the same</xs:documentation> </xs:annotation>
+                ((./sw:simplify = true()) and (every $length in .//sw:length
+                    satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
+            <xs:annotation>
+                <xs:documentation>checks all lengths within simplified repetition are the
+                    same</xs:documentation>
+            </xs:annotation>
         </xs:assert>
         
-        <xs:assert test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"></xs:assert>
-
+        <!-- Explain what this assertion does -->
+        <xs:assert
+            test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"/>
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->
@@ -466,43 +485,44 @@
             </xs:element>
             <xs:element name="excludeAlignPyramid" type="xs:boolean" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:group ref="instructionGroup"/>
-            
         </xs:sequence>
     </xs:complexType>
 
     <!-- A continue represents a continuous block of swimming -->
     <xs:complexType name="continueType">
-
         <xs:annotation>
-            <xs:documentation>
-                Continues for when different strokes, equipment or styles need to be swum continuously
-            </xs:documentation>
+            <xs:documentation> Continues for when different strokes, equipment or styles need to be
+                swum continuously </xs:documentation>
         </xs:annotation>
+        
         <xs:sequence>
             <xs:element name="continueLength" minOccurs="0" maxOccurs="1" type="xs:string">
                 <xs:annotation>
-                    <xs:documentation>total length to swim continuously or total number of repetitions
-                    May or may not be defined but if not it will automatically calculated from given instructions</xs:documentation>
+                    <xs:documentation>total length to swim continuously or total number of
+                        repetitions May or may not be defined but if not it will automatically
+                        calculated from given instructions</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            
-            
+
             <!-- Common elements for instructions -->
             <xs:group ref="instructionGroup"/>
-            
+
             <xs:element name="instruction" minOccurs="1" maxOccurs="unbounded"
                 type="instructionType">
                 <xs:annotation>
                     <xs:documentation>A continue can include any number of instructions, which in
-                        turn can contain repetitions or any other complex instruction type.</xs:documentation>
+                        turn can contain repetitions or any other complex instruction
+                        type.</xs:documentation>
                 </xs:annotation>
                 <xs:unique name="contEquipmentUnique">
                     <xs:annotation>
-                        <xs:documentation>Ensures all equipment values in an instruction are unique</xs:documentation>
+                        <xs:documentation>Ensures all equipment values in an instruction are
+                            unique</xs:documentation>
                     </xs:annotation>
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
@@ -510,12 +530,20 @@
             </xs:element>
             <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment process</xs:documentation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
+        
+        <!-- ====================================================== -->
+        <!-- Assertions -->
+        <!-- Explain what this assertion does -->
         <xs:assert test="(count(.//sw:instruction/sw:rest) = 0)">
-            <xs:annotation><xs:documentation>ensures no rest tags occur within the instructions of a continue only at top level</xs:documentation></xs:annotation>
+            <xs:annotation>
+                <xs:documentation>ensures no rest tags occur within the instructions of a continue
+                    only at top level</xs:documentation>
+            </xs:annotation>
         </xs:assert>
     </xs:complexType>
 
@@ -537,8 +565,7 @@
         <!-- Length as either distance, laps or time -->
         <xs:choice>
             <xs:annotation>
-                <xs:documentation>Length can be descriped as distance or
-                    time.</xs:documentation>
+                <xs:documentation>Length can be descriped as distance or time.</xs:documentation>
             </xs:annotation>
             <xs:element name="lengthAsDistance" type="xs:nonNegativeInteger">
                 <xs:annotation>
@@ -547,14 +574,13 @@
             </xs:element>
             <xs:element name="lengthAsTime" type="xs:duration">
                 <xs:annotation>
-                    <xs:documentation>Duration starts with PT followed by int M and int S.
-                        For example PT1M30S for 1:30.</xs:documentation>
+                    <xs:documentation>Duration starts with PT followed by int M and int S. For
+                        example PT1M30S for 1:30.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="lengthAsLaps" type="xs:nonNegativeInteger">
                 <xs:annotation>
-                    <xs:documentation>Length of instruction in number of
-                        laps.</xs:documentation>
+                    <xs:documentation>Length of instruction in number of laps.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:choice>
@@ -593,11 +619,10 @@
             <xs:element name="sinceLastRest" type="xs:duration">
                 <xs:annotation>
                     <xs:documentation>The time since the end of the last rest. This is useful when
-                        several instructions without a rest period are swum, followed by a since start
-                        type rest.</xs:documentation>
+                        several instructions without a rest period are swum, followed by a since
+                        start type rest.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-
             <xs:element name="inOut" type="xs:nonNegativeInteger">
                 <xs:annotation>
                     <xs:documentation>Number of swimmers arriving. Example: 3rd in: Once the 3rd
@@ -636,20 +661,18 @@
     <!-- Working out the build option -->
     <xs:complexType name="intensityProfile" mixed="true">
         <xs:annotation>
-            <xs:documentation>The intensity of the instruction.
-                When given at the lowest level just start intensity indicates a constant intensity 
-                if the stop intensity is given then it is a build within the instruction
-                If the intensity is given at a higher level (repetition or continue)
-                just start intensity is the same constant for all child instructions
-                given a stop intensity then it is descending/ascending over the child instructions</xs:documentation>
+            <xs:documentation>The intensity of the instruction. When given at the lowest level just
+                start intensity indicates a constant intensity if the stop intensity is given then
+                it is a build within the instruction If the intensity is given at a higher level
+                (repetition or continue) just start intensity is the same constant for all child
+                instructions given a stop intensity then it is descending/ascending over the child
+                instructions</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="startIntensity" minOccurs="1" maxOccurs="1" type="intensityType"/>
             <xs:element name="stopIntensity" minOccurs="0" maxOccurs="1" type="intensityType"/>
         </xs:sequence>
-        
     </xs:complexType>
-
 
     <xs:simpleType name="segmentNameType">
         <xs:restriction base="xs:string">
@@ -666,7 +689,6 @@
             <xs:enumeration value="easy"/>
             <xs:enumeration value="threshold"/>
             <xs:enumeration value="endurance"/>
-            <xs:enumeration value="strong"/>
             <xs:enumeration value="racePace"/>
             <xs:enumeration value="max"/>
         </xs:restriction>
@@ -768,7 +790,6 @@
     </xs:simpleType>
 
     <!-- The equipment list allows for multiple equiopments, but only one of each type -->
-
     <xs:simpleType name="equipmentList">
         <xs:list itemType="equipmentType"/>
     </xs:simpleType>
@@ -809,7 +830,7 @@
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
             <xs:enumeration value="6666"/>
-            <xs:enumeration value="other"></xs:enumeration>
+            <xs:enumeration value="other"/>
         </xs:restriction>
     </xs:simpleType>
 
