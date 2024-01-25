@@ -739,6 +739,7 @@
             <xs:enumeration value="notFreestyle"/>
         </xs:restriction>
     </xs:simpleType>
+    
     <xs:complexType name="kickStyle">
         <xs:choice>
             <xs:sequence>
