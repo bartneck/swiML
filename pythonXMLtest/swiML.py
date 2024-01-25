@@ -19,23 +19,16 @@ INSTRUCTION_GROUP = [
                      ]
                      ),
                      ('rest','c',
-                     ['afterStop','sinceStart','sinceLastRest']
+                     ['afterStop','sinceStart','sinceLastRest','inOut']
                      ),
                      ('intensity','c',
                       [
-                       ('staticIntensity','c',
+                       ('startIntensity','c',
                         ['percentageEffort','zone','percentageHeartRate']
                        ),
-                       ('dynamicAcross','s',
-                        [
-                         ('startIntensity','c',
-                          ['percentageEffort','zone','percentageHeartRate']
-                         ),
-                         ('stopIntensity','c',
-                          ['percentageEffort','zone','percentageHeartRate']
-                         )
-                        ]
-                       )
+                       ('stopIntensity','c',
+                        ['percentageEffort','zone','percentageHeartRate']
+                       ) 
                       ]
                      ),
                      'breath',
@@ -60,6 +53,7 @@ def basicInstructions(instructions,parents=[]):
             else:
                 instructionList.append((child,parents))
     return instructionList
+
 def nonBasicInstructions(instructions):
     '''given a list of normal instructions objects contained within an instruction class '''
     #currently unused and is not different from basicInstructions
@@ -79,28 +73,33 @@ def get_total_length(instructions):
     total_length = 0 
     for inst in instructions:
         if type(inst) is Instruction:
-            total_length += inst.length[1]
+            total_length += int(inst.length[1])
         if type(inst) is Repetition:
-            total_length += inst.repetitionCount*get_total_length(inst.instructions)
+            total_length += int(inst.repetitionCount)*get_total_length(inst.instructions)
         if type(inst) is Continue:
-            total_length += inst.totalLength
-    return total_length
+            total_length += get_total_length(inst.instructions)
+    return int(total_length)
 
-def continue_length(simplify,instructions):
+def simplify_repetition(instructions,repetitionCount):
     '''returns either total length or simplified repetitions'''
 
     #this function isnt perfect as it fails on multiple nested repetitions still
-    if simplify:
-        total_repetition = 0
-        basicInsts = basicInstructions(instructions)
+    
+    total_repetition = 0
+    basicInsts = basicInstructions(instructions)
+    if type(instructions[0]) is Repetition:
         for repetition in instructions:
             total_repetition += repetition.repetitionCount
             for instruction in repetition.instructions:
                 if instruction.length != basicInsts[0][0].length:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
-        return f'{total_repetition*len(basicInsts)} x {basicInsts[0][0].length[1]}'
     else:
-        return get_total_length(instructions)
+        for instruction in instructions:
+            total_repetition += 1
+            if instruction.length != basicInsts[0][0].length:
+                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+    return f'{total_repetition*repetitionCount} x {basicInsts[0][0].length[1]}'
+   
 
 
 def classToXML(self,root=None):
@@ -109,7 +108,7 @@ def classToXML(self,root=None):
             root = ET.Element(type(self).__name__.lower())
         else:
             root = ET.SubElement(root,type(self).__name__.lower())
-        if type(self) is Continue:
+        if type(self) is Repetition:
             root.set('simplify',str(getattr(self,'simplify')).lower())
     instructions = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER[:]
@@ -302,9 +301,9 @@ class Instruction:
         
         breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
         #need to get length units in here somehow
-        length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} units' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
+        length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} meters' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
-        stroke = '' if self.stroke == None else self.stroke[1]
+        stroke = '' if self.stroke == None else self.stroke[1] if self.stroke[0] == 'standardStroke' else f'{self.stroke[1][1][1]} drill {self.stroke[1][0][1]}' if self.stroke[0] == 'drill' else self.stroke[1][1]
         inherit = '' if len(self.inherited) == 0 else self.inherited
         line1 = f'\n{length} {stroke} {rest} '
         line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}{inherit}'
@@ -319,9 +318,12 @@ class Repetition:
 
     TAG_ORDER = ['repetitionCount','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
+    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create repetition'''
+        self.simplify = simplify
         self.repetitionCount = repetitionCount
+        if simplify == True:
+            self.simpRep = simplify_repetition(instructions,repetitionCount)
         self.repetitionDescription = repetitionDescription
         self.length = length
         self.rest = rest
@@ -347,12 +349,17 @@ class Repetition:
         instructions_string = '\n'.join(map(str,self.instructions))
         instructions = str(instructions_string).split('\n')
         for i,line in enumerate(instructions[1:]):
-            if i+1 == (len(instructions)-1)//2:
+            if i+1 == (len(instructions)+1)//2 and self.repetitionCount != 1:
                 return_list += (f'{self.repetitionCount}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
 
-        return '\n'+return_list[:-2]
+        if self.simplify == True:
+            return f'\n{self.simpRep} swim as\n'+return_list[:-1]+'\n'
+        else:
+            return '\n'+return_list[:-1]+'\n'
+    
+        
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of repetition if unspecified'''
@@ -371,9 +378,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER = ['totalLength','instructions']
+    TAG_ORDER = ['instructions']
 
-    def __init__(self,totalLength=0,simplify=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
         '''create continue'''
         
         self.length = length
@@ -384,14 +391,13 @@ class Continue:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = None
-        self.simplify = simplify
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        self.totalLength = continue_length(simplify,instructions) if totalLength == 0 else totalLength
+        self.totalLength = get_total_length(instructions)
     def __str__(self):
         '''returns string for continue'''
         return_list =''
@@ -455,54 +461,4 @@ class Pyramid:
         rinstructions = '\n'.join([f'   | {line.strip()}' for line in outinstructions])
         return '\n  Pyramid\n'+str(rinstructions)+'\n'
     
-instruction = Instruction(
-    length=('lengthAsDistance',200),
-    rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke'),
-    breath=None,
-    underwater=False,
-    equipment=[],
-    instructionDescription='boopy doopy doop'
-)
-noRestInstruction = Instruction(
-    length=('lengthAsDistance',200),
-    intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke'),
-    breath=None,
-    underwater=False,
-    equipment=[],
-    instructionDescription='boopy doopy doop'
-)
-noLengthInstruction = Instruction(
-    rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke'),
-    breath=None,
-    underwater=False,
-    equipment=[],
-    instructionDescription='boopy doopy doop'
-)
-instruction2 = Instruction(
-    length=('lengthAsDistance',100),
-    rest=('sinceStart','PT1M55S'),
-    intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke'),
-    breath=None,
-    underwater=False,
-    equipment=[],
-    instructionDescription='boopy doopy doop'
-)
 
-
-
-program = Program(
-    title='Jasi Masters',
-    author=[('firstName','Callum'),('lastName','Lockhart')],
-    programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
-    poolLength='50',
-    lengthUnit='meters',
-    instructions = [Repetition(repetitionCount=4,repetitionDescription='nothing',length=('lengthAsDistance',200),instructions=[noLengthInstruction,noRestInstruction]),Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction])],
-)
-
-writeXML('sample.xml',program)

@@ -4,8 +4,6 @@
     xmlns:o="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
     targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
     xmlns="file:/C:/My%20Documents/GitHub/swiML">
-
-
     <xs:element name="program">
 
         <!-- ====================================================== -->
@@ -781,10 +779,11 @@
     <xs:complexType name="drillType">
         <xs:annotation>
             <xs:documentation>Drill type consists of a drill name and a stroke. For example, this
-                could mean 6 kick drill freestyle.</xs:documentation>
+                could mean 6 kick drill freestyle.
+            You can also just define a stroke to do any drill of that stroke</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="drillName" minOccurs="1" maxOccurs="1" type="drillNameType"/>
+            <xs:element name="drillName"  maxOccurs="1" type="drillNameType"/>
             <xs:element name="drillStroke" type="standardStrokeType" maxOccurs="1" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Drills are based on stroke types. For example, the drill 123

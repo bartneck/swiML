@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"  
+    xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>A sunday program focusing on kick with fins and sprints.</programDescription>
+    <creationDate>2022-09-18</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>backstroke</standardKick>
+                </kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>breaststroke</standardKick>
+                </kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>freestyle</standardKick>
+                </kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <continue>
+       
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>backstroke</standardKick>
+                </kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>breaststroke</standardKick>
+                </kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking>
+                    <standardKick>freestyle</standardKick>
+                </kicking></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+</program>
