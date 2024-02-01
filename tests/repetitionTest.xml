@@ -18,9 +18,6 @@
     <instruction>
         <repetition>
             <simplify>true</simplify>
-            <stroke><kicking>
-                <standardKick>breaststroke</standardKick>
-            </kicking></stroke>
             <instruction>
                 <length><lengthAsDistance>50</lengthAsDistance></length>
                 <stroke><kicking>

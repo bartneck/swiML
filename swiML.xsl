@@ -614,7 +614,6 @@
 
                 <!-- The recursive instructions -->
                 <div class="program">
-                    <xsl:value-of select="$simpLengths"/>
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
                 </div>
                 
