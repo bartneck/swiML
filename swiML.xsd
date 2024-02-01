@@ -3,7 +3,8 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML">
+    targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
+    version="2.1">
 
     <xs:element name="program">
         <!-- ====================================================== -->
@@ -738,6 +739,7 @@
             <xs:enumeration value="notFreestyle"/>
         </xs:restriction>
     </xs:simpleType>
+    
     <xs:complexType name="kickStyle">
         <xs:choice>
             <xs:sequence>
