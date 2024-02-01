@@ -267,11 +267,11 @@
                 or ./sw:segmentName))
                 then
                     (
-                    every $element in ./*
+                    every $element in ./*[name() = 'equipment']
                         satisfies (
                         every $match in ./ancestor::*[name() = 'instruction' or name() = 'repetition' or name() = 'continue' or name() = 'pyramid'][not(./sw:repetition or ./sw:continue or ./sw:pyramid or ./sw:segmentName)]/*[name() = 'equipment']
                             satisfies
-                            not($element = $match)
+                            not($element/text() = $match/text())
                         ))
                 else
                     (true())
@@ -369,8 +369,7 @@
     <!-- These types control the structural flow of the  -->
     <!-- instructions.  -->
     <!-- ====================================================== -->
-
-    <!-- descriptions of these types arent very good -> to fix  -->
+    
     <!-- The repetitionType is one of the major process elements -->
     <xs:complexType name="repetitionType">
         <xs:annotation>
