@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="2.0" targetNamespace="https://github.com/bartneck/swiML"
+    xmlns="https://github.com/bartneck/swiML">
+
+
+    <xs:element name="swimTraining">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clubName" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="clubURL" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                <xs:element name="session" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                    <xs:sequence >
+                        <xs:element name="date" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                        <xs:element name="id" minOccurs="1" maxOccurs="1" type="idRange">
+                        </xs:element>
+                        <xs:element name="pool" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                    </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:simpleType name="idRange">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="99"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
