@@ -14,19 +14,16 @@
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swiMLXSL</String>
                                         <String>swiMLXSLv1.1</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
                                     <list>
                                         <String>XSL</String>
-                                        <String>XSL</String>
                                     </list>
                                 </field>
                                 <field name="scenarioStorageLocations">
                                     <list>
-                                        <Byte>2</Byte>
                                         <Byte>2</Byte>
                                     </list>
                                 </field>
