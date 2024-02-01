@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML">
 
@@ -283,12 +284,12 @@
                 else
                     (true())
                 "/>
-
-        <!-- but for some reason this assertion is working -->
+        
+        <!-- check if this is just for standard stroke or for kicks and drills too -->
         <xs:assert test="
                 every $stroke in ./sw:stroke
                     satisfies
-                    if ($stroke = 'individualMedleyOverlap' or $stroke = 'individualMedleyOrder' or $stroke = 'reverseIndividualMedleyOrder')
+                    if ($stroke/sw:standardStroke = 'individualMedleyOverlap' or $stroke/sw:standardStroke = 'individualMedleyOrder' or $stroke/sw:standardStroke = 'reverseIndividualMedleyOrder')
                     then
                         ($stroke/parent::*/parent::sw:repetition)
                     else
@@ -309,8 +310,6 @@
 
     <xs:group name="instructionGroup">
         <xs:sequence>
-            <!-- The stroke element should not be used if it is already defined in the enclosing repetition -->
-            <!-- to do: cross check that only one stroke is defined. -->
             <xs:element name="length" minOccurs="0" maxOccurs="1" type="lengthType">
                 <xs:annotation>
                     <xs:documentation>The length of the instruction.</xs:documentation>
