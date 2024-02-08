@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
     version="2.1">

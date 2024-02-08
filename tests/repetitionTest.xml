@@ -2,7 +2,7 @@
 <program xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"  
     xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
 
     <title>Jasi Masters</title>
     <author>
@@ -34,18 +34,6 @@
     </instruction>
     
     <!-- valid -->
-    <instruction>
-        <continue>
-            <equipment>fins</equipment>
-            <instruction>
-                <length>
-                    <lengthAsDistance>100</lengthAsDistance>
-                </length>
-                <stroke><standardStroke>freestyle</standardStroke></stroke>
-                
-            </instruction>
-        </continue>
-    </instruction>
     <instruction>
         <length>
             <lengthAsDistance>100</lengthAsDistance>
