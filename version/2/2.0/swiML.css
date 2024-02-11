@@ -109,6 +109,10 @@ p.describtion {
     color: grey;
 }
 
+.dynamicIntensity {
+    white-space: nowrap;
+}
+
 .continueLength {
     display: flex;
     align-items: center;

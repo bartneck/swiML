@@ -276,6 +276,7 @@
                     (true())
                 "/>
 
+
         <!--checks all segment names are only at top level-->
         <xs:assert test="
                 if (count(./sw:segmentName) > 0)

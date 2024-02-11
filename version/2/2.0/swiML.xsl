@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+      <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
@@ -227,7 +227,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(./descendant::sw:length[1]/*[1]))+7+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+string-length(string(./descendant::sw:length[1]/*[1]))+5+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -730,13 +730,13 @@
                             </xsl:otherwise>
                         </xsl:choose>
                         
-                        <div>
+                        <span>
                             <xsl:attribute name="style">
                                 <xsl:text>margin-left: auto; </xsl:text>
                             </xsl:attribute>
                             <xsl:call-template name="simplifyLength"/>
                             <xsl:text>&#160;&#215;&#160;</xsl:text>
-                        </div>
+                        </span>
 
                         <!-- only display distance if one isnt defined at the repetitions level  REMOVED i did this twice so it wouldnt display anything -->
                         <span>                
@@ -773,7 +773,7 @@
                     <!-- display inner if not in a continue with only one child instruction -->
                     <!-- this if statment may be outdated i need to check -->
                     <xsl:if test="not(count(../../../sw:continue) = 1 and count(.//sw:instruction) = 1 and not(../../sw:simplify[text()='true']))">
-                        <div class="repetitionCount">
+                        <span class="repetitionCount">
 
                             <!-- might be another counter intuitive if statement as its kinda already done is the one above-->
                             <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])">
@@ -794,30 +794,39 @@
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:if>
-                            <div>
+                            <span>
 
                                 <xsl:attribute name="style">margin-left:auto</xsl:attribute>
 
                                 <!-- same as if statement above, unsure if its necessary-->
                                 <xsl:choose>
                                     <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
+
                                         <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
+
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <!-- add extra spacing if theres a repetition description , extra note could possibly simplify all instruction descriptions to a single template and element-->
                                         <xsl:choose>
                                             <xsl:when test=".//repetitionDescription">
+
                                                 <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
+
                                             </xsl:when>
                                             <xsl:otherwise>
+                                                <xsl:if test="count(./sw:instruction) = 1">
+                                                    <xsl:attribute name="class">
+                                                        <xsl:text>extraBoldTypeFaceCenter</xsl:text>
+                                                    </xsl:attribute>
+                                                </xsl:if>
                                                 <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:otherwise>
                                 </xsl:choose>
-                            </div>
+                            </span>
                             <xsl:call-template name="displayInst"/>
-                        </div>
+                        </span>
 
                         <!-- only use repetition symbol for more than one child instruction-->
                         <xsl:choose>
@@ -1076,15 +1085,17 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:if test="./sw:intensity">
-                    <xsl:choose>
-                        <!-- this is gonna change not sure what too yet -->
-                        <xsl:when test="../sw:repetition/sw:intensity or ../sw:continue/sw:intensity">
-                            <xsl:call-template name="dynamicIntensity"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="dynamicIntensity"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <div class="dynamicIntensity">
+                        <xsl:choose>
+                            <!-- this is gonna change not sure what too yet -->
+                            <xsl:when test="../sw:repetition/sw:intensity or ../sw:continue/sw:intensity">
+                                <xsl:call-template name="dynamicIntensity"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="dynamicIntensity"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </div>
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
