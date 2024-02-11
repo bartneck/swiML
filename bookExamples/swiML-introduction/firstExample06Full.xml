@@ -19,5 +19,13 @@
         <stroke>
             <standardStroke>freestyle</standardStroke>
         </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+            <stopIntensity>
+                <zone>max</zone>
+            </stopIntensity>
+        </intensity>
     </instruction>
 </program>

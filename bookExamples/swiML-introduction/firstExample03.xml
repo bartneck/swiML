@@ -13,7 +13,11 @@
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
     <instruction>
-        <length><lengthAsDistance>100</lengthAsDistance></length>
-        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
     </instruction>
 </program>
