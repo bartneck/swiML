@@ -10,11 +10,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/JasiMasters2024020401.xml</String>
+                                    <String>jasiMasters/JasiMasters2024021301.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swiMLXSLv2.1</String>
+                                        <String>swiMLXSLv2.0</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -50,7 +50,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>jasiMasters/JasiMasters2024021301.xml</String>
+                                    <String>jasiMasters/JasiMasters2024020401.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
