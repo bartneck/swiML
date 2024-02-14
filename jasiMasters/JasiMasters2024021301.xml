@@ -134,7 +134,7 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>16</repetitionCount>
+<!--            <repetitionCount>15</repetitionCount>-->
             <simplify>true</simplify>
             <rest>
                 <afterStop>PT0M10S</afterStop>
