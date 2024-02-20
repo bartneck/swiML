@@ -274,7 +274,7 @@ class Instruction:
 
     TAG_ORDER = INSTRUCTION_GROUP
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructionDescription=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructionDescription=None):
         '''Initialises an instruction instance and defines all attributes'''
         self.length = length
         self.rest = rest
