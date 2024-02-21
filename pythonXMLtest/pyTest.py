@@ -7,11 +7,7 @@ instruction = swiML.Instruction(
     length=('lengthAsDistance',200),
     rest=('sinceStart','PT1M55S'),
     intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke'),
-    breath=None,
-    underwater=False,
-    equipment=[],
-    instructionDescription='Description'
+    stroke=('standardStroke','backstroke')
 )
 
 #an instruction with no defined rest
@@ -69,6 +65,7 @@ program = swiML.Program(
     programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     poolLength='50',
     lengthUnit='meters',
+    swiMLVersion=2.1,
     instructions=[swiML.Continue(
     instructions = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction])]
     ),
@@ -94,7 +91,7 @@ program2 = swiML.Program(
     instructions=instructionList)
 
 #display second program in terminal 
-print(program2)
+#print(program2)
 
 
 #example for reading and writing to an xml document 
@@ -102,4 +99,4 @@ print(program2)
 swiML.writeXML('sample.xml',program)
 
 #reading will return a class containing what ws written in the xml  
-print(swiML.readXML('pythonXMLtest/sample.xml'))
+#print(swiML.readXML('pythonXMLtest/sample.xml'))
