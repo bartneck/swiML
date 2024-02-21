@@ -230,7 +230,7 @@ def writeXML(filename,node):
         takes filename as input'''
     
     tree = classToXML(node)
-    tree.write('pythonXMLtest\\'+filename)
+    tree.write(filename)
 
 class Program:
     '''Defines a program'''
