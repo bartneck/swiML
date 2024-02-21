@@ -65,6 +65,7 @@ program = swiML.Program(
     programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     poolLength='50',
     lengthUnit='meters',
+    swiMLVersion=2.1,
     instructions=[swiML.Continue(
     instructions = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction])]
     ),

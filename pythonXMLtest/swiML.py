@@ -106,6 +106,11 @@ def classToXML(self,root=None):
     if type(self) is not Instruction:
         if root == None:
             root = ET.Element(type(self).__name__.lower())
+            if type(self).__name__.lower() == 'program':
+                schemaLocation = f'https://github.com/bartneck/swiML/version{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
+                root.set('xmlns','https://github.com/bartneck/swiML')
+                root.set('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance')
+                root.set('xsi:schemaLocation',schemaLocation)
         else:
             root = ET.SubElement(root,type(self).__name__.lower())
         if type(self) is Repetition:
@@ -230,10 +235,10 @@ def writeXML(filename,node):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit',  'instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',swiMLVersion=1.1,instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -243,6 +248,7 @@ class Program:
         self.programDescription = programDescription
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
+        self.swiMLVersion = swiMLVersion
         self.instructions = instructions
         
     def __str__(self):
