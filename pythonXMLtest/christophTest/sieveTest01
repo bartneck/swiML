@@ -1,0 +1,39 @@
+import swiML
+
+def sieve_of_eratosthenes(limit):
+    primes = []
+    is_prime = [True] * (limit + 1)
+    is_prime[0] = is_prime[1] = False
+
+    for num in range(2, int(limit**0.5) + 1):
+        if is_prime[num]:
+            primes.append(num)
+            for multiple in range(num * num, limit + 1, num):
+                is_prime[multiple] = False
+
+    for num in range(int(limit**0.5) + 1, limit + 1):
+        if is_prime[num]:
+            primes.append(num)
+
+    return primes
+
+# Example: Find prime numbers up to 50
+limit = 50
+prime_numbers = sieve_of_eratosthenes(limit)
+print("Prime numbers up to", limit, "are:", prime_numbers)
+
+instructionList = []
+for i in prime_numbers:
+    instructionList.append(swiML.Instruction(length=('lengthAsLaps',i),stroke=('standardStroke','freestyle')))
+
+simpleProgram=swiML.Program(
+    title='Jasi Masters',
+    author=[('firstName','Christoph'),('lastName','Bartneck')],
+    programDescription='My first Python swiML Program',
+    poolLength='25',
+    lengthUnit='meters',
+    instructions=instructionList
+)
+
+print(simpleProgram)
+swiML.writeXML('sieveTest01.xml',simpleProgram)

@@ -11,6 +11,7 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>pythonXMLtest/JasiMasters2024022001.xml</String>
+
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -55,6 +56,7 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>swiMLXSL</String>
+
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -95,6 +97,27 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>swiMLXSLv2.1</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>jasiMasters/JasiMasters2024020601.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSLv2.0</String>
+
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
