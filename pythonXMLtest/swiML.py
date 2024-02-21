@@ -45,7 +45,7 @@ def basicInstructions(instructions,parents=[]):
     '''given a list of normal instructions objects contained within an instruction class and any data on parent classes '''
     instructionList = []
     for child in instructions:
-        if type(child) is Instruction:
+        if type(child) is Instruction or type(child) is Continue:
             instructionList.append((child,parents))
         else:
             if child.instructions != None:
@@ -59,7 +59,7 @@ def nonBasicInstructions(instructions):
     #currently unused and is not different from basicInstructions
     instructionList = []
     for child in instructions:
-        if type(child) is not Instruction:
+        if type(child) is not Instruction and type(child) is not Continue:
             instructionList.append(child)
         else:
             if child.instructions != None:
@@ -107,14 +107,12 @@ def classToXML(self,root=None):
         if root == None:
             root = ET.Element(type(self).__name__.lower())
             if type(self).__name__.lower() == 'program':
-                schemaLocation = f'https://github.com/bartneck/swiML/version{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
+                schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
                 root.set('xmlns','https://github.com/bartneck/swiML')
                 root.set('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance')
                 root.set('xsi:schemaLocation',schemaLocation)
         else:
             root = ET.SubElement(root,type(self).__name__.lower())
-        if type(self) is Repetition:
-            root.set('simplify',str(getattr(self,'simplify')).lower())
     instructions = [getattr(self,attr if type(attr) is str else attr[0]) for attr in self.TAG_ORDER]
     tags = self.TAG_ORDER[:]
 
@@ -322,9 +320,9 @@ class Instruction:
 class Repetition:
     '''Defines a repetition'''
 
-    TAG_ORDER = ['repetitionCount','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER = ['repetitionCount','simplify','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
+    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
         '''create repetition'''
         self.simplify = simplify
         self.repetitionCount = repetitionCount
@@ -342,7 +340,7 @@ class Repetition:
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
-            for tag in self.TAG_ORDER[2:-2]:
+            for tag in self.TAG_ORDER[3:-2]:
                 tag = tag if type(tag) is str else tag[0]
                 if getattr(inst[0],tag) == None and getattr(self,tag) != None and all([getattr(parent,tag) == None for parent in inst[1][1:]]):
                     setattr(inst[0],tag,getattr(self,tag))
@@ -386,7 +384,7 @@ class Continue:
 
     TAG_ORDER = ['instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
         '''create continue'''
         
         self.length = length
@@ -434,7 +432,7 @@ class Pyramid:
     
     TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','instructions']
     
-    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=False,equipment=[],instructions=[]):
+    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
         '''create repetition'''
         self.startLength = startLength
         self.stopLength = stopLength
