@@ -103,7 +103,7 @@ def simplify_repetition(instructions,repetitionCount):
 
 
 def classToXML(self,root=None):
-    if type(self) is not Instruction:
+    if type(self) is not Instruction and type(self) is not SegmentName:
         if root == None:
             root = ET.Element(type(self).__name__.lower())
             if type(self).__name__.lower() == 'program':
@@ -211,6 +211,8 @@ def XMLToClass(node):
             return Continue(**instDict,instructions=instructions)
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
+        elif instType[0].tag == 'segmentName':
+            return SegmentName(**instDict,instructions=instructions)
 
 
 def readXML(filename):
@@ -465,4 +467,15 @@ class Pyramid:
         rinstructions = '\n'.join([f'   | {line.strip()}' for line in outinstructions])
         return '\n  Pyramid\n'+str(rinstructions)+'\n'
     
+class SegmentName:
+    '''defines a segment name'''
 
+    TAG_ORDER = ['segmentName']
+
+    def __init__(self,segmentName=None):
+        '''creates segment name'''
+        self.segmentName = segmentName
+
+    def __str__(self):
+        '''returns string for segment name'''
+        return '\n'+str(self.segmentName)

@@ -143,7 +143,8 @@ simpleProgram=swiML.Program(
     poolLength='25',
     lengthUnit='meters',
     swiMLVersion=2.0,
-    instructions=[warmUp,
+    instructions=[swiML.SegmentName('Warm Up'),
+        warmUp,swiML.SegmentName('Main Set'),
                   oneSet,
                   twoSet,
                   threeSet,
@@ -152,6 +153,7 @@ simpleProgram=swiML.Program(
                   sixSet,
                   sevenSet,
                   eightSet,
+                  swiML.SegmentName('Warm Down'),
                   warmDown
                   ]
 )
