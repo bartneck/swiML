@@ -87,6 +87,7 @@ def simplify_repetition(instructions,repetitionCount):
     
     total_repetition = 0
     basicInsts = basicInstructions(instructions)
+    print(basicInsts)
     if type(instructions[0]) is Repetition:
         for repetition in instructions:
             total_repetition += repetition.repetitionCount
@@ -98,6 +99,10 @@ def simplify_repetition(instructions,repetitionCount):
             total_repetition += 1
             if instruction.length != basicInsts[0][0].length:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+            
+    if type(basicInsts[0][0]) is Continue:
+        return f'{total_repetition*repetitionCount} x {basicInsts[0][0].totalLength}'
+
     return f'{total_repetition*repetitionCount} x {basicInsts[0][0].length[1]}'
    
 

@@ -52,7 +52,7 @@ oneSet3=swiML.Continue(
 
 oneSet=swiML.Repetition(
     repetitionCount=3,
-    simplify=False,
+    simplify=True,
     instructions=[
         oneSet1,
         oneSet2,
@@ -144,8 +144,8 @@ simpleProgram=swiML.Program(
     lengthUnit='meters',
     swiMLVersion=2.0,
     instructions=[swiML.SegmentName('Warm Up'),
-                    threeSet
-                    ,oneSet
+                    
+                    oneSet
                   ]
 )
 
