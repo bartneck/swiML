@@ -33,7 +33,7 @@ oneSet2=swiML.Continue(
         ),
         swiML.Instruction(
             length=('lengthAsDistance',100),
-            stroke=('kickin',('standardKick','any'))
+            stroke=('kicking',('standardKick','any'))
         )        
     ]
 )
@@ -65,7 +65,7 @@ twoSet=swiML.Repetition(
     repetitionCount=6,
     instructions=[swiML.Instruction(
         length=('lengthAsDistance',25),
-        stroke=('kickin',('standardKick','freestyle')),
+        stroke=('kicking',('standardKick','freestyle')),
         intensity=('startIntensity',('zone','max')),
         rest=('sinceStart','PT0M45S')
         )
@@ -79,7 +79,7 @@ threeSet=swiML.Repetition(
             length=('lengthAsDistance',200),
             stroke=('standardStroke','freestyle'),
             rest=('sinceStart','PT3M10S'),
-            equipment=('pullBuoy','pads')
+            equipment=('pads','pullBuoy'),
         )
     ]
 )
@@ -99,7 +99,7 @@ fourSet=swiML.Repetition(
 
 fiveSet=swiML.Instruction(
     length=('lengthAsDistance',400),
-    stroke=('kickin',('standardKick','any')),
+    stroke=('kicking',('standardKick','any')),
     equipment=('fins')
 )
 
@@ -143,6 +143,7 @@ simpleProgram=swiML.Program(
     programDescription='Our Tuesday evening program targeted at one hour. The coach was Matt.',
     poolLength='25',
     lengthUnit='meters',
+    swiMLVersion='2.0',
     instructions=[warmUp,
                   oneSet,
                   twoSet,
