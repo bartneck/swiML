@@ -147,7 +147,10 @@ def ObjToXML(root,tags,instructions):
                         classToXML(child,instruction)
                 elif type(instructions[tag_index]) is tuple :
                     if tag == instructions[tag_index][0]:
-                        ET.SubElement(root,tag).text = str(instructions[tag_index][1])        
+                        ET.SubElement(root,tag).text = str(instructions[tag_index][1])       
+                    else:
+                        for element in instructions[tag_index]:
+                            ET.SubElement(root,tag).text = str(element) 
                 else:
                     print('oh no')
             elif type(tag) is tuple:
@@ -231,7 +234,7 @@ def writeXML(filename,node):
     
     tree = classToXML(node)
     tree.write(filename)
-
+    print(f'written to {filename}')
 class Program:
     '''Defines a program'''
 
@@ -296,7 +299,17 @@ class Instruction:
         '''returns a string for an instruction object that can easily be read'''
         rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
         underwater = 'underwater\n' if self.underwater == True else ''
-        equipment = ', '.join(self.equipment)[:-2]+'\n' if len(self.equipment) > 0 and self.equipment != None else ''
+        
+        equipment = ''
+        if type(self.equipment) is str:
+            print(self.equipment)
+            equipment = self.equipment
+        if type(self.equipment) is tuple:
+            for equip in self.equipment:
+                equipment += equip 
+                equipment += ', '
+            equipment = equipment[:-2]
+            
         if self.intensity != None:
             if type(self.intensity) is tuple:
                 intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}\n'
@@ -313,9 +326,12 @@ class Instruction:
         inherit = '' if len(self.inherited) == 0 else self.inherited
         line1 = f'\n{length} {stroke} {rest} '
         line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}{inherit}'
-        line1 = line1 if len(line1) > 0 else ''
-        line2 = line2 if len(line2) > 0 else ''
-        return line1 + line2 
+
+        if len(line1) > 1 and len(line2) > 1:
+            return line1 + line2
+        if len(line1) > 1:
+            return line1
+        return line2
 
 
 
@@ -363,9 +379,8 @@ class Repetition:
         if self.simplify == True:
             return f'\n{self.simpRep} swim as\n'+return_list[:-1]+'\n'
         else:
-            return '\n'+return_list[:-1]+'\n'
-    
-        
+            return '\n'+return_list[:-1]
+      
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of repetition if unspecified'''
@@ -410,10 +425,11 @@ class Continue:
         #return_string = ''
         instructions_string = '\n'.join(map(str,self.instructions))
         instructions = str(instructions_string).split('\n')
+        
         for i,line in enumerate(instructions[1:]):
             return_list += (f'   | {line}\n')
 
-        return f'\n{self.totalLength} swim as\n'+return_list[:-2]+'\n'
+        return f'\n{self.totalLength} swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''
