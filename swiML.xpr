@@ -10,7 +10,8 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>pythonXMLtest/sample.xml</String>
+                                    <String>pythonXMLtest/christophTest/JasiMasters2024022001.xml</String>
+
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
