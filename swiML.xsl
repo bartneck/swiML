@@ -893,37 +893,39 @@
     <xsl:template name="displayInst">
 
         <!-- check inst is not a child of a simplifying repetition-->
-        <xsl:if test="not(./ancestor::sw:repetition/sw:simplify[text()='true'])">
-
-            <!--  check if grandchild of continue, child of repetition and has no siblings -->
-            <!-- this means the length needs to be multiplied by repetition count as it isnt displayed in the repetition part-->
-            <xsl:choose>
-                <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
-                    <span>                
-                        <xsl:attribute name="class">
-                            <xsl:text>extraBoldTypeFaceRight</xsl:text>
-                        </xsl:attribute>
-                        <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
-                    </span>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:if test="not(../sw:repetition)">
-                        <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>          
-        </xsl:if>
+        
 
         <!-- display 1 as length when in a simplifying repetition and it has siblings -->
         <!-- this should be fine as base level instructions can only be 1 set of a repetition but this needs to be checked -->
-        <xsl:if test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
-            <span>                
-                <xsl:attribute name="class">
-                    <xsl:text>extraBoldTypeFaceRight</xsl:text>
-                </xsl:attribute>
-                1
-            </span>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
+                <span>                
+                    <xsl:attribute name="class">
+                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
+                    </xsl:attribute>
+                    1
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                
+                <!--  check if grandchild of continue, child of repetition and has no siblings -->
+                <!-- this means the length needs to be multiplied by repetition count as it isnt displayed in the repetition part-->
+                <xsl:choose>
+                    <xsl:when test="count(../../../../sw:continue) > 0 and (../../sw:repetition and count(..//sw:instruction) = 1)">
+                        <span>                
+                            <xsl:attribute name="class">
+                                <xsl:text>extraBoldTypeFaceRight</xsl:text>
+                            </xsl:attribute>
+                            <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
+                        </span>
+                    </xsl:when>
+                    <xsl:when test="not(../../sw:repetition)">
+                        <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
+                    </xsl:when>
+                </xsl:choose>          
+            </xsl:otherwise>
+        </xsl:choose>
+        
 
         <!-- the rest of the instruction element templates-->
         <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>

@@ -52,7 +52,7 @@ oneSet3=swiML.Continue(
 
 oneSet=swiML.Repetition(
     repetitionCount=3,
-    simplify=False,
+    simplify=True,
     instructions=[
         oneSet1,
         oneSet2,
@@ -78,7 +78,7 @@ threeSet=swiML.Repetition(
             length=('lengthAsDistance',200),
             stroke=('standardStroke','freestyle'),
             rest=('sinceStart','PT3M10S'),
-            equipment=('pullBuoy','pads')
+            equipment=('pads','pullBuoy')
         )
     ]
 )
@@ -144,19 +144,10 @@ simpleProgram=swiML.Program(
     lengthUnit='meters',
     swiMLVersion=2.0,
     instructions=[swiML.SegmentName('Warm Up'),
-        warmUp,swiML.SegmentName('Main Set'),
-                  oneSet,
-                  twoSet,
-                  threeSet,
-                  fourSet,
-                  fiveSet,
-                  sixSet,
-                  sevenSet,
-                  eightSet,
-                  swiML.SegmentName('Warm Down'),
-                  warmDown
+                    
+                    oneSet
                   ]
 )
 
 print(simpleProgram)
-swiML.writeXML('JasiMasters2024022001.xml',simpleProgram)
+swiML.writeXML('pythonXMLtest\sample.xml',simpleProgram)
