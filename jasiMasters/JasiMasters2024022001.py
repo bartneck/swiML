@@ -136,6 +136,9 @@ warmDown=swiML.Instruction(
     intensity=('startIntensity',('zone','easy')),
 )
 
+# warmUpSegment=swiML.Instruction(
+#     segmentName=('Warm Up')
+# )
 
 simpleProgram=swiML.Program(
     title='Jasi Masters',
@@ -144,7 +147,8 @@ simpleProgram=swiML.Program(
     poolLength='25',
     lengthUnit='meters',
     swiMLVersion='2.0',
-    instructions=[warmUp,
+    instructions=[
+                  warmUp,
                   oneSet,
                   twoSet,
                   threeSet,

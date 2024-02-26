@@ -1,0 +1,28 @@
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <instruction>
+        <segmentName>WarmUp</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+</program>
