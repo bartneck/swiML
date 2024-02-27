@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    <title>Zeitpyramide</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swimming the improved Zeitpyramide.</programDescription>
+    <creationDate>2024-02-27</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <instruction>
+        <segmentName>First layer</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>49</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Second layer</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>45</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Third layer</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>21</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Fourth layer</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>5</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <segmentName>Sixth layer</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>1</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>butterfly</standardStroke>
+        </stroke>
+    </instruction>
+</program>
