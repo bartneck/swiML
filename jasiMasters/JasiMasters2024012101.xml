@@ -34,7 +34,6 @@
     <!-- not valid -->
     <instruction>
         <repetition>
-            <repetitionCount>4</repetitionCount>
             <simplify>true</simplify>
             <equipment>fins</equipment>
 <!--            <excludeAlign>true</excludeAlign>-->
