@@ -429,8 +429,9 @@
         <!-- ====================================================== -->
         <!-- Assertions -->
         <xs:assert test="
-            ((./sw:simplify = true()) and (every $length in .//sw:length
-            satisfies $length/*[1] = (.//sw:length)[1]/*[1])) or ./sw:simplify = false() or count(./sw:simplify) = 0">
+            ((./sw:simplify = true()) and (every $instruction in ./sw:instruction[not(./sw:repetition or ./sw:pyramid or ./sw:segmentName)]
+            satisfies sum(($instruction/descendant-or-self::sw:instruction[1])//sw:lengthAsDistance) = sum((./descendant-or-self::sw:instruction[1])//sw:lengthAsDistance))) 
+            or ./sw:simplify = false() or count(./sw:simplify) = 0">
             <xs:annotation>
                 <xs:documentation>checks all lengths within simplified repetition are the
                     same</xs:documentation>

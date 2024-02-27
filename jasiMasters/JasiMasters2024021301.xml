@@ -88,7 +88,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>10</repetitionCount>
             <simplify>true</simplify>
             <stroke>
                 <standardStroke>freestyle</standardStroke>

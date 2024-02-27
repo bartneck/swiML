@@ -227,7 +227,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+string-length(string(./descendant::sw:length[1]/*[1]))+5+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(myData:simpLength(.)))+string-length(string(sum((./descendant-or-self::sw:instruction[1])//sw:lengthAsDistance)))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -315,7 +315,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated repetition count, 2 characters for multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' or name(.) = 'simplify' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -743,7 +743,7 @@
                             <xsl:attribute name="class">
                                 <xsl:text>extraBoldTypeFaceCenter</xsl:text>
                             </xsl:attribute>
-                            <xsl:value-of select="(./descendant::sw:length[1]/*[1])"/>
+                            <xsl:value-of select="sum((./descendant-or-self::sw:instruction[1])//sw:lengthAsDistance)"/>
                             <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
                         </span>
                        
@@ -919,7 +919,7 @@
                             <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()] * ../../sw:repetition/sw:repetitionCount"/>
                         </span>
                     </xsl:when>
-                    <xsl:when test="not(../../sw:repetition)">
+                    <xsl:when test="not(../../../sw:simplify[text()='true'] and ../../sw:repetition)">
                         <xsl:apply-templates select="(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]"/>
                     </xsl:when>
                 </xsl:choose>          
@@ -1386,18 +1386,27 @@
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
             * myData:product($l/ancestor::sw:repetition[ancestor::sw:repetition/sw:simplify[text() = 'true']]/sw:repetitionCount)
-            )div($root/descendant-or-self::sw:lengthAsDistance[1])) else (0))
+            )div(sum(($root/descendant-or-self::sw:instruction[1])//sw:lengthAsDistance)) 
+            *( 
+            if($root/sw:repetitionCount)
+            then($root/sw:repetitionCount)
+            else(1))
+            ) else (0))
             +
             (if
             ($root/descendant-or-self::sw:lengthAsLaps) then (
-            (
+            
             sum(
             for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
             return
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
             * myData:product($l/ancestor::sw:repetition[ancestor::sw:repetition/sw:simplify[text() = 'true']]/sw:repetitionCount)
-            )div($root/descendant-or-self::sw:lengthAsLaps[1]))) 
-            else (0))"/>
+            )div(sum(($root/descendant-or-self::sw:instruction[1])//sw:lengthAsDistance))
+            *( 
+            if($root/sw:repetitionCount)
+            then($root/sw:repetitionCount)
+            else(1))
+            ) else (0))"/>
     </xsl:function>
     
     <!-- return total length of children elements -->
@@ -1414,16 +1423,16 @@
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0)
             then
             (1)
             else
             (if 
             (name($root) = 'continue') 
             then 
-            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]/sw:repetitionCount))
+            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]/sw:repetitionCount))
             else
-            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount))))
+            ($l/ancestor::sw:repetition/sw:repetitionCount))))
             else(0)
             )
             +
@@ -1437,16 +1446,16 @@
             $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
             * myData:product(
             if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]) = 0)
+            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0)
             then
             (1)
             else
             if 
             (name($root) = 'continue')  
             then 
-            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $breadth][not(./sw:simplify = 'true')]/sw:repetitionCount)
+            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $breadth]/sw:repetitionCount)
             else
-            ($l/ancestor::sw:repetition[not(./sw:simplify = 'true')]/sw:repetitionCount)))
+            ($l/ancestor::sw:repetition/sw:repetitionCount)))
             else (0)
             ) * $root/ancestor-or-self::sw:program//sw:poolLength  
             "/>

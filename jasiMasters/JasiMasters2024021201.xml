@@ -29,7 +29,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>8</repetitionCount>
             <simplify>true</simplify>
             <rest><afterStop>PT0M10S</afterStop></rest>
             <equipment>fins</equipment>
@@ -122,7 +121,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
             <simplify>true</simplify>
             <stroke>
                 <standardStroke>freestyle</standardStroke>
@@ -147,7 +145,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
             <simplify>true</simplify>
             <stroke>
                 <standardStroke>freestyle</standardStroke>
@@ -183,7 +180,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
             <simplify>true</simplify>
             <stroke>
                 <standardStroke>freestyle</standardStroke>
@@ -219,7 +215,6 @@
     
     <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
             <simplify>true</simplify>
             <stroke>
                 <standardStroke>freestyle</standardStroke>
