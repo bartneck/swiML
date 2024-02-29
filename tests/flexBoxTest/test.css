@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* CSS Document */
+.one,
+.two,
+.three{
+  display: inline-block;
+}
+
+.left-wrapper,
+.right-wrapper {
+  display: inline-block;
+}
+
+.right-wrapper {
+  float: right;
+}
