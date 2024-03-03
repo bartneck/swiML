@@ -1,19 +1,19 @@
 @charset "UTF-8";
+/* version 2.1 */
 
 body {
     font-family: 'JetBrains Mono', monospace;
+	/* the font size is set so that 50 characters add up to 11cm */
     font-size: 3.67mm;
     font-weight: 400;
     font-style: normal;
     counter-reset: line;
-    /* Not sure why we need this (cb)
-	width: 7in;
-    height: 9.25in;
-    margin: 27mm 16mm 27mm 16mm;
-     */
 }
 
+/* ********************************** */
 /* meta information styling */
+/* ********************************** */
+
 ul {
     line-height: 110%;
     list-style-type: "~>";
@@ -39,18 +39,22 @@ p.authorEmail {
     line-height: 80%;
     margin-top: -1em;
 }
+
 p.describtion {
     line-height: 120%;
     margin-bottom: 2em;
 }
+
 .intro {
     padding: 1ch;
     width: 50ch;
     margin: 0px auto;
-
 }
 
-/* footer stying */
+/* ********************************** */
+/* footer styling */
+/* ********************************** */
+
 .bottom {
     width: 50ch;
     margin: auto;
@@ -72,8 +76,12 @@ p.describtion {
     width: 3.5em;
 }
 
+/* ********************************** */
 /* main program styling */
+/* ********************************** */
+
 .program {
+	/* 48 characters plus 1 character padding left and right adds up to 50 */
     padding: 1ch;
     border: solid;
     border-width: 0.2mm;
@@ -81,13 +89,6 @@ p.describtion {
     margin: auto;
     display: flex;
     flex-direction: column;
-}
-
-.lengthAsDistance {
-    display: inline-block;
-    font-weight: 800;
-    text-align: right;
-    background-color: red;
 }
 
 .instruction {
@@ -113,24 +114,14 @@ p.describtion {
     white-space: nowrap;
 }
 
-.continueLength {
+.continueLength, .repetitionCount {
     display: flex;
     align-items: center;
 }
 
-.repetition {
+.repetition, .continue {
     max-width: 48ch;
     display: flex;
-}
-
-.continue {
-    max-width: 48ch;
-    display: flex;
-}
-
-.repetitionCount {
-    display: flex;
-    align-items: center;
 }
 
 .repetitionSymbol {
@@ -169,7 +160,8 @@ p.describtion {
     display: block;
     text-align: center;
     border-bottom: solid 1px black;
-    font-weight: 600;
+    font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
     max-width: 48ch;
     margin: 0.2em;
 }
@@ -179,7 +171,8 @@ p.describtion {
     display: block;
     text-align: center;
     border-bottom: solid 1px black;
-    font-weight: 600;
+    font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
     margin: 0.2em;
 }
 
@@ -189,7 +182,10 @@ p.describtion {
     font-size: 120%;
 }
 
+
+/* ********************************** */
 /* Fonts */
+/* ********************************** */
 
 .extraBoldTypeFace {
 	font-family: 'JetBrains Mono ExtraBold';
@@ -219,7 +215,6 @@ p.describtion {
 	font-weight: 600;
 }
 
-
 .thinTypeFace {
 	font-family: 'JetBrains Mono Thin';
 	font-weight: 100;
@@ -231,7 +226,7 @@ p.describtion {
     font-style: italic;
 }
 
-/* 
+/* This was used to import fonts directly from google. This gave problems with creating PDF.
 fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
 fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
 https://github.com/bartneck/swiML/blob/0f957d35e0e93624e0e18e4a3bd7e86da7293296/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
