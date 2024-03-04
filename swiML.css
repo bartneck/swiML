@@ -278,7 +278,10 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
 	font-display: swap;
 }
 
+/* ********************************** */
 /* CSS for printing. */
+/* ********************************** */
+
 @media print {
     @page {
         size: A4;
