@@ -1,0 +1,25 @@
+<instruction>
+    <repetition>
+        <simplify>true</simplify>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <instruction>
+            <repetition>
+                <repetitionCount>2</repetitionCount>
+                <instruction>
+                    <length>
+                        <lengthAsDistance>100</lengthAsDistance>
+                    </length>
+                    <equipment>fins</equipment>
+                </instruction>
+            </repetition>
+        </instruction>
+        <instruction>
+            <length>
+                <lengthAsDistance>100</lengthAsDistance>
+            </length>
+            <equipment>pullBuoy</equipment>
+        </instruction>
+    </repetition>
+</instruction>

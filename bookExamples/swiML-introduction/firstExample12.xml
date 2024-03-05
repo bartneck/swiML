@@ -1,0 +1,12 @@
+<instruction>
+    <segmentName>Warm up</segmentName>
+</instruction>
+<instruction>
+    <length>
+        <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+        <standardStroke>freestyle</standardStroke>
+    </stroke>
+</instruction>
+</program>
