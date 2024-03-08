@@ -307,7 +307,7 @@
                     <!-- calculate sum of any inst tags that are top level in the repetition -->
                     <xsl:variable name="repInstLength">
                         <xsl:call-template name="sumItems">
-                            <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount')]"/>
+                            <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' )]"/>
                         </xsl:call-template>
                     </xsl:variable>
 
@@ -463,8 +463,45 @@
 
                         <!-- intensity elements have pre-determined formatting-->
                         <xsl:when test="name($nodeSet[1]) = 'intensity'">
-                            <!-- todo -->
-                            <xsl:value-of select="1"/>
+                           
+                            <xsl:choose>
+                                <xsl:when test="$nodeSet[1]/sw:stopIntensity">
+                                    <xsl:choose>
+                                        
+                                        <!-- finding the type of rest given -->
+                                        <xsl:when test="$nodeSet[1]/sw:startIntensity/sw:percentageEffort">
+                                            <xsl:value-of select="2+string-length(string($nodeSet[1]/sw:startIntensity/*))+string-length(string($nodeSet[1]/sw:stopIntensity/*))"/>
+                                        </xsl:when>
+                                        
+                                        <xsl:when test="$nodeSet[1]/sw:startIntensity/sw:percentageHeartRate">
+                                            <xsl:value-of select="3+string-length(string($nodeSet[1]/sw:startIntensity/*))+string-length(string($nodeSet[1]/sw:stopIntensity/*))"/>
+                                        </xsl:when>
+                                        
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="1+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[2]/*[1])])"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:choose>
+                                        
+                                        <!-- finding the type of rest given -->
+                                        <xsl:when test="$nodeSet[1]/sw:startIntensity/sw:percentageEffort">
+                                            <xsl:value-of select="1+string-length(string($nodeSet[1]/sw:startIntensity/*))"/>
+                                        </xsl:when>
+                                        
+                                        <xsl:when test="$nodeSet[1]/sw:startIntensity/sw:percentageHeartRate">
+                                            <xsl:value-of select="2+string-length(string($nodeSet[1]/sw:startIntensity/*))"/>
+                                        </xsl:when>
+                                        
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="1+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])"/>
+                                        </xsl:otherwise>
+                                        
+                                    </xsl:choose>
+                                </xsl:otherwise>
+                            </xsl:choose>
+
                         </xsl:when>
 
                         <!-- check is remaining node is a stroke element-->
