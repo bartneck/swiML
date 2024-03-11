@@ -145,7 +145,7 @@ simpleProgram=swiML.Program(
     swiMLVersion=2.0,
     instructions=[swiML.SegmentName('Warm Up'),
                     
-                    oneSet
+                    oneSet,twoSet
                   ]
 )
 

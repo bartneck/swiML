@@ -89,12 +89,13 @@
             <repetitionCount>4</repetitionCount>
             <intensity>
                 <startIntensity>
-                    <zone>easy</zone>
+                    <percentageEffort>60</percentageEffort>
                 </startIntensity>
                 <stopIntensity>
-                    <zone>racePace</zone>
+                    <percentageEffort>90</percentageEffort>
                 </stopIntensity>
             </intensity>
+            
             <!--<excludeAlign>true</excludeAlign>-->
             <instruction>
                 <length>

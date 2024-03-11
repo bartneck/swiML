@@ -36,7 +36,6 @@ oneSet3=swiML.Instruction(
 )
 
 oneSet=swiML.Repetition(
-    repetitionCount=3,
     simplify=True,
     equipment=('fins'),
     rest=('afterStop','PT0M15S'),
@@ -139,4 +138,4 @@ simpleProgram=swiML.Program(
 )
 
 print(simpleProgram)
-swiML.writeXML('JasiMasters2024025001.xml',simpleProgram)
+swiML.writeXML('pythonXMLtest\JasiMasters2024022501.xml',simpleProgram)
