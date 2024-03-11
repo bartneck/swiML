@@ -121,6 +121,7 @@ simpleProgram=swiML.Program(
     author=[('firstName','Christoph'),('lastName','Bartneck')],
     programDescription='Our Tuesday evening program targeted at one hour. The coach was Matt.',
     poolLength='25',
+    creationDate='2024-03-01',
     lengthUnit='meters',
     swiMLVersion='2.0',
     instructions=[warmUpSegment,
@@ -138,4 +139,4 @@ simpleProgram=swiML.Program(
 )
 
 print(simpleProgram)
-swiML.writeXML('pythonXMLtest\JasiMasters2024022501.xml',simpleProgram)
+swiML.writeXML('JasiMasters2024022501-dateTest.xml',simpleProgram)

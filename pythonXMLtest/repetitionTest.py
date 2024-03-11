@@ -27,11 +27,9 @@ oneSet2Continue=swiML.Continue(
 )
 
 oneSet2=swiML.Repetition(
-    instructions=[oneSet2Continue,oneSet2Continue,oneSet2Continue]
+    repetitionCount=2,
+    instructions=[oneSet2Continue]
 )
-# oneSet2=swiML.Continue(
-#     instructions=[oneSet2Continue,oneSet2Continue,oneSet2Continue]
-# )
 
 oneSet3=swiML.Instruction(
     length=('lengthAsDistance',150),
@@ -40,82 +38,11 @@ oneSet3=swiML.Instruction(
 
 oneSet=swiML.Repetition(
     simplify=True,
-    equipment=('fins'),
     rest=('afterStop','PT0M15S'),
     instructions=[
         oneSet1,
         oneSet2,
         oneSet3
-    ]
-)
-
-twoSet1One=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=3
-)
-twoSet1Two=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=5
-)
-
-twoSet1=swiML.Repetition(
-    repetitionCount=2,
-    instructions=[swiML.Continue(instructions=[twoSet1One,twoSet1Two])]
-)
-
-twoSet2One=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=3
-)
-twoSet2Two=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=7
-)
-
-twoSet2=swiML.Repetition(
-    repetitionCount=2,
-    instructions=[swiML.Continue(
-        instructions=[twoSet1One,twoSet1Two]
-    )
-    ]
-)
-
-twoSet3One=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=3
-)
-twoSet3Two=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=5
-)
-twoSet3Three=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=7
-)
-twoSet3Four=swiML.Instruction(
-    length=('lengthAsDistance',25),
-    breath=3
-)
-
-twoSet3=swiML.Continue(
-    instructions=[
-        twoSet3One,
-        twoSet3Two,
-        twoSet3Three,
-        twoSet3Four
-    ]
-)
-
-
-twoSet=swiML.Repetition(
-    simplify=False,
-    equipment=('pullboy'),
-    rest=('afterStop','PT0M15S'),
-    stroke=('standardStroke','freestyle'),
-    instructions=[
-        twoSet1,
-        twoSet2,
-        twoSet3
     ]
 )
 

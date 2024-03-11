@@ -52,8 +52,7 @@ oneSet3=swiML.Continue(
 )
 
 oneSet=swiML.Repetition(
-    repetitionCount=3,
-    simplify=False,
+    simplify=True,
     instructions=[
         oneSet1,
         oneSet2,
@@ -136,9 +135,7 @@ warmDown=swiML.Instruction(
     intensity=('startIntensity',('zone','easy')),
 )
 
-# warmUpSegment=swiML.Instruction(
-#     segmentName=('Warm Up')
-# )
+warmUpSegment=swiML.SegmentName('WarmUp')
 
 simpleProgram=swiML.Program(
     title='Jasi Masters',
@@ -147,7 +144,9 @@ simpleProgram=swiML.Program(
     poolLength='25',
     lengthUnit='meters',
     swiMLVersion='2.0',
+    creationDate='2024-02-20',
     instructions=[
+                  warmUpSegment,
                   warmUp,
                   oneSet,
                   twoSet,
