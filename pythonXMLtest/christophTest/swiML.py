@@ -92,18 +92,17 @@ def simplify_repetition(instructions,repetitionCount):
         allLength = basicInsts[0][0].length[1]
     else:
         allLength = basicInsts[0][0].totalLength
-    if type(instructions[0]) is Repetition:
-        for repetition in instructions:
-            total_repetition += repetition.repetitionCount
-            for instruction in repetition.instructions:
-                if type(instruction) is Instruction:
-                    if instruction.length[1] != allLength:
-                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+    for instruction in instructions:
+        if type(instruction) is Repetition:
+            total_repetition += instruction.repetitionCount
+            for inst in instruction.instructions:
+                if type(inst) is Instruction:
+                    if inst.length[1] != allLength:
+                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}') 
                 else:
-                    if instruction.totalLength != allLength:
-                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}')
-    else:
-        for instruction in instructions:
+                    if inst.totalLength != allLength:
+                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}')
+        else:
             total_repetition += 1
             if type(instruction) is Instruction:
                 if instruction.length[1] != allLength:
