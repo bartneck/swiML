@@ -51,8 +51,7 @@ twoSet3=swiML.Instruction(
     length=('lengthAsDistance',300),
     stroke=('standardStroke','freestyle'),
     rest=('afterStop','PT0M45S'),
-    intensity=('startIntensity',('zone','easy')),
-    intensity=('stopIntensity',('zone','max'))
+    intensity=('startIntensity',('zone','easy'),'stopIntensity',('zone','max'))
 )
 
 twoSet4=swiML.Instruction(

@@ -3,7 +3,7 @@ import swiML
 warmUp=swiML.Instruction(
     length=('lengthAsDistance',400),
     stroke=('standardStroke','any'),
-    intensity=('startIntensity',('zone','easy')),
+    intensity=('startIntensity',('zone','easy'),'stopInstensity',('zone','max')),
 )
 
 warmUpSegment=swiML.SegmentName('WarmUp')

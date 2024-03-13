@@ -22,7 +22,7 @@ INSTRUCTION_GROUP = [
                      ('rest','c',
                      ['afterStop','sinceStart','sinceLastRest','inOut']
                      ),
-                     ('intensity','c',
+                     ('intensity','e',
                       [
                        ('startIntensity','c',
                         ['percentageEffort','zone','percentageHeartRate']
@@ -178,12 +178,15 @@ def ObjToXML(root,tags,instructions):
                         ObjToXML(parent,tag[2][:-(len(tag[2])-len(instructions[tag_index]))],instructions[tag_index])
                 elif tag[1] == 'c':
                     for choice in tag[2]:
-                        if tag[0] == 'intensity' or tag[0] == 'percentageHeartRate':
-                            #idk what i didnt finish here
-                            #print(parent,[choice],[instructions[tag_index]])
-                            pass
                         if instructions[tag_index][0] == choice or instructions[tag_index][0] == choice[0]:
                             ObjToXML(parent,[choice],[instructions[tag_index][1]]) 
+
+                elif tag[1] == 'e':
+                    for index,option in enumerate(tag[2]): 
+                        if len(instructions[tag_index]) > 2*index:
+                            if option[0] == instructions[tag_index][index*2]:
+                                ObjToXML(parent,[option],[instructions[tag_index][2*index+1]]) 
+                        
         
 
 def XMLToObj(node,curr):
@@ -326,13 +329,13 @@ class Instruction:
             for equip in self.equipment:
                 equipment += equip 
                 equipment += ', '
-            equipment = equipment[:-2]
+            equipment = equipment[:-2] + ' '
             
         if self.intensity != None:
-            if type(self.intensity) is tuple:
+            if len(self.intensity) == 2:
                 intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}\n'
             else:
-                intensity =  f'Start: {self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""} \n End:{self.intensity[2][1]}{"%" if self.intensity[2][0] == "percentageEffort" else "% of max HR" if self.intensity[2][0] == "percentageHeartRate" else ""}\n'
+                intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""}...{self.intensity[3][1]}{"%" if self.intensity[3][0] == "percentageEffort" else "% of max HR" if self.intensity[3][0] == "percentageHeartRate" else ""}\n'
         else:
             intensity = ''
         
