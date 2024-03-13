@@ -34,7 +34,7 @@ oneSet=swiML.Continue(
     equipment=('fins','pads'),
     instructions=[oneSet1,oneSet2,oneSet1,oneSet3,oneSet1,oneSet4]
 )
-
+print(oneSet.equipment)
 twoSet1=swiML.Instruction(
     length=('lengthAsDistance',100),
     stroke=('standardStroke','freestyle'),

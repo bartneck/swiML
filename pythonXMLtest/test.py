@@ -145,9 +145,9 @@ simpleProgram=swiML.Program(
     swiMLVersion=2.0,
     instructions=[swiML.SegmentName('Warm Up'),
                     
-                    oneSet,twoSet
+                    oneSet,twoSet,threeSet,fourSet,fiveSet,sixSet,sevenSet,eightSet
                   ]
 )
 
 print(simpleProgram)
-swiML.writeXML('pythonXMLtest\sample.xml',simpleProgram)
+swiML.writeXML('sample.xml',simpleProgram)

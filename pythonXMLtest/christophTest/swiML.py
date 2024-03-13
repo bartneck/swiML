@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import datetime
 
 INSTRUCTION_GROUP = [
                      ('length','c',
@@ -87,23 +88,31 @@ def simplify_repetition(instructions,repetitionCount):
     
     total_repetition = 0
     basicInsts = basicInstructions(instructions)
-    print(basicInsts)
+    if type(basicInsts[0][0]) is Instruction:
+        allLength = basicInsts[0][0].length[1]
+    else:
+        allLength = basicInsts[0][0].totalLength
     if type(instructions[0]) is Repetition:
         for repetition in instructions:
             total_repetition += repetition.repetitionCount
             for instruction in repetition.instructions:
-                if instruction.length != basicInsts[0][0].length:
-                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+                if type(instruction) is Instruction:
+                    if instruction.length[1] != allLength:
+                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+                else:
+                    if instruction.totalLength != allLength:
+                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}')
     else:
         for instruction in instructions:
             total_repetition += 1
-            if instruction.length != basicInsts[0][0].length:
+            if type(instruction) is Instruction:
+                if instruction.length[1] != allLength:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
-            
-    if type(basicInsts[0][0]) is Continue:
-        return f'{total_repetition*repetitionCount} x {basicInsts[0][0].totalLength}'
-
-    return f'{total_repetition*repetitionCount} x {basicInsts[0][0].length[1]}'
+            else:
+                if instruction.totalLength != allLength:
+                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+         
+    return f'{total_repetition*repetitionCount} x {allLength}'
    
 
 
@@ -131,7 +140,6 @@ def classToXML(self,root=None):
                         instructions.pop(tag_index)
                 
         
-
     ObjToXML(root,tags,instructions)
     return ET.ElementTree(root)
 
@@ -142,7 +150,7 @@ def ObjToXML(root,tags,instructions):
             if type(tag) is str:
                 if instructions[tag_index] == None:
                     pass
-                elif type(instructions[tag_index]) is str or type(instructions[tag_index]) is int:
+                elif type(instructions[tag_index]) is str or type(instructions[tag_index]) is int :
                     ET.SubElement(root,tag).text = str(instructions[tag_index])
                 elif type(instructions[tag_index]) is bool:
                     ET.SubElement(root,tag).text = str(instructions[tag_index]).lower()
@@ -156,8 +164,9 @@ def ObjToXML(root,tags,instructions):
                     else:
                         for element in instructions[tag_index]:
                             ET.SubElement(root,tag).text = str(element) 
+                
                 else:
-                    print('oh no')
+                    print('oh no',instructions[tag_index])
             elif type(tag) is tuple:
                 parent = ET.SubElement(root,tag[0])
                 if tag[1] == 's':
@@ -243,13 +252,69 @@ def writeXML(filename,node):
     tree = classToXML(node)
     tree.write(filename)
     print(f'written to {filename}')
+
+
+def instGroupStr(self):
+    instructions = [inst if type(inst) is str else inst[0] for inst in INSTRUCTION_GROUP[:-1]]
+    rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
+    underwater = 'underwater\n' if self.underwater == True else ''
+    
+    equipment = ''
+    if type(self.equipment) is str:
+        print(self.equipment)
+        equipment = self.equipment
+    if type(self.equipment) is tuple:
+        for equip in self.equipment:
+            equipment += equip 
+            equipment += ', '
+        equipment = equipment[:-2]
+        
+    if self.intensity != None:
+        if len(self.intensity) == 2:
+            intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}'
+        else:
+            intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""}...{self.intensity[3][1]}{"%" if self.intensity[3][0] == "percentageEffort" else "% of max HR" if self.intensity[3][0] == "percentageHeartRate" else ""}'
+    else:
+        intensity = ''
+    
+    breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
+    #need to get length units in here somehow
+    length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} meters' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
+    
+    
+    if self.stroke == None:
+        stroke = ''
+    else:
+        if self.stroke[0] == 'standardStroke':
+            stroke = self.stroke[1] 
+        else: 
+            if self.stroke[0] == 'drill':
+                stroke = f'{self.stroke[1][1]} {self.stroke[1][0]} drill'
+            else:
+                if self.stroke[1][0] == 'standardKick':
+                    stroke = f'{self.stroke[1][1]} kick'
+                else:
+                    stroke = f'{self.stroke[1][1][0]} {self.stroke[1][1][1]} kick'
+
+    lines = 1
+    line = ''
+    for inst in instructions:
+        
+        if len(line) > 100*lines:
+            line +='\n'
+            lines += 1
+        if len(eval(inst)) > 0:
+            line += eval(inst) + ' '
+
+    return line
+        
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription', 'poolLength', 'lengthUnit','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,poolLength ='25',lengthUnit = 'meter',swiMLVersion=1.1,instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',swiMLVersion=1.1,instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -257,6 +322,7 @@ class Program:
         self.title = title
         self.author = author 
         self.programDescription = programDescription
+        self.creationDate = creationDate
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
         self.swiMLVersion = swiMLVersion
@@ -267,7 +333,7 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.poolLength} {self.lengthUnit} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
         return title_string+instructions_string+'\n'
     
@@ -301,45 +367,19 @@ class Instruction:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = instructionDescription
+        self.parent = None
         self.inherited = []
 
     def __str__(self):
         '''returns a string for an instruction object that can easily be read'''
-        rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
-        underwater = 'underwater\n' if self.underwater == True else ''
-        
-        equipment = ''
-        if type(self.equipment) is str:
-            print(self.equipment)
-            equipment = self.equipment
-        if type(self.equipment) is tuple:
-            for equip in self.equipment:
-                equipment += equip 
-                equipment += ', '
-            equipment = equipment[:-2] + ' '
-            
-        if self.intensity != None:
-            if len(self.intensity) == 2:
-                intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}\n'
-            else:
-                intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""}...{self.intensity[3][1]}{"%" if self.intensity[3][0] == "percentageEffort" else "% of max HR" if self.intensity[3][0] == "percentageHeartRate" else ""}\n'
-        else:
-            intensity = ''
-        
-        breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
-        #need to get length units in here somehow
-        length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} meters' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
-        instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
-        stroke = '' if self.stroke == None else self.stroke[1] if self.stroke[0] == 'standardStroke' else f'{self.stroke[1][1][1]} drill {self.stroke[1][0][1]}' if self.stroke[0] == 'drill' else self.stroke[1][1]
+        line = instGroupStr(self)
+              
         inherit = '' if len(self.inherited) == 0 else self.inherited
-        line1 = f'\n{length} {stroke} {rest} '
-        line2 = f'\n{underwater}{equipment}{intensity}{breath}{instructionDescription}{inherit}'
-
-        if len(line1) > 1 and len(line2) > 1:
-            return line1 + line2
-        if len(line1) > 1:
-            return line1
-        return line2
+        
+        instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
+        print([f'\n{line} {instructionDescription} {inherit}'])
+        return f'\n{line} {instructionDescription} {inherit}'
+        
 
 
 
@@ -348,7 +388,7 @@ class Repetition:
 
     TAG_ORDER = ['repetitionCount','simplify','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
+    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create repetition'''
         self.simplify = simplify
         self.repetitionCount = repetitionCount
@@ -363,14 +403,17 @@ class Repetition:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = None
+        self.parent = None
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
-            for tag in self.TAG_ORDER[3:-2]:
-                tag = tag if type(tag) is str else tag[0]
-                if getattr(inst[0],tag) == None and getattr(self,tag) != None and all([getattr(parent,tag) == None for parent in inst[1][1:]]):
-                    setattr(inst[0],tag,getattr(self,tag))
-                    inst[0].inherited.append(tag)
+            inst[0].parent = 'repetition'
+            if type(inst) is Instruction:
+                for tag in self.TAG_ORDER[3:-2]:
+                    tag = tag if type(tag) is str else tag[0]
+                    if getattr(inst[0],tag) == None and getattr(self,tag) != None and all([getattr(parent,tag) == None for parent in inst[1][1:]]):
+                        setattr(inst[0],tag,getattr(self,tag))
+                        inst[0].inherited.append(tag)
 
     def __str__(self):
         '''returns string for repetition'''
@@ -384,8 +427,10 @@ class Repetition:
             else:
                 return_list += (f'   | {line}\n')
 
+        instLine = instGroupStr(self)
+
         if self.simplify == True:
-            return f'\n{self.simpRep} swim as\n'+return_list[:-1]+'\n'
+            return f'\n{self.simpRep} {instLine}swim as\n'+return_list[:-1]+'\n'
         else:
             return '\n'+return_list[:-1]
       
@@ -407,9 +452,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER = ['instructions']
+    TAG_ORDER =  INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,totalLength=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -421,23 +466,35 @@ class Continue:
         self.equipment = equipment
         self.instructionDescription = None
         self.instructions = instructions
+        self.parent = None
+
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
+            inst[0].parent = 'continue'
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        self.totalLength = get_total_length(instructions)
+        if totalLength == None:
+            self.totalLength = get_total_length(instructions)
+        else:
+            self.totalLength = totalLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
-        #return_string = ''
         instructions_string = '\n'.join(map(str,self.instructions))
         instructions = str(instructions_string).split('\n')
-        
-        for i,line in enumerate(instructions[1:]):
-            return_list += (f'   | {line}\n')
 
-        return f'\n{self.totalLength} swim as\n'+return_list[:-1]
+        instLine = instGroupStr(self)
+
+        for i,line in enumerate(instructions[1:]):
+            if self.parent == 'continue':
+                return_list += (f'{line}\n')
+            else:
+                return_list += (f'   | {line}\n')
+
+        if self.parent == 'continue':
+            return '\n'+return_list[:-1]
+        return f'\n{self.totalLength} {instLine}swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''
@@ -471,7 +528,9 @@ class Pyramid:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
+        self.parent = None
         self.instructions = instructions
+
 
     def __str__(self):
         '''returns string for repetition'''
@@ -499,6 +558,7 @@ class SegmentName:
     def __init__(self,segmentName=None):
         '''creates segment name'''
         self.segmentName = segmentName
+        self.parent = None
 
     def __str__(self):
         '''returns string for segment name'''
