@@ -27,7 +27,9 @@ oneSet2Continue=swiML.Continue(
 )
 
 oneSet2=swiML.Repetition(
-    instructions=[oneSet2Continue,oneSet2Continue,oneSet2Continue]
+    repetitionCount=3,
+    simplify=True,
+    instructions=[oneSet2Continue]
 )
 # oneSet2=swiML.Continue(
 #     instructions=[oneSet2Continue,oneSet2Continue,oneSet2Continue]
