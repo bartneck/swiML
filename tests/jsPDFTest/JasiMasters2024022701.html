@@ -15,6 +15,8 @@
 "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
 	</script>
 	   
+         
+
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="https://kit.fontawesome.com/7414123f18.js" crossorigin="anonymous"></script><meta property="og:image" content="https://bartneck.github.io/swiML/swiMLLogoGradientFacebook.png">
       <meta property="og:image:type" content="image/png">
       <meta property="og:image:width" content="1200">
@@ -43,6 +45,7 @@
       <title>Jasi Masters</title>
    </head>
    <body>
+      
       <div class="intro">
          <h1>Jasi Masters</h1>
          <p class="authorName">Christoph Bartneck</p>
@@ -195,23 +198,26 @@
                   <path class="cls-1" d="M1033.99,116.05V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-13.75-26.4-26.4V105.05c0-6.6-5.5-12.1-12.1-12.1s-12.1,5.5-12.1,12.1V430.1c0,14.3-12.1,26.4-26.4,26.4h-43.45c-14.3,0-26.4-12.1-26.4-26.4V31.35c0-17.05,13.2-31.35,32.45-31.35,6.6,0,14.3,2.75,19.25,4.95l2.75,1.1c6.05,2.2,8.8,3.85,15.95,3.85,6.05,0,14.85-2.75,22-4.95,7.15-2.2,19.25-4.95,32.45-4.95s23.1,2.75,31.9,5.5c7.15,2.2,15.4,4.4,20.35,4.4s13.2-2.2,20.35-4.4c8.8-2.75,21.45-5.5,34.65-5.5,73.7,0,105.05,43.45,105.05,116.05Z"/>
                   <path class="cls-1" d="M1154.43,347.6c0,7.15,4.95,12.65,12.1,12.65h26.4c14.3,0,26.4,12.1,26.4,26.4v43.45c0,14.3-12.1,26.4-26.4,26.4h-108.35c-14.3,0-26.4-12.1-26.4-26.4V29.15c0-14.3,12.1-26.4,26.4-26.4h43.45c14.3,0,26.4,12.1,26.4,26.4V347.6Z"/></svg></a></div>
       </div>
-	  
-	   
-	   <script type="text/javascript">
+	
+      <script src="./JetBrainsMono-Thin-normal.js"></script>
+      <script type="text/javascript">
 		function convertHTMLtoPDF() {
 			const { jsPDF } = window.jspdf;
-
+                  
 			let doc = new jsPDF('l', 'mm', [1500, 1400]);
-			doc.setFont('JetBrains Mono');
+			
 			let pdfjs = document.querySelector('#divID');
 
+                  doc.setFont('JetBrainsMono-Thin','normal');
+                  console.log(doc.getFontList())
 			doc.html(pdfjs, {
 				callback: function(doc) {
 					doc.save("newpdf.pdf");
 				},
 				x: 12,
 				y: 12
-			});			 
+			});
+                  			 
 		}		 
 	</script>	 
    </body>

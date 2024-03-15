@@ -451,9 +451,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER =  INSTRUCTION_GROUP+['continueLength','instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,totalLength=None,instructions=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,continueLength=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -473,10 +473,10 @@ class Continue:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        if totalLength == None:
-            self.totalLength = get_total_length(instructions)
+        if continueLength == None:
+            self.continueLength = get_total_length(instructions)
         else:
-            self.totalLength = totalLength
+            self.continueLength = continueLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
