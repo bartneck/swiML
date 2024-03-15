@@ -29,32 +29,40 @@
                     </kicking>
                 </stroke>
             </instruction>
+
             <instruction>
-                <repetition>
-                    <repetitionCount>3</repetitionCount>
+                <continue>
+                    <continueLength>150</continueLength> 
                     <instruction>
-                        <length>
-                            <lengthAsDistance>25</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <drill>
-                                <drillName>6KickDrill</drillName>
-                                <drillStroke>freestyle</drillStroke>
-                            </drill>
-                        </stroke>
+                        <repetition>
+                            <repetitionCount>3</repetitionCount>
+                            <instruction>
+                                <length>
+                                    <lengthAsDistance>25</lengthAsDistance>
+                                </length>
+                                <stroke>
+                                    <drill>
+                                        <drillName>6KickDrill</drillName>
+                                        <drillStroke>freestyle</drillStroke>
+                                    </drill>
+                                </stroke>
+                            </instruction>
+                            <instruction>
+                                <length>
+                                    <lengthAsDistance>25</lengthAsDistance>
+                                </length>
+                                <stroke>
+                                    <drill>
+                                        <drillName>singleArm</drillName>
+                                        <drillStroke>butterfly</drillStroke>
+                                    </drill>
+                                </stroke>
+                            </instruction>
+                        </repetition>
                     </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>25</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <drill>
-                                <drillName>singleArm</drillName>
-                                <drillStroke>butterfly</drillStroke>
-                            </drill>
-                        </stroke>
-                    </instruction>
-                </repetition>
+                    
+                    
+                </continue>
             </instruction>
 
             <instruction>

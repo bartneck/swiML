@@ -13,7 +13,8 @@ oneSet1=swiML.Instruction(
     stroke=('kicking',('standardKick','any'))
 )
 
-oneSet2Continue=swiML.Continue(
+oneSet2Continue=swiML.Repetition(
+    repetitionCount=3,
     instructions=[
         swiML.Instruction(
             length=('lengthAsDistance',25),
@@ -26,8 +27,8 @@ oneSet2Continue=swiML.Continue(
     ]
 )
 
-oneSet2=swiML.Repetition(
-    repetitionCount=3,
+oneSet2=swiML.Continue(
+    continueLength=150,
     simplify=True,
     instructions=[oneSet2Continue]
 )
