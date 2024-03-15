@@ -91,7 +91,7 @@ def simplify_repetition(instructions,repetitionCount):
     if type(basicInsts[0][0]) is Instruction:
         allLength = basicInsts[0][0].length[1]
     else:
-        allLength = basicInsts[0][0].totalLength
+        allLength = basicInsts[0][0].continueLength
     for instruction in instructions:
         if type(instruction) is Repetition:
             total_repetition += instruction.repetitionCount
@@ -100,7 +100,7 @@ def simplify_repetition(instructions,repetitionCount):
                     if inst.length[1] != allLength:
                         raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}') 
                 else:
-                    if inst.totalLength != allLength:
+                    if inst.continueLength != allLength:
                         raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}')
         else:
             total_repetition += 1
@@ -108,7 +108,7 @@ def simplify_repetition(instructions,repetitionCount):
                 if instruction.length[1] != allLength:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
             else:
-                if instruction.totalLength != allLength:
+                if instruction.continueLength != allLength:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
          
     return f'{total_repetition*repetitionCount} x {allLength}'
@@ -451,9 +451,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER =  INSTRUCTION_GROUP+['continueLength','instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,totalLength=None,instructions=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,continueLength=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -473,10 +473,10 @@ class Continue:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        if totalLength == None:
-            self.totalLength = get_total_length(instructions)
+        if continueLength == None:
+            self.continueLength = get_total_length(instructions)
         else:
-            self.totalLength = totalLength
+            self.continueLength = continueLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
@@ -493,7 +493,7 @@ class Continue:
 
         if self.parent == 'continue':
             return '\n'+return_list[:-1]
-        return f'\n{self.totalLength} {instLine}swim as\n'+return_list[:-1]
+        return f'\n{self.continueLength} {instLine}swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''

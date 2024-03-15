@@ -27,8 +27,8 @@ def is_square_number(num):
     return square_root.is_integer()
 
 def find_squares(number):
-    i=1
     impossible_squares=[]
+    i=1
     while i <= number:
         if is_square_number(i):
             impossible_squares.append("backstroke")
@@ -36,7 +36,6 @@ def find_squares(number):
             impossible_squares.append("breaststroke")
         else: 
             impossible_squares.append("freestyle")
-        print(i," ",impossible_squares[i-1])
         i+=1
     return impossible_squares
 
