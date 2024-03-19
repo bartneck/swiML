@@ -1,7 +1,7 @@
 # swiML
 
-[![PyPI - Version](https://img.shields.io/pypi/v/swiml.svg)](https://pypi.org/project/swiml)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swiml.svg)](https://pypi.org/project/swiml)
+[![PyPI - Version](https://img.shields.io/pypi/v/.svg)](https://pypi.org/project/swiml_python_xml)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swiml_python_xml.svg)](https://pypi.org/project/swiml_python_xml)
 
 -----
 
@@ -16,7 +16,7 @@ This Python library allows you to create valid swiML programs using the Python p
 ## Installation
 
 ```console
-pip install swiml_bartneck
+pip install swiml_python_xml
 ```
 
 ## License

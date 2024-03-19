@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "swiml_bartneck"
+name = "swiml_python_xml"
 dynamic = ["version"]
 description = "Use Python to write Swimming Markup Language (swiML)"
 readme = "README.md"
@@ -51,19 +51,19 @@ dependencies = [
   "mypy>=1.0.0",
 ]
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/swiml_bartneck tests}"
+check = "mypy --install-types --non-interactive {args:src/swiml_python_xml tests}"
 
 [tool.coverage.run]
-source_pkgs = ["swiml_bartneck", "tests"]
+source_pkgs = ["swiml_python_xml", "tests"]
 branch = true
 parallel = true
 omit = [
-  "src/swiml_bartneck/__about__.py",
+  "src/swiml_python_xml/__about__.py",
 ]
 
 [tool.coverage.paths]
-swiml_bartneck = ["src/swiml_bartneck", "*/swiml_bartneck/src/swiml_bartneck"]
-tests = ["tests", "*/swiml_bartneck/tests"]
+swiml_python_xml = ["src/swiml_python_xml", "*/swiml_python_xml/src/swiml_python_xml"]
+tests = ["tests", "*/swiml_python_xml/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
@@ -73,4 +73,4 @@ exclude_lines = [
 ]
 
 [tool.hatch.version]
-path = "src/swiml_bartneck/__about__.py"
+path = "src/swiml_python_xml/__about__.py"
