@@ -296,8 +296,48 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
+    
+    <session>
+        <date>2024-02-20</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    
+    <session>
+        <date>2024-02-25</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    
     <session>
         <date>2024-02-27</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    
+    <session>
+        <date>2024-03-05</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-03-10</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    
+    <session>
+        <date>2024-03-12</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-03-17</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-03-19</date>
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>

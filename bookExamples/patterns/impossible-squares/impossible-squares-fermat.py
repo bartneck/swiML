@@ -1,6 +1,5 @@
 from collections import Counter
-import math
-import swiML
+import math, swiML
 
 def is_sum_of_two_squares(n):
     # Get the prime factorization of n
@@ -29,23 +28,28 @@ def is_square_number(num):
 def find_squares(number):
     impossible_squares=[]
     i=1
+    # check for every number if it is regular, slanted or impossible
+    # return a list of the result
     while i <= number:
         if is_square_number(i):
-            impossible_squares.append("backstroke")
+            impossible_squares.append(["backstroke","regular"])
         elif is_sum_of_two_squares(i):
-            impossible_squares.append("breaststroke")
+            impossible_squares.append(["breaststroke","slanted"])
         else: 
-            impossible_squares.append("freestyle")
+            impossible_squares.append(["freestyle","impossible"])
         i+=1
     return impossible_squares
 
 def create_swiML_instructions(my_list):
     my_instruction_list=[]
     i=1
+    # write an instruction for each list item
+    # return list of instructions
     while i in range(len(my_list)):
         my_instruction_list.append(swiML.Instruction(
             length=('lengthAsLaps',i),
-            stroke=('standardStroke',my_list[i-1]),
+            stroke=('standardStroke',my_list[i-1][0]),
+            instructionDescription=(my_list[i-1][1]),
             rest=('afterStop','PT0M15S')
         ))
         i+=1
@@ -58,6 +62,7 @@ def write_program(myInstructions):
         intensity=('startIntensity',('zone','easy')),
     )
     
+    # warm up instructions
     myInstructions[:0]=[swiML.SegmentName('WarmUp'),warmUp]
 
     simpleProgram=swiML.Program(
@@ -67,11 +72,12 @@ def write_program(myInstructions):
         poolLength='25',
         creationDate='2024-03-15',
         lengthUnit='meters',
+        hideIntro=True,
         swiMLVersion='2.0',
         instructions=myInstructions
     )
-    
-    swiML.writeXML('patterns/impossible-squares/impossible-squares.xml',simpleProgram)
+    # write swiML XML to file
+    swiML.writeXML('impossible-squares.xml',simpleProgram)
 
 # the maximum number of laps which is equal to the number of instructions given.
 length_program=16
