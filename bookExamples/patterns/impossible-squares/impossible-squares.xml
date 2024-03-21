@@ -10,6 +10,7 @@
     <creationDate>2024-03-15</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
     <instruction>
         <segmentName>WarmUp</segmentName>
     </instruction>
@@ -205,5 +206,17 @@
             <afterStop>PT0M15S</afterStop>
         </rest>
         <instructionDescription>impossible</instructionDescription>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>16</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <instructionDescription>regular</instructionDescription>
     </instruction>
 </program>

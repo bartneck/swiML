@@ -45,7 +45,7 @@ def create_swiML_instructions(my_list):
     i=1
     # write an instruction for each list item
     # return list of instructions
-    while i in range(len(my_list)):
+    while i in range(len(my_list)+1):
         my_instruction_list.append(swiML.Instruction(
             length=('lengthAsLaps',i),
             stroke=('standardStroke',my_list[i-1][0]),
