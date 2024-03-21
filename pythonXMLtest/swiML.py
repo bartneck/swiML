@@ -311,10 +311,10 @@ def instGroupStr(self):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',swiMLVersion=1.1,instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion=1.1,instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -325,6 +325,7 @@ class Program:
         self.creationDate = creationDate
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
+        self.hideIntro = hideIntro
         self.swiMLVersion = swiMLVersion
         self.instructions = instructions
         
@@ -335,6 +336,8 @@ class Program:
         '''
         title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
+        if self.hideIntro:
+            return instructions_string+'\n'
         return title_string+instructions_string+'\n'
     
 
@@ -377,7 +380,6 @@ class Instruction:
         inherit = '' if len(self.inherited) == 0 else self.inherited
         
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
-        print([f'\n{line} {instructionDescription} {inherit}'])
         return f'\n{line} {instructionDescription} {inherit}'
         
 
