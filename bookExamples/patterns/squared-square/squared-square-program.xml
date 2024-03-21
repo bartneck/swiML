@@ -1,0 +1,310 @@
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    <title>Squared Square</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swim the smallest perfect Squared Square.</programDescription>
+    <creationDate>2024-03-21</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>laps</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <instruction>
+        <segmentName>WarmUp</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>First row</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>17</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>12</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Second row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>3</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>6</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Third row</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>5</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>6</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>4</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Fourth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>2</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>8</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Fifth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>10</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>8</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>3</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>1</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Sixth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>2</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>6</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Seventh row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>5</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Eighth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>14</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Ninth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>1</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>12</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Tenth row</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>11</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+</program>
