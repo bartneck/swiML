@@ -22,15 +22,16 @@
                 <!-- for each type of distance tag this is repeated and added to resultant array -->
 
                 <!-- length as distance tags-->
-                <xsl:for-each select="//sw:length/sw:lengthAsDistance">
-                    <Item>
-                        <Length><xsl:value-of select="string-length(.)"/></Length>
-                        <Section><xsl:value-of select="myData:section(.)"/></Section>
-                        <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
-                        <Location><xsl:value-of select="myData:location(.)"/></Location>
-                    </Item>
-                </xsl:for-each>
-
+                <xsl:if test="//sw:length/sw:lengthAsLaps">
+                    <xsl:for-each select="//sw:length/sw:lengthAsDistance">
+                        <Item>
+                            <Length><xsl:value-of select="string-length(.)"/></Length>
+                            <Section><xsl:value-of select="myData:section(.)"/></Section>
+                            <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
+                            <Location><xsl:value-of select="myData:location(.)"/></Location>
+                        </Item>
+                    </xsl:for-each>
+                </xsl:if>
                 <!-- length as laps tags -->
                 <xsl:if test="//sw:length/sw:lengthAsLaps">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps">
@@ -613,6 +614,7 @@
                 
                 <title>
                     <xsl:value-of select="sw:program/sw:title"/>
+                    
                 </title>
             </head>
             <body>
@@ -654,6 +656,7 @@
                 <!-- The recursive instructions -->
                 <div class="program">
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
+                    <xsl:value-of select="$instLengths"/>
                 </div>
                 
                 <!-- footer -->
@@ -1000,6 +1003,7 @@
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
+                        <xsl:text>ch</xsl:text>
                     </xsl:attribute>
                     <xsl:attribute name="class">
                         <xsl:text>extraBoldTypeFaceRight</xsl:text>
@@ -1017,17 +1021,17 @@
             <xsl:text>&#160;&#60;-&#62;</xsl:text>
         </xsl:if>            
     </xsl:template>
-    
     <xsl:template match="sw:lengthAsLaps">
         <xsl:variable name="location">
             <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
-            <xsl:choose>
-                <xsl:when test="not(../../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+            <xsl:choose> 
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
-                        <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
+                        <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
+                        <xsl:text>ch</xsl:text>
                     </xsl:attribute>
                     <xsl:attribute name="class">
                         <xsl:text>extraBoldTypeFaceRight</xsl:text>
@@ -1038,7 +1042,7 @@
                         <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
-            </xsl:choose>
+            </xsl:choose>            
             <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsLaps]"/>
         </span>
         <xsl:if test="not(//sw:lengthUnit = 'laps')">
@@ -1046,7 +1050,7 @@
             <xsl:call-template name="toDisplay">
                 <xsl:with-param name="fullTerm" select="'laps'"/>
             </xsl:call-template>
-        </xsl:if>
+        </xsl:if>          
     </xsl:template>
     
     <xsl:template match="sw:lengthAsTime">
@@ -1055,11 +1059,12 @@
             <xsl:value-of select="myData:location(.)"/>
         </xsl:variable>
         <span>
-            <xsl:choose>
-                <xsl:when test="not(../../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+            <xsl:choose> 
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
-                        <xsl:value-of select="$maxInstLengths[./*[../Location = $location]]/Length"/>
+                        <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
+                        <xsl:text>ch</xsl:text>
                     </xsl:attribute>
                     <xsl:attribute name="class">
                         <xsl:text>extraBoldTypeFaceRight</xsl:text>
@@ -1070,7 +1075,7 @@
                         <xsl:text>extraBoldTypeFaceRight</xsl:text>
                     </xsl:attribute>
                 </xsl:otherwise>
-            </xsl:choose>
+            </xsl:choose> 
             <xsl:value-of separator=":" select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"/>
         </span>        
     </xsl:template>
