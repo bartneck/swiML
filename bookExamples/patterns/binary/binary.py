@@ -32,14 +32,14 @@ def create_swiML_instructions():
     # return list of instructions
     while j<number:
         while i <num_bits:
+            if full_array[j][i]==0:
+                current_stroke=zero_stroke
+            else:
+                current_stroke=one_stroke
+                
             my_instruction_list.append(swiML.Instruction(
                 length=('lengthAsDistance',length),
-                stroke=('standardStroke',
-                        if full_array[j][i]=0:
-                            zero_stroke
-                        else:
-                            one_stroke
-                        ,
+                stroke=('standardStroke',current_stroke),
                 rest=('afterStop','PT0M15S')
             ))
             i+=1
