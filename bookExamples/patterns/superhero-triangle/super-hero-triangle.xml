@@ -8,105 +8,105 @@
         <lastName>Bartneck</lastName>
     </author>
     <programDescription>Swimming the Super Hero Triangles.</programDescription>
-    <creationDate>2023-02-28</creationDate>
+    <creationDate>2024-03-26</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <instruction>
         <segmentName>Warm up</segmentName>
     </instruction>
-    <instruction>
-        <lengthAsDistance>400</lengthAsDistance>
+    <instruction><length>
+        <lengthAsDistance>400</lengthAsDistance></length>
         <stroke><standardStroke>any</standardStroke></stroke>
     </instruction>
     <instruction>
         <segmentName>First triangle</segmentName>
     </instruction>
     <instruction>
-        <lengthAsLaps>6</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>6</lengthAsLaps></length>
         <stroke><standardStroke>nr3</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>8</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>8</lengthAsLaps></length>
         <stroke><standardStroke>nr2</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>10</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>10</lengthAsLaps></length>
         <stroke><standardStroke>nr1</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
         <segmentName>Second triangle</segmentName>
     </instruction>
     <instruction>
-        <lengthAsLaps>5</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>5</lengthAsLaps></length>
         <stroke><standardStroke>nr3</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>12</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>12</lengthAsLaps></length>
         <stroke><standardStroke>nr2</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>13</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>13</lengthAsLaps></length>
         <stroke><standardStroke>nr1</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
         <segmentName>Third triangle</segmentName>
     </instruction>
     <instruction>
-        <lengthAsLaps>7</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>7</lengthAsLaps></length>
         <stroke><standardStroke>nr3</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>15</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>15</lengthAsLaps></length>
         <stroke><standardStroke>nr2</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>20</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>20</lengthAsLaps></length>
         <stroke><standardStroke>nr1</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
         <segmentName>Fourth triangle</segmentName>
     </instruction>
     <instruction>
-        <lengthAsLaps>9</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>9</lengthAsLaps></length>
         <stroke><standardStroke>nr3</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>10</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>10</lengthAsLaps></length>
         <stroke><standardStroke>nr2</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>17</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>17</lengthAsLaps></length>
         <stroke><standardStroke>nr1</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
         <segmentName>Fifth triangle</segmentName>
     </instruction>
     <instruction>
-        <lengthAsLaps>6</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>6</lengthAsLaps></length>
         <stroke><standardStroke>nr3</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>25</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>25</lengthAsLaps></length>
         <stroke><standardStroke>nr2</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
     <instruction>
-        <lengthAsLaps>29</lengthAsLaps>
-        <rest><afterStop>PT15S</afterStop></rest>
+        <length><lengthAsLaps>29</lengthAsLaps></length>
         <stroke><standardStroke>nr1</standardStroke></stroke>
+        <rest><afterStop>PT15S</afterStop></rest>
     </instruction>
 </program>
