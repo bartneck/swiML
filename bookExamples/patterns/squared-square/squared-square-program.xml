@@ -10,7 +10,7 @@
     <creationDate>2024-03-21</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>laps</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <instruction>
         <segmentName>WarmUp</segmentName>
     </instruction>
