@@ -1,18 +1,18 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
     <title>Binary</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>Swim regular, slanted and impossible squares.</programDescription>
-    <creationDate>2024-03-15</creationDate>
+    <programDescription>Look at swimming from a binary point of view. Swim 8 times 300 using 3 bits.</programDescription>
+    <creationDate>2024-03-25</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <instruction>
-        <segmentName>WarmUp</segmentName>
+        <segmentName>Warm Up</segmentName>
     </instruction>
     <instruction>
         <length>
@@ -27,15 +27,19 @@
             </startIntensity>
         </intensity>
     </instruction>
-    
+    <instruction>
+        <segmentName>Binary set</segmentName>
+    </instruction>
     <instruction>
         <repetition>
+            <repetitionCount>1</repetitionCount>
             <simplify>true</simplify>
             <instruction>
                 <continue>
+                    <continueLength>300</continueLength>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -43,7 +47,7 @@
                     </instruction>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -51,15 +55,7 @@
                     </instruction>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>notFreestyle</standardStroke>
-                        </stroke>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -67,12 +63,12 @@
                     </instruction>
                 </continue>
             </instruction>
-            
             <instruction>
                 <continue>
+                    <continueLength>300</continueLength>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -80,7 +76,7 @@
                     </instruction>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -88,7 +84,20 @@
                     </instruction>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>notFreestyle</standardStroke>
@@ -96,7 +105,160 @@
                     </instruction>
                     <instruction>
                         <length>
-                            <lengthAsDistance>25</lengthAsDistance>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+            <instruction>
+                <continue>
+                    <continueLength>300</continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>freestyle</standardStroke>
@@ -105,5 +267,21 @@
                 </continue>
             </instruction>
         </repetition>
+    </instruction>
+    <instruction>
+        <segmentName>Warm Down</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
     </instruction>
 </program>
