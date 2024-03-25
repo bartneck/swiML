@@ -656,7 +656,6 @@
                 <!-- The recursive instructions -->
                 <div class="program">
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
-                    <xsl:value-of select="$instLengths"/>
                 </div>
                 
                 <!-- footer -->
