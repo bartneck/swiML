@@ -1,4 +1,4 @@
-import math, swiML
+import swiML
 
 def fibonacci(n):
     fib_sequence = [1, 1]  # Initialize with the first two terms
@@ -41,7 +41,7 @@ def write_program():
         stroke=('standardStroke','any'),
         intensity=('startIntensity',('zone','easy')),
     )
-    # the main binary instructions
+    # the create the main instructions
     myInstructions=create_swiML_instructions()
     myInstructions[:0]=[swiML.SegmentName('Warm Up'),warmUp]
     myInstructions.insert(2,swiML.SegmentName('Fibonacci set'))
