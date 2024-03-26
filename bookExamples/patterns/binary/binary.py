@@ -87,7 +87,7 @@ def write_program():
                       warmDown]
     )
     # write swiML XML to file
-    swiML.writeXML('binary.xml',simpleProgram)
+    swiML.writeXML('binary-test.xml',simpleProgram)
 
 # counting up the number
 number = 8
