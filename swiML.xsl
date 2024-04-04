@@ -4,7 +4,7 @@
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:sw="https://github.com/bartneck/swiML">
 
-    <!-- version 2.1 -->
+    <!-- version 2.2 -->
     
     <!-- global variables for space calculation -->
 
@@ -590,6 +590,8 @@
                     rel="stylesheet"/>
                 -->
                 
+                <xsl:apply-templates select="sw:program/sw:layoutWidth"/>
+
                 <!-- Favicon icons -->
                 <link rel="shortcut icon" href="/swiML/favicon/favicon.ico"/>
                 <link rel="icon" sizes="16x16 32x32 64x64" href="/swiML/favicon/favicon.ico"/>
@@ -1255,6 +1257,16 @@
         <xsl:call-template name="toDisplay">
             <xsl:with-param name="fullTerm" select="sw:drillName"/>
         </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="sw:layoutWidth">
+        <style>
+            <xsl:text>.intro, .bottom {width: </xsl:text><xsl:value-of select="."/><xsl:text>ch;}</xsl:text>
+            <xsl:text>
+.program {width: </xsl:text><xsl:value-of select=".-2"/><xsl:text>ch;}</xsl:text>
+            <xsl:text>
+.continue, .instruction, .repetition, .firstSegmentName, .segmentName {max-width:</xsl:text><xsl:value-of select=".-2"/><xsl:text>ch;}</xsl:text> 
+        </style>
     </xsl:template>
 
     <!-- ============================== -->

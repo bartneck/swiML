@@ -3,8 +3,8 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
-    version="2.1">
-<!-- version 2.1 -->
+    version="2.2">
+<!-- version 2.2 -->
     
     <xs:element name="program">
         <!-- ====================================================== -->
@@ -86,13 +86,20 @@
                             defaultInstructionLengthUnit</xs:documentation>
                     </xs:annotation>
                 </xs:element>
+                <!-- Element to hide the intro text -->
                 <xs:element name="hideIntro" minOccurs="0" maxOccurs="1" type="xs:boolean">
                     <xs:annotation>
                         <xs:documentation>True if intro should be hidden in
                             output.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                
+                <!-- Element to set the width of the program in HTML -->
+                <!-- The unit is characters. 50ch are 11cm wide -->
+                <xs:element name="layoutWidth" minOccurs="0" maxOccurs="1" type="xs:nonNegativeInteger" default="50">
+                    <xs:annotation>
+                        <xs:documentation>The width of the program on the HTML page. The unit is characters. 50ch are 11cm wide.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
                 <!-- ====================================================== -->
                 <!-- The main element(s) for each program. Each instruction can contain instructions. This is recursion. -->
                 <!-- This is the main recursive element for a program -->
