@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
+import re
 import datetime
+# version 2.2
 
 INSTRUCTION_GROUP = [
                      ('length','c',
@@ -91,7 +93,7 @@ def simplify_repetition(instructions,repetitionCount):
     if type(basicInsts[0][0]) is Instruction:
         allLength = basicInsts[0][0].length[1]
     else:
-        allLength = basicInsts[0][0].totalLength
+        allLength = basicInsts[0][0].continueLength
     for instruction in instructions:
         if type(instruction) is Repetition:
             total_repetition += instruction.repetitionCount
@@ -100,7 +102,7 @@ def simplify_repetition(instructions,repetitionCount):
                     if inst.length[1] != allLength:
                         raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}') 
                 else:
-                    if inst.totalLength != allLength:
+                    if inst.continueLength != allLength:
                         raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}')
         else:
             total_repetition += 1
@@ -108,7 +110,7 @@ def simplify_repetition(instructions,repetitionCount):
                 if instruction.length[1] != allLength:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
             else:
-                if instruction.totalLength != allLength:
+                if instruction.continueLength != allLength:
                     raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
          
     return f'{total_repetition*repetitionCount} x {allLength}'
@@ -208,6 +210,7 @@ def nodeToDict(node):
     data = []
     instructions = []
     for child in node:
+        print(child)
         if child.tag == 'instruction':
             instructions.append(XMLToClass(child))
         else:
@@ -216,14 +219,15 @@ def nodeToDict(node):
     
 def XMLToClass(node):
     '''takes XML input and outputs class of the contents'''
-
     instType = node.findall('*')
     
-    if len(instType) > 1:
+    if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
         instDict,instructions = nodeToDict(node)
+        print(instType[0].tag,instDict,instructions,'I')
         return Instruction(**instDict)
     else:
         instDict,instructions = nodeToDict(instType[0])
+        print(instType[0].tag,instDict,instructions,'N')
         if instType[0].tag == 'repetition':
             return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
@@ -231,11 +235,18 @@ def XMLToClass(node):
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
         elif instType[0].tag == 'segmentName':
-            return SegmentName(**instDict,instructions=instructions)
+            return SegmentName(**instDict)
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
+    with open(filename,"r+") as f:
+        file = f.read()
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
+        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
+        f.truncate(0)
+        f.seek(0)
+        f.write(nons)
     tree = ET.parse(filename)
     root = tree.getroot()
     if root.tag == 'program':
@@ -310,10 +321,10 @@ def instGroupStr(self):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',swiMLVersion=1.1,instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion=1.1,instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -324,6 +335,7 @@ class Program:
         self.creationDate = creationDate
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
+        self.hideIntro = hideIntro
         self.swiMLVersion = swiMLVersion
         self.instructions = instructions
         
@@ -334,6 +346,8 @@ class Program:
         '''
         title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
+        if self.hideIntro:
+            return instructions_string+'\n'
         return title_string+instructions_string+'\n'
     
 
@@ -376,7 +390,6 @@ class Instruction:
         inherit = '' if len(self.inherited) == 0 else self.inherited
         
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
-        print([f'\n{line} {instructionDescription} {inherit}'])
         return f'\n{line} {instructionDescription} {inherit}'
         
 
@@ -404,6 +417,7 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
+        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'
@@ -451,9 +465,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER =  INSTRUCTION_GROUP+['continueLength','instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,totalLength=None,instructions=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,continueLength=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -473,10 +487,10 @@ class Continue:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        if totalLength == None:
-            self.totalLength = get_total_length(instructions)
+        if continueLength == None:
+            self.continueLength = get_total_length(instructions)
         else:
-            self.totalLength = totalLength
+            self.continueLength = continueLength
     def __str__(self):
         '''returns string for continue'''
         return_list =''
@@ -493,7 +507,7 @@ class Continue:
 
         if self.parent == 'continue':
             return '\n'+return_list[:-1]
-        return f'\n{self.totalLength} {instLine}swim as\n'+return_list[:-1]
+        return f'\n{self.continueLength} {instLine}swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''
@@ -562,3 +576,6 @@ class SegmentName:
     def __str__(self):
         '''returns string for segment name'''
         return '\n'+str(self.segmentName)
+    
+
+

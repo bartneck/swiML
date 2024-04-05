@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+import re
 import datetime
 # version 2.2
 
@@ -209,6 +210,7 @@ def nodeToDict(node):
     data = []
     instructions = []
     for child in node:
+        print(child)
         if child.tag == 'instruction':
             instructions.append(XMLToClass(child))
         else:
@@ -217,14 +219,15 @@ def nodeToDict(node):
     
 def XMLToClass(node):
     '''takes XML input and outputs class of the contents'''
-
     instType = node.findall('*')
     
-    if len(instType) > 1:
+    if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
         instDict,instructions = nodeToDict(node)
+        print(instType[0].tag,instDict,instructions,'I')
         return Instruction(**instDict)
     else:
         instDict,instructions = nodeToDict(instType[0])
+        print(instType[0].tag,instDict,instructions,'N')
         if instType[0].tag == 'repetition':
             return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
@@ -232,11 +235,18 @@ def XMLToClass(node):
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
         elif instType[0].tag == 'segmentName':
-            return SegmentName(**instDict,instructions=instructions)
+            return SegmentName(**instDict)
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
+    with open(filename,"r+") as f:
+        file = f.read()
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
+        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
+        f.truncate(0)
+        f.seek(0)
+        f.write(nons)
     tree = ET.parse(filename)
     root = tree.getroot()
     if root.tag == 'program':
@@ -407,6 +417,7 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
+        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'
@@ -565,3 +576,6 @@ class SegmentName:
     def __str__(self):
         '''returns string for segment name'''
         return '\n'+str(self.segmentName)
+    
+
+
