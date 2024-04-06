@@ -202,7 +202,7 @@ def XMLToObj(node,curr):
             curr.append(XMLToObj(child,[]))
         return tuple(curr)
     else:
-        curr.append(node.text)
+        curr.append(node.text.strip())
         return tuple(curr)
     
 def nodeToDict(node):
@@ -210,7 +210,6 @@ def nodeToDict(node):
     data = []
     instructions = []
     for child in node:
-        print(child)
         if child.tag == 'instruction':
             instructions.append(XMLToClass(child))
         else:
@@ -223,35 +222,32 @@ def XMLToClass(node):
     
     if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
         instDict,instructions = nodeToDict(node)
-        print(instType[0].tag,instDict,instructions,'I')
         return Instruction(**instDict)
+    elif instType[0].tag == 'segmentName':
+            return SegmentName(instType[0].text)
     else:
         instDict,instructions = nodeToDict(instType[0])
-        print(instType[0].tag,instDict,instructions,'N')
         if instType[0].tag == 'repetition':
             return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
             return Continue(**instDict,instructions=instructions)
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
-        elif instType[0].tag == 'segmentName':
-            return SegmentName(**instDict)
+        
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
-    with open(filename,"r+") as f:
+    with open(filename,"r") as f:
         file = f.read()
-        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
-        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
-        f.truncate(0)
-        f.seek(0)
-        f.write(nons)
-    tree = ET.parse(filename)
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL).group(0)
+        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL) 
+    version = re.search('version/[0-9]/[0-9].[0-9]/swiML',namespace).group(0)[10:-6]
+    tree = ET.ElementTree(ET.fromstring(nons))
     root = tree.getroot()
     if root.tag == 'program':
         programDict,instructions = nodeToDict(root)
-        return Program(**programDict,instructions=instructions)
+        return Program(**programDict,swiMLVersion=version,instructions=instructions)
     else:
         return XMLToClass(root)
 
@@ -417,7 +413,6 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
-        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'

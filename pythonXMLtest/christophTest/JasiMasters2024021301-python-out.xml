@@ -1,4 +1,4 @@
-<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/1/1.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/1/1.1/swiML.xsd">
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
 	<title>
 		Jasi Masters
 	</title>
@@ -25,7 +25,11 @@
 	<hideIntro>
 		false
 	</hideIntro>
-	<instruction />
+	<instruction>
+		<segmentName>
+			Warm up
+		</segmentName>
+	</instruction>
 	<instruction>
 		<length>
 			<lengthAsDistance>
@@ -127,7 +131,11 @@
 			</standardStroke>
 		</stroke>
 	</instruction>
-	<instruction />
+	<instruction>
+		<segmentName>
+			First set
+		</segmentName>
+	</instruction>
 	<instruction>
 		<repetition>
 			<repetitionCount>
@@ -584,7 +592,11 @@
 			</instruction>
 		</repetition>
 	</instruction>
-	<instruction />
+	<instruction>
+		<segmentName>
+			Swim down
+		</segmentName>
+	</instruction>
 	<instruction>
 		<length>
 			<lengthAsDistance>
