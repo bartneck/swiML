@@ -147,6 +147,8 @@ p.describtion {
 }
 
 .repetitionContent {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
