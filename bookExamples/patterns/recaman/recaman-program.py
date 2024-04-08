@@ -1,7 +1,6 @@
 import swiML
 
 def find_recaman(terms):
-    # Calculate the remaining terms
     for i in range(1, terms):
         # Calculate the next term using the recurrence relation
         next_term = seq[-1] - i
@@ -17,22 +16,10 @@ def find_recaman(terms):
 
         # Add the next term to the sequence
         seq.append(next_term)
-    
-    print('Sequence:', seq)
-    print('Steps:', steps)
-
-
-nr_terms=10
-# Initialize the sequence with the first term
-seq = [0]
-steps = [] 
-find_recaman(nr_terms+2)
-
 
 def create_swiML_instructions():
     my_instruction_list=[]
     for i in range(1, nr_terms+1):
-        print(i)
         my_instruction_list.append(swiML.Instruction(
                 length=('lengthAsLaps',seq[i]),
                 stroke=('standardStroke',steps[i]),
@@ -55,8 +42,7 @@ def write_program():
         stroke=('standardStroke','any'),
         intensity=('startIntensity',('zone','easy')),
     )
-    # the main binary instructions
-    
+    # assembly of the main instructions
     myInstructions=create_swiML_instructions()
     myInstructions[:0]=[swiML.SegmentName('Warm Up'),warmUp]
     myInstructions.insert(2,swiML.SegmentName('Recaman set'))
@@ -81,4 +67,12 @@ def write_program():
     # write swiML XML to file
     swiML.writeXML('patterns/recaman/recaman-program.xml',simpleProgram)
 
+# define the number of terms
+nr_terms=10
+# Initialize the sequence with the first term
+seq = [0]
+steps = []
+# find the terms
+find_recaman(nr_terms+2)
+# write the swiML program
 write_program()
