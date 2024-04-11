@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Prime Numbers</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>It is faster to search for numbers that are not prime numbers than for those who are.</programDescription>
+    <creationDate>2024-04-11</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    <layoutWidth>50</layoutWidth>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Prime Numbers</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT015S</afterStop>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+       
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedley</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT015S</afterStop>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>6</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT015S</afterStop>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>8</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedleyOverlap</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT015S</afterStop>
+                </rest>
+                <instructionDescription>Overlap 50s</instructionDescription>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>9</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT015S</afterStop>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Warm down</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+</program>
