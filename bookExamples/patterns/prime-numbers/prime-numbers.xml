@@ -7,11 +7,11 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>It is faster to search for numbers that are not prime numbers than for those who are.</programDescription>
+    <programDescription>It is faster to search for numbers that are not prime numbers than for those that are.</programDescription>
     <creationDate>2024-04-11</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
     <layoutWidth>50</layoutWidth>
     
     <instruction>
