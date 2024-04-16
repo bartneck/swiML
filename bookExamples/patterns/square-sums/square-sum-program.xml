@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Square Sums</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swim the shortest sequence of numbers that can be arranged so that every two adjacent numbers sum up to a square number.</programDescription>
+    <creationDate>2024-04-16</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    <layoutWidth>50</layoutWidth>
+
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>8</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>1</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>15</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>10</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>6</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>3</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>13</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>12</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>4</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>5</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>11</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>14</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>2</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>7</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+    </instruction>
+</program>
