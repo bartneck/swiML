@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Joy in Repetition</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swim the most repetitive pop song of all times: Aournd the world by Daft Punk.</programDescription>
+    <creationDate>2024-04-16</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <layoutWidth>50</layoutWidth>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>12</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>12</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>individualMedleyOrder</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
