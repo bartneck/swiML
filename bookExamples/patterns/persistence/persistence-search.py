@@ -14,6 +14,6 @@ def multiplicative_persistence(n):
     return persistence
 
 # Example usage
-number = 12
+number = 
 persistence = multiplicative_persistence(number)
 print("The multiplicative persistence of " + str(number) + " is " + str(persistence) + ".")
