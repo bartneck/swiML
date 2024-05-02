@@ -1,0 +1,11 @@
+<title>My First Program</title>
+<author>
+    <firstName>Christoph</firstName>
+    <lastName>Bartneck</lastName>
+    <email>christoph.bartneck@canterbury.ac.nz</email>
+</author>
+<programDescription>My first swiML program.</programDescription>
+<creationDate>2024-04-23</creationDate>
+<poolLength>25</poolLength>
+<lengthUnit>meters</lengthUnit>
+<hideIntro>false</hideIntro>
