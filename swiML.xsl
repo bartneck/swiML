@@ -15,7 +15,7 @@
         <xsl:choose>
             <xsl:when test="//sw:length/sw:lengthAsDistance or
                 //sw:length/sw:lengthAsLaps or
-                //sw:length/sw:lengthAsLaps">
+                //sw:length/sw:lengthAsTime">
                 <!-- there are distance tags so the result is not 0 -->
                 <!-- select each type of tag and add data to array -->
                 <!-- this data is the length of the string, section of tag, what parents the tag has and, unique location of tag -->
@@ -58,7 +58,7 @@
 
             </xsl:when>
             <!-- if no distance tags present return 0 -->
-            <xsl:otherwise>0</xsl:otherwise>
+            <xsl:otherwise><Item>0</Item></xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     
@@ -1512,7 +1512,7 @@
             else
             ($l/ancestor::sw:repetition/sw:repetitionCount)))
             else (0)
-            ) * $root/ancestor-or-self::sw:program//sw:poolLength  
+            ) 
             "/>
     </xsl:function>
  
