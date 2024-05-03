@@ -1343,6 +1343,12 @@
         <term index="yards">yd</term>
     </myData:translation>
     
+    <xsl:function name="num:roman" as="xs:string">
+        <xsl:param name="value" as="xs:integer"/>
+        <xsl:number value="$value" format="i"/>
+    </xsl:function>
+    
+    
     <!-- Calculation for the length of the program -->
     <!-- Does not work if mixed length units, such as laps, meters, time -->
     <!-- Works fine if all lengths are exclusively meters or laps -->
