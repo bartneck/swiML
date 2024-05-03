@@ -12,7 +12,7 @@
     <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
-    <layoutWidth>50</layoutWidth>
+    <!--<layoutWidth>50</layoutWidth>-->
 
     <instruction>
         <segmentName>Warm up</segmentName>
@@ -87,13 +87,14 @@
             </rest>
             <instruction>
                 <continue>
+                    <stroke>
+                        <standardStroke>individualMedleyOrder</standardStroke>
+                    </stroke>
                     <instruction>
                         <length>
                             <lengthAsDistance>25</lengthAsDistance>
                         </length>
-                        <stroke>
-                            <standardStroke>individualMedleyOrder</standardStroke>
-                        </stroke>
+                        
                         <intensity>
                             <startIntensity>
                                 <zone>racePace</zone>
@@ -104,11 +105,6 @@
                         <length>
                             <lengthAsDistance>25</lengthAsDistance>
                         </length>
-                        <stroke>
-                            <kicking>
-                                <standardKick>individualMedleyOrder</standardKick>
-                            </kicking>
-                        </stroke>
                     </instruction>
                 </continue>
             </instruction>
@@ -151,107 +147,6 @@
                 </repetition>
             </instruction>
             
-            <instruction>
-                <repetition>
-                    <repetitionCount>2</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>50</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>nr1</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                        <intensity>
-                            <startIntensity>
-                                <zone>racePace</zone>
-                            </startIntensity>
-                        </intensity>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>any</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M20S</afterStop>
-                        </rest>
-                    </instruction>
-                </repetition>
-            </instruction>
-            
-            <instruction>
-                <repetition>
-                    <repetitionCount>2</repetitionCount>
-                    <equipment>fins</equipment>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>50</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <kicking>
-                                <standardKick>any</standardKick>
-                            </kicking>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                        <intensity>
-                            <startIntensity>
-                                <zone>racePace</zone>
-                            </startIntensity>
-                        </intensity>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>any</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M20S</afterStop>
-                        </rest>
-                    </instruction>
-                </repetition>
-            </instruction>
-            
-            <instruction>
-                <repetition>
-                    <repetitionCount>2</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>50</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                        <intensity>
-                            <startIntensity>
-                                <zone>racePace</zone>
-                            </startIntensity>
-                        </intensity>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M20S</afterStop>
-                        </rest>
-                    </instruction>
-                </repetition>
-            </instruction>
         </repetition>
     </instruction>
     
