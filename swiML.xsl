@@ -1343,7 +1343,7 @@
         <term index="yards">yd</term>
     </myData:translation>
     
-    <xsl:function name="num:roman" as="xs:string">
+    <xsl:function name="myData:roman" as="xs:string">
         <xsl:param name="value" as="xs:integer"/>
         <xsl:number value="$value" format="i"/>
     </xsl:function>
