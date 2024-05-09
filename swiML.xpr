@@ -14,11 +14,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/patterns/aliquot/aliquot.xml</String>
+                                    <String>bookExamples/importExportTest/JasiMasters2024032401.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>swiMLXSLv2.1</String>
+                                        <String>swiMLXSL latest</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -34,7 +34,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/importExportTest/JasiMasters2024032401.xml</String>
+                                    <String>bookExamples/patterns/aliquot/aliquot.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
