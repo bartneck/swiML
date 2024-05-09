@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Aliquot</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swim the smallest unknown aliquot sequence of the number 276.</programDescription>
+    <creationDate>2024-05-09</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Aliquot sequence</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedley</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M20S</afterStop>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <percentageEffort>80</percentageEffort>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>7</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M30S</afterStop>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <percentageEffort>70</percentageEffort>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>6</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>nr1</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M40S</afterStop>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <percentageEffort>60</percentageEffort>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Warm down</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+</program>
