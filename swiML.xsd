@@ -184,7 +184,6 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
             <xs:enumeration value="yards"/>
-            <xs:enumeration value="laps"/>
         </xs:restriction>
     </xs:simpleType>
 
