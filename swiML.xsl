@@ -1474,50 +1474,51 @@
     <!-- adds all length element while multiplying by any repetition elements that contain them -->
     <xsl:function name="myData:showLength">
         <xsl:param name="root" as="node()"/>
-        <xsl:sequence select="sum(
-            for $breadth in count($root/ancestor-or-self::*)
-            return 
-            for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
-            return
-            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
-            then(
-            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
-            * myData:product(
-            if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0)
-            then
-            (1)
-            else
-            (if 
-            (name($root) = 'continue') 
-            then 
-            (($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]/sw:repetitionCount))
-            else
-            ($l/ancestor::sw:repetition/sw:repetitionCount))))
-            else(0)
+        <xsl:sequence select="
+            sum(
+                for $breadth in count($root/ancestor-or-self::*) return( 
+                    for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)] return(
+                        if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance) then(
+                            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance 
+                            * myData:product(
+                                if(count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0) then(
+                                    1
+                                )else(
+                                    if(name($root) = 'continue')then(
+                                        ($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]/sw:repetitionCount)
+                                    )else(
+                                    $l/ancestor::sw:repetition/sw:repetitionCount
+                                    )
+                                )
+                            )
+                        ) else(
+                            0
+                        )
+                    )
+                )
             )
             +
             sum(
-            for $breadth in count($root/ancestor-or-self::*)
-            return 
-            for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)]
-            return
-            if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps)
-            then(
-            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
-            * myData:product(
-            if
-            (count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0)
-            then
-            (1)
-            else
-            if 
-            (name($root) = 'continue')  
-            then 
-            ($l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $breadth]/sw:repetitionCount)
-            else
-            ($l/ancestor::sw:repetition/sw:repetitionCount)))
-            else (0)
+                for $breadth in count($root/ancestor-or-self::*) return( 
+                    for $l in $root//sw:instruction[not(child::sw:continue)][not(child::sw:repetition)] return(
+                        if($l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) then(
+                            $l/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps 
+                            * myData:product(
+                                if(count($l/ancestor::sw:repetition[count(./ancestor-or-self::*) >= $breadth]) = 0) then(
+                                    1
+                                )else(
+                                    if (name($root) = 'continue') then(
+                                        $l/ancestor::sw:repetition[count($root/ancestor-or-self::*) >= $breadth]/sw:repetitionCount
+                                    )else(
+                                        $l/ancestor::sw:repetition/sw:repetitionCount
+                                    )
+                                )
+                            )
+                        )else (
+                            0
+                        )
+                    )
+                )
             ) 
             "/>
     </xsl:function>

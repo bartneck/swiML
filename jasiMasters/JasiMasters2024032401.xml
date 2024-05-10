@@ -12,7 +12,7 @@
     <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
-    <!--<layoutWidth>50</layoutWidth>-->
+
 
     <instruction>
         <segmentName>Warm up</segmentName>
