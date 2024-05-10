@@ -78,14 +78,6 @@
                             unit.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <!-- The total length of the program. -->
-                <xs:element name="programLength" minOccurs="0" maxOccurs="1"
-                    type="xs:nonNegativeInteger">
-                    <xs:annotation>
-                        <xs:documentation>The total length of the program expressed in the
-                            defaultInstructionLengthUnit</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
                 <!-- Element to hide the intro text -->
                 <xs:element name="hideIntro" minOccurs="0" maxOccurs="1" type="xs:boolean">
                     <xs:annotation>
