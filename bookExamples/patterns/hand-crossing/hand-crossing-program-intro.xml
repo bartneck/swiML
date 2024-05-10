@@ -7,12 +7,185 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>Swim hand crossings.</programDescription>
-    <creationDate>2024-04-16</creationDate>
+    <programDescription>This program divides one hour into eleven periods. It resembles the eleven times the hands of a clock cross during the day.</programDescription>
+    <creationDate>2024-05-11</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <layoutWidth>50</layoutWidth>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>90</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <drill>
+                <drillName>singleArm</drillName>
+                <drillStroke>butterfly</drillStroke>
+            </drill>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
     
     <instruction>
         <length>
@@ -27,5 +200,4 @@
             </startIntensity>
         </intensity>
     </instruction>
-    
 </program>
