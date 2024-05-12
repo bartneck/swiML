@@ -1301,7 +1301,7 @@
         <term index="notBreaststroke">Not BR</term>
         <term index="notFreestyle">Not FR</term>
         <term index="flutter">Flutter</term>
-        <term index="dolpine">Dolpine</term>
+        <term index="dolphin">Dolphin</term>
         <term index="scissor">Scissor</term>
         <term index="front">Front</term>
         <term index="back">Back</term>

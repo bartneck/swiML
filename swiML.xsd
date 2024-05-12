@@ -780,7 +780,7 @@
     <xs:simpleType name="legMovementType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="flutter"/>
-            <xs:enumeration value="dolpine"/>
+            <xs:enumeration value="dolphin"/>
             <xs:enumeration value="scissor"/>
         </xs:restriction>
     </xs:simpleType>
