@@ -22,7 +22,7 @@
                 <!-- for each type of distance tag this is repeated and added to resultant array -->
 
                 <!-- length as distance tags-->
-                <xsl:if test="//sw:length/sw:lengthAsLaps">
+                <xsl:if test="//sw:length/sw:lengthAsDistance">
                     <xsl:for-each select="//sw:length/sw:lengthAsDistance">
                         <Item>
                             <Length><xsl:value-of select="string-length(.)"/></Length>
