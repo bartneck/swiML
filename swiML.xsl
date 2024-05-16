@@ -1519,7 +1519,7 @@
                         )
                     )
                 )
-            ) 
+            ) * $root/ancestor-or-self::sw:program//sw:poolLength
             "/>
     </xsl:function>
  
