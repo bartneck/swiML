@@ -133,7 +133,7 @@ eightSet=swiML.Repetition(
 )
 
 warmDown=swiML.Instruction(
-    length=('lengthAsDistance',100),
+    length=('lengthAsDistance',200),
     stroke=('standardStroke','any'),
     intensity=('startIntensity',('zone','easy')),
 )
@@ -148,7 +148,7 @@ simpleProgram=swiML.Program(
     swiMLVersion=2.0,
     instructions=[swiML.SegmentName('Warm Up'),
                     
-                    oneSet,twoSet,threeSet,fourSet,fiveSet,sixSet,sevenSet,eightSet
+                    oneSet,twoSet,threeSet,fourSet,fiveSet,sixSet,sevenSet,eightSet,warmDown
                   ]
 )
 

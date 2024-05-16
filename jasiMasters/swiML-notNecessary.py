@@ -260,7 +260,8 @@ def writeXML(filename,node):
         takes filename as input'''
     
     tree = classToXML(node)
-    tree.write(filename)
+    ET.indent(tree)
+    tree.write(filename, encoding='utf-8', xml_declaration=True)
     print(f'written to {filename}')
 
 
