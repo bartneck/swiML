@@ -1,17 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
     <title>Triangular Numbers</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>Swim the first </programDescription>
-    <programDescription>8</programDescription>
-    <programDescription> terms of the triangular numbers sequence.</programDescription>
+    <programDescription>Swim the first 8 terms of the triangular numbers sequence.</programDescription>
     <creationDate>2024-04-22</creationDate>
     <poolLength>25</poolLength>
-    <lengthUnit>laps</lengthUnit>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
     <instruction><segmentName>Warm Up</segmentName></instruction>
     <instruction><length><lengthAsDistance>200</lengthAsDistance></length><stroke><standardStroke>any</standardStroke></stroke><intensity><startIntensity>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Example Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>This is a minimal program.</programDescription>
+    <creationDate>2024-04-22</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <layoutWidth>50</layoutWidth>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+</program>
