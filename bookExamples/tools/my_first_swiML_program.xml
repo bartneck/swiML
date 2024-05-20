@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
+  <title>My First Python swiML Program</title>
+  <author>
+    <firstName>Christoph</firstName>
+    <lastName>Bartneck</lastName>
+  </author>
+  <programDescription>This is a small program to demonstrate how to create a swiML program in Python.</programDescription>
+  <creationDate>2024-05-20</creationDate>
+  <poolLength>25</poolLength>
+  <lengthUnit>meters</lengthUnit>
+  <hideIntro>false</hideIntro>
+  <instruction>
+    <length>
+      <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+      <standardStroke>freestyle</standardStroke>
+    </stroke>
+    <intensity>
+      <startIntensity>
+        <zone>easy</zone>
+      </startIntensity>
+    </intensity>
+  </instruction>
+</program>
