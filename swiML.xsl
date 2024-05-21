@@ -648,7 +648,18 @@
                                 </li>
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
-                                    <xsl:value-of select="myData:showLength(sw:program)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="sw:program/sw:lengthUnit = 'laps'">
+                                            <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:poolLength)"/>
+                                        </xsl:when>
+                                        <xsl:when test="sw:program/sw:lengthUnit = 'meters'">
+                                            <xsl:value-of select="myData:showLength(sw:program)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -919,7 +930,15 @@
                     <xsl:attribute name="class">
                         <xsl:text>extraBoldTypeFaceMarginLeft</xsl:text>
                     </xsl:attribute>
-                    <xsl:call-template name="showLength"/>
+                    <xsl:choose>
+                        <xsl:when test="./sw:continueLength">
+                            <xsl:value-of select="./sw:continueLength"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="showLength"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
                 </span>
                 <xsl:call-template name="displayInst"/>
                 <xsl:text>&#160;as</xsl:text>

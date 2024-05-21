@@ -122,7 +122,10 @@ def classToXML(self,root=None):
         if root == None:
             root = ET.Element(type(self).__name__.lower())
             if type(self).__name__.lower() == 'program':
-                schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
+                if self.swiMLVersion == 'latest':
+                    schemaLocation = f'https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd'
+                else:
+                    schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
                 root.set('xmlns','https://github.com/bartneck/swiML')
                 root.set('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance')
                 root.set('xsi:schemaLocation',schemaLocation)
@@ -325,7 +328,7 @@ class Program:
     TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion=1.1,instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion='latest',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -418,7 +421,6 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
-        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'

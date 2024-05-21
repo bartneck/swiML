@@ -122,7 +122,10 @@ def classToXML(self,root=None):
         if root == None:
             root = ET.Element(type(self).__name__.lower())
             if type(self).__name__.lower() == 'program':
-                schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
+                if self.swiMLVersion == 'latest':
+                    schemaLocation = f'https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd'
+                else:
+                    schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
                 root.set('xmlns','https://github.com/bartneck/swiML')
                 root.set('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance')
                 root.set('xsi:schemaLocation',schemaLocation)
@@ -202,7 +205,7 @@ def XMLToObj(node,curr):
             curr.append(XMLToObj(child,[]))
         return tuple(curr)
     else:
-        curr.append(node.text.strip())
+        curr.append(node.text)
         return tuple(curr)
     
 def nodeToDict(node):
@@ -210,6 +213,7 @@ def nodeToDict(node):
     data = []
     instructions = []
     for child in node:
+        print(child)
         if child.tag == 'instruction':
             instructions.append(XMLToClass(child))
         else:
@@ -222,32 +226,35 @@ def XMLToClass(node):
     
     if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
         instDict,instructions = nodeToDict(node)
+        print(instType[0].tag,instDict,instructions,'I')
         return Instruction(**instDict)
-    elif instType[0].tag == 'segmentName':
-            return SegmentName(instType[0].text)
     else:
         instDict,instructions = nodeToDict(instType[0])
+        print(instType[0].tag,instDict,instructions,'N')
         if instType[0].tag == 'repetition':
             return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
             return Continue(**instDict,instructions=instructions)
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
-        
+        elif instType[0].tag == 'segmentName':
+            return SegmentName(**instDict)
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
-    with open(filename,"r") as f:
+    with open(filename,"r+") as f:
         file = f.read()
-        namespace = re.search('<program .+?>',file,flags=re.DOTALL).group(0)
-        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL) 
-    version = re.search('version/[0-9]/[0-9].[0-9]/swiML',namespace).group(0)[10:-6]
-    tree = ET.ElementTree(ET.fromstring(nons))
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
+        nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
+        f.truncate(0)
+        f.seek(0)
+        f.write(nons)
+    tree = ET.parse(filename)
     root = tree.getroot()
     if root.tag == 'program':
         programDict,instructions = nodeToDict(root)
-        return Program(**programDict,swiMLVersion=version,instructions=instructions)
+        return Program(**programDict,instructions=instructions)
     else:
         return XMLToClass(root)
 
@@ -259,6 +266,7 @@ def writeXML(filename,node):
     ET.indent(tree)
     tree.write(filename, encoding='utf-8', xml_declaration=True)
     print(f'written to {filename}')
+
 
 def instGroupStr(self):
     instructions = [inst if type(inst) is str else inst[0] for inst in INSTRUCTION_GROUP[:-1]]
@@ -320,7 +328,7 @@ class Program:
     TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion=1.1,instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion='latest',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -413,6 +421,7 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
+        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'

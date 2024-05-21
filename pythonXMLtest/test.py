@@ -153,4 +153,4 @@ simpleProgram=swiML.Program(
 )
 
 print(simpleProgram)
-swiML.writeXML('sample.xml',simpleProgram)
+swiML.writeXML('pythonXMLtest/sample.xml',simpleProgram)
