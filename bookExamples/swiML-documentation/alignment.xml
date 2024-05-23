@@ -7,17 +7,19 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>Example of how to use the continueLength element.</programDescription>
-    <creationDate>2023-02-07</creationDate>
+    <programDescription>Example of how to use the excludeAlignment element.</programDescription>
+    <creationDate>2023-05-24</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>true</hideIntro>
-
+    
     <instruction>
-        <continue>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            
             <instruction>
                 <length>
-                    <lengthAsDistance>50</lengthAsDistance>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
                     <standardStroke>freestyle</standardStroke>
@@ -25,36 +27,34 @@
             </instruction>
             <instruction>
                 <length>
-                    <lengthAsDistance>50</lengthAsDistance>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
                     <standardStroke>backstroke</standardStroke>
                 </stroke>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
     
     <instruction>
-        <continue>
-            <continueLength>200</continueLength>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <excludeAlign>true</excludeAlign>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
             <instruction>
                 <length>
-                    <lengthAsDistance>50</lengthAsDistance>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
+                
             </instruction>
             <instruction>
                 <length>
-                    <lengthAsDistance>50</lengthAsDistance>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
 
+            </instruction>
+        </repetition>
+    </instruction>
 </program>

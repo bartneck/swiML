@@ -1,0 +1,21 @@
+<instruction>
+    <continue>
+        <continueLength>200</continueLength>
+        <instruction>
+            <length>
+                <lengthAsDistance>50</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+        </instruction>
+        <instruction>
+            <length>
+                <lengthAsDistance>50</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>backstroke</standardStroke>
+            </stroke>
+        </instruction>
+    </continue>
+</instruction>
