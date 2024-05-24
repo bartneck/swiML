@@ -1,0 +1,11 @@
+<instruction>
+    <length>
+        <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+        <drill>
+            <drillName>fingerTrails</drillName>
+            <drillStroke>freestyle</drillStroke>
+        </drill>
+    </stroke>
+</instruction>
