@@ -1,0 +1,11 @@
+<instruction>
+    <length>
+        <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+        <kicking>
+            <orientation>side</orientation>
+            <legMovement>flutter</legMovement>
+        </kicking>
+    </stroke>
+</instruction>

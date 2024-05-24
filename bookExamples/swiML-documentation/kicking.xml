@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Kicking</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Example of how to use the kicking element.</programDescription>
+    <creationDate>2023-05-24</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <kicking>
+                <orientation>side</orientation>
+                <legMovement>flutter</legMovement>
+            </kicking>
+        </stroke>
+    </instruction>
+</program>
