@@ -16,7 +16,6 @@
     <instruction>
         <repetition>
             <repetitionCount>2</repetitionCount>
-            
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
@@ -39,22 +38,20 @@
     <instruction>
         <repetition>
             <repetitionCount>2</repetitionCount>
-            <excludeAlign>true</excludeAlign>
             <stroke>
-                <standardStroke>freestyle</standardStroke>
+                <standardStroke>backstroke</standardStroke>
             </stroke>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
-                
             </instruction>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
-
             </instruction>
+            <excludeAlignRepetition>true</excludeAlignRepetition>
         </repetition>
     </instruction>
 </program>

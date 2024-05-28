@@ -520,7 +520,7 @@
         </xs:annotation>
         
         <xs:sequence>
-            <xs:element name="continueLength" minOccurs="0" maxOccurs="1" type="xs:string">
+            <xs:element name="continueLength" minOccurs="0" maxOccurs="1" type="lengthType">
                 <xs:annotation>
                     <xs:documentation>total length to swim continuously or total number of
                         repetitions May or may not be defined but if not it will automatically
