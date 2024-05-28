@@ -9,7 +9,7 @@
         <email>christoph@bartneck.de</email>
     </author>
     <programDescription>Our Sunday morning program targeted at 60 minutes. The coah was Matt Nash</programDescription>
-    <creationDate>2023-03-26</creationDate>
+    <creationDate>2024-03-26</creationDate>
     <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
@@ -438,6 +438,7 @@
                         <stroke>
                             <drill>
                                 <drillName>technic</drillName>
+                                <drillStroke>nr1</drillStroke>
                             </drill>
                         </stroke>
                     </instruction>
