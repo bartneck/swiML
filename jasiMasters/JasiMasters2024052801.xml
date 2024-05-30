@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>Our Tuesday evening program targeted at 60 minutes. The coah was Matt Nash</programDescription>
+    <creationDate>2024-05-28</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <equipment>fins</equipment>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>singleArm</drillName>
+                        <drillStroke>butterfly</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+                <instructionDescription>double arm</instructionDescription>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>breaststroke</standardStroke>
+                </stroke>
+                <instructionDescription>2 kick one pull</instructionDescription>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <continueLength>200</continueLength>
+            <equipment>pullBuoy</equipment>
+            <instruction>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>breaststroke</standardStroke>
+                </stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Second set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <continue>
+                    <rest>
+                        <sinceStart>PT1M30S</sinceStart>
+                    </rest>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>individualMedleyOrder</standardStroke>
+                        </stroke>
+                        <intensity>
+                            <startIntensity>
+                                <zone>racePace</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <drill>
+                                <drillName>technic</drillName>
+                                <drillStroke>freestyle</drillStroke>
+                            </drill>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <continue>
+                    <rest>
+                        <sinceStart>PT1M30S</sinceStart>
+                    </rest>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <drill>
+                                <drillName>technic</drillName>
+                                <drillStroke>freestyle</drillStroke>
+                            </drill>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>individualMedleyOrder</standardStroke>
+                        </stroke>
+                        <intensity>
+                            <startIntensity>
+                                <zone>racePace</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <rest>
+                <afterStop>PT1M0S</afterStop>
+            </rest>
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <intensity>
+                    <startIntensity>
+                        <zone>max</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+            
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+            
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <intensity>
+                    <startIntensity>
+                        <zone>easy</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    
+    
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <stroke>
+                <standardStroke>freestyle</standardStroke>
+            </stroke>
+            <rest>
+                <afterStop>PT1M0S</afterStop>
+            </rest>
+            
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+            
+                    
+            
+            
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <intensity>
+                    <startIntensity>
+                        <zone>easy</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+            
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>easy</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>max</zone>
+                            </startIntensity>
+                        </intensity>
+                        <instructionDescription>dive, 30 seconds rest</instructionDescription>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <intensity>
+                            <startIntensity>
+                                <zone>easy</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+
+        </repetition>
+    </instruction>
+</program>
