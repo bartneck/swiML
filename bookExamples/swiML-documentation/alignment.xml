@@ -35,12 +35,35 @@
         </repetition>
     </instruction>
     
+<!--    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <stroke>
+                <standardStroke>backstroke</standardStroke>
+            </stroke>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+            </instruction>
+            <excludeAlignRepetition>true</excludeAlignRepetition>
+        </repetition>
+    </instruction>-->
+    
     <instruction>
         <repetition>
             <repetitionCount>2</repetitionCount>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
+            <rest>
+                <sinceStart>PT1M30S</sinceStart>
+            </rest>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
