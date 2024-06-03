@@ -13,7 +13,6 @@
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
-    <layoutWidth>70</layoutWidth>
     
     <instruction>
         <segmentName>Warm up</segmentName>
