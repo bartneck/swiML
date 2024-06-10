@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Regular Program 6</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>The sixth regular program celebrates the perfect number six.</programDescription>
+    <creationDate>2024-06-06</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction>
+        <segmentName>First set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>300</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <equipment>pads</equipment>
+                <equipment>pullBuoy</equipment>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <equipment>pads</equipment>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>6</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <equipment>pullBuoy</equipment>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>12</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M30S</afterStop>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>racePace</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Warm down</segmentName>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                        <intensity>
+                            <startIntensity>
+                                <zone>easy</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>backstroke</standardStroke>
+                        </stroke>
+                        <intensity>
+                            <startIntensity>
+                                <zone>easy</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </continue>
+    </instruction>
+</program>
