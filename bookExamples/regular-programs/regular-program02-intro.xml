@@ -2,14 +2,14 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
-    <title>Jasi Masters</title>
+    <title>Regular Program 2</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
         <email>christoph@bartneck.de</email>
     </author>
-    <programDescription>Our Sunday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
-    <creationDate>2024-05-19</creationDate>
+    <programDescription>The main set of this program combines a decreasing freestyle instruction with shorter sprints.</programDescription>
+    <creationDate>2024-06-04</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
@@ -49,6 +49,7 @@
 
             <instruction>
                 <continue>
+
                     <instruction>
                         <length>
                             <lengthAsDistance>50</lengthAsDistance>
@@ -65,7 +66,7 @@
                             <lengthAsDistance>50</lengthAsDistance>
                         </length>
                         <stroke>
-                            <standardStroke>individualMedleyOrder</standardStroke>
+                            <standardStroke>freestyle</standardStroke>
                         </stroke>
                     </instruction>
                 </continue>
@@ -127,33 +128,21 @@
             </instruction>
 
             <instruction>
-                <continue>
-                    <rest>
-                        <afterStop>PT0M20S</afterStop>
-                    </rest>
-                    <intensity>
-                        <startIntensity>
-                            <zone>racePace</zone>
-                        </startIntensity>
-                    </intensity>
-                    <equipment>pullBuoy</equipment>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>25</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>backstroke</standardStroke>
-                        </stroke>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>25</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                    </instruction>
-                </continue>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M20S</afterStop>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>racePace</zone>
+                    </startIntensity>
+                </intensity>
+                <equipment>pullBuoy</equipment>
             </instruction>
 
             <instruction>
@@ -187,14 +176,35 @@
 
         </repetition>
     </instruction>
-    
+
     <instruction>
         <segmentName>Second set</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>8</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedleyOrder</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT0M45S</sinceStart>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Warm down</segmentName>
     </instruction>
     
     <instruction>
         <length>
-            <lengthAsDistance>50</lengthAsDistance>
+            <lengthAsDistance>100</lengthAsDistance>
         </length>
         <stroke>
             <standardStroke>any</standardStroke>
@@ -204,105 +214,5 @@
                 <zone>easy</zone>
             </startIntensity>
         </intensity>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>butterfly</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>butterfly</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-        <breath>4</breath>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>backstroke</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>backstroke</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-        <instructionDescription>first 15m under water</instructionDescription>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>breaststroke</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>breaststroke</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-        <instructionDescription>Two pull outs</instructionDescription>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsDistance>25</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <rest>
-            <sinceStart>PT0M45S</sinceStart>
-        </rest>
-        <instructionDescription>no breathing</instructionDescription>
     </instruction>
 </program>
