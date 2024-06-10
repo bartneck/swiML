@@ -1338,7 +1338,6 @@
         <term index="10KickDrill">10KD</term>
         <term index="12KickDrill">12KD</term>
         <term index="fingerTrails">FT</term>
-        <term index="fingerDrag">FD</term>
         <term index="123">123</term>
         <term index="bigDog">Big Dog</term>
         <term index="scull">Scull</term>

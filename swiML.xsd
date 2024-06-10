@@ -840,7 +840,6 @@
             <xs:enumeration value="10KickDrill"/>
             <xs:enumeration value="12KickDrill"/>
             <xs:enumeration value="fingerTrails"/>
-            <xs:enumeration value="fingerDrag"/>
             <xs:enumeration value="123"/>
             <xs:enumeration value="bigDog"/>
             <xs:enumeration value="scull"/>

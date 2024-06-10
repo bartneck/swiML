@@ -1,6 +1,8 @@
 <instruction>
     <continue>
-        <continueLength>200</continueLength>
+        <continueLength>
+            <lengthAsDistance>200</lengthAsDistance>
+        </continueLength>
         <instruction>
             <length>
                 <lengthAsDistance>50</lengthAsDistance>
