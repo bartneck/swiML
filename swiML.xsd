@@ -848,7 +848,6 @@
             <xs:enumeration value="technic"/>
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
-            <xs:enumeration value="6666"/>
             <xs:enumeration value="2Kick1Pull"/>
             <xs:enumeration value="3Kick1Pull"/>
             <xs:enumeration value="2Pull1Kick"/>
