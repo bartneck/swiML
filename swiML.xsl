@@ -1346,6 +1346,9 @@
         <term index="dogPaddle">Dog Paddle</term>
         <term index="tarzan">Tarzan</term>
         <term index="3Kick1Pull">3K1P</term>
+        <term index="3Kick1Pull">2K1P</term>
+        <term index="3Kick1Pull">3P1K</term>
+        <term index="3Kick1Pull">2P1K</term>
         <term index="6666">6666</term>
         <term index="board">Board</term>
         <term index="pads">Pads</term>

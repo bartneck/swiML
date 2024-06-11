@@ -849,7 +849,10 @@
             <xs:enumeration value="dogPaddle"/>
             <xs:enumeration value="tarzan"/>
             <xs:enumeration value="6666"/>
+            <xs:enumeration value="2Kick1Pull"/>
             <xs:enumeration value="3Kick1Pull"/>
+            <xs:enumeration value="2Pull1Kick"/>
+            <xs:enumeration value="3Pull1Kick"/>
             <xs:enumeration value="other"/>
         </xs:restriction>
     </xs:simpleType>
