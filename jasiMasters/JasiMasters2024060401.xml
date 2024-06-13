@@ -35,9 +35,7 @@
     <instruction>
         <repetition>
             <simplify>true</simplify>
-            <instruction>
-                <repetition>
-                    <repetitionCount>1</repetitionCount>
+            
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
@@ -48,12 +46,8 @@
                             </kicking>
                         </stroke>
                     </instruction>
-                </repetition>
-            </instruction>
             
-            <instruction>
-                <repetition>
-                    <repetitionCount>1</repetitionCount>
+            
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
@@ -65,12 +59,8 @@
                             </drill>
                         </stroke>
                     </instruction>
-                </repetition>
-            </instruction>
             
-            <instruction>
-                <repetition>
-                    <repetitionCount>1</repetitionCount>
+            
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
@@ -80,12 +70,8 @@
                         </stroke>
                         <breath>5</breath>
                     </instruction>
-                </repetition>
-            </instruction>
             
-            <instruction>
-                <repetition>
-                    <repetitionCount>1</repetitionCount>
+            
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
@@ -96,12 +82,8 @@
                             </kicking>
                         </stroke>
                     </instruction>
-                </repetition>
-            </instruction>
             
-            <instruction>
-                <repetition>
-                    <repetitionCount>1</repetitionCount>
+            
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
@@ -113,12 +95,10 @@
                             </drill>
                         </stroke>
                     </instruction>
-                </repetition>
-            </instruction>
             
             <instruction>
                 <repetition>
-                    <repetitionCount>1</repetitionCount>
+                    <repetitionCount>3</repetitionCount>
                     <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
