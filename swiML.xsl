@@ -1356,7 +1356,7 @@
         <term index="snorkle">Snorkle</term>
         <term index="chute">Chute</term>
         <term index="stretchCord">Stretch Cord</term>
-        <term index="other">?</term>
+        <term index="other">other</term>
         <term index="breath">b</term>
         <term index="laps">laps</term>
         <term index="meters">m</term>

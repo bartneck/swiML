@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <instruction>
+        <length>
+            <lengthAsTime>PT1M0S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <inOut>2</inOut>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageHeartRate>80</percentageHeartRate>
+            </startIntensity>
+        </intensity>
+        <breath>3</breath>
+        <underwater>true</underwater>
+        <equipment>fins</equipment>
+    </instruction>
+</program>
