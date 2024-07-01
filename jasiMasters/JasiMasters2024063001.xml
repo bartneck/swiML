@@ -317,6 +317,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>150</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>50</lengthAsDistance>
