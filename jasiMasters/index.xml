@@ -427,4 +427,24 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
+    <session>
+        <date>2024-06-16</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-06-18</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-06-25</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-06-30</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
 </swimTraining>
