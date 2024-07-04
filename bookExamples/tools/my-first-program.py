@@ -25,7 +25,7 @@ def write_program():
         instructions=myProgram
     )
     # write swiML XML to file
-    swiML.writeXML('my_first_swiML_program.xml',simpleProgram)
+    swiML.writeXML('my_first_swiML_program_xxx.xml',simpleProgram)
 
 # write the swiML program
 write_program()
