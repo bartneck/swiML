@@ -137,14 +137,12 @@
                         <xsl:choose>
                             <!-- different length is given when continue is child of a repetition and only has 1 child instruction as it displays differently (extra addition of repetition count)  this could change-->
                             <!-- length is the length of calculated length node, 3 characters for as, length of any top level instruction tags and the extra spaces they need -->
-                            <xsl:when test="../../../sw:repetition and count(../../sw:instruction) = 1 and count(./sw:instruction) = 1">
-                                <Length><xsl:value-of select="string-length(string(myData:showLength(.)))+6+string-length(../../sw:repetitionCount)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
-                            </xsl:when>
+
                             <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']">
-                                <Length>4</Length>
+                                <Length><xsl:value-of select="4+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/></Length>
                             </xsl:when>
                             <xsl:otherwise>
-                                <Length><xsl:value-of select="string-length(string(myData:showLength(.)))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
+                                <Length><xsl:value-of select="string-length(string(myData:contLength(.)))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
                             </xsl:otherwise>
                         </xsl:choose>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -228,12 +226,18 @@
                             <xsl:with-param name="nodeSet" select="./*[not(name(.) = 'instruction' or name(.) = 'simplify')]"/>
                         </xsl:call-template>
                     </xsl:variable>
+                    <xsl:variable name="isLaps">
+                        <xsl:choose>
+                            <xsl:when test="(./descendant-or-self::sw:lengthAsLaps)">5</xsl:when>
+                            <xsl:otherwise>0</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
                     
                     <!-- add data for each simplifying tag to the array -->
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(myData:simpRep(.)))+string-length(string(sum((./descendant-or-self::sw:instruction[1])//sw:lengthAsDistance)))+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(myData:simpRep(.)))+string-length(string(myData:firstInst(.)))+$isLaps+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -630,7 +634,7 @@
                                 <xsl:value-of select="sw:program/sw:title"/>
                             </h1>
                             <xsl:apply-templates select="sw:program/sw:author"/>
-                            <p class="describtion">
+                            <p class="description">
                                 <xsl:value-of select="sw:program/sw:programDescription"/>
                             </p>
                             <ul>
@@ -671,6 +675,13 @@
                 <!-- The recursive instructions -->
                 <div class="program">
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
+                    <!--<xsl:value-of select="$instLengths"/>
+                    c
+                    <xsl:value-of select="$maxInstLengths"/>
+                    c
+                    <xsl:value-of select="$simpLengths"/>
+                    c
+                    <xsl:value-of select="$maxSimpLengths"/>-->
                 </div>
                 
                 <!-- footer -->
@@ -771,7 +782,7 @@
                         
                         <!-- check if aligning repetition or not-->
                         <xsl:choose>
-                            <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
+                            <xsl:when test="./sw:excludeAlignRepetition[text() = 'true'] or ./ancestor-or-self::sw:program//sw:programAlign[text() = 'false']">
                                 <xsl:attribute name="style">
                                     <xsl:text>text-align:center;</xsl:text>
                                 </xsl:attribute>
@@ -799,7 +810,7 @@
                                 <xsl:text>extraBoldTypeFaceCenter</xsl:text>
                             </xsl:attribute>
                             <xsl:value-of select="myData:firstInst(.)"/>
-                            <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"> Laps</xsl:if>
+                            <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:text>&#160;Laps</xsl:text></xsl:if>
                         </span>
                        
                         <xsl:call-template name="displayInst"/>
@@ -812,8 +823,9 @@
                             <div class="repetitionSymbol"><xsl:text>&#160;</xsl:text></div>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
+                            <xsl:if test="(count(.//sw:instruction) > 1) or not(./sw:simplify[text()='true']) ">
                                 <xsl:text>&#160;</xsl:text>
+                                <xsl:value-of select="not(./sw:simplify[text()='true'])"/>
                             </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -835,7 +847,7 @@
 
                                 <!-- check for excluding alignment-->
                                 <xsl:choose>
-                                    <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']">
+                                    <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']or ./ancestor-or-self::sw:program//sw:programAlign[text() = 'false']">
                                         <xsl:attribute name="style">
                                             <xsl:text>text-align:center;</xsl:text>
                                         </xsl:attribute>
@@ -890,7 +902,6 @@
                                 <xsl:if test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true']) ">
                                     <xsl:text>&#160;</xsl:text>
                                 </xsl:if>
-                                
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:if>
@@ -914,7 +925,7 @@
             <div class="continueLength">
                 <!-- check for alingment exclusion-->
                 <xsl:choose>
-                    <xsl:when test="./sw:excludeAlignContinue[text() = 'true']">
+                    <xsl:when test="./sw:excludeAlignContinue[text() = 'true']or ./ancestor-or-self::sw:program//sw:programAlign[text() = 'false']">
                         <xsl:attribute name="style">
                             <xsl:text>text-align:center;</xsl:text>
                         </xsl:attribute>
@@ -958,14 +969,20 @@
         <!-- display 1 as length when in a simplifying repetition and it has siblings -->
         <!-- this should be fine as base level instructions can only be 1 set of a repetition but this needs to be checked -->
         <xsl:choose>
-            <xsl:when test=" count(..//sw:instruction) > 1 and ../../sw:repetition/sw:simplify[text()='true']">
-                <span>                
-                    <xsl:attribute name="class">
-                        <xsl:text>extraBoldTypeFaceRight</xsl:text>
-                    </xsl:attribute>
-                    1
-                </span>
+            <xsl:when test="../../sw:repetition/sw:simplify[text()='true']">
+                <xsl:choose>
+                    <xsl:when test="count(..//sw:instruction) > 1">
+                        <span>                
+                            <xsl:attribute name="class">
+                                <xsl:text>extraBoldTypeFaceRight</xsl:text>
+                            </xsl:attribute>
+                            1
+                        </span>
+                    </xsl:when>
+                    <xsl:otherwise></xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
+            <xsl:when test="../../../sw:simplify[text() = 'true'] and (../../sw:repetition and count(..//sw:instruction) = 1)"></xsl:when>
             <xsl:otherwise>
                 
                 <!--  check if grandchild of continue, child of repetition and has no siblings -->
@@ -1019,7 +1036,7 @@
         </xsl:variable>
         <span>
             <xsl:choose> 
-                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])and not(./ancestor-or-self::sw:program//sw:programAlign[text() = 'false'])">
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
@@ -1047,7 +1064,7 @@
         </xsl:variable>
         <span>
             <xsl:choose> 
-                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])and not(./ancestor-or-self::sw:program//sw:programAlign[text() = 'false'])">
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
@@ -1080,7 +1097,7 @@
         </xsl:variable>
         <span>
             <xsl:choose> 
-                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true'])">
+                <xsl:when test="not(../../../sw:repetition) and not(../../sw:excludeAlign[text() = 'true']) and not(./ancestor-or-self::sw:program//sw:programAlign[text() = 'false'])">
                     <xsl:attribute name="style">
                         <xsl:text>min-width:</xsl:text>
                         <xsl:value-of select="($maxInstLengths[./*[../Location = $location]]/Length)[last()]"/>
@@ -1458,8 +1475,14 @@
     <!-- achieved by getting total length of children then dividing by length of single instruction to give how many times it needs to be repeated -->  
     <xsl:function name="myData:simpRep">
         <xsl:param name="root" as="node()"/>    
+
         <xsl:sequence select="
-            myData:repLength($root) div myData:firstInst($root)
+            if($root//sw:lengthAsLaps) then(
+            myData:repLength($root) div myData:firstInst($root) div $root/ancestor-or-self::sw:program//sw:poolLength
+            ) else(
+                myData:repLength($root) div myData:firstInst($root) 
+            )
+            
         "/>
     </xsl:function>
     

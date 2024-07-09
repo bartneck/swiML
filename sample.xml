@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<program xmlns="https://github.com/bartneck/swiML"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="file:/C:/My%20Documents/GitHub/swiML"
+  xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML swiML.xsd">
   <title>Jasi Masters</title>
   <author>
     <firstName>Christoph</firstName>
@@ -12,84 +12,128 @@
   <poolLength>25</poolLength>
   <lengthUnit>meters</lengthUnit>
   <instruction>
-    <length>
-      <lengthAsDistance>400</lengthAsDistance>
-    </length>
-    <stroke>
-      <standardStroke>freestyle</standardStroke>
-    </stroke>
-    <intensity>
-      <startIntensity>
-        <zone>easy</zone>
-      </startIntensity>
-    </intensity>
-  </instruction>
-  <instruction>
     <repetition>
-      <simplify>true</simplify>
-      <instruction>
-        <length>
-          <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <intensity>
-          <startIntensity>
-            <zone>easy</zone>
-          </startIntensity>
-          <stopIntensity>
-            <zone>racePace</zone>
-          </stopIntensity>
-        </intensity>
-      </instruction>
+      <repetitionCount>4</repetitionCount>
+      <rest>
+        <sinceStart>PT1M45S</sinceStart>
+      </rest>
+      <intensity>
+        <startIntensity>
+          <zone>easy</zone>
+        </startIntensity>
+      </intensity>
       <instruction>
         <continue>
-          <continueLength><lengthAsDistance>100</lengthAsDistance></continueLength>
           <instruction>
             <length>
               <lengthAsDistance>25</lengthAsDistance>
             </length>
-            <stroke><standardStroke>freestyle</standardStroke></stroke>
+            <stroke>
+              <standardStroke>nr1</standardStroke>
+            </stroke>
           </instruction>
           <instruction>
             <length>
-              <lengthAsDistance>25</lengthAsDistance>
+              <lengthAsDistance>75</lengthAsDistance>
             </length>
-            <stroke><standardStroke>backstroke</standardStroke></stroke>
+            <stroke>
+              <standardStroke>freestyle</standardStroke>
+            </stroke>
           </instruction>
         </continue>
       </instruction>
-      <instruction>
-        <length>
-          <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <intensity>
-          <startIntensity>
-            <zone>easy</zone>
-          </startIntensity>
-          <stopIntensity>
-            <zone>racePace</zone>
-          </stopIntensity>
-        </intensity>
-      </instruction>
+    </repetition>
+  </instruction>
+  
+  
+  <instruction>
+    <repetition>
+      <repetitionCount>4</repetitionCount>
+      <rest>
+        <sinceStart>PT1M25S</sinceStart>
+      </rest>
+      <intensity>
+        <startIntensity>
+          <zone>threshold</zone>
+        </startIntensity>
+      </intensity>
       <instruction>
         <continue>
-          <continueLength><lengthAsDistance>100</lengthAsDistance></continueLength>
           <instruction>
             <length>
               <lengthAsDistance>25</lengthAsDistance>
             </length>
-            <stroke><standardStroke>freestyle</standardStroke></stroke>
+            <stroke>
+              <standardStroke>nr1</standardStroke>
+            </stroke>
+          </instruction>
+          <instruction>
+            <length>
+              <lengthAsDistance>50</lengthAsDistance>
+            </length>
+            <stroke>
+              <standardStroke>freestyle</standardStroke>
+            </stroke>
+          </instruction>
+        </continue>
+      </instruction>
+    </repetition>
+  </instruction>
+  
+  <instruction>
+    <repetition>
+      <repetitionCount>4</repetitionCount>
+      <rest>
+        <sinceStart>PT1M05S</sinceStart>
+      </rest>
+      <intensity>
+        <startIntensity>
+          <zone>endurance</zone>
+        </startIntensity>
+      </intensity>
+      <instruction>
+        <continue>
+          <instruction>
+            <length>
+              <lengthAsDistance>25</lengthAsDistance>
+            </length>
+            <stroke>
+              <standardStroke>nr1</standardStroke>
+            </stroke>
           </instruction>
           <instruction>
             <length>
               <lengthAsDistance>25</lengthAsDistance>
             </length>
-            <stroke><standardStroke>backstroke</standardStroke></stroke>
+            <stroke>
+              <standardStroke>freestyle</standardStroke>
+            </stroke>
+          </instruction>
+        </continue>
+      </instruction>
+    </repetition>
+  </instruction>
+  
+  <instruction>
+    <repetition>
+      <repetitionCount>4</repetitionCount>
+      <rest>
+        <sinceStart>PT1M0S</sinceStart>
+      </rest>
+      <intensity>
+        <startIntensity>
+          <zone>racePace</zone>
+        </startIntensity>
+      </intensity>
+      <instruction>
+        <continue>
+          <instruction>
+            <length>
+              <lengthAsDistance>25</lengthAsDistance>
+            </length>
+            <stroke>
+              <standardStroke>nr1</standardStroke>
+            </stroke>
           </instruction>
         </continue>
       </instruction>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
+    <creationDate>2024-05-17</creationDate>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
+    <instruction>
+        <segmentName>Large Repetitions</segmentName>
+    </instruction>
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kicking>
+                        <standardKick>freestyle</standardKick>
+                    </kicking>
+                </stroke>
+            </instruction>
+            
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>6KickDrill</drillName>
+                        <drillStroke>freestyle</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+            
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <breath>5</breath>
+            </instruction>
+            
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kicking>
+                        <standardKick>nr1</standardKick>
+                    </kicking>
+                </stroke>
+            </instruction>
+            
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>75</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>any</drillName>
+                        <drillStroke>nr1</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+            
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>75</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>

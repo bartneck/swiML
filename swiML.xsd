@@ -53,6 +53,7 @@
                     <xs:annotation>
                         <xs:documentation>A short description for the program.</xs:documentation>
                     </xs:annotation>
+
                 </xs:element>
                 <!-- The date -->
                 <xs:element minOccurs="0" name="creationDate" type="xs:date" maxOccurs="1"
@@ -62,20 +63,32 @@
                             created.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element minOccurs="1" name="poolLength" type="xs:nonNegativeInteger"
-                    maxOccurs="1" default="25">
+                <xs:element name="pool" minOccurs="1"  maxOccurs="1" >
                     <xs:annotation>
                         <xs:documentation>Swim programs require a targeted pool length. This is
                             necessary if swimming instructions are given in laps. While any swim
                             program defined for a 50 meter pool can be swum in a 25 meter pool, the
                             reverse cannot be guranteed.</xs:documentation>
                     </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="poolLength" minOccurs="1"  maxOccurs="1" type="xs:nonNegativeInteger" default="25">
+                                <xs:annotation>
+                                    <xs:documentation>The length of pool</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="lengthUnit" minOccurs="1"  maxOccurs="1" type="lengthUnits">
+                                <xs:annotation>
+                                    <xs:documentation>The length of pool requires a measurement
+                                        unit.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element>
-                <xs:element minOccurs="1" name="lengthUnit" type="lengthUnits" maxOccurs="1"
-                    default="meters">
+                <xs:element name="programAlign" minOccurs="0" maxOccurs="1" type="xs:boolean" >
                     <xs:annotation>
-                        <xs:documentation>The length of pool requires a measurement
-                            unit.</xs:documentation>
+                        <xs:documentation>When set to False all elements in the program will not align</xs:documentation>
                     </xs:annotation>
                 </xs:element>
                 <!-- Element to hide the intro text -->
@@ -175,7 +188,13 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
+            <xs:enumeration value="centimeters"/>
+            <xs:enumeration value="millimeters"/>
+            <xs:enumeration value="kilometers"/>
+            <xs:enumeration value="miles"/>
             <xs:enumeration value="yards"/>
+            <xs:enumeration value="feet"/>
+            <xs:enumeration value="inches"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -288,11 +307,17 @@
         <xs:assert test="
                 every $stroke in ./sw:stroke
                     satisfies
-                    if ($stroke/sw:standardStroke = 'individualMedleyOverlap' or $stroke/sw:standardStroke = 'individualMedleyOrder' or $stroke/sw:standardStroke = 'reverseIndividualMedleyOrder')
+                    if ($stroke/sw:standardStroke = 'individualMedleyOverlap' or $stroke/sw:standardStroke = 'individualMedleyOrder' or $stroke/sw:standardStroke = 'reverseIndividualMedleyOrder'
+                    or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOverlap' or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOrder' or $stroke/sw:kicking/sw:standardKick = 'reverseIndividualMedleyOrder'
+                    or$stroke/sw:drill/sw:drillStroke = 'individualMedleyOverlap' or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOrder' or $stroke/sw:drill/sw:drillStroke = 'reverseIndividualMedleyOrder')
                     then
-                        ($stroke/parent::*/parent::sw:repetition)
+                        ($stroke/ancestor::*/sw:repetition)
+                        or
+                        ($stroke/ancestor::*/sw:continue/sw:continueLength)
                     else
                         ($stroke/parent::*)
+                
+                        
                 ">
             <xs:annotation>
                 <xs:documentation>checks all strokes to make sure medley order or overlaps are only
@@ -427,27 +452,83 @@
         
         <!-- ====================================================== -->
         <!-- Assertions -->
-        <xs:assert test="((./sw:simplify = true()) and (every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)]
-            satisfies 
+        <xs:assert test="
             (
-            (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)])
-            then(
-            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1)
-            then(number(($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance))
-            else(sum(($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance))
+                ./sw:simplify = false()
+            )or(
+                count(./sw:simplify) = 0
+            )or(
+                (
+                    ./sw:simplify = true()
+                )and(
+                    every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
+                        if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
+                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
+                                number(
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                )
+                            ) else(
+                                sum(
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                )
+                            )
+                         ) else(
+                            0
+                         )+(
+                            if($instruction/descendant-or-self::sw:continueLength) then(
+                                number($instruction/descendant-or-self::sw:continueLength)
+                            ) else(
+                                0
+                            )
+                        ) = number(
+                            (
+                                (
+                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                ) | (
+                                    ./descendant-or-self::sw:continueLength
+                                )
+                            )[1]
+                        )
+                    )
+                )
+            )or(
+                (
+                    ./sw:simplify = true()
+                )and(
+                    every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
+                        if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
+                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
+                                number(
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                )
+                            ) else(
+                                sum(
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                )
+                            )
+                        ) else(
+                            0
+                        )+(
+                            if($instruction/descendant-or-self::sw:continueLength) then(
+                                number(
+                                    $instruction/descendant-or-self::sw:continueLength
+                                )
+                            ) else(
+                                0
+                            )
+                        ) = number(
+                            (
+                                (
+                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                ) | (                            
+                                    ./descendant-or-self::sw:continueLength
+                                )
+                            )[1]
+                        )
+                    ) 
+                )
             )
-            else(0))            
-            +
-            (if($instruction/descendant-or-self::sw:continueLength)
-            then(number($instruction/descendant-or-self::sw:continueLength))
-            else(0))
-            
-            ) 
-            = 
-            number((((./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance)
-            |
-            ./descendant-or-self::sw:continueLength)[1])))
-            or ./sw:simplify = false() or count(./sw:simplify) = 0">
+            ">
             <xs:annotation>
                 <xs:documentation>checks all lengths within simplified repetition are the
                     same</xs:documentation>
@@ -499,7 +580,7 @@
             </xs:element>
             <xs:element name="excludeAlignPyramid" type="xs:boolean" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
+                    <xs:documentation>If true xslt will exclude pyramid from alignment
                         process</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -695,7 +776,7 @@
 
     <xs:simpleType name="segmentNameType">
         <xs:restriction base="xs:string">
-            <xs:maxLength value=" 30"/>
+            <xs:maxLength value=" 50"/>
         </xs:restriction>
     </xs:simpleType>
 
