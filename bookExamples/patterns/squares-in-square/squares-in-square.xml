@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Squares in a square</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>This follows the squares in a square sequence.</programDescription>
+    <creationDate>2024-07-09</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsLaps>1</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>butterfly</standardStroke>
+        </stroke>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsLaps>4</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsLaps>4</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsLaps>4</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+
+    <instruction>
+        <segmentName>First set</segmentName>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsTime>PT2M42S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>racePace</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+
+
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <drill>
+                <drillName>singleArm</drillName>
+                <drillStroke>butterfly</drillStroke>
+            </drill>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>9</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Second set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT3M42S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>racePace</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>16</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsLaps>16</lengthAsLaps>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+</program>
