@@ -421,6 +421,13 @@
                 </xs:annotation>
             </xs:element>
 
+            <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
             <!-- Common elements for instructions -->
             <xs:group ref="instructionGroup"/>
 
@@ -440,13 +447,6 @@
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
-            </xs:element>
-            
-            <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
-                        process</xs:documentation>
-                </xs:annotation>
             </xs:element>
         </xs:sequence>
         
@@ -609,6 +609,13 @@
                 </xs:annotation>
             </xs:element>
 
+            <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
             <!-- Common elements for instructions -->
             <xs:group ref="instructionGroup"/>
 
@@ -627,12 +634,6 @@
                     <xs:selector xpath="./sw:equipment"/>
                     <xs:field xpath="."/>
                 </xs:unique>
-            </xs:element>
-            <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
-                        process</xs:documentation>
-                </xs:annotation>
             </xs:element>
         </xs:sequence>
         

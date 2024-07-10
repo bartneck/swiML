@@ -269,7 +269,7 @@ def writeXML(filename,node):
 
 
 def instGroupStr(self):
-    instructions = [inst if type(inst) is str else inst[0] for inst in INSTRUCTION_GROUP[:-1]]
+    instructions = [inst if type(inst) is str else inst[0] for inst in INSTRUCTION_GROUP[:-2]]
     rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
     underwater = 'underwater\n' if self.underwater == True else ''
     
@@ -325,10 +325,10 @@ def instGroupStr(self):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate', 'poolLength', 'lengthUnit','hideIntro','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate',('pool','s',['poolLength','lengthUnit']),'programAlign','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,poolLength ='25',lengthUnit = 'meter',hideIntro=None,swiMLVersion='latest',instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,pool=[None,None],programAlign=True,hideIntro=None,layoutWidth=50,swiMLVersion='latest',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -337,9 +337,10 @@ class Program:
         self.author = author 
         self.programDescription = programDescription
         self.creationDate = creationDate
-        self.poolLength = poolLength
-        self.lengthUnit = lengthUnit
+        self.pool = pool
+        self.programAlign = programAlign
         self.hideIntro = hideIntro
+        self.layoutWidth = layoutWidth
         self.swiMLVersion = swiMLVersion
         self.instructions = instructions
         
@@ -348,7 +349,7 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.pool[0][1]} {self.pool[1][1]} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
         if self.hideIntro:
             return instructions_string+'\n'
@@ -372,9 +373,9 @@ class Program:
 class Instruction:
     '''Defines a basic instruction'''
 
-    TAG_ORDER = INSTRUCTION_GROUP
+    TAG_ORDER = INSTRUCTION_GROUP+['excludeAlign']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructionDescription=None):
+    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructionDescription=None,excludeAlign=False):
         '''Initialises an instruction instance and defines all attributes'''
         self.length = length
         self.rest = rest
@@ -384,16 +385,20 @@ class Instruction:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = instructionDescription
+        self.excludeAlign = excludeAlign
         self.parent = None
         self.inherited = []
 
     def __str__(self):
         '''returns a string for an instruction object that can easily be read'''
+
         line = instGroupStr(self)
               
         inherit = '' if len(self.inherited) == 0 else self.inherited
         
         instructionDescription = self.instructionDescription if self.instructionDescription != None else ''
+
+
         return f'\n{line} {instructionDescription} {inherit}'
         
 
@@ -402,15 +407,16 @@ class Instruction:
 class Repetition:
     '''Defines a repetition'''
 
-    TAG_ORDER = ['repetitionCount','simplify','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER = ['repetitionCount','simplify','repetitionDescription','excludeAlignRepetition']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
+    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,excludeAlignRepetition = False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create repetition'''
         self.simplify = simplify
         self.repetitionCount = repetitionCount
         if simplify == True:
             self.simpRep = simplify_repetition(instructions,repetitionCount)
         self.repetitionDescription = repetitionDescription
+        self.excludeAlignRepetition = excludeAlignRepetition
         self.length = length
         self.rest = rest
         self.intensity = intensity
@@ -421,7 +427,6 @@ class Repetition:
         self.instructionDescription = None
         self.parent = None
         self.instructions = instructions
-        print(instructions)
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'repetition'
@@ -469,9 +474,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  INSTRUCTION_GROUP+['continueLength','instructions']
+    TAG_ORDER =  ['continueLength','excludeAlignContinue']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,continueLength=None,instructions=None):
+    def __init__(self,continueLength=None,excludeAlignContinue=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -484,6 +489,7 @@ class Continue:
         self.instructionDescription = None
         self.instructions = instructions
         self.parent = None
+        self.excludeAlignContinue = excludeAlignContinue
 
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
@@ -530,14 +536,16 @@ class Continue:
 class Pyramid:
     '''Defines a pyramid'''
     
-    TAG_ORDER = ['startLength','stopLength','increment','lengthUnit','instructions']
+    TAG_ORDER = ['startLength','stopLength','increment','incrementLengthUnit','isPointy','excludeAlignPyramid','instructions']
     
-    def __init__(self,startLength,stopLength,increment,lengthUnit,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
+    def __init__(self,startLength,stopLength,increment,incrementLengthUnit,isPointy,excludeAlignPyramid,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
         '''create repetition'''
         self.startLength = startLength
         self.stopLength = stopLength
         self.increment = increment
-        self.lengthUnit = lengthUnit
+        self.incrementLengthUnit = incrementLengthUnit
+        self.isPointy = isPointy
+        self.excludeAlignPyramid = excludeAlignPyramid
         self.length = length
         self.rest = rest
         self.intensity = intensity

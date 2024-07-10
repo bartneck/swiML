@@ -6,9 +6,12 @@
     <lastName>Bartneck</lastName>
   </author>
   <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
-  <creationDate>2024-05-21</creationDate>
-  <poolLength>25</poolLength>
-  <lengthUnit>meters</lengthUnit>
+  <creationDate>2024-07-10</creationDate>
+  <pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+  </pool>
+  <programAlign>false</programAlign>
   <instruction>
     <segmentName>Warm Up</segmentName>
   </instruction>
@@ -16,9 +19,11 @@
     <repetition>
       <repetitionCount>3</repetitionCount>
       <simplify>true</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <continue>
           <continueLength>400</continueLength>
+          <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
               <lengthAsDistance>100</lengthAsDistance>
@@ -29,6 +34,7 @@
                 <drillStroke>any</drillStroke>
               </drill>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
           <instruction>
             <length>
@@ -37,12 +43,14 @@
             <stroke>
               <standardStroke>any</standardStroke>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
         </continue>
       </instruction>
       <instruction>
         <continue>
           <continueLength>400</continueLength>
+          <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
               <lengthAsDistance>50</lengthAsDistance>
@@ -50,6 +58,7 @@
             <stroke>
               <standardStroke>any</standardStroke>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
           <instruction>
             <length>
@@ -58,6 +67,7 @@
             <stroke>
               <standardStroke>any</standardStroke>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
           <instruction>
             <length>
@@ -68,12 +78,14 @@
                 <standardKick>any</standardKick>
               </kicking>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
         </continue>
       </instruction>
       <instruction>
         <continue>
           <continueLength>400</continueLength>
+          <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
               <lengthAsDistance>100</lengthAsDistance>
@@ -84,6 +96,7 @@
                 <drillStroke>any</drillStroke>
               </drill>
             </stroke>
+            <excludeAlign>false</excludeAlign>
           </instruction>
           <instruction>
             <length>
@@ -93,6 +106,7 @@
               <standardStroke>any</standardStroke>
             </stroke>
             <equipment>pullBuoy</equipment>
+            <excludeAlign>false</excludeAlign>
           </instruction>
         </continue>
       </instruction>
@@ -102,6 +116,7 @@
     <repetition>
       <repetitionCount>6</repetitionCount>
       <simplify>false</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <length>
           <lengthAsDistance>25</lengthAsDistance>
@@ -119,6 +134,7 @@
             <zone>max</zone>
           </startIntensity>
         </intensity>
+        <excludeAlign>false</excludeAlign>
       </instruction>
     </repetition>
   </instruction>
@@ -126,6 +142,7 @@
     <repetition>
       <repetitionCount>3</repetitionCount>
       <simplify>false</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <length>
           <lengthAsDistance>200</lengthAsDistance>
@@ -138,6 +155,7 @@
         </rest>
         <equipment>pads</equipment>
         <equipment>pullBuoy</equipment>
+        <excludeAlign>false</excludeAlign>
       </instruction>
     </repetition>
   </instruction>
@@ -145,6 +163,7 @@
     <repetition>
       <repetitionCount>6</repetitionCount>
       <simplify>false</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <length>
           <lengthAsDistance>25</lengthAsDistance>
@@ -161,6 +180,7 @@
           </startIntensity>
         </intensity>
         <equipment>pullBuoy</equipment>
+        <excludeAlign>false</excludeAlign>
       </instruction>
     </repetition>
   </instruction>
@@ -174,11 +194,13 @@
       </kicking>
     </stroke>
     <equipment>fins</equipment>
+    <excludeAlign>false</excludeAlign>
   </instruction>
   <instruction>
     <repetition>
       <repetitionCount>4</repetitionCount>
       <simplify>false</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <length>
           <lengthAsDistance>25</lengthAsDistance>
@@ -194,6 +216,7 @@
             <zone>max</zone>
           </startIntensity>
         </intensity>
+        <excludeAlign>false</excludeAlign>
       </instruction>
     </repetition>
   </instruction>
@@ -204,11 +227,13 @@
     <stroke>
       <standardStroke>any</standardStroke>
     </stroke>
+    <excludeAlign>false</excludeAlign>
   </instruction>
   <instruction>
     <repetition>
       <repetitionCount>4</repetitionCount>
       <simplify>false</simplify>
+      <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <length>
           <lengthAsDistance>25</lengthAsDistance>
@@ -224,6 +249,7 @@
             <zone>max</zone>
           </startIntensity>
         </intensity>
+        <excludeAlign>false</excludeAlign>
       </instruction>
     </repetition>
   </instruction>
@@ -239,5 +265,6 @@
         <zone>easy</zone>
       </startIntensity>
     </intensity>
+    <excludeAlign>false</excludeAlign>
   </instruction>
 </program>
