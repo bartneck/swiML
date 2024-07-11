@@ -9,8 +9,10 @@
     </author>
     <programDescription>Swim the most repetitive pop song of all times: Aournd the world by Daft Punk.</programDescription>
     <creationDate>2024-04-16</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
     <hideIntro>false</hideIntro>
     <layoutWidth>50</layoutWidth>
     

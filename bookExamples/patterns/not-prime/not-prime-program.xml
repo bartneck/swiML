@@ -9,8 +9,10 @@
     </author>
     <programDescription>This program divides 120 laps into 5 times 24 laps.</programDescription>
     <creationDate>2024-07-04</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
     <hideIntro>false</hideIntro>
     
     <instruction>
