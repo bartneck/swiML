@@ -275,7 +275,6 @@ def instGroupStr(self):
     
     equipment = ''
     if type(self.equipment) is str:
-        print(self.equipment)
         equipment = self.equipment
     if type(self.equipment) is tuple:
         for equip in self.equipment:
@@ -474,9 +473,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  ['continueLength','excludeAlignContinue']+INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER =  [('continueLength','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),'excludeAlignContinue']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,continueLength=None,excludeAlignContinue=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
+    def __init__(self,continueLength=[None],excludeAlignContinue=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -498,7 +497,7 @@ class Continue:
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
         if continueLength == None:
-            self.continueLength = get_total_length(instructions)
+            self.continueLength = [('lengthAsDistance',get_total_length(instructions))]
         else:
             self.continueLength = continueLength
     def __str__(self):

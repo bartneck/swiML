@@ -188,13 +188,9 @@
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="meters"/>
-            <xs:enumeration value="centimeters"/>
-            <xs:enumeration value="millimeters"/>
             <xs:enumeration value="kilometers"/>
             <xs:enumeration value="miles"/>
             <xs:enumeration value="yards"/>
-            <xs:enumeration value="feet"/>
-            <xs:enumeration value="inches"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -453,16 +449,10 @@
         <!-- ====================================================== -->
         <!-- Assertions -->
         <xs:assert test="
-            (
-                ./sw:simplify = false()
-            )or(
-                count(./sw:simplify) = 0
-            )or(
-                (
-                    ./sw:simplify = true()
-                )and(
+            if(./sw:simplify = true())then(
+                (                
                     every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
-                        if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
+                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
                             if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
                                 number(
                                     ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
@@ -480,7 +470,7 @@
                             ) else(
                                 0
                             )
-                        ) = number(
+                        )) = number(
                             (
                                 (
                                     (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
@@ -490,13 +480,9 @@
                             )[1]
                         )
                     )
-                )
-            )or(
-                (
-                    ./sw:simplify = true()
-                )and(
+               )or(
                     every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
-                        if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
+                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
                             if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
                                 number(
                                     ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
@@ -516,7 +502,7 @@
                             ) else(
                                 0
                             )
-                        ) = number(
+                        )) = number(
                             (
                                 (
                                     (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
@@ -527,6 +513,8 @@
                         )
                     ) 
                 )
+            )else(
+                true()
             )
             ">
             <xs:annotation>
@@ -569,7 +557,7 @@
                         slope.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="incremenentLengthUnit" type="lengthUnitType" minOccurs="0"
+            <xs:element name="incremenentLengthUnit" type="lengthUnits" minOccurs="0"
                 maxOccurs="1"/>
 
             <xs:element name="isPointy" minOccurs="1" maxOccurs="1" type="xs:boolean">
@@ -686,15 +674,6 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
-
-    <xs:simpleType name="lengthUnitType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="meters"/>
-            <xs:enumeration value="laps"/>
-            <xs:enumeration value="yards"/>
-            <xs:enumeration value="time"/>
-        </xs:restriction>
-    </xs:simpleType>
 
     <!-- Rest can be given in these ways -->
     <xs:complexType name="restType" mixed="true">

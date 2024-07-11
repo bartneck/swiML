@@ -9,7 +9,7 @@ warmUp=swiML.Instruction(
 )
 
 oneSet1=swiML.Continue(
-    continueLength=400,
+    continueLength=('lengthAsDistance',400),
     instructions=[
         swiML.Instruction(
             length=('lengthAsDistance',100),
@@ -22,7 +22,7 @@ oneSet1=swiML.Continue(
     ]
 )
 oneSet2=swiML.Continue(
-    continueLength=400,
+    continueLength=('lengthAsDistance',400),
     instructions=[
         swiML.Instruction(
             length=('lengthAsDistance',50),
@@ -39,7 +39,7 @@ oneSet2=swiML.Continue(
     ]
 )
 oneSet3=swiML.Continue(
-    continueLength=400,
+    continueLength=('lengthAsDistance',400),
     instructions=[
         swiML.Instruction(
             length=('lengthAsDistance',100),
@@ -153,4 +153,4 @@ simpleProgram=swiML.Program(
 )
 
 print(simpleProgram)
-swiML.writeXML('sample.xml',simpleProgram)
+swiML.writeXML('pythonXMLtest/sample.xml',simpleProgram)

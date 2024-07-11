@@ -6,7 +6,7 @@
     <lastName>Bartneck</lastName>
   </author>
   <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
-  <creationDate>2024-07-10</creationDate>
+  <creationDate>2024-07-11</creationDate>
   <pool>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
@@ -22,7 +22,9 @@
       <excludeAlignRepetition>false</excludeAlignRepetition>
       <instruction>
         <continue>
-          <continueLength>400</continueLength>
+          <continueLength>
+            <lengthAsDistance>400</lengthAsDistance>
+          </continueLength>
           <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
@@ -49,7 +51,9 @@
       </instruction>
       <instruction>
         <continue>
-          <continueLength>400</continueLength>
+          <continueLength>
+            <lengthAsDistance>400</lengthAsDistance>
+          </continueLength>
           <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
@@ -84,7 +88,9 @@
       </instruction>
       <instruction>
         <continue>
-          <continueLength>400</continueLength>
+          <continueLength>
+            <lengthAsDistance>400</lengthAsDistance>
+          </continueLength>
           <excludeAlignContinue>false</excludeAlignContinue>
           <instruction>
             <length>
