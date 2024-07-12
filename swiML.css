@@ -125,8 +125,8 @@ p.description {
 }
 
 .repetitionSymbol {
-    margin: 0.5ch;
-    width: 0.87ch;
+    margin: 0.435ch;
+    width: 1ch;
     border-top: 0.13em solid #000000;
     border-bottom: 0.13em solid #000000;
     border-left: 0.13em solid #000000;
@@ -135,7 +135,7 @@ p.description {
 }
 
 .continueSymbol {
-    margin: 0.5ch;
+    margin: 0.435ch;
     width: 1ch;
     border-left: 0.13em solid #000000;
 }
