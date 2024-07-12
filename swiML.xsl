@@ -952,7 +952,7 @@
                 <xsl:call-template name="displayInst"/>
                 <xsl:text>&#160;as</xsl:text>
             </div>
-            <div class="continueSymbol"></div>
+            <div class="continueSymbol"><xsl:text>&#160;</xsl:text></div>
             <div class="continueContent">
                 <xsl:apply-templates select="sw:instruction"/>
             </div>
