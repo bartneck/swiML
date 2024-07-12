@@ -644,7 +644,7 @@
                                         select="format-date(sw:program/sw:creationDate, '[D01] [MNn] [Y0001]')"
                                     />
                                 </li>
-                                <xsl:apply-templates select="sw:program/sw:pool">
+                                <xsl:apply-templates select="sw:program/sw:pool"/>
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
                                     <xsl:choose>
