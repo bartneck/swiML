@@ -644,14 +644,7 @@
                                         select="format-date(sw:program/sw:creationDate, '[D01] [MNn] [Y0001]')"
                                     />
                                 </li>
-                                <li>
-                                    <span class="semiBoldTypeFace">Pool Size:</span>
-                                    <xsl:value-of select="sw:program/sw:poolLength"/>
-                                </li>
-                                <li>
-                                    <span class="semiBoldTypeFace">Units:</span>
-                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
-                                </li>
+                                <xsl:apply-templates select="sw:program/sw:pool">
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
                                     <xsl:choose>
@@ -734,6 +727,18 @@
         <p class="authorEmail">
             <xsl:value-of select="sw:email"/>
         </p>
+    </xsl:template>
+
+    <!-- Pool Description Template-->
+    <xsl:template match="sw:pool">
+        <li>
+            <span class="semiBoldTypeFace">Pool Size:</span>
+            <xsl:value-of select="sw:poolLength"/>
+        </li>
+        <li>
+            <span class="semiBoldTypeFace">Units:</span>
+            <xsl:value-of select="sw:lengthUnit"/>
+        </li>
     </xsl:template>
 
     <!-- Instruction Template -->
