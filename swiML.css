@@ -125,8 +125,8 @@ p.description {
 }
 
 .repetitionSymbol {
-    margin: 0.6ch;
-    width: 0.8ch;
+    margin: 0.5ch;
+    width: 0.87ch;
     border-top: 0.13em solid #000000;
     border-bottom: 0.13em solid #000000;
     border-left: 0.13em solid #000000;
@@ -135,12 +135,13 @@ p.description {
 }
 
 .continueSymbol {
-    margin: 0.6ch;
+    margin: 0.5ch;
+    width: 1ch;
     border-left: 0.13em solid #000000;
 }
 
 .blankRepSymbol {
-    margin: 0.6ch;
+    margin: 0.5ch;
     display: flex;
     align-items: center;
     width: 1ch;
