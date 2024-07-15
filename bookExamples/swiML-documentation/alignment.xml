@@ -9,13 +9,20 @@
     </author>
     <programDescription>Example of how to use the excludeAlignment element.</programDescription>
     <creationDate>2023-05-24</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
+<!--    <programAlign>true</programAlign>-->
     <hideIntro>true</hideIntro>
     
     <instruction>
+        <segmentName>1</segmentName>
+    </instruction>
+    <instruction>
         <repetition>
             <repetitionCount>2</repetitionCount>
+            <excludeAlignRepetition>false</excludeAlignRepetition>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
@@ -35,9 +42,10 @@
         </repetition>
     </instruction>
     
-<!--    <instruction>
+    <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
+            <repetitionCount>3</repetitionCount>
+            <excludeAlignRepetition>true</excludeAlignRepetition>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
@@ -51,19 +59,16 @@
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
             </instruction>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
         </repetition>
-    </instruction>-->
+    </instruction>
     
     <instruction>
         <repetition>
-            <repetitionCount>2</repetitionCount>
+            <repetitionCount>10</repetitionCount>
+            <excludeAlignRepetition>true</excludeAlignRepetition>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
-            <rest>
-                <sinceStart>PT1M30S</sinceStart>
-            </rest>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
@@ -74,7 +79,8 @@
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
             </instruction>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
         </repetition>
     </instruction>
+    
+   
 </program>

@@ -9,9 +9,11 @@
     </author>
     <programDescription>Example of how to use the continueLength element.</programDescription>
     <creationDate>2023-02-07</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
+    <hideIntro>false</hideIntro>
 
     <instruction>
         <continue>
