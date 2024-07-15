@@ -452,14 +452,14 @@
             if(./sw:simplify = true())then(
                 (                
                     every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
-                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
-                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
+                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) then(
+                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) = 1) then(
                                 number(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
                                 )
                             ) else(
                                 sum(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
                                 )
                             )
                          ) else(
@@ -473,7 +473,7 @@
                         )) = number(
                             (
                                 (
-                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsDistance
+                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
                                 ) | (
                                     ./descendant-or-self::sw:continueLength
                                 )
@@ -482,14 +482,14 @@
                     )
                )or(
                     every $instruction in ./sw:instruction[not(./sw:pyramid or ./sw:segmentName)] satisfies(
-                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) then(
-                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)]) = 1) then(
+                        (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) then(
+                            if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) = 1) then(
                                 number(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
                                 )
                             ) else(
                                 sum(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
                                 )
                             )
                         ) else(
@@ -505,7 +505,7 @@
                         )) = number(
                             (
                                 (
-                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength)][not(./sw:continue/sw:continueLength)][1])//sw:lengthAsLaps
+                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
                                 ) | (                            
                                     ./descendant-or-self::sw:continueLength
                                 )

@@ -648,10 +648,10 @@
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
                                     <xsl:choose>
-                                        <xsl:when test="sw:program/sw:lengthUnit = 'laps'">
-                                            <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:poolLength)"/>
+                                        <xsl:when test="sw:program/sw:pool/sw:lengthUnit = 'laps'">
+                                            <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:pool/sw:poolLength)"/>
                                         </xsl:when>
-                                        <xsl:when test="sw:program/sw:lengthUnit = 'meters'">
+                                        <xsl:when test="sw:program/sw:pool/sw:lengthUnit = 'meters'">
                                             <xsl:value-of select="myData:showLength(sw:program)"/>
                                         </xsl:when>
                                         <xsl:otherwise>
@@ -830,7 +830,6 @@
                         <xsl:otherwise>
                             <xsl:if test="(count(.//sw:instruction) > 1) or not(./sw:simplify[text()='true']) ">
                                 <xsl:text>&#160;</xsl:text>
-                                <xsl:value-of select="not(./sw:simplify[text()='true'])"/>
                             </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -1586,14 +1585,14 @@
                         )else if(name($l/*[1]) = 'pyramid')then(
                             1
                         )else(
-                            number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps)
+                        number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program//sw:pool/sw:poolLength
                         )
                     )else(
                         0
                     )
                 )
                 
-            ) * $root/ancestor-or-self::sw:program//sw:poolLength
+            ) 
             "/>
     </xsl:function>
  

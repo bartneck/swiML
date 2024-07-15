@@ -17,7 +17,6 @@
     <instruction>
         <segmentName>repetitions in a simplify</segmentName>
     </instruction>
-    
     <instruction>
         <repetition>
             <simplify>true</simplify>

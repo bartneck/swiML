@@ -9,8 +9,11 @@
     </author>
     <programDescription>Swim Dürer's Magic Square. All rows, columns and diagonals add up to 34.</programDescription>
     <creationDate>2024-04-15</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
+    
     <hideIntro>true</hideIntro>
     <layoutWidth>50</layoutWidth>
 
