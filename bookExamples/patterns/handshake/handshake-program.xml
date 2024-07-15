@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/ https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
     <title>Triangular Numbers</title>
     <author>
         <firstName>Christoph</firstName>
@@ -9,8 +9,10 @@
     </author>
     <programDescription>Swim the first 8 terms of the triangular numbers sequence.</programDescription>
     <creationDate>2024-04-22</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
     <hideIntro>false</hideIntro>
     <instruction><segmentName>Warm Up</segmentName></instruction>
     <instruction><length><lengthAsDistance>200</lengthAsDistance></length><stroke><standardStroke>any</standardStroke></stroke><intensity><startIntensity>
@@ -18,15 +20,21 @@
             </startIntensity></intensity></instruction>
     <instruction><segmentName>Triangular set</segmentName></instruction>
     <instruction><continue>
-            <continueLength>1</continueLength>
+            <continueLength>
+                <lengthAsLaps>1</lengthAsLaps>
+            </continueLength>
             <instruction><length><lengthAsLaps>0</lengthAsLaps></length><stroke><standardStroke>notFreestyle</standardStroke></stroke><rest><afterStop>PT0M15S</afterStop></rest></instruction>
             <instruction><length><lengthAsLaps>1</lengthAsLaps></length><stroke><standardStroke>freestyle</standardStroke></stroke><rest><afterStop>PT0M15S</afterStop></rest></instruction>
         </continue></instruction>
-    <instruction><continue>
-            <continueLength>3</continueLength>
+    <instruction>
+        <continue>
+            <continueLength>
+                <lengthAsLaps>3</lengthAsLaps>
+            </continueLength>
             <instruction><length><lengthAsLaps>1</lengthAsLaps></length><stroke><standardStroke>notFreestyle</standardStroke></stroke><rest><afterStop>PT0M15S</afterStop></rest></instruction>
             <instruction><length><lengthAsLaps>2</lengthAsLaps></length><stroke><standardStroke>freestyle</standardStroke></stroke><rest><afterStop>PT0M15S</afterStop></rest></instruction>
-        </continue></instruction>
+        </continue>
+    </instruction>
     <instruction><continue>
             <continueLength>6</continueLength>
             <instruction><length><lengthAsLaps>2</lengthAsLaps></length><stroke><standardStroke>notFreestyle</standardStroke></stroke><rest><afterStop>PT0M15S</afterStop></rest></instruction>
