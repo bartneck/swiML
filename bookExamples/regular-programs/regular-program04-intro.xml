@@ -9,8 +9,11 @@
     </author>
     <programDescription>A freestyle set with a main block of 100 meters with increasing intensity.</programDescription>
     <creationDate>2024-06-04</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
+    
     <hideIntro>false</hideIntro>
 
     <instruction>
