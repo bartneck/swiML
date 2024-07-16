@@ -10,8 +10,10 @@
     </author>
     <programDescription>Our Tuesday evening program targeted at 60 minutes. The coach was Matt Nash</programDescription>
     <creationDate>2024-05-28</creationDate>
-    <poolLength>25</poolLength>
-    <lengthUnit>meters</lengthUnit>
+    <pool>
+        <poolLength>25</poolLength>
+        <lengthUnit>meters</lengthUnit>
+    </pool>
     <hideIntro>false</hideIntro>
     <layoutWidth>70</layoutWidth>
     
@@ -99,7 +101,9 @@
     
     <instruction>
         <continue>
-            <continueLength>200</continueLength>
+            <continueLength>
+                <lengthAsDistance>200</lengthAsDistance>
+            </continueLength>
             <equipment>pullBuoy</equipment>
             <instruction>
                 <length>
@@ -273,6 +277,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>75</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>50</lengthAsDistance>
@@ -299,6 +306,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>75</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>25</lengthAsDistance>
@@ -375,6 +385,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>75</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>50</lengthAsDistance>
@@ -404,6 +417,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>75</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>25</lengthAsDistance>
@@ -452,6 +468,9 @@
             
             <instruction>
                 <continue>
+                    <continueLength>
+                        <lengthAsDistance>75</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>25</lengthAsDistance>

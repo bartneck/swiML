@@ -97,17 +97,12 @@
                     </instruction>
             
             <instruction>
-                <repetition>
-                    <repetitionCount>3</repetitionCount>
-                    <instruction>
                         <length>
                             <lengthAsDistance>75</lengthAsDistance>
                         </length>
                         <stroke>
                             <standardStroke>nr1</standardStroke>
                         </stroke>
-                    </instruction>
-                </repetition>
             </instruction>
         </repetition>
     </instruction>

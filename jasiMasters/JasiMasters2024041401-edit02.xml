@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>Our Sunday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
+    <creationDate>2024-03-26</creationDate>
+<pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+</pool>
+    <hideIntro>false</hideIntro>
+    <layoutWidth>60</layoutWidth>
+
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kicking>
+                        <standardKick>freestyle</standardKick>
+                    </kicking>
+                </stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+  
+</program>
