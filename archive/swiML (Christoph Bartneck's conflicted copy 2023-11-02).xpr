@@ -10,6 +10,86 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>../bookExamples/swiML-documentation/ecludeAlign.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../bookExamples/swiML-documentation/alignment.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../jasiMasters/JasiMasters2024041401-edit02.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../jasiMasters/JasiMasters2024022501-manualXML.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../jasiMasters/JasiMasters2024022501.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -110,26 +190,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../jasiMasters/JasiMasters2024041401-edit02.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>../jasiMasters/JasiMasters2024041401.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -151,26 +211,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>../jasiMasters/JasiMasters2024051901.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../bookExamples/swiML-documentation/alignment.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -251,26 +291,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>../jasiMasters/JasiMasters2024041401-edit01.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../jasiMasters/JasiMasters2024022501-manualXML.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
