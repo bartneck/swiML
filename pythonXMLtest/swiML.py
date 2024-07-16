@@ -123,7 +123,7 @@ def classToXML(self,root=None):
             root = ET.Element(type(self).__name__.lower())
             if type(self).__name__.lower() == 'program':
                 if self.swiMLVersion == 'latest':
-                    schemaLocation = f'https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd'
+                    schemaLocation = f'https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd'
                 else:
                     schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
                 root.set('xmlns','https://github.com/bartneck/swiML')
