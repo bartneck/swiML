@@ -30,7 +30,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../bookExamples/patterns/handshake/handshake-program-manual.xml</String>
+                                    <String>../bookExamples/patterns/handshake/handshake-program.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -50,7 +50,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../bookExamples/patterns/handshake/handshake-program.xml</String>
+                                    <String>../bookExamples/patterns/handshake/handshake-program-manual.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

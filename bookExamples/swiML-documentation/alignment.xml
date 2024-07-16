@@ -13,7 +13,7 @@
         <poolLength>25</poolLength>
         <lengthUnit>meters</lengthUnit>
     </pool>
-<!--    <programAlign>true</programAlign>-->
+<!--    <programAlign>false</programAlign>-->
     <hideIntro>true</hideIntro>
     
     <instruction>
@@ -45,7 +45,7 @@
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
+            <excludeAlignRepetition>false</excludeAlignRepetition>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
