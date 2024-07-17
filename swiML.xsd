@@ -63,28 +63,16 @@
                             created.</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="pool" minOccurs="1"  maxOccurs="1" >
+                <xs:element name="poolLength" minOccurs="1"  maxOccurs="1" type="xs:nonNegativeInteger" default="25">
                     <xs:annotation>
-                        <xs:documentation>Swim programs require a targeted pool length. This is
-                            necessary if swimming instructions are given in laps. While any swim
-                            program defined for a 50 meter pool can be swum in a 25 meter pool, the
-                            reverse cannot be guranteed.</xs:documentation>
+                        <xs:documentation>The length of pool</xs:documentation>
                     </xs:annotation>
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="poolLength" minOccurs="1"  maxOccurs="1" type="xs:nonNegativeInteger" default="25">
-                                <xs:annotation>
-                                    <xs:documentation>The length of pool</xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                            <xs:element name="lengthUnit" minOccurs="1"  maxOccurs="1" type="lengthUnits">
-                                <xs:annotation>
-                                    <xs:documentation>The length of pool requires a measurement
-                                        unit.</xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lengthUnit" minOccurs="1"  maxOccurs="1" type="lengthUnits" default="meters">
+                    <xs:annotation>
+                        <xs:documentation>The length of pool requires a measurement
+                            unit.</xs:documentation>
+                    </xs:annotation>
                 </xs:element>
                 <xs:element name="programAlign" minOccurs="0" maxOccurs="1" type="xs:boolean" >
                     <xs:annotation>
@@ -205,45 +193,46 @@
             <xs:documentation>An instruction can consists of process or a direct instruction on what
                 to swim.</xs:documentation>
         </xs:annotation>
-        <xs:choice>
-            <xs:annotation>
-                <xs:documentation>The different types of instructions,</xs:documentation>
-            </xs:annotation>
-            
-            <!-- ====================================================== -->
-            <!-- Process based elements for instructions -->
-            <xs:element name="segmentName" minOccurs="0" maxOccurs="1" type="segmentNameType"/>
-            <xs:element name="repetition" type="repetitionType">
+        <xs:sequence>
+            <xs:choice>
                 <xs:annotation>
-                    <xs:documentation>Instruction process element to repeat enclosed
-                        instructions.</xs:documentation>
+                    <xs:documentation>The different types of instructions,</xs:documentation>
                 </xs:annotation>
-            </xs:element>
-            <xs:element name="pyramid" type="pyramidType">
-                <xs:annotation>
-                    <xs:documentation>Instruction process element to swim a
-                        pyramid.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="continue" type="continueType">
-                <xs:annotation>
-                    <xs:documentation>Instruction process element to denote a continuosly swum block
-                        of instructions.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            
-            <!-- ====================================================== -->
-            <!-- Direct instruction on what to swim -->
-            <xs:sequence>
-                <xs:annotation>
-                    <xs:documentation>Sequence of basic elements for an
-                        instruction.</xs:documentation>
-                </xs:annotation>
-                <!-- Common elements for instructions -->
+                
+                <!-- ====================================================== -->
+                <!-- Process based elements for instructions -->
+                <xs:element name="segmentName" minOccurs="0" maxOccurs="1" type="segmentNameType"/>
+                <xs:element name="repetition" type="repetitionType">
+                    <xs:annotation>
+                        <xs:documentation>Instruction process element to repeat enclosed
+                            instructions.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="pyramid" type="pyramidType">
+                    <xs:annotation>
+                        <xs:documentation>Instruction process element to swim a
+                            pyramid.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="continue" type="continueType">
+                    <xs:annotation>
+                        <xs:documentation>Instruction process element to denote a continuosly swum block
+                            of instructions.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                
+                <!-- ====================================================== -->
+                <!-- Direct instruction on what to swim -->
+                
                 <xs:group ref="instructionGroup"/>
-            </xs:sequence>
-
-        </xs:choice>
+            </xs:choice>
+            <xs:element name="excludeAlign" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>If true xslt will exclude from alignment
+                        process</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
 
         <!-- checks every instruction has stroke, rest and length defined 
         any other element in an instruction doesnt have to be defined-->
@@ -330,6 +319,10 @@
 
     <xs:group name="instructionGroup">
         <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>Sequence of basic elements for an
+                    instruction.</xs:documentation>
+            </xs:annotation>
             <xs:element name="length" minOccurs="0" maxOccurs="1" type="lengthType">
                 <xs:annotation>
                     <xs:documentation>The length of the instruction.</xs:documentation>
@@ -373,13 +366,7 @@
                 <xs:annotation>
                     <xs:documentation>Short description to modify the instrution.</xs:documentation>
                 </xs:annotation>
-            </xs:element>
-            <xs:element name="excludeAlign" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
-                        process</xs:documentation>
-                </xs:annotation>
-            </xs:element>
+            </xs:element>            
         </xs:sequence>
     </xs:group>
 
@@ -414,13 +401,6 @@
                 <xs:annotation>
                     <xs:documentation>Additional information for the repetition. This can be used to
                         customise the repetition.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
-            <xs:element name="excludeAlignRepetition" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
-                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
 
@@ -566,12 +546,6 @@
                         pyramid swims the stop length twice.</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="excludeAlignPyramid" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude pyramid from alignment
-                        process</xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:group ref="instructionGroup"/>
         </xs:sequence>
         <xs:assert test="
@@ -594,13 +568,6 @@
                     <xs:documentation>total length to swim continuously or total number of
                         repetitions May or may not be defined but if not it will automatically
                         calculated from given instructions</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-
-            <xs:element name="excludeAlignContinue" type="xs:boolean" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If true xslt will exclude from alignment
-                        process</xs:documentation>
                 </xs:annotation>
             </xs:element>
 

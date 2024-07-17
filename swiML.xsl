@@ -13,9 +13,9 @@
 
         <!-- check if there are any distance tags present -->
         <xsl:choose>
-            <xsl:when test="//sw:length/sw:lengthAsDistance or
-                //sw:length/sw:lengthAsLaps or
-                //sw:length/sw:lengthAsTime">
+            <xsl:when test="//sw:length/sw:lengthAsDistance[not(../../sw:excludeAlign[text() = 'true'])] or
+                //sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])] or
+                //sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
                 <!-- there are distance tags so the result is not 0 -->
                 <!-- select each type of tag and add data to array -->
                 <!-- this data is the length of the string, section of tag, what parents the tag has and, unique location of tag -->
@@ -23,7 +23,7 @@
 
                 <!-- length as distance tags-->
                 <xsl:if test="//sw:length/sw:lengthAsDistance">
-                    <xsl:for-each select="//sw:length/sw:lengthAsDistance">
+                    <xsl:for-each select="//sw:length/sw:lengthAsDistance[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(.)"/></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -34,7 +34,7 @@
                 </xsl:if>
                 <!-- length as laps tags -->
                 <xsl:if test="//sw:length/sw:lengthAsLaps">
-                    <xsl:for-each select="//sw:length/sw:lengthAsLaps">
+                    <xsl:for-each select="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(.)"/></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -46,7 +46,7 @@
 
                 <!-- length as time tags -->
                 <xsl:if test="//sw:length/sw:lengthAsTime">
-                    <xsl:for-each select="//sw:length/sw:lengthAsTime">
+                    <xsl:for-each select="//sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))" /></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -120,9 +120,9 @@
         <xsl:choose>
         
             <!-- check if there are any continue tags in the program-->
-            <xsl:when test="//sw:continue">
+            <xsl:when test="//sw:continue[not(../sw:excludeAlign[text() = 'true'])]">
                 <!-- check if simplify tag is still needed here cos i dont think it is -->
-                <xsl:for-each select="//sw:continue[not(./sw:simplify[text()='true'])]">
+                <xsl:for-each select="//sw:continue[not(../sw:excludeAlign[text() = 'true'])]">
 
                     <!-- calculate sum of any inst tags that are top level in the continue -->
                     <xsl:variable name="contInstLength">
@@ -216,9 +216,9 @@
         <xsl:choose>
 
             <!-- check if there are any simplifying tags in the program-->
-            <xsl:when test=" //sw:repetition[./sw:simplify[text()='true']]">
+            <xsl:when test=" //sw:repetition[./sw:simplify[text()='true'] and not(../sw:excludeAlign[text() = 'true'])]">
             
-                <xsl:for-each select="//sw:repetition[./sw:simplify[text()='true']]">
+                <xsl:for-each select="//sw:repetition[./sw:simplify[text()='true'] and not(../sw:excludeAlign[text() = 'true'])]">
 
                     <!-- calculate sum of any inst tags that are top level in the simplifying repetition -->
                     <xsl:variable name="simpInstLength">
@@ -310,9 +310,9 @@
         <xsl:choose>
 
             <!-- check if there are any repetition tags in the program-->
-            <xsl:when test="//sw:repetition[not(./sw:simplify[text()='true'])]">
+            <xsl:when test="//sw:repetition[not(./sw:simplify[text()='true']) and not(../sw:excludeAlign[text() = 'true'])]">
 
-                <xsl:for-each select="//sw:repetition[not(./sw:simplify[text()='true'])]">
+                <xsl:for-each select="//sw:repetition[not(./sw:simplify[text()='true']) and not(../sw:excludeAlign[text() = 'true'])]">
 
                     <!-- calculate sum of any inst tags that are top level in the repetition -->
                     <xsl:variable name="repInstLength">
@@ -644,21 +644,22 @@
                                         select="format-date(sw:program/sw:creationDate, '[D01] [MNn] [Y0001]')"
                                     />
                                 </li>
-                                <xsl:apply-templates select="sw:program/sw:pool"/>
+                                <li>
+                                    <span class="semiBoldTypeFace">Pool Size:</span>
+                                    <xsl:value-of select="sw:program/sw:poolLength"/>
+                                </li>
+                                <li>
+                                    <span class="semiBoldTypeFace">Units:</span>
+                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
+                                </li>
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
-                                    <xsl:choose>
-                                        <xsl:when test="sw:program/sw:pool/sw:lengthUnit = 'laps'">
-                                            <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:pool/sw:poolLength)"/>
-                                        </xsl:when>
-                                        <xsl:when test="sw:program/sw:pool/sw:lengthUnit = 'meters'">
-                                            <xsl:value-of select="myData:showLength(sw:program)"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                    
+                                    <xsl:value-of select="myData:showLength(sw:program)"/>
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
+                                    <xsl:text> / </xsl:text>
+                                    <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:poolLength)"/>
+                                    <xsl:text> Laps</xsl:text>
                                 </li>
                             </ul>
                         </div>
@@ -675,6 +676,9 @@
                     <xsl:value-of select="$simpLengths"/>
                     c
                     <xsl:value-of select="$maxSimpLengths"/>-->
+                    <xsl:value-of select="$contLengths"/>
+                    c
+                    <xsl:value-of select="$maxContLengths"/>
                 </div>
                 
                 <!-- footer -->
@@ -729,17 +733,6 @@
         </p>
     </xsl:template>
 
-    <!-- Pool Description Template-->
-    <xsl:template match="sw:pool">
-        <li>
-            <span class="semiBoldTypeFace">Pool Size:</span>
-            <xsl:value-of select="sw:poolLength"/>
-        </li>
-        <li>
-            <span class="semiBoldTypeFace">Units:</span>
-            <xsl:value-of select="sw:lengthUnit"/>
-        </li>
-    </xsl:template>
 
     <!-- Instruction Template -->
     <xsl:template match="sw:instruction">
@@ -1482,11 +1475,10 @@
 
         <xsl:sequence select="
             if($root//sw:lengthAsLaps) then(
-            myData:repLength($root) div myData:firstInst($root) div $root/ancestor-or-self::sw:program//sw:poolLength
+                (myData:repLength($root) div myData:firstInst($root)) div $root/ancestor-or-self::sw:program/sw:poolLength
             ) else(
                 myData:repLength($root) div myData:firstInst($root) 
             )
-            
         "/>
     </xsl:function>
     
@@ -1581,11 +1573,11 @@
                         if(name($l/*[1]) = 'repetition')then(
                             myData:repLength($l/*[1])
                         )else if(name($l/*[1]) = 'continue')then(
-                            myData:contLength($l/*[1])
+                            myData:contLength($l/*[1]) * $root/ancestor-or-self::sw:program/sw:poolLength
                         )else if(name($l/*[1]) = 'pyramid')then(
                             1
                         )else(
-                        number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program//sw:pool/sw:poolLength
+                            number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program/sw:poolLength
                         )
                     )else(
                         0
