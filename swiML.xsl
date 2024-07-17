@@ -675,10 +675,10 @@
                     c
                     <xsl:value-of select="$simpLengths"/>
                     c
-                    <xsl:value-of select="$maxSimpLengths"/>-->
+                    <xsl:value-of select="$maxSimpLengths"/>
                     <xsl:value-of select="$contLengths"/>
                     c
-                    <xsl:value-of select="$maxContLengths"/>
+                    <xsl:value-of select="$maxContLengths"/>-->
                 </div>
                 
                 <!-- footer -->
