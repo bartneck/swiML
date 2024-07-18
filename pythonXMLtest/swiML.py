@@ -95,24 +95,26 @@ def simplify_repetition(instructions,repetitionCount):
     else:
         allLength = basicInsts[0][0].continueLength
     for instruction in instructions:
+        print(instruction)
         if type(instruction) is Repetition:
             total_repetition += instruction.repetitionCount
             for inst in instruction.instructions:
                 if type(inst) is Instruction:
                     if inst.length[1] != allLength:
-                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}') 
+                        raise Exception(F'Cannot simplify instructions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}') 
                 else:
                     if inst.continueLength != allLength:
-                        raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}')
+                        raise Exception(F'Cannot simplify instructions of different lengths  {basicInsts[0][0]} cannot be simplified with {inst}')
         else:
             total_repetition += 1
             if type(instruction) is Instruction:
                 if instruction.length[1] != allLength:
-                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
-            else:
-                if instruction.continueLength != allLength:
-                    raise Exception(F'Cannot simplify continue with repetitions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
-         
+                    raise Exception(F'Cannot simplify instructions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+            elif type(instruction) is Continue:
+                if instruction.continueLength[1] != allLength:
+                    raise Exception(F'Cannot simplify instructions of different lengths  {basicInsts[0][0]} cannot be simplified with {instruction}') 
+            else: 
+                raise Exception(F'Cannot simplify pyramids or segment names ') 
     return f'{total_repetition*repetitionCount} x {allLength}'
    
 
@@ -124,6 +126,8 @@ def classToXML(self,root=None):
             if type(self).__name__.lower() == 'program':
                 if self.swiMLVersion == 'latest':
                     schemaLocation = f'https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd'
+                elif self.swMLVersion == 'main':
+                    schemaLocation = f'https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd'                
                 else:
                     schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
                 root.set('xmlns','https://github.com/bartneck/swiML')
@@ -145,6 +149,8 @@ def classToXML(self,root=None):
                 
         
     ObjToXML(root,tags,instructions)
+    if hasattr(self,'excludeAlign'):
+        pass
     return ET.ElementTree(root)
 
 def ObjToXML(root,tags,instructions):
@@ -324,10 +330,10 @@ def instGroupStr(self):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate',('pool','s',['poolLength','lengthUnit']),'programAlign','hideIntro','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate','poolLength','lengthUnit','programAlign','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d') ,pool=[None,None],programAlign=True,hideIntro=None,layoutWidth=50,swiMLVersion='latest',instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d'),poolLength=None,lengthUnit=None,programAlign=True,hideIntro=None,layoutWidth=50,swiMLVersion='latest',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -336,7 +342,8 @@ class Program:
         self.author = author 
         self.programDescription = programDescription
         self.creationDate = creationDate
-        self.pool = pool
+        self.poolLength = poolLength
+        self.lengthUnit = lengthUnit
         self.programAlign = programAlign
         self.hideIntro = hideIntro
         self.layoutWidth = layoutWidth
@@ -348,7 +355,7 @@ class Program:
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.pool[0][1]} {self.pool[1][1]} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
         if self.hideIntro:
             return instructions_string+'\n'
@@ -406,16 +413,16 @@ class Instruction:
 class Repetition:
     '''Defines a repetition'''
 
-    TAG_ORDER = ['repetitionCount','simplify','repetitionDescription','excludeAlignRepetition']+INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER = ['repetitionCount','simplify','repetitionDescription']+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,excludeAlignRepetition = False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
+    def __init__(self,repetitionCount=1,simplify=False,repetitionDescription = None,excludeAlign = False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create repetition'''
         self.simplify = simplify
         self.repetitionCount = repetitionCount
         if simplify == True:
             self.simpRep = simplify_repetition(instructions,repetitionCount)
         self.repetitionDescription = repetitionDescription
-        self.excludeAlignRepetition = excludeAlignRepetition
+        self.excludeAlign = excludeAlign
         self.length = length
         self.rest = rest
         self.intensity = intensity
@@ -473,9 +480,9 @@ class Repetition:
 class Continue:
     '''Defines a continuation'''
 
-    TAG_ORDER =  [('continueLength','c',['lengthAsDistance','lengthAsTime','lengthAsLaps']),'excludeAlignContinue']+INSTRUCTION_GROUP+['instructions']
+    TAG_ORDER =  [('continueLength','c',['lengthAsDistance','lengthAsTime','lengthAsLaps'])]+INSTRUCTION_GROUP+['instructions']
 
-    def __init__(self,continueLength=[None],excludeAlignContinue=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
+    def __init__(self,continueLength=[None],excludeAlign=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=None,instructions=None):
         '''create continue'''
         
         self.length = length
@@ -488,7 +495,7 @@ class Continue:
         self.instructionDescription = None
         self.instructions = instructions
         self.parent = None
-        self.excludeAlignContinue = excludeAlignContinue
+        self.excludeAlign = excludeAlign
 
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
@@ -496,9 +503,10 @@ class Continue:
             if inst[0].length == None and self.length != None and all([parent.length == None for parent in inst[1][1:]]):
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
-        if continueLength == None:
-            self.continueLength = [('lengthAsDistance',get_total_length(instructions))]
+        if continueLength == [None]:
+            self.continueLength = ('lengthAsDistance',get_total_length(instructions))
         else:
+            print(continueLength)
             self.continueLength = continueLength
     def __str__(self):
         '''returns string for continue'''
@@ -516,7 +524,7 @@ class Continue:
 
         if self.parent == 'continue':
             return '\n'+return_list[:-1]
-        return f'\n{self.continueLength} {instLine}swim as\n'+return_list[:-1]
+        return f'\n{self.continueLength[1]} {instLine}swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''
@@ -535,16 +543,16 @@ class Continue:
 class Pyramid:
     '''Defines a pyramid'''
     
-    TAG_ORDER = ['startLength','stopLength','increment','incrementLengthUnit','isPointy','excludeAlignPyramid','instructions']
+    TAG_ORDER = ['startLength','stopLength','increment','incrementLengthUnit','isPointy','excludeAlign','instructions']
     
-    def __init__(self,startLength,stopLength,increment,incrementLengthUnit,isPointy,excludeAlignPyramid,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
+    def __init__(self,startLength,stopLength,increment,incrementLengthUnit,isPointy,excludeAlign=False,length=None,rest=None,intensity=None,stroke=None,breath=None,underwater=None,equipment=[],instructions=[]):
         '''create repetition'''
         self.startLength = startLength
         self.stopLength = stopLength
         self.increment = increment
         self.incrementLengthUnit = incrementLengthUnit
         self.isPointy = isPointy
-        self.excludeAlignPyramid = excludeAlignPyramid
+        self.excludeAlign = excludeAlign
         self.length = length
         self.rest = rest
         self.intensity = intensity

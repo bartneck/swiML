@@ -51,6 +51,7 @@
                         </stroke>
                     </instruction>
                 </continue>
+                <excludeAlign>true</excludeAlign>
             </instruction>
         </repetition>
     </instruction>
@@ -102,6 +103,7 @@
                         </intensity>
                     </instruction>
                 </continue>
+                <excludeAlign>true</excludeAlign>
             </instruction>
         </repetition>
     </instruction>
