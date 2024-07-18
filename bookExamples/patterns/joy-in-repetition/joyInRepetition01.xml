@@ -9,10 +9,8 @@
     </author>
     <programDescription>Swimming as repetetive as the song "Around the world".</programDescription>
     <creationDate>2023-11-03</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
     <instruction>
         <repetition>

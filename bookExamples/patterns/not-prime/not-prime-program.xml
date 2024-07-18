@@ -9,16 +9,14 @@
     </author>
     <programDescription>This program divides 120 laps into 5 times 24 laps.</programDescription>
     <creationDate>2024-07-04</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
-    
+
     <instruction>
         <segmentName>120 laps</segmentName>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <simplify>true</simplify>
@@ -56,7 +54,7 @@
                     </instruction>
                 </continue>
             </instruction>
-            
+
             <!-- second -->
             <instruction>
                 <repetition>
@@ -74,7 +72,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-            
+
             <!-- third -->
             <instruction>
                 <repetition>
@@ -95,7 +93,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-            
+
             <!-- fourth -->
             <instruction>
                 <repetition>
@@ -114,7 +112,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-            
+
             <!-- fourth -->
             <instruction>
                 <repetition>

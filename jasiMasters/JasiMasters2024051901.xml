@@ -10,10 +10,8 @@
     </author>
     <programDescription>Our Sunday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
     <creationDate>2024-05-19</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
 
     <instruction>
@@ -189,11 +187,11 @@
 
         </repetition>
     </instruction>
-    
+
     <instruction>
         <segmentName>Second set</segmentName>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>50</lengthAsDistance>
@@ -207,7 +205,7 @@
             </startIntensity>
         </intensity>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -219,7 +217,7 @@
             <sinceStart>PT0M45S</sinceStart>
         </rest>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -232,7 +230,7 @@
         </rest>
         <breath>4</breath>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -244,7 +242,7 @@
             <sinceStart>PT0M45S</sinceStart>
         </rest>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -257,7 +255,7 @@
         </rest>
         <instructionDescription>first 15m under water</instructionDescription>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -269,7 +267,7 @@
             <sinceStart>PT0M45S</sinceStart>
         </rest>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -282,7 +280,7 @@
         </rest>
         <instructionDescription>Two pull outs</instructionDescription>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>
@@ -294,7 +292,7 @@
             <sinceStart>PT0M45S</sinceStart>
         </rest>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>25</lengthAsDistance>

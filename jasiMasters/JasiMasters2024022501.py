@@ -28,7 +28,8 @@ oneSet2Continue=swiML.Repetition(
 )
 
 oneSet2=swiML.Continue(
-    continueLength=('lengthAsDistance',150),
+    continueLength=150,
+    simplify=True,
     instructions=[oneSet2Continue]
 )
 # oneSet2=swiML.Continue(
@@ -125,8 +126,9 @@ simpleProgram=swiML.Program(
     title='Jasi Masters',
     author=[('firstName','Christoph'),('lastName','Bartneck')],
     programDescription='Our Tuesday evening program targeted at one hour. The coach was Matt.',
-    pool=[('poolLength',25),('lengthUnit','meters')],
-    # swiMLVersion='2.0',
+    poolLength='25',
+    lengthUnit='meters',
+    swiMLVersion='2.0',
     creationDate='2024-02-25',
     instructions=[warmUpSegment,
                   warmUp,

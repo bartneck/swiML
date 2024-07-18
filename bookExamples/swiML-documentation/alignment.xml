@@ -9,13 +9,11 @@
     </author>
     <programDescription>Example of how to use the excludeAlignment element.</programDescription>
     <creationDate>2023-05-24</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
-<!--    <programAlign>false</programAlign>-->
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <!--    <programAlign>false</programAlign>-->
     <hideIntro>true</hideIntro>
-    
+
     <instruction>
         <segmentName>1</segmentName>
     </instruction>
@@ -41,7 +39,7 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
@@ -61,7 +59,7 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <repetitionCount>10</repetitionCount>
@@ -81,6 +79,6 @@
             </instruction>
         </repetition>
     </instruction>
-    
-   
+
+
 </program>

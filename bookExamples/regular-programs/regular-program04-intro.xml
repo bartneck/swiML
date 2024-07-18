@@ -9,11 +9,9 @@
     </author>
     <programDescription>A freestyle set with a main block of 100 meters with increasing intensity.</programDescription>
     <creationDate>2024-06-04</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
-    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+
     <hideIntro>false</hideIntro>
 
     <instruction>
@@ -33,7 +31,7 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
@@ -47,11 +45,11 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <segmentName>First set</segmentName>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
@@ -82,7 +80,7 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <repetition>
             <repetitionCount>6</repetitionCount>
@@ -102,7 +100,7 @@
                     </startIntensity>
                 </intensity>
             </instruction>
-            
+
             <instruction>
                 <length>
                     <lengthAsDistance>50</lengthAsDistance>
@@ -121,11 +119,11 @@
             </instruction>
         </repetition>
     </instruction>
-    
+
     <instruction>
         <segmentName>Warm down</segmentName>
     </instruction>
-    
+
     <instruction>
         <length>
             <lengthAsDistance>200</lengthAsDistance>

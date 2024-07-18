@@ -9,10 +9,8 @@
     </author>
     <programDescription>Swim the first 8 terms of the triangular numbers sequence.</programDescription>
     <creationDate>2024-04-22</creationDate>
-    <pool>
         <poolLength>25</poolLength>
         <lengthUnit>meters</lengthUnit>
-    </pool>
     <hideIntro>false</hideIntro>
     <instruction><segmentName>Warm Up</segmentName></instruction>
     <instruction><length><lengthAsDistance>200</lengthAsDistance></length><stroke><standardStroke>any</standardStroke></stroke><intensity><startIntensity>

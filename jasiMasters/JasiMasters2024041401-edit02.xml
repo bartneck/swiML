@@ -10,10 +10,8 @@
     </author>
     <programDescription>Our Sunday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
     <creationDate>2024-03-26</creationDate>
-<pool>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-</pool>
     <hideIntro>false</hideIntro>
     <layoutWidth>60</layoutWidth>
 
@@ -51,7 +49,7 @@
                     </instruction>
                 </repetition>
             </instruction>
-            
+
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
@@ -65,5 +63,5 @@
         </repetition>
     </instruction>
 
-  
+
 </program>

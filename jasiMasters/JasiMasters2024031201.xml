@@ -14,10 +14,8 @@
     </author>
     <programDescription>Our Tuesday evening program. The target duration was 60 minutes. The coach was Matt Nash.</programDescription>
     <creationDate>2024-03-12</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
 
     <instruction>
@@ -73,7 +71,7 @@
                     </instruction>
                 </continue>
             </instruction>
-            
+
             <instruction>
                 <continue>
                     <continueLength>150</continueLength>
@@ -146,7 +144,7 @@
         <repetition>
             <simplify>true</simplify>
             <equipment>fins</equipment>
-            
+
             <instruction>
                 <continue>
                     <continueLength>75</continueLength>
@@ -177,7 +175,7 @@
                     </instruction>
                 </continue>
             </instruction>
-            
+
             <instruction>
                 <continue>
                     <continueLength>75</continueLength>
@@ -207,7 +205,7 @@
                     </instruction>
                 </continue>
             </instruction>
-            
+
             <instruction>
                 <continue>
                     <continueLength>75</continueLength>
@@ -234,7 +232,7 @@
                     </instruction>
                 </continue>
             </instruction>
-            
+
             <instruction>
                 <continue>
                     <continueLength>75</continueLength>

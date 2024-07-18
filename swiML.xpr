@@ -14,6 +14,86 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>bookExamples/regular-programs/regular-program04-intro.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../Apps/Overleaf/Swim%20Training%20Patterns/code/swiML-documentation/meta.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>bookExamples/patterns/not-prime/not-prime-program.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>bookExamples/regular-programs/regular-program03-intro.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>jasiMasters/JasiMasters2024041401-edit02.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -214,47 +294,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/patterns/not-prime/not-prime-program.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL latest</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
                                     <String>bookExamples/patterns/squares-in-square/squares-in-square.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL latest</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>bookExamples/regular-programs/regular-program03-intro.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

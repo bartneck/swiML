@@ -7,10 +7,8 @@
   </author>
   <programDescription>Our Tuesday evening program targeted at one hour.</programDescription>
   <creationDate>2024-03-05</creationDate>
-  <pool>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-  </pool>
   <programAlign>true</programAlign>
   <instruction>
     <segmentName>Warm Up</segmentName>

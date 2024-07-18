@@ -8,12 +8,10 @@
     </author>
     <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
     <creationDate>2024-02-25</creationDate>
-    <pool>
-        <poolLength>25</poolLength>
-        <lengthUnit>meters</lengthUnit>
-    </pool>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
     <layoutWidth>60</layoutWidth>
-    
+
     <instruction><segmentName>WarmUp</segmentName></instruction>
     <instruction><length><lengthAsDistance>400</lengthAsDistance></length><stroke><standardStroke>any</standardStroke></stroke><intensity><startIntensity>
                 <zone>easy</zone>
@@ -38,7 +36,7 @@
                 <continue>
                     <continueLength>
                         <lengthAsDistance>150</lengthAsDistance>
-                    </continueLength> 
+                    </continueLength>
                     <instruction>
                         <repetition>
                             <repetitionCount>3</repetitionCount>
@@ -66,8 +64,8 @@
                             </instruction>
                         </repetition>
                     </instruction>
-                    
-                    
+
+
                 </continue>
             </instruction>
 

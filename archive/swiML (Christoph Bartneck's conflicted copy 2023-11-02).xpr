@@ -10,7 +10,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../bookExamples/swiML-documentation/ecludeAlign.xml</String>
+                                    <String>../bookExamples/swiML-documentation/alignment.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -30,7 +30,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../bookExamples/swiML-documentation/alignment.xml</String>
+                                    <String>../bookExamples/swiML-documentation/ecludeAlign.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
