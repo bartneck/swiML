@@ -126,7 +126,7 @@ def classToXML(self,root=None):
             if type(self).__name__.lower() == 'program':
                 if self.swiMLVersion == 'latest':
                     schemaLocation = f'https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd'
-                elif self.swMLVersion == 'main':
+                elif self.swiMLVersion == 'main':
                     schemaLocation = f'https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd'                
                 else:
                     schemaLocation = f'https://github.com/bartneck/swiML/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion} https://raw.githubusercontent.com/bartneck/swiML/main/version/{str(self.swiMLVersion).split(".")[0]}/{self.swiMLVersion}/swiML.xsd'
