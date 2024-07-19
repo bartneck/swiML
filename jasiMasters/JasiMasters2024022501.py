@@ -28,8 +28,7 @@ oneSet2Continue=swiML.Repetition(
 )
 
 oneSet2=swiML.Continue(
-    continueLength=150,
-    simplify=True,
+    continueLength=('lengthAsDistance',150),
     instructions=[oneSet2Continue]
 )
 # oneSet2=swiML.Continue(
