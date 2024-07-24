@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
   <title>Jasi Masters</title>
   <author>
     <firstName>Callum</firstName>
@@ -28,9 +28,6 @@
             <stroke>
               <standardStroke>backstroke</standardStroke>
             </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
             <intensity>
               <startIntensity>
                 <percentageHeartRate>60</percentageHeartRate>
@@ -45,50 +42,6 @@
             <stroke>
               <standardStroke>backstroke</standardStroke>
             </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
-            <intensity>
-              <startIntensity>
-                <percentageHeartRate>60</percentageHeartRate>
-              </startIntensity>
-            </intensity>
-            <excludeAlign>false</excludeAlign>
-          </instruction>
-        </repetition>
-      </instruction>
-      <instruction>
-        <repetition>
-          <repetitionCount>4</repetitionCount>
-          <simplify>false</simplify>
-          <repetitionDescription>nothing</repetitionDescription>
-          <instruction>
-            <length>
-              <lengthAsDistance>200</lengthAsDistance>
-            </length>
-            <stroke>
-              <standardStroke>backstroke</standardStroke>
-            </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
-            <intensity>
-              <startIntensity>
-                <percentageHeartRate>60</percentageHeartRate>
-              </startIntensity>
-            </intensity>
-            <excludeAlign>false</excludeAlign>
-          </instruction>
-          <instruction>
-            <length>
-              <lengthAsDistance>200</lengthAsDistance>
-            </length>
-            <stroke>
-              <standardStroke>backstroke</standardStroke>
-            </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
             <intensity>
               <startIntensity>
                 <percentageHeartRate>60</percentageHeartRate>
@@ -110,9 +63,6 @@
             <stroke>
               <standardStroke>backstroke</standardStroke>
             </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
             <intensity>
               <startIntensity>
                 <percentageHeartRate>60</percentageHeartRate>
@@ -127,9 +77,41 @@
             <stroke>
               <standardStroke>backstroke</standardStroke>
             </stroke>
-            <rest>
-              <sinceStart>PT1M55S</sinceStart>
-            </rest>
+            <intensity>
+              <startIntensity>
+                <percentageHeartRate>60</percentageHeartRate>
+              </startIntensity>
+            </intensity>
+            <excludeAlign>false</excludeAlign>
+          </instruction>
+        </repetition>
+      </instruction>
+      <instruction>
+        <repetition>
+          <repetitionCount>4</repetitionCount>
+          <simplify>false</simplify>
+          <repetitionDescription>nothing</repetitionDescription>
+          <instruction>
+            <length>
+              <lengthAsDistance>200</lengthAsDistance>
+            </length>
+            <stroke>
+              <standardStroke>backstroke</standardStroke>
+            </stroke>
+            <intensity>
+              <startIntensity>
+                <percentageHeartRate>60</percentageHeartRate>
+              </startIntensity>
+            </intensity>
+            <excludeAlign>false</excludeAlign>
+          </instruction>
+          <instruction>
+            <length>
+              <lengthAsDistance>200</lengthAsDistance>
+            </length>
+            <stroke>
+              <standardStroke>backstroke</standardStroke>
+            </stroke>
             <intensity>
               <startIntensity>
                 <percentageHeartRate>60</percentageHeartRate>

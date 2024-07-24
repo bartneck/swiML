@@ -20,7 +20,6 @@
     <instruction>
         <repetition>
             <repetitionCount>2</repetitionCount>
-            <excludeAlignRepetition>false</excludeAlignRepetition>
             <instruction>
                 <length>
                     <lengthAsDistance>100</lengthAsDistance>
@@ -38,12 +37,12 @@
                 </stroke>
             </instruction>
         </repetition>
+        <excludeAlign>false</excludeAlign>
     </instruction>
 
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
-            <excludeAlignRepetition>false</excludeAlignRepetition>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
@@ -58,12 +57,12 @@
                 </length>
             </instruction>
         </repetition>
+        <excludeAlign>true</excludeAlign>
     </instruction>
 
     <instruction>
         <repetition>
             <repetitionCount>10</repetitionCount>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
             <stroke>
                 <standardStroke>backstroke</standardStroke>
             </stroke>
@@ -78,7 +77,6 @@
                 </length>
             </instruction>
         </repetition>
+        <excludeAlign>false</excludeAlign>
     </instruction>
-
-
 </program>

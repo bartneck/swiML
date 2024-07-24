@@ -127,7 +127,7 @@ simpleProgram=swiML.Program(
     programDescription='Our Tuesday evening program targeted at one hour. The coach was Matt.',
     poolLength='25',
     lengthUnit='meters',
-    swiMLVersion='2.0',
+    swiMLVersion='main',
     creationDate='2024-02-25',
     instructions=[warmUpSegment,
                   warmUp,

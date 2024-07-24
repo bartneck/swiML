@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Highly Composite Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>This program divides 120 laps into 5 times 24 laps.</programDescription>
+    <creationDate>2024-07-04</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+
+    <instruction>
+        <segmentName>120 laps</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <instruction>
+                <continue>
+                    <continueLength>
+                        <lengthAsDistance>600</lengthAsDistance>
+                    </continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <drill>
+                                <drillName>any</drillName>
+                                <drillStroke>any</drillStroke>
+                            </drill>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>notFreestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
+            </instruction>
+
+            <!-- second -->
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>individualMedley</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT1M45S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>
+            </instruction>
+
+            <!-- third -->
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <drill>
+                                <drillName>any</drillName>
+                                <drillStroke>individualMedleyOrder</drillStroke>
+                            </drill>
+                        </stroke>
+                        <rest>
+                            <afterStop>PT0M15S</afterStop>
+                        </rest>
+                    </instruction>
+                </repetition>
+            </instruction>
+
+            <!-- fourth -->
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>200</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <afterStop>PT0M15S</afterStop>
+                        </rest>
+                        <equipment>pads</equipment>
+                    </instruction>
+                </repetition>
+            </instruction>
+
+            <!-- fourth -->
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>300</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <afterStop>PT0M15S</afterStop>
+                        </rest>
+                        <equipment>pads</equipment>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
