@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/swiML.xsd">
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/ https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
   <title>Triangular Numbers</title>
   <author>
     <firstName>Christoph</firstName>
