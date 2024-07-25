@@ -17,119 +17,115 @@
         <segmentName>120 laps</segmentName>
     </instruction>
 
+
+    <instruction>
+        <continue>
+            <continueLength>
+                <lengthAsDistance>600</lengthAsDistance>
+            </continueLength>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>any</drillName>
+                        <drillStroke>any</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>notFreestyle</standardStroke>
+                </stroke>
+            </instruction>
+        </continue>
+    </instruction>
+
+    <!-- second -->
     <instruction>
         <repetition>
-            <simplify>true</simplify>
+            <repetitionCount>6</repetitionCount>
             <instruction>
-                <continue>
-                    <continueLength>
-                        <lengthAsDistance>600</lengthAsDistance>
-                    </continueLength>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <drill>
-                                <drillName>any</drillName>
-                                <drillStroke>any</drillStroke>
-                            </drill>
-                        </stroke>
-                    </instruction>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>notFreestyle</standardStroke>
-                        </stroke>
-                    </instruction>
-                </continue>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedley</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT1M45S</sinceStart>
+                </rest>
             </instruction>
+        </repetition>
+    </instruction>
 
-            <!-- second -->
+    <!-- third -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
             <instruction>
-                <repetition>
-                    <repetitionCount>6</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>100</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>individualMedley</standardStroke>
-                        </stroke>
-                        <rest>
-                            <sinceStart>PT1M45S</sinceStart>
-                        </rest>
-                    </instruction>
-                </repetition>
+                <length>
+                    <lengthAsDistance>150</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>any</drillName>
+                        <drillStroke>individualMedleyOrder</drillStroke>
+                    </drill>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
             </instruction>
+        </repetition>
+    </instruction>
 
-            <!-- third -->
+    <!-- fourth -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
             <instruction>
-                <repetition>
-                    <repetitionCount>4</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>150</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <drill>
-                                <drillName>any</drillName>
-                                <drillStroke>individualMedleyOrder</drillStroke>
-                            </drill>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                    </instruction>
-                </repetition>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+                <equipment>pads</equipment>
             </instruction>
+        </repetition>
+    </instruction>
 
-            <!-- fourth -->
+    <!-- fourth -->
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
             <instruction>
-                <repetition>
-                    <repetitionCount>3</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>200</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                        <equipment>pads</equipment>
-                    </instruction>
-                </repetition>
-            </instruction>
-
-            <!-- fourth -->
-            <instruction>
-                <repetition>
-                    <repetitionCount>2</repetitionCount>
-                    <instruction>
-                        <length>
-                            <lengthAsDistance>300</lengthAsDistance>
-                        </length>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                        <rest>
-                            <afterStop>PT0M15S</afterStop>
-                        </rest>
-                        <equipment>pads</equipment>
-                    </instruction>
-                </repetition>
+                <length>
+                    <lengthAsDistance>300</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+                <equipment>pads</equipment>
             </instruction>
         </repetition>
     </instruction>
