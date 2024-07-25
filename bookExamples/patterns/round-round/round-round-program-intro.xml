@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Round and around</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>This program represents the ration of two circles and the number of rotations that the smaller circles has around the larger circle.</programDescription>
+    <creationDate>2024-07-25</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>First set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+        <rest>
+            <sinceStart>PT1M50S</sinceStart>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>nr4</standardStroke>
+        </stroke>
+    </instruction>
+    
+    
+    <instruction>
+        <segmentName>Second set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+        <rest>
+            <sinceStart>PT1M50S</sinceStart>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>300</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>nr3</standardStroke>
+        </stroke>
+    </instruction>
+    
+    
+    <instruction>
+        <segmentName>Third set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>300</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+        <rest>
+            <sinceStart>PT1M50S</sinceStart>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>nr2</standardStroke>
+        </stroke>
+    </instruction>
+    
+    
+    <instruction>
+        <segmentName>Fourth set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>individualMedley</standardStroke>
+        </stroke>
+        <rest>
+            <sinceStart>PT1M50S</sinceStart>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>endurance</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <length>
+            <lengthAsDistance>500</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>nr1</standardStroke>
+        </stroke>
+    </instruction>
+</program>
