@@ -1,4 +1,4 @@
-import swiML 
+import swiML as swiML 
 
 
 #some basic instructions with all the parameters set

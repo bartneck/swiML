@@ -1,4 +1,4 @@
-import swiML 
+import swiML as swiML 
 
 simple100=swiML.Instruction(
     length=('lengthAsDistance',100),

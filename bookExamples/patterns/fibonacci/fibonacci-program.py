@@ -1,4 +1,4 @@
-import swiML
+import swiML as swiML
 
 def fibonacci(n):
     fib_sequence = [1, 1]  # Initialize with the first two terms

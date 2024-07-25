@@ -1,4 +1,4 @@
-import swiML, mpmath, math
+import swiML as swiML, mpmath, math
 
 def pi_digits(n):
     # Set the number of decimal places

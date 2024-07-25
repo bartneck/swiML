@@ -95,7 +95,6 @@ def simplify_repetition(instructions,repetitionCount):
     else:
         allLength = basicInsts[0][0].continueLength
     for instruction in instructions:
-        print(instruction)
         if type(instruction) is Repetition:
             total_repetition += instruction.repetitionCount
             for inst in instruction.instructions:
@@ -219,7 +218,6 @@ def nodeToDict(node):
     data = []
     instructions = []
     for child in node:
-        print(child)
         if child.tag == 'instruction':
             instructions.append(XMLToClass(child))
         else:
@@ -232,11 +230,9 @@ def XMLToClass(node):
     
     if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
         instDict,instructions = nodeToDict(node)
-        print(instType[0].tag,instDict,instructions,'I')
         return Instruction(**instDict)
     else:
         instDict,instructions = nodeToDict(instType[0])
-        print(instType[0].tag,instDict,instructions,'N')
         if instType[0].tag == 'repetition':
             return Repetition(**instDict,instructions=instructions)
         elif instType[0].tag == 'continue':
@@ -276,7 +272,7 @@ def writeXML(filename,node):
 
 def instGroupStr(self):
     instructions = [inst if type(inst) is str else inst[0] for inst in INSTRUCTION_GROUP[:-2]]
-    rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out'
+    rest = '' if self.rest == None else f'on {to_time(self.rest[1])}' if self.rest[0] == 'sinceStart' else f' take {to_time(self.rest[1])} rest' if self.rest[0] == 'afterStop' else f'{to_time(self.rest[1])}' if self.rest[0] == 'sinceLastRest' else f'{self.rest[1]} in First out' if self.rest[0] == 'inOut' else '[Incorrect Rest Type]'
     underwater = 'underwater\n' if self.underwater == True else ''
     
     equipment = ''
@@ -506,7 +502,6 @@ class Continue:
         if continueLength == [None]:
             self.continueLength = ('lengthAsDistance',get_total_length(instructions))
         else:
-            print(continueLength)
             self.continueLength = continueLength
     def __str__(self):
         '''returns string for continue'''

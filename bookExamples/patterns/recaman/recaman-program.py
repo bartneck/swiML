@@ -1,4 +1,4 @@
-import swiML
+import swiML as swiML
 
 def find_recaman(terms):
     for i in range(1, terms):

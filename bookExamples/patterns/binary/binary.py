@@ -1,4 +1,4 @@
-import math, swiML
+import math, swiML as swiML
 
 def integer_to_variable_size_binary_array(number, num_bits):
     # Convert the integer to binary representation

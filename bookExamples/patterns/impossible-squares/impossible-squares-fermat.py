@@ -1,5 +1,5 @@
 from collections import Counter
-import math, swiML
+import math, swiML as swiML
 
 def is_sum_of_two_squares(n):
     # Get the prime factorization of n

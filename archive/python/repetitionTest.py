@@ -1,4 +1,4 @@
-import swiML
+import swiML as swiML
 
 warmUp=swiML.Instruction(
     length=('lengthAsDistance',400),

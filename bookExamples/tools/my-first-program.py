@@ -1,4 +1,4 @@
-import swiML
+import swiML as swiML
 myProgram=[]
 
 # simple instruction

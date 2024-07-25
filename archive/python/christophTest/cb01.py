@@ -1,4 +1,4 @@
-import swiML 
+import swiML as swiML 
 
 
 #some basic instructions with all the parameters set
@@ -7,7 +7,11 @@ instruction = swiML.Instruction(
     length=('lengthAsDistance',200),
     rest=('sinceStart','PT1M55S'),
     intensity=('startIntensity',('percentageHeartRate',60)),
-    stroke=('standardStroke','backstroke')
+    stroke=('standardStroke','freestyle'),
+    # breath=None,
+    # underwater=False,
+    # equipment=[],
+    # instructionDescription='Description'
 )
 
 #an instruction with no defined rest
@@ -65,8 +69,6 @@ program = swiML.Program(
     programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
     poolLength='50',
     lengthUnit='meters',
-    hideIntro=True,
-    swiMLVersion=2.1,
     instructions=[swiML.Continue(
     instructions = [swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction]),swiML.Repetition(repetitionCount=4,repetitionDescription='nothing',instructions=[instruction,instruction])]
     ),
@@ -76,28 +78,6 @@ program = swiML.Program(
 #display program in terminal
 print(program)
 
-
-#produces a list of instructions to swim half a pyramid from 25m to 200m 
-instructionList = []
-for i in range(1,9):
-    instructionList.append(swiML.Instruction(length = ('lengthAsDistance',i*25),stroke=('standardStroke','backstroke')))
-
-#program shell to display the above instructions
-program2 = swiML.Program(
-    title='Jasi Masters',
-    author=[('firstName','Callum'),('lastName','Lockhart')],
-    programDescription='Our Tuesday evening program in the sun. The target duration was 60 minutes.',
-    poolLength='50',
-    lengthUnit='meters',
-    instructions=instructionList)
-
-#display second program in terminal 
-#print(program2)
-
-
 #example for reading and writing to an xml document 
 #writing will out put the given program or any given class in xml to the given file
-swiML.writeXML('sample.xml',program)
-
-#reading will return a class containing what ws written in the xml  
-#print(swiML.readXML('pythonXMLtest/sample.xml'))
+swiML.writeXML('cb01.xml',program)

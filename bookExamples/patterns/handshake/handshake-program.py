@@ -1,4 +1,4 @@
-import swiML
+import swiML as swiML
 
 def triangular_sequence(n):
     # Initialize an empty array to store the sequence
