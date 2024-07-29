@@ -14,7 +14,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/patterns/round-round/round-round-program-intro.xml</String>
+                                    <String>bookExamples/swiML-introduction/firstExample01.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -34,27 +34,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/patterns/not-prime/not-prime-program.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL latest</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>bookExamples/patterns/not-prime/not-prime-program-intro.xml</String>
+                                    <String>bookExamples/sample.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -94,6 +74,26 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>bookExamples/patterns/not-prime/not-prime-program-intro.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>bookExamples/swiML-documentation/alignment.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -114,7 +114,27 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>bookExamples/sample.xml</String>
+                                    <String>bookExamples/patterns/not-prime/not-prime-program.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>bookExamples/patterns/round-round/round-round-program-intro.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -859,26 +879,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>swiMLXSL latest</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>bookExamples/swiML-introduction/firstExample01.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSLv2.0</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
