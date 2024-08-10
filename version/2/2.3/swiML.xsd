@@ -79,11 +79,6 @@
                         <xs:documentation>When set to False all elements in the program will not align</xs:documentation>
                     </xs:annotation>
                 </xs:element>
-                <xs:element name="numeralSystem" minOccurs="0" maxOccurs="1" type="numeralSystems">
-                    <xs:annotation>
-                        <xs:documentation>Can set to different numeral systems to display</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
                 <!-- Element to hide the intro text -->
                 <xs:element name="hideIntro" minOccurs="0" maxOccurs="1" type="xs:boolean">
                     <xs:annotation>
@@ -184,16 +179,6 @@
             <xs:enumeration value="kilometers"/>
             <xs:enumeration value="miles"/>
             <xs:enumeration value="yards"/>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <xs:simpleType name="numeralSystems">
-        <xs:annotation>
-            <xs:documentation>Numeral system type to be used for displaying the document</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="decimal"/>
-            <xs:enumeration value="roman"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -1,0 +1,311 @@
+@charset "UTF-8";
+/* version 2.1 */
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+	/* the font size is set so that 50 characters add up to 11cm */
+    font-size: 3.67mm;
+    font-weight: 400;
+    font-style: normal;
+    counter-reset: line;
+}
+
+/* ********************************** */
+/* meta information styling */
+/* ********************************** */
+
+ul {
+    line-height: 110%;
+    list-style-type: "~>";
+}
+
+li {
+    font-size: 90%;
+    margin: 0.3em;
+}
+
+h1 {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+p.authorName {
+    text-align: center;
+    font-weight: 600;
+}
+
+p.authorEmail {
+    text-align: center;
+    line-height: 80%;
+    margin-top: -1em;
+}
+
+p.description {
+    line-height: 120%;
+    margin-bottom: 2em;
+}
+
+.intro {
+    padding: 1ch;
+    width: 50ch;
+    margin: 0px auto;
+}
+
+/* ********************************** */
+/* footer styling */
+/* ********************************** */
+
+.bottom {
+    width: 50ch;
+    margin: auto;
+    margin-top: 0.2ch;
+}
+
+.footnote {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 70%;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logoSvg {
+    width: 3.5em;
+}
+
+/* ********************************** */
+/* main program styling */
+/* ********************************** */
+
+.program {
+	/* 48 characters plus 1 character padding left and right adds up to 50 */
+    padding: 1ch;
+    border: solid;
+    border-width: 0.2mm;
+    width: 48ch;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.instruction {
+    max-width: 48ch;
+    display: flex;
+    flex-direction: row;
+    margin: 0.2em 0em;
+    vertical-align: middle;
+}
+
+.instruction::after {
+    display: inline-block;
+    counter-increment: line;
+    content: counter(line);
+    width: 1em;
+    margin-left: auto;
+    text-align: right;
+    font-family: 'JetBrains Mono Thin';
+    color: grey;
+}
+
+.dynamicIntensity {
+    white-space: nowrap;
+}
+
+.continueLength, .repetitionCount {
+    display: flex;
+    align-items: center;
+}
+
+.repetition, .continue {
+    max-width: 48ch;
+    display: flex;
+}
+
+.repetitionSymbol {
+    margin: 0.435ch;
+    width: 1ch;
+    border-top: 0.13em solid #000000;
+    border-bottom: 0.13em solid #000000;
+    border-left: 0.13em solid #000000;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.continueSymbol {
+    margin: 0.435ch;
+    width: 1ch;
+    border-left: 0.13em solid #000000;
+}
+
+.blankRepSymbol {
+    margin: 0.5ch;
+    display: flex;
+    align-items: center;
+    width: 1ch;
+}
+
+.repetitionContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.continueContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.firstSegmentName {
+    display: block;
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
+    max-width: 48ch;
+    margin: 0.2em;
+}
+
+.segmentName {
+    max-width: 48ch;
+    display: block;
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
+    margin: 0.2em;
+}
+
+.pyramid {
+    display: flex;
+    flex-direction: column;
+    font-size: 120%;
+}
+
+
+/* ********************************** */
+/* Fonts */
+/* ********************************** */
+
+.extraBoldTypeFace {
+	font-family: 'JetBrains Mono ExtraBold';
+	font-weight: 800;
+}
+
+.extraBoldTypeFaceRight {
+	font-family: 'JetBrains Mono ExtraBold';
+	font-weight: 800;
+	text-align:right;
+}
+
+.extraBoldTypeFaceMarginLeft {
+	font-family: 'JetBrains Mono ExtraBold';
+	font-weight: 800;
+	margin-left: auto;
+}
+
+.extraBoldTypeFaceCenter {
+	font-family: 'JetBrains Mono ExtraBold';
+	font-weight: 800;
+	text-align:center;
+}
+
+.semiBoldTypeFace {
+	font-family: 'JetBrains Mono SemiBold';
+	font-weight: 600;
+}
+
+.thinTypeFace {
+	font-family: 'JetBrains Mono Thin';
+	font-weight: 100;
+}
+
+.italicTypeFace {
+    font-family: 'JetBrains Mono Italic';
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* This was used to import fonts directly from google. This gave problems with creating PDF.
+fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+https://github.com/bartneck/swiML/blob/0f957d35e0e93624e0e18e4a3bd7e86da7293296/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2
+ */
+ 
+@font-face {
+    font-family: 'JetBrains Mono ExtraBold';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-ExtraBold.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-ExtraBold.ttf') format('truetype');
+   	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+   	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono Italic';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-Italic.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+   	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono Thin';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-Thin.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Thin.ttf') format('truetype');
+   	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono SemiBold';
+    src: url('fonts/JetBrainsMono/fonts/webfonts/JetBrainsMono-SemiBold.woff2') format('woff2'), 
+		 url('fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-SemiBold.ttf') format('truetype');
+   	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* ********************************** */
+/* CSS for printing. */
+/* ********************************** */
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0cm;
+    }
+
+    body {
+        font-size: 3.67mm;
+    }
+
+    .program {
+        width: 105.6mm;
+    }
+
+
+    .intro {
+        width: 105.6mm;
+    }
+
+    .bottom {
+        width: 11cm;
+    }
+
+}
