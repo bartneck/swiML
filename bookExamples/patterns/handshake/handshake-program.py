@@ -19,12 +19,10 @@ def create_swiML_instructions():
         my_instruction_list.append(swiML.Instruction(
                 length=('lengthAsLaps',i),
                 stroke=('standardStroke','notFreestyle'),
-                # rest=('afterStop','PT0M15S')
         ))
         my_instruction_list.append(swiML.Instruction(
                 length=('lengthAsLaps',triangular_numbers[i]-i),
                 stroke=('standardStroke','freestyle'),
-                # rest=('afterStop','PT0M15S')
         ))
         # add instruction to the <continue> element.
         my_continue_list.append(swiML.Continue(
@@ -67,11 +65,11 @@ def write_program():
         creationDate='2024-04-22',
         lengthUnit='meters',
         hideIntro=False,
-        swiMLVersion='2.1',
+        swiMLVersion='main',
         instructions=myInstructions
     )
     # write swiML XML to file
-    swiML.writeXML('handshake-program-test.xml',simpleProgram)
+    swiML.writeXML('patterns/handshake/handshake-program-test-02.xml',simpleProgram)
 
 # define the number of terms
 nr_terms=8
