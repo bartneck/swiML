@@ -63,3 +63,4 @@ program=swiML.Program(
 )
 
 print(program)
+swiML.writeXML('cont.xml',program)
