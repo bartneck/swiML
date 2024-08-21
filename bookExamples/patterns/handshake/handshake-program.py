@@ -50,11 +50,6 @@ def write_program():
     myInstructions=[swiML.SegmentName('Warm Up'),warmUp,swiML.SegmentName('Triangular set')]
     myInstructions.extend(create_swiML_instructions())
     myInstructions.extend([swiML.SegmentName('Warm down'),warmDown])
-    # myInstructions=create_swiML_instructions()
-    # myInstructions.extend(swiML.SegmentName('Warm Up'),warmUp,swiML.SegmentName('Triangular set'))
-    # myInstructions[:0]=[swiML.SegmentName('Warm Up'),warmUp]
-    # myInstructions.append(swiML.SegmentName('Warm down'))
-    # myInstructions.append(warmDown)
     
     # assemble the description of the swimming program
     description_text="Swim the first "+str(nr_terms)+" terms of the triangular numbers sequence."
@@ -65,14 +60,14 @@ def write_program():
         author=[('firstName','Christoph'),('lastName','Bartneck')],
         programDescription=description_text,
         poolLength='25',
-        creationDate='2024-04-22',
+        creationDate='2024-08-20',
         lengthUnit='meters',
         hideIntro=False,
         swiMLVersion='main',
         instructions=myInstructions
     )
     # write swiML XML to file
-    swiML.writeXML('patterns/handshake/handshake-program-test-03.xml',simpleProgram)
+    swiML.writeXML('handshake-program.xml',simpleProgram)
 
 # define the number of terms
 nr_terms=8
