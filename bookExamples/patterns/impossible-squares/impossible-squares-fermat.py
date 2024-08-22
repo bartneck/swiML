@@ -70,10 +70,10 @@ def write_program(myInstructions):
         author=[('firstName','Christoph'),('lastName','Bartneck')],
         programDescription='Swim regular, slanted and impossible squares.',
         poolLength='25',
-        creationDate='2024-03-15',
+        creationDate='2024-08-22',
         lengthUnit='meters',
         hideIntro=True,
-        swiMLVersion='2.0',
+        swiMLVersion='latest',
         instructions=myInstructions
     )
     # write swiML XML to file
