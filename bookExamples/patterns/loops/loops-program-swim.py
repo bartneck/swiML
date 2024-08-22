@@ -14,7 +14,8 @@ def nested_loop():
                 length=('lengthAsDistance',100),
                 stroke=('standardStroke','freestyle'),
                 rest=('sinceStart',"PT1M"+str((40+(j*5)))+"S"),
-                intensity=('startIntensity',('percentageEffort',(100-(10*nr_inner_loops))+(j*10)))
+                intensity=('startIntensity',('percentageEffort',
+                    (100-(10*nr_inner_loops))+(j*10)))
             ))
             instruction_list.append(swiML.Instruction(
                 length=('lengthAsDistance',(j+1)*25),
@@ -33,17 +34,12 @@ def write_program():
         stroke=('standardStroke','any'),
         intensity=('startIntensity',('zone','easy')),
     )
-    # warm down instruction
-    warmDown=swiML.Instruction(
-        length=('lengthAsDistance',400),
-        stroke=('standardStroke','any'),
-        intensity=('startIntensity',('zone','easy')),
-    )
+
     # assembly of the main instructions
     myInstructions=[swiML.SegmentName('Warm Up'),warmUp]
     myInstructions.append(swiML.SegmentName('Nested Loop'))
     myInstructions.extend(nested_loop())
-    myInstructions.extend([swiML.SegmentName('Warm down'),warmDown])
+    myInstructions.extend([swiML.SegmentName('Warm down'),warmUp])
     
     # create the program
     simpleProgram=swiML.Program(
