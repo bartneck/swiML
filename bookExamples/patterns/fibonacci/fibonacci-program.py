@@ -42,11 +42,9 @@ def write_program():
         intensity=('startIntensity',('zone','easy')),
     )
     # the create the main instructions
-    myInstructions=create_swiML_instructions()
-    myInstructions[:0]=[swiML.SegmentName('Warm Up'),warmUp]
-    myInstructions.insert(2,swiML.SegmentName('Fibonacci set'))
-    myInstructions.append(swiML.SegmentName('Warm down'))
-    myInstructions.append(warmDown)
+    myInstructions=[swiML.SegmentName('Warm Up'),warmUp,swiML.SegmentName('Fibonacci set')]
+    myInstructions.extend(create_swiML_instructions())
+    myInstructions.extend([swiML.SegmentName('Warm down'),warmDown])
 
     # assemble the description of the swimming program
     description_text="Swim the first "+str(number)+" terms of the Fibonacci sequence."
@@ -57,10 +55,10 @@ def write_program():
         author=[('firstName','Christoph'),('lastName','Bartneck')],
         programDescription=description_text,
         poolLength='25',
-        creationDate='2024-03-25',
-        lengthUnit='laps',
+        creationDate='2024-08-22',
+        lengthUnit='meters',
         hideIntro=False,
-        swiMLVersion='2.1',
+        swiMLVersion='latest',
         instructions=myInstructions
     )
     # write swiML XML to file
