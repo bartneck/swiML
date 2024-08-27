@@ -63,7 +63,7 @@ def write_program():
         creationDate='2024-08-20',
         lengthUnit='meters',
         hideIntro=False,
-        swiMLVersion='main',
+        swiMLVersion='latest',
         instructions=myInstructions
     )
     # write swiML XML to file
