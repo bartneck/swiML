@@ -1112,7 +1112,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose> 
-            <xsl:value-of separator=":" select="myData:number(minutes-from-duration(.)), myData:number(format-number(seconds-from-duration(.), '00'))"/>
+            <xsl:value-of select="concat(myData:number(minutes-from-duration(.)),':', myData:number(format-number(seconds-from-duration(.), '00')))"/>
         </span>        
     </xsl:template>
     

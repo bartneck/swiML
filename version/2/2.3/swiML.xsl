@@ -2,12 +2,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0"
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML">
+    xmlns:sw="https://github.com/bartneck/swiML">
 
-    <!-- version 2.2 -->
+    <!-- version 2.3 -->
     
     <!-- global variables for space calculation -->
-
+    
+    <xsl:variable name="gloalRoot" select="/"/>
+    
     <!-- variable for length of distance tags in any instruction -->
     <xsl:variable name="instLengths" as="element()*">
 
@@ -25,7 +27,7 @@
                 <xsl:if test="//sw:length/sw:lengthAsDistance">
                     <xsl:for-each select="//sw:length/sw:lengthAsDistance[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
-                            <Length><xsl:value-of select="string-length(.)"/></Length>
+                            <Length><xsl:value-of select="string-length(myData:number(.))"/></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
                             <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                             <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -36,7 +38,7 @@
                 <xsl:if test="//sw:length/sw:lengthAsLaps">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
-                            <Length><xsl:value-of select="string-length(.)"/></Length>
+                            <Length><xsl:value-of select="string-length(myData:number(.))"/></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
                             <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                             <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -48,7 +50,7 @@
                 <xsl:if test="//sw:length/sw:lengthAsTime">
                     <xsl:for-each select="//sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
-                            <Length><xsl:value-of select="string-length(concat(minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00')))" /></Length>
+                            <Length><xsl:value-of select="string-length(concat(myData:number(minutes-from-duration(.)), ':', myData:number(format-number(seconds-from-duration(.), '00'))))" /></Length>
                             <Section><xsl:value-of select="myData:section(.)"/></Section>
                             <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                             <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -142,7 +144,7 @@
                                 <Length><xsl:value-of select="4+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/></Length>
                             </xsl:when>
                             <xsl:otherwise>
-                                <Length><xsl:value-of select="string-length(string(myData:contLength(.)))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
+                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
                             </xsl:otherwise>
                         </xsl:choose>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -237,7 +239,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(myData:simpRep(.)))+string-length(string(myData:firstInst(.)))+$isLaps+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(myData:number(myData:simpRep(.))))+string-length(string(myData:number(myData:firstInst(.))))+$isLaps+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -325,7 +327,7 @@
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
                         <!-- length is the length of calculated repetition count, 2 characters for multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(number(./sw:repetitionCount)))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' or name(.) = 'simplify' or name(.) = 'excludeAlignRepetition' )])"/></Length>
+                        <Length><xsl:value-of select="string-length(string(myData:number(number(./sw:repetitionCount))))+2+$repInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'length' or name(.) = 'simplify' or name(.) = 'excludeAlignRepetition' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -646,7 +648,7 @@
                                 </li>
                                 <li>
                                     <span class="semiBoldTypeFace">Pool Size:</span>
-                                    <xsl:value-of select="sw:program/sw:poolLength"/>
+                                    <xsl:value-of select="myData:number(sw:program/sw:poolLength)"/>
                                 </li>
                                 <li>
                                     <span class="semiBoldTypeFace">Units:</span>
@@ -654,11 +656,11 @@
                                 </li>
                                 <li>
                                     <span class="semiBoldTypeFace">Length:</span>
-                                    <xsl:value-of select="myData:showLength(sw:program)"/>
+                                    <xsl:value-of select="myData:number(myData:showLength(sw:program))"/>
                                     <xsl:text> </xsl:text>
                                     <xsl:value-of select="sw:program/sw:lengthUnit"/>
                                     <xsl:text> / </xsl:text>
-                                    <xsl:value-of select="myData:showLength(sw:program) div (sw:program/sw:poolLength)"/>
+                                    <xsl:value-of select="myData:number(myData:showLength(sw:program) div (sw:program/sw:poolLength))"/>
                                     <xsl:text> Laps</xsl:text>
                                 </li>
                             </ul>
@@ -866,14 +868,14 @@
                                 <xsl:choose>
                                     <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
                                         
-                                        <xsl:value-of select="concat(sw:repetitionCount,'&#160;','&#215;',sw:repetitionDescription)"/>
+                                        <xsl:value-of select="concat(myData:number(sw:repetitionCount),'&#160;','&#215;',sw:repetitionDescription)"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <!-- add extra spacing if theres a repetition description , extra note could possibly simplify all instruction descriptions to a single template and element-->
                                         <xsl:choose>
                                             <xsl:when test=".//repetitionDescription">
                                                 
-                                                <xsl:value-of select="concat(sw:repetitionCount,'&#160;',sw:repetitionDescription)"/>
+                                                <xsl:value-of select="concat(myData:number(sw:repetitionCount),'&#160;',sw:repetitionDescription)"/>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <xsl:if test="count(./sw:instruction) = 1">
@@ -881,7 +883,7 @@
                                                         <xsl:text>extraBoldTypeFaceCenter</xsl:text>
                                                     </xsl:attribute>
                                                 </xsl:if>
-                                                <xsl:value-of select="concat(sw:repetitionCount,sw:repetitionDescription)"/>
+                                                <xsl:value-of select="concat(myData:number(sw:repetitionCount),sw:repetitionDescription)"/>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:otherwise>
@@ -941,7 +943,7 @@
                     </xsl:attribute>
                     <xsl:choose>
                         <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']">1</xsl:when>
-                        <xsl:otherwise><xsl:value-of select="myData:contLength(.)"/></xsl:otherwise>
+                        <xsl:otherwise><xsl:value-of select="myData:number(myData:contLength(.))"/></xsl:otherwise>
                     </xsl:choose>
                     
                     
@@ -973,7 +975,7 @@
                             <xsl:attribute name="class">
                                 <xsl:text>extraBoldTypeFaceRight</xsl:text>
                             </xsl:attribute>
-                            1
+                            <xsl:value-of select="myData:number(1)"/>
                         </span>
                     </xsl:when>
                     <xsl:otherwise></xsl:otherwise>
@@ -1049,7 +1051,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>            
-            <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsDistance]"/>
+            <xsl:value-of select="myData:number(../ancestor-or-self::*[sw:lengthAsDistance])"/>
         </span>
         <xsl:if test="//sw:lengthUnit = 'laps'">
             <xsl:text>&#160;&#60;-&#62;</xsl:text>
@@ -1077,7 +1079,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>            
-            <xsl:value-of select="../ancestor-or-self::*[sw:lengthAsLaps]"/>
+            <xsl:value-of select="myData:number(../ancestor-or-self::*[sw:lengthAsLaps])"/>
         </span>
         <xsl:if test="not(//sw:lengthUnit = 'laps')">
             <xsl:text>&#160;</xsl:text>
@@ -1110,7 +1112,7 @@
                     </xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose> 
-            <xsl:value-of separator=":" select="minutes-from-duration(.), format-number(seconds-from-duration(.), '00')"/>
+            <xsl:value-of select="concat(myData:number(minutes-from-duration(.)),':', myData:number(format-number(seconds-from-duration(.), '00')))"/>
         </span>        
     </xsl:template>
     
@@ -1120,13 +1122,13 @@
 
     <!-- returns total length of the given node -->
     <xsl:template name="showLength">
-        <xsl:value-of select="myData:showLength(.)"/>
+        <xsl:value-of select="myData:number(myData:showLength(.))"/>
     </xsl:template>
 
     <!-- returns the number of repetitions needed for a node-->
     <!-- used in simpifying repetitions-->
     <xsl:template name="simplifyLength">
-        <xsl:value-of select="myData:simpRep(.)"/>
+        <xsl:value-of select="myData:number(myData:simpRep(.))"/>
     </xsl:template>
 
 
@@ -1243,12 +1245,12 @@
     
     <xsl:template match="sw:sinceLastRest">
         <xsl:value-of
-            select="concat('&#160;&#8592;@_', minutes-from-duration(.), ':', format-number(seconds-from-duration(.), '00'))"
+            select="concat('&#160;&#8592;@_', minutes-from-duration(.), ':',format-number(seconds-from-duration(.), '00'))"
         />        
     </xsl:template>
 
     <xsl:template match="sw:inOut">
-        <xsl:value-of select="concat('&#160;', ., ' in 1 out')"/>
+        <xsl:value-of select="concat('&#160;', ., ' in ',1,' out')"/>
     </xsl:template>
 
     <!-- Stroke -->
@@ -1379,7 +1381,27 @@
     
     <xsl:function name="myData:roman" as="xs:string">
         <xsl:param name="value" as="xs:integer"/>
-        <xsl:number value="$value" format="i"/>
+        <xsl:number value="$value" format="I"/>
+    </xsl:function>
+    
+    <xsl:function name="myData:number">
+        <xsl:param name="value"/>
+        <xsl:choose>
+            <xsl:when test="number($value) = number($value) and not(contains(string($value), 'NaN'))">
+                <xsl:variable name="number">
+                    <xsl:value-of select="number($value)"/>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$gloalRoot/sw:program/sw:numeralSystem[text() = 'roman']">
+                        <xsl:value-of select="myData:roman($number)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+        </xsl:choose>
+        
     </xsl:function>
     
     
