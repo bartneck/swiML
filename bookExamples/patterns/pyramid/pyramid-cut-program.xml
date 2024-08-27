@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Zeitpyramide</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
     <programDescription>Swimming every block of the improved Zeitpyramide.</programDescription>
-    <creationDate>2024-04-22</creationDate>
+    <creationDate>2024-08-22</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
     
     <instruction>
         <segmentName>First row</segmentName>

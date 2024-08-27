@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Highly Composite Program</title>
     <author>
         <firstName>Christoph</firstName>
@@ -11,7 +11,7 @@
     <creationDate>2024-07-04</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
 
     <instruction>
         <segmentName>120 laps</segmentName>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Prime Numbers</title>
     <author>
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
     <programDescription>It is faster to search for numbers that are not prime numbers than for those that are.</programDescription>
-    <creationDate>2024-04-11</creationDate>
+    <creationDate>2024-08-22</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>

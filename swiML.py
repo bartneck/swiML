@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import re
 import datetime
-# version 2.2
+# version 2.3.1
 
 INSTRUCTION_GROUP = [
                      ('length','c',
@@ -322,6 +322,7 @@ def instGroupStr(self):
             line += eval(inst) + ' '
 
     return line
+
         
 class Program:
     '''Defines a program'''
@@ -403,9 +404,6 @@ class Instruction:
 
         return f'\n{line} {instructionDescription} {inherit}'
         
-
-
-
 class Repetition:
     '''Defines a repetition'''
 
@@ -500,9 +498,13 @@ class Continue:
                 inst[0].length = self.length
                 inst[0].inherited.append('length')
         if continueLength == [None]:
-            self.continueLength = ('lengthAsDistance',get_total_length(instructions))
+            if self.instructions[0].length[0] == 'lengthAsLaps':
+                self.continueLength = ('lengthAsLaps',get_total_length(instructions))
+            else:
+                self.continueLength = ('lengthAsDistance',get_total_length(instructions))
         else:
             self.continueLength = continueLength
+
     def __str__(self):
         '''returns string for continue'''
         return_list =''

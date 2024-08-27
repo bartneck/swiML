@@ -1,6 +1,6 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.1 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.1/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Binary</title>
     <author>
         <firstName>Christoph</firstName>
@@ -10,7 +10,7 @@
     <creationDate>2024-03-25</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
     <instruction>
         <segmentName>Warm Up</segmentName>
     </instruction>
@@ -36,7 +36,9 @@
             <simplify>true</simplify>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -65,7 +67,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -94,7 +98,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -123,7 +129,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -152,7 +160,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -181,7 +191,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -210,7 +222,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>
@@ -239,7 +253,9 @@
             </instruction>
             <instruction>
                 <continue>
-                    <continueLength>300</continueLength>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
                     <instruction>
                         <length>
                             <lengthAsDistance>100</lengthAsDistance>

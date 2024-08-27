@@ -306,5 +306,11 @@ simpleProgram=swiML.Program(
                   ]
 )
 
-print(simpleProgram)
+#print(simpleProgram)
 #swiML.writeXML('pythonXMLtest/sample.xml',simpleProgram)
+
+import xml.etree.ElementTree as ET
+filename = 'cont.xml'
+tree = ET.ElementTree()
+tree.parse("test.xml")
+tree.write("cont.xml")

@@ -1,6 +1,6 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Squared Square</title>
     <author>
         <firstName>Christoph</firstName>
@@ -9,7 +9,7 @@
     <programDescription>Swim the smallest perfect Squared Square.</programDescription>
     <creationDate>2024-03-21</creationDate>
     <poolLength>25</poolLength>
-    <lengthUnit>laps</lengthUnit>
+    <lengthUnit>meters</lengthUnit>
     <hideIntro>true</hideIntro>
     <instruction>
         <segmentName>WarmUp</segmentName>

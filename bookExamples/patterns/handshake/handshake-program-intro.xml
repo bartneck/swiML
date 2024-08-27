@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML/ https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
   <title>Triangular Numbers</title>
   <author>
     <firstName>Christoph</firstName>
@@ -34,7 +34,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>1</lengthAsDistance>
+        <lengthAsLaps>1</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -59,7 +59,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>3</lengthAsDistance>
+        <lengthAsLaps>3</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -84,7 +84,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>6</lengthAsDistance>
+        <lengthAsLaps>6</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -109,7 +109,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>10</lengthAsDistance>
+        <lengthAsLaps>10</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -134,7 +134,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>15</lengthAsDistance>
+        <lengthAsLaps>15</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -159,7 +159,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>21</lengthAsDistance>
+        <lengthAsLaps>21</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -184,7 +184,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>28</lengthAsDistance>
+        <lengthAsLaps>28</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>
@@ -209,7 +209,7 @@
   <instruction>
     <continue>
       <continueLength>
-        <lengthAsDistance>36</lengthAsDistance>
+        <lengthAsLaps>36</lengthAsLaps>
       </continueLength>
       <instruction>
         <length>

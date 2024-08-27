@@ -4,7 +4,7 @@
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:sw="https://github.com/bartneck/swiML">
 
-    <!-- version 2.2 -->
+    <!-- version 2.3 -->
     
     <!-- global variables for space calculation -->
     

@@ -1,6 +1,6 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML/version/2/2.0 https://raw.githubusercontent.com/bartneck/swiML/main/version/2/2.0/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Look and Say</title>
     <author>
         <firstName>Christoph</firstName>
@@ -10,7 +10,7 @@
     <creationDate>2024-03-22</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
     <instruction>
         <segmentName>WarmUp</segmentName>
     </instruction>
