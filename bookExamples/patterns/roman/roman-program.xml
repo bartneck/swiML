@@ -12,7 +12,7 @@
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <numeralSystem>roman</numeralSystem>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
     
     <instruction>
         <segmentName>Warm up</segmentName>
@@ -32,6 +32,9 @@
         </intensity>
     </instruction>
     
+    <instruction>
+        <segmentName>First set</segmentName>
+    </instruction>
     <instruction>
         <repetition>
             <repetitionCount>12</repetitionCount>
@@ -76,6 +79,9 @@
         </repetition>
     </instruction>
     
+    <instruction>
+        <segmentName>Warm down</segmentName>
+    </instruction>
     <instruction>
         <length>
             <lengthAsDistance>100</lengthAsDistance>
