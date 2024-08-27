@@ -14,217 +14,182 @@
     <lengthUnit>meters</lengthUnit>
     <numeralSystem>roman</numeralSystem>
 
-    <instruction><segmentName>Warm Up</segmentName></instruction>
     <instruction>
         <length>
-            <lengthAsDistance>200</lengthAsDistance>
+            <lengthAsTime>PT5M33S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>any</standardStroke>
         </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
         <intensity>
             <startIntensity>
-             <zone>easy</zone>
+                <zone>easy</zone>
             </startIntensity>
         </intensity>
     </instruction>
-    <instruction><segmentName>Triangular set</segmentName></instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>1</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>0</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>3</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>2</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>6</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>2</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>4</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>10</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>7</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>15</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>4</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>11</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>21</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>5</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>16</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>28</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>6</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>22</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction>
-        <continue>
-            <continueLength>
-                <lengthAsLaps>36</lengthAsLaps>
-            </continueLength>
-            <rest><afterStop>PT0M15S</afterStop></rest>
-            <instruction>
-                <length>
-                    <lengthAsLaps>7</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>29</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>notFreestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    <instruction><segmentName>Warm down</segmentName></instruction>
+    
     <instruction>
         <length>
-            <lengthAsDistance>200</lengthAsDistance>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>90</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>70</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <drill>
+                <drillName>singleArm</drillName>
+                <drillStroke>butterfly</drillStroke>
+            </drill>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>backstroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>breaststroke</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <percentageEffort>80</percentageEffort>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsTime>PT5M33S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>any</standardStroke>
@@ -235,4 +200,5 @@
             </startIntensity>
         </intensity>
     </instruction>
+    
 </program>
