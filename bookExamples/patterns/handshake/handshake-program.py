@@ -63,11 +63,12 @@ def write_program():
         creationDate='2024-08-20',
         lengthUnit='meters',
         hideIntro=False,
+        numeralSystem='roman',
         swiMLVersion='latest',
         instructions=myInstructions
     )
     # write swiML XML to file
-    swiML.writeXML('handshake-program.xml',simpleProgram)
+    swiML.writeXML('handshake-program-roman-test.xml',simpleProgram)
 
 # define the number of terms
 nr_terms=8
