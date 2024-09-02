@@ -119,13 +119,6 @@
                     </xs:unique>
                 </xs:element>
             </xs:sequence>
-            
-            <!-- ====================================================== -->
-            <!-- Assertion -->
-            <!-- checks every instruction has stroke, rest and length defined 
-            any other element in an instruction doesnt have to be defined
-            for some reason adding this makes it work?-->
-            <!-- ====================================================== -->
             <xs:assert test="
                     every $inst in .//sw:instruction
                         satisfies (
@@ -134,7 +127,14 @@
                         or $inst/sw:repetition
                         or $inst/sw:continue
                         or $inst/sw:pyramid
-                        or $inst/sw:segmentName)"/>
+                        or $inst/sw:segmentName)
+            ">
+                <xs:annotation>
+                    <xs:documentation>checks every instruction has stroke, rest and length defined 
+                    any other element in an instruction doesnt have to be defined</xs:documentation>
+                </xs:annotation>
+            </xs:assert>
+
         </xs:complexType>
     </xs:element>
 
@@ -257,8 +257,15 @@
                 or ./sw:repetition
                 or ./sw:continue
                 or ./sw:pyramid
-                or ./sw:segmentName"/>
-
+                or ./sw:segmentName
+            ">
+            <xs:annotation>
+                <xs:documentation>
+                    checks every instruction has stroke, rest and length defined 
+                    any other element in an instruction doesnt have to be defined
+                </xs:documentation>
+            </xs:annotation>
+        </xs:assert>
         <!-- checks every instruction doesnt have repetitions of elements defined and cannot be extended -->
         <xs:assert test="
                 if (not(./sw:repetition
@@ -275,7 +282,13 @@
                         ))
                 else
                     (true())
-                "/>
+                ">
+                <xs:annotation>
+                    <xs:documentation>
+                        returns false if any instruction has a repeating element, e.g two different defined lengths
+                    </xs:documentation>
+            </xs:annotation>
+        </xs:assert>
 
         <xs:assert test="
                 if (not(./sw:repetition
@@ -292,16 +305,27 @@
                         ))
                 else
                     (true())
-                "/>
+                ">
+                <xs:annotation>
+                    <xs:documentation>
+                        returns false if any instruction has a repeating equipment, e.g two seperate equipment elements both containing fins
+                    </xs:documentation>
+            </xs:annotation>
+        </xs:assert>
 
-        <!--checks all segment names are only at top level-->
         <xs:assert test="
                 if (count(./sw:segmentName) > 0)
                 then
                     (count(./sw:segmentName/../../ancestor::*) = 0)
                 else
                     (true())
-                "/>
+                ">
+                <xs:annotation>
+                    <xs:documentation>
+                        returns false if any segmentName element is not at the top level e.g. it is nested within a repetition
+                    </xs:documentation>
+            </xs:annotation>
+        </xs:assert>
         
         <!-- check if this is just for standard stroke or for kicks and drills too -->
         <xs:assert test="
@@ -513,8 +537,11 @@
             )
             ">
             <xs:annotation>
-                <xs:documentation>checks all lengths within simplified repetition are the
-                    same</xs:documentation>
+                <xs:documentation>checks all lengths within simplified repetition are the same
+                Does this by using two seperate statments so that either all lengthAsDistances are the same or all lengthAsLaps
+                checks that every instruction, repetition and continue has the same base length e.g. 100m , 4x100m and 50,50 swim as 100 ; these are all of length 100 so can be simplified in the same repetition
+                has to choose whether to use continueLength or add up all instructions within a continue 
+                </xs:documentation>
             </xs:annotation>
         </xs:assert>
 

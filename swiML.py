@@ -327,10 +327,10 @@ def instGroupStr(self):
 class Program:
     '''Defines a program'''
 
-    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate','poolLength','lengthUnit','programAlign','hideIntro','instructions']
+    TAG_ORDER = ['title',('author','s',['firstName','lastName','email']), 'programDescription','creationDate','poolLength','lengthUnit','programAlign','numeralSystem','hideIntro','instructions']
 
 
-    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d'),poolLength=None,lengthUnit=None,programAlign=True,hideIntro=None,layoutWidth=50,swiMLVersion='latest',instructions = []):
+    def __init__(self,title = None,author = [None,None,None],programDescription = None,creationDate = datetime.datetime.today().strftime('%Y-%m-%d'),poolLength=None,lengthUnit=None,programAlign=True,numeralSystem='decimal',hideIntro=None,layoutWidth=50,swiMLVersion='latest',instructions = []):
         '''program initialiser function
             with specified program data 
             as well as all instructions for the program
@@ -342,6 +342,7 @@ class Program:
         self.poolLength = poolLength
         self.lengthUnit = lengthUnit
         self.programAlign = programAlign
+        self.numeralSystem = numeralSystem 
         self.hideIntro = hideIntro
         self.layoutWidth = layoutWidth
         self.swiMLVersion = swiMLVersion
