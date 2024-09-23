@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import re
 import datetime
+import roman
 # version 2.3.1
 
 INSTRUCTION_GROUP = [
@@ -116,6 +117,13 @@ def simplify_repetition(instructions,repetitionCount):
                 raise Exception(F'Cannot simplify pyramids or segment names ') 
     return f'{total_repetition*repetitionCount} x {allLength}'
    
+def numeral(number,system):
+    number = int(number)
+    if system == 'roman':
+        return roman.toRoman(number)
+    else:
+        return number
+
 
 
 def classToXML(self,root=None):
@@ -294,7 +302,7 @@ def instGroupStr(self):
     
     breath = f'Breathing every {self.breath}\n' if self.breath != None else ''
     #need to get length units in here somehow
-    length ='' if self.length == None else f'{self.length[1]} Laps' if self.length[0] == 'lengthAsLaps' else f'{self.length[1]} meters' if self.length[0] == 'lengthAsDistance' else f'Swim for {self.length[1]}'
+    length ='' if self.length == None else f'{numeral(self.length[1],self.numeralSystem)} Laps' if self.length[0] == 'lengthAsLaps' else f'{numeral(self.length[1],self.numeralSystem)} meters' if self.length[0] == 'lengthAsDistance' else f'Swim for {numeral(self.length[1],self.numeralSystem)}'
     
     
     if self.stroke == None:
@@ -347,13 +355,17 @@ class Program:
         self.layoutWidth = layoutWidth
         self.swiMLVersion = swiMLVersion
         self.instructions = instructions
+
+        if numeralSystem != 'decimal':
+            for inst in self.instructions:
+                inst.updateNumeralSystem(self.numeralSystem)
         
     def __str__(self):
         '''returns string for program data 
         adds each string of all the instructions contained within the program 
         using each individual to string function 
         '''
-        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{self.poolLength} {self.lengthUnit} pool\n'
+        title_string = f'\n{self.title}\n{self.author[0][1]} {self.author[1][1]}\n{self.programDescription}\n{self.creationDate}\n{numeral(self.poolLength,self.numeralSystem)} {self.lengthUnit} pool\n'
         instructions_string = '\n'.join([str(child) for child in self.instructions])
         if self.hideIntro:
             return instructions_string+'\n'
@@ -390,6 +402,7 @@ class Instruction:
         self.equipment = equipment
         self.instructionDescription = instructionDescription
         self.excludeAlign = excludeAlign
+        self.numeralSystem = 'decimal' 
         self.parent = None
         self.inherited = []
 
@@ -404,7 +417,10 @@ class Instruction:
 
 
         return f'\n{line} {instructionDescription} {inherit}'
-        
+
+    def updateNumeralSystem(self,numeralSystem):
+        self.numeralSystem = numeralSystem
+
 class Repetition:
     '''Defines a repetition'''
 
@@ -426,6 +442,7 @@ class Repetition:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = None
+        self.numeralSystem = 'decimal' 
         self.parent = None
         self.instructions = instructions
         basicInsts = basicInstructions(instructions)
@@ -446,14 +463,14 @@ class Repetition:
         instructions = str(instructions_string).split('\n')
         for i,line in enumerate(instructions[1:]):
             if i+1 == (len(instructions)+1)//2 and self.repetitionCount != 1:
-                return_list += (f'{self.repetitionCount}x | {line}\n')
+                return_list += (f'{numeral(self.repetitionCount,self.numeralSystem)}x | {line}\n')
             else:
                 return_list += (f'   | {line}\n')
 
         instLine = instGroupStr(self)
 
         if self.simplify == True:
-            return f'\n{self.simpRep} {instLine}swim as\n'+return_list[:-1]+'\n'
+            return f'\n{numeral(self.simpRep,self.numeralSystem)} {instLine}swim as\n'+return_list[:-1]+'\n'
         else:
             return '\n'+return_list[:-1]
       
@@ -472,6 +489,12 @@ class Repetition:
 
         print(self)
     
+    def updateNumeralSystem(self,numeralSystem):
+        if numeralSystem != 'decimal':
+            self.numeralSystem = numeralSystem
+            for inst in self.instructions:
+                inst.updateNumeralSystem(numeralSystem)
+
 class Continue:
     '''Defines a continuation'''
 
@@ -488,10 +511,10 @@ class Continue:
         self.underwater = underwater
         self.equipment = equipment
         self.instructionDescription = None
+        self.numeralSystem = 'decimal' 
         self.instructions = instructions
         self.parent = None
         self.excludeAlign = excludeAlign
-
         basicInsts = basicInstructions(instructions)
         for inst in basicInsts:
             inst[0].parent = 'continue'
@@ -522,7 +545,7 @@ class Continue:
 
         if self.parent == 'continue':
             return '\n'+return_list[:-1]
-        return f'\n{self.continueLength[1]} {instLine}swim as\n'+return_list[:-1]
+        return f'\n{numeral(self.continueLength[1],self.numeralSystem)} {instLine}swim as\n'+return_list[:-1]
     
     def add(self,instruction=None,index=0):
         '''adds instruction to specified index or end of continue if unspecified'''
@@ -537,6 +560,12 @@ class Continue:
             print('invalid instruciton input')
 
         print(self)
+
+    def updateNumeralSystem(self,numeralSystem):
+        if numeralSystem != 'decimal':
+            self.numeralSystem = numeralSystem
+            for inst in self.instructions:
+                inst.updateNumeralSystem(numeralSystem)
 
 class Pyramid:
     '''Defines a pyramid'''
@@ -558,9 +587,9 @@ class Pyramid:
         self.breath = breath
         self.underwater = underwater
         self.equipment = equipment
+        self.numeralSystem = 'decimal' 
         self.parent = None
         self.instructions = instructions
-
 
     def __str__(self):
         '''returns string for repetition'''
@@ -579,7 +608,13 @@ class Pyramid:
             length -= self.increment
         rinstructions = '\n'.join([f'   | {line.strip()}' for line in outinstructions])
         return '\n  Pyramid\n'+str(rinstructions)+'\n'
-    
+        
+    def updateNumeralSystem(self,numeralSystem):
+        if numeralSystem != 'decimal':
+            self.numeralSystem = numeralSystem
+            for inst in self.instructions:
+                inst.updateNumeralSystem(numeralSystem)
+
 class SegmentName:
     '''defines a segment name'''
 
