@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(1, '/Users/callo/Documents/GitHub/swiML')
-import swiML
+import swiMLTest as swiML
 
 
 
@@ -58,9 +56,10 @@ program=swiML.Program(
     poolLength = 25,
     lengthUnit= 'meters',
     programAlign=False,
+    numeralSystem='roman',
     swiMLVersion=2.0,
     instructions=[continue0,continue1,continue2]
 )
 
 print(program)
-swiML.readXML('cont.xml')
+swiML.writeXML('pythonExamples/cont.xml',program)
