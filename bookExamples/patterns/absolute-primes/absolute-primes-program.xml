@@ -11,7 +11,7 @@
     <creationDate>2024-09-24</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>false</hideIntro>
+    <hideIntro>true</hideIntro>
 
     <instruction>
         <segmentName>Warm up</segmentName>
@@ -119,6 +119,10 @@
     </instruction>
     
     <instruction>
+        <segmentName>First set</segmentName>
+    </instruction>
+    
+    <instruction>
         <continue>
             <instruction>
                 <length>
@@ -218,6 +222,10 @@
                 <zone>easy</zone>
             </startIntensity>
         </intensity>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Second set</segmentName>
     </instruction>
     
     <instruction>
