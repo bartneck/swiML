@@ -1,0 +1,258 @@
+Documentation for steps in swiML.xsl 
+
+transforming xml documents defined by swiML.xsd into html/pdf documents
+
+1. Length Variables and Functions
+A set of variables and functions that pre-determine the number of characters in each element
+
+    1.1 Instruction Length
+    Set of variables and functions for determining the character length of every basic instruction contained within the program
+
+        1.1.1 instLengths
+        Variable containing information about every basic instruction present in the program
+
+        Checks instructions exist by looking for lengthAsDistance/Laps/Time tags where excludeAlign is not true as instructions must reference one
+        If none exist returns a list with a single 0 entry
+
+        Then goes and individually checks for each type of length tag, on finding one it adds an entry to output array 
+        This entry contains:
+        String length of the length passed through myData:number , e.g. 2 for 50 in decimal or 4 for 1:20
+        Section string of the instruction defined by myData:section()
+        Parent string of the instruction defined by myData:parents()
+        Location string of the instruction defined by myData:location()
+
+        Given the later 3 parts of the entry it can be determined exactly where in the program a given instruction is 
+        As well as what each layer of its parents are, which helps when specific cases need child elements to behave differntly
+
+        1.1.2 instNodes
+        Function used by maxInstLengths to sort through the entries in instLengths and group them
+        Input is the current set of nodes, usually the array instLengths
+
+        For each node which has an instruction length within 10 characters for the given node the function returns and array item containing:
+        The location specified in its entry in instLengths and the max length of its group 
+
+        This function then recursively calls itself until all instructions have been grouped into groups with 10 character spacings 
+
+
+        1.1.3 maxInstLengths
+        Variable containing the location of every instruction present in the program and what its corresponding length should be set to
+
+        Sorts each instruction by what section of the program its in and then by what parents they have
+        So that only instructions within the same section and that have the same parents will be aligned
+
+        Then calls instNodes with the instruction list to populate the array with entries for each instruction
+
+    1.2 Continue Length
+    Set of variables and functions for determining the character length of every continue 
+
+        1.2.1 contLengths
+        Variable containing information about every continue present in the program
+        
+        Checks if there are continues that are aligning in the program, then for each continue outputs an item in the array
+        If no continues present it will return a list with a single 0 entry
+
+        Firstly contInstLength is a local variable given by the sumItems function for instruction elements that are direct children of the continue
+        Each item contains 4 elements:
+        String length of the continue
+        -> defined as string length of the displayed number + 3 for as and then the length of other instruction elements given by contInstLength + 1 for each of the extra elements
+        Section string of the continue defined by myData:section()
+        Parent string of the continue defined by myData:parents()
+        Location string of the continue defined by myData:location()
+
+        1.2.2 contNodes
+        Function used by maxContLengths to sort through the entries in contLengths and group them
+        Input is the current set of nodes, usually the array contLengths
+
+        For each node which has a continue string length within 10 characters for the given node the function returns and array item containing:
+        The location specified in its entry in contLengths and the max length of its group 
+
+        This function then recursively calls itself until all continues have been grouped into groups with 10 character spacings 
+
+        1.2.3 maxContLengths
+        Variable containing the location of every continue present in the program and what its corresponding length should be set to
+
+        Sorts each continue by what section of the program its in and then by what parents they have
+        So that only continues within the same section and that have the same parents will be aligned
+
+        Then calls contNodes with the continue list to populate the array with entries for each continue
+
+
+
+    1.3 Simplifying Repetition Length
+    Set of variables and functions for determining the character length of every simplifying repetition
+
+        1.3.1 simpLengths
+        Variable containing information about every simplifying repetition present in the program
+        
+        Checks if there are repetitions that are simplify and are aligning in the program, then for each simplify outputs an item in the array
+        If no simplifying repetitions present it will return a list with a single 0 entry
+
+        Firstly simpInstLength is a local variable given by the sumItems function for instruction elements that are direct children of the simplifying repetition
+        Another variable isLaps is set to check whether the repetition is simplifying laps, for extra space to fit the word laps
+        Each item contains 4 elements:
+        String length of the simplify
+        -> defined as string length of the repetition count and the instruction being repeated + 6 for as and the repetition symbol 
+        -> + 5 if isLaps is true and then the length of other instruction elements given by simpInstLength + 1 for each of the extra elements
+        Section string of the simplify defined by myData:section()
+        Parent string of the simplify defined by myData:parents()
+        Location string of the simplify defined by myData:location()
+
+        1.3.2 simpNodes
+        Function used by maxSimpLengths to sort through the entries in simpLengths and group them
+        Input is the current set of nodes, usually the array simpLengths
+
+        For each node which has a string length within 10 characters for the given node the function returns and array item containing:
+        The location specified in its entry in simpLengths and the max length of its group 
+
+        This function then recursively calls itself until all simplifies have been grouped into groups with 10 character spacings 
+
+        1.3.3 maxSimpLengths
+        Variable containing the location of every simplify repetition present in the program and what its corresponding length should be set to
+
+        Sorts each simplify by what section of the program its in and then by what parents they have
+        So that only simplifies within the same section and that have the same parents will be aligned
+
+        Then calls simpNodes with the simplify list to populate the array with entries for each simplify
+
+
+    1.4 Repetition Length
+    Set of variables and functions for determining the character length of every Repetition
+
+        1.4.1 repLengths
+        Variable containing information about every repetition present in the program
+        
+        Checks if there are repetitions that are aligning in the program, then for each repetition outputs an item in the array
+        If no repetitions present it will return a list with a single 0 entry
+
+        Firstly repInstLength is a local variable given by the sumItems function for instruction elements that are direct children of the repetition
+        Each item contains 4 elements:
+        String length of the repetition
+        -> defined as string length of the repetition count + 2 for repetition symbol and then the length of other instruction elements given by repInstLength + 1 for each of the extra elements
+        Section string of the repetition defined by myData:section()
+        Parent string of the repetition defined by myData:parents()
+        Location string of the repetition defined by myData:location()
+
+        1.4.2 repNodes
+        Function used by maxRepLengths to sort through the entries in repLengths and group them
+        Input is the current set of nodes, usually the array repLengths
+
+        For each node which has a repetition string length within 10 characters for the given node the function returns and array item containing:
+        The location specified in its entry in repLengths and the max length of its group 
+
+        This function then recursively calls itself until all repetitions have been grouped into groups with 10 character spacings 
+
+        1.4.3 maxRepLengths
+        Variable containing the location of every repetition present in the program and what its corresponding length should be set to
+
+        Sorts each repetition by what section of the program its in and then by what parents they have
+        So that only repetitions within the same section and that have the same parents will be aligned
+
+        Then calls repNodes with the repetition list to populate the array with entries for each repetition
+
+    1.5 Sum of Instruction Elements 
+    Set of functions that given a non-basic instruction will returnt the total string length of all instruction elements that are direct children of the instruction
+
+        1.5.1 sumExtras
+        Summing function that recursively adds together the string lengths of any nodes that its given 
+
+        Works by setting product to the string length of the translation of the given element
+        Then recursively calling sumExtras with one less element and adding it to the running sum 
+        When no elements left it returns the running total, this should be the total string length they add to the instruction
+
+        1.5.2 sumItems
+        Function that contains predefined lengths for the majority of the instruction elements
+
+        Works by setting the product to the determined string length that is defined by what type of element it is 
+        Then recursively calling sumItems with one less element and adding it to the running sum 
+        When no elements left it returns the running total, this should be the total string length they add to the instruction
+
+        If function finds an element that has no predefined string length it calls sumExtras to get the best estimate of how many characters the element will take
+
+2. Header
+    2.1 Meta
+    Meta data and other relavent links
+    e.g images, colors, fonts
+    Link to swiML.css
+    
+    2.2 Title
+    defined by title element in xml
+    
+
+3. Body
+Displayed html
+
+4. Intro
+Can be hidden through use of hideIntro tag
+
+Contains:
+
+Title of program (title)
+-> string length with max set at 60 chars
+
+Author(s) of program (author)
+-> defined by author:firstname,lastname,email
+-> email defined as [^@]+@[^\.]+\..+
+
+Any extra description provided (programDescription)
+-> max length set to 400 chars
+
+The date of the program (creationDate)
+
+The Length of the pool the program should be swum in (poolLength)
+-> Passes length through myData:number
+
+The unit of measurement the pool is measured in (lengthUnit)
+-> defined by lengthUnits: meters,yards,kilometers,miles
+
+The total length of all Elements in the program 
+-> determined by passing program element to myData:showLength and then through myData:number
+
+other xml elements present before instructions but are not displayed in xsl are:
+programAlign
+numeralSystem
+hideIntro
+layoutWidth
+
+
+5. Program
+All elements use instruction tag 
+
+    5.1 Instructions
+
+    5.2 Repetitions
+    A repetition tag can be either a normal repetition or a simplifying repetition
+    Determined by simplify tag which is a child of a repetition tag 
+    This entry describes a normal repetition when the simplify tag is absent or is false
+
+    XSL will not display count and symbol on the specific event:
+    It's parent is a continue and it only has one child instruction 
+
+        5.2.1 Repetition Count
+        Attributes:
+
+
+
+        5.2.2 Repetition Symbol
+
+        5.2.3 Repetition Content
+
+    5.3 Simplifying Repetitions
+    This entry describes a simplifying repetition when the simplify tag is true
+
+    5.4 Continues
+
+    5.5 Pyramids
+    There is currently no functionality for the conversion of pyramid elements from XML to HTML
+
+    5.6 Segment Names
+    Displays given text inside of segmentName div 
+    If a segment name is the first instruction given it uses firstSegmentName div 
+    This currently has no difference to segmentName
+
+
+
+
+6. Footer  
+Contains Svg of swiML logo
+
+7. myData Functions

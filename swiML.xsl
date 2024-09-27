@@ -24,7 +24,7 @@
                 <!-- for each type of distance tag this is repeated and added to resultant array -->
 
                 <!-- length as distance tags-->
-                <xsl:if test="//sw:length/sw:lengthAsDistance">
+                <xsl:if test="//sw:length/sw:lengthAsDistance[not(../../sw:excludeAlign[text() = 'true'])]">
                     <xsl:for-each select="//sw:length/sw:lengthAsDistance[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(myData:number(.))"/></Length>
@@ -35,7 +35,7 @@
                     </xsl:for-each>
                 </xsl:if>
                 <!-- length as laps tags -->
-                <xsl:if test="//sw:length/sw:lengthAsLaps">
+                <xsl:if test="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(myData:number(.))"/></Length>
@@ -47,7 +47,7 @@
                 </xsl:if>
 
                 <!-- length as time tags -->
-                <xsl:if test="//sw:length/sw:lengthAsTime">
+                <xsl:if test="//sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
                     <xsl:for-each select="//sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(concat(myData:number(minutes-from-duration(.)), ':', myData:number(format-number(seconds-from-duration(.), '00'))))" /></Length>
@@ -846,7 +846,7 @@
 
                                 <!-- check for excluding alignment-->
                                 <xsl:choose>
-                                    <xsl:when test="./sw:excludeAlignRepetition[text() = 'true']or ./ancestor-or-self::sw:program//sw:programAlign[text() = 'false']">
+                                    <xsl:when test="./sw:excludeAlignRepetition[text() = 'true'] or ./ancestor-or-self::sw:program//sw:programAlign[text() = 'false']">
                                         <xsl:attribute name="style">
                                             <xsl:text>text-align:center;</xsl:text>
                                         </xsl:attribute>
