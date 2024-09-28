@@ -942,7 +942,7 @@
                         <xsl:text>extraBoldTypeFaceMarginLeft</xsl:text>
                     </xsl:attribute>
                     <xsl:choose>
-                        <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']">1</xsl:when>
+                        <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']"><xsl:value-of select="myData:number(1)"/></xsl:when>
                         <xsl:otherwise><xsl:value-of select="myData:number(myData:contLength(.))"/></xsl:otherwise>
                     </xsl:choose>
                     
@@ -1057,6 +1057,7 @@
             <xsl:text>&#160;&#60;-&#62;</xsl:text>
         </xsl:if>            
     </xsl:template>
+
     <xsl:template match="sw:lengthAsLaps">
         <xsl:variable name="location">
             <xsl:value-of select="myData:location(.)"/>
@@ -1180,6 +1181,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
     <xsl:template name="staticIntensity">
         <!-- static intensity profile -->
         <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageEffort">
@@ -1200,6 +1202,7 @@
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
+    
     <xsl:template name="dynamicIntensity">
         <xsl:if test="./sw:intensity/sw:startIntensity/sw:percentageEffort">
             <xsl:value-of
