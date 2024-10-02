@@ -17,6 +17,7 @@
     <instruction>
         <repetition>
             <simplify>true</simplify>
+            <repetitionDescription>nonn</repetitionDescription>
             <instruction>
                 <length>
                     <lengthAsLaps>4</lengthAsLaps>

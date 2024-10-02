@@ -143,6 +143,9 @@
                             <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']">
                                 <Length><xsl:value-of select="4+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/></Length>
                             </xsl:when>
+                            <xsl:when test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps">
+                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+7+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
                             </xsl:otherwise>
@@ -543,7 +546,9 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:when>
-
+                        <xsl:when test="name($nodeSet[1]) = 'repetitionDescription' or name($nodeSet[1]) = 'continueDescription' or name($nodeSet[1]) = 'instructionDescription' or name($nodeSet[1]) = 'pyramidDescription'">
+                            <xsl:value-of select="string-length($nodeSet[1]//text())"/>
+                        </xsl:when>
                         <xsl:otherwise>
                             <xsl:choose>
 
@@ -810,9 +815,11 @@
                                 <xsl:text>extraBoldTypeFaceCenter</xsl:text>
                             </xsl:attribute>
                             <xsl:value-of select="myData:firstInst(.)"/>
-                            <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:text>&#160;Laps</xsl:text></xsl:if>
                         </span>
-                       
+                        <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:text>&#160;Laps</xsl:text></xsl:if>
+                        <xsl:if test=".//sw:repetitionDescription">
+                            <xsl:value-of select="concat('&#160;',sw:repetitionDescription)"/>
+                        </xsl:if>
                         <xsl:call-template name="displayInst"/>
                         <xsl:text>&#160;as</xsl:text>
                     </div>
@@ -864,31 +871,30 @@
 
                                 <xsl:attribute name="style">margin-left:auto</xsl:attribute>
 
-                                <!-- same as if statement above, unsure if its necessary-->
+                                
                                 <xsl:choose>
                                     <xsl:when test="(count(.//sw:instruction) > 1) or not(../../sw:simplify[text()='true'])  ">
                                         
-                                        <xsl:value-of select="concat(myData:number(sw:repetitionCount),'&#160;','&#215;',sw:repetitionDescription)"/>
+                                        <xsl:if test="count(./sw:instruction) = 1">
+                                            <xsl:attribute name="class">
+                                                <xsl:text>extraBoldTypeFaceCenter</xsl:text>
+                                            </xsl:attribute>
+                                        </xsl:if>
+                                        <xsl:value-of select="concat(myData:number(sw:repetitionCount),'&#160;','&#215;')"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <!-- add extra spacing if theres a repetition description , extra note could possibly simplify all instruction descriptions to a single template and element-->
-                                        <xsl:choose>
-                                            <xsl:when test=".//repetitionDescription">
-                                                
-                                                <xsl:value-of select="concat(myData:number(sw:repetitionCount),'&#160;',sw:repetitionDescription)"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:if test="count(./sw:instruction) = 1">
-                                                    <xsl:attribute name="class">
-                                                        <xsl:text>extraBoldTypeFaceCenter</xsl:text>
-                                                    </xsl:attribute>
-                                                </xsl:if>
-                                                <xsl:value-of select="concat(myData:number(sw:repetitionCount),sw:repetitionDescription)"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
+                                        <xsl:if test="count(./sw:instruction) = 1">
+                                            <xsl:attribute name="class">
+                                                <xsl:text>extraBoldTypeFaceCenter</xsl:text>
+                                            </xsl:attribute>
+                                        </xsl:if>
+                                        <xsl:value-of select="myData:number(sw:repetitionCount)"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </span>
+                            <xsl:if test=".//sw:repetitionDescription">
+                                <xsl:value-of select="concat('&#160;',sw:repetitionDescription)"/>
+                            </xsl:if>
                             <xsl:call-template name="displayInst"/>
                         </span>
 
@@ -943,11 +949,17 @@
                     </xsl:attribute>
                     <xsl:choose>
                         <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']"><xsl:value-of select="myData:number(1)"/></xsl:when>
-                        <xsl:otherwise><xsl:value-of select="myData:number(myData:contLength(.))"/></xsl:otherwise>
+                        <xsl:otherwise>
+                            <xsl:choose>
+                                <xsl:when test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps"><xsl:value-of select="myData:number(myData:contLength(.) div ./ancestor-or-self::sw:program/sw:poolLength )"/></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="myData:number(myData:contLength(.))"/></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:otherwise>
                     </xsl:choose>
                     
                     
                 </span>
+                <xsl:if test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps"><xsl:text>&#160;Laps</xsl:text></xsl:if>
                 <xsl:call-template name="displayInst"/>
                 <xsl:text>&#160;as</xsl:text>
             </div>
@@ -1052,10 +1064,7 @@
                 </xsl:otherwise>
             </xsl:choose>            
             <xsl:value-of select="myData:number(../ancestor-or-self::*[sw:lengthAsDistance])"/>
-        </span>
-        <xsl:if test="//sw:lengthUnit = 'laps'">
-            <xsl:text>&#160;&#60;-&#62;</xsl:text>
-        </xsl:if>            
+        </span>         
     </xsl:template>
 
     <xsl:template match="sw:lengthAsLaps">
@@ -1576,40 +1585,21 @@
         <xsl:sequence select="
             sum(
                 for $l in $root/sw:instruction[not(child::sw:segmentName)] return(
-                    if($l/*[1]//sw:lengthAsDistance) then(
-                        if(name($l/*[1]) = 'repetition')then(
-                            myData:repLength($l/*[1])
-                        )else if(name($l/*[1]) = 'continue')then(
-                            myData:contLength($l/*[1])
-                        )else if(name($l/*[1]) = 'pyramid')then(
-                            1
-                        )else(
-                            number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
-                        )
+                    if(name($l/*[1]) = 'repetition')then(
+                        myData:repLength($l/*[1])
+                    )else if(name($l/*[1]) = 'continue')then(
+                        myData:contLength($l/*[1])
+                    )else if(name($l/*[1]) = 'pyramid')then(
+                        1
+                    )else if($l/*[1]//sw:lengthAsDistance) then(
+                        number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
+                    )else if($l/*[1]//sw:lengthAsLaps) then(
+                        number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program/sw:poolLength
                     )else(
                     0
                     )
                 )
             )
-            +
-            sum(
-                for $l in $root/sw:instruction[not(child::sw:segmentName)] return(
-                    if($l/*[1]//sw:lengthAsLaps) then(
-                        if(name($l/*[1]) = 'repetition')then(
-                            myData:repLength($l/*[1])
-                        )else if(name($l/*[1]) = 'continue')then(
-                            myData:contLength($l/*[1]) * $root/ancestor-or-self::sw:program/sw:poolLength
-                        )else if(name($l/*[1]) = 'pyramid')then(
-                            1
-                        )else(
-                            number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program/sw:poolLength
-                        )
-                    )else(
-                        0
-                    )
-                )
-                
-            ) 
             "/>
     </xsl:function>
  
