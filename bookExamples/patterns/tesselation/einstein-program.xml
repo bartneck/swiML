@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML/version/latest https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <title>Einstein</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Swimming Spectre tile consisting of 14 times 200.</programDescription>
+    <creationDate>2024-10-03</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>7</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>individualMedleyOrder</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT1M0S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>
+            </instruction>
+            
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>reverseIndividualMedley</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT1M45S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
