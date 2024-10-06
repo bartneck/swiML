@@ -1373,7 +1373,7 @@
         <term index="technic">Technic</term>
         <term index="dogPaddle">Dog Paddle</term>
         <term index="tarzan">Tarzan</term>
-        <term index="tarzan">Fist</term>
+        <term index="fist">Fist</term>
         <term index="3Kick1Pull">3K1P</term>
         <term index="3Kick1Pull">2K1P</term>
         <term index="3Kick1Pull">3P1K</term>
