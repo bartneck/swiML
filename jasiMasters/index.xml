@@ -473,9 +473,13 @@
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
-    
     <session>
         <date>2024-10-06</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2024-10-08</date>
         <id>1</id>
         <pool>Jellie Park</pool>
     </session>
