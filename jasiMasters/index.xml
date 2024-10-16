@@ -486,6 +486,12 @@
     <session>
         <date>2024-10-13</date>
         <id>1</id>
+        <pool>Graham Condon</pool>
+    </session>
+    
+    <session>
+        <date>2024-10-15</date>
+        <id>1</id>
         <pool>Jellie Park</pool>
     </session>
 </swimTraining>
