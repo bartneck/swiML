@@ -21,7 +21,6 @@ def nested_loop():
                 length=('lengthAsDistance',(j+1)*25),
                 stroke=('standardStroke','backstroke'),
                 rest=('sinceStart',"PT0M"+str((j+1)*35)+"S")
-            ))
     return instruction_list
 
 #writing the swiML program to disk

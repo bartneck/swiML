@@ -63,7 +63,6 @@ def write_program():
         creationDate='2024-08-20',
         lengthUnit='meters',
         hideIntro=False,
-        numeralSystem='roman',
         swiMLVersion='latest',
         instructions=myInstructions
     )
