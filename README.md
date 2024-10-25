@@ -22,6 +22,56 @@ swiML consists of an XML based swim training program that can be validated again
 ![System Architecture](https://github.com/bartneck/swiML/blob/main/documentation/swiML-Architecture.png)
 
 # Usage
+Here is an example of a very simple training program:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <instruction>
+        <length>
+            <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+</program>
+```
+
+Or if you want to model a repetition you can write:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program in the sun. The target duration was 60 minutes.</programDescription>
+    <creationDate>2023-02-07</creationDate>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
+```
+
+## Documentation
+A [HTML based documenation](https://bartneck.github.io/swiML/documentation/swiML.html) is available as well as a [PDF version](documentation/swiML.pdf). My [swiML YouTube Playlist](https://www.youtube.com/playlist?list=PLNoiyEjV43RzxH_o4E_7v0Q9yWhG7taKX) contains videos that showcase the use.
 
 ## Tools
 We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). 
