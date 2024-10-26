@@ -74,10 +74,15 @@ Or if you want to model a repetition you can write:
 A [HTML based documenation](https://bartneck.github.io/swiML/documentation/swiML.html) is available as well as a [PDF version](documentation/swiML.pdf). My [swiML YouTube Playlist](https://www.youtube.com/playlist?list=PLNoiyEjV43RzxH_o4E_7v0Q9yWhG7taKX) contains videos that showcase the use.
 
 ## Tools
-We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). 
+We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). JetBrain's [Rider](https://www.jetbrains.com/rider/) has the complete XML/XSLT workflow build in and is free for non-commercial use.
 
 ## Files
 You can use the swiML Schema (swiML.xsd) to validate your swiML file. You can then use the XSLT (swiML.xsl) to tranformation the swiML XML to HTML.
+
+To reference the swiML Schema you can point directly to:
+```
+https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd
+```
 
 ## Versions
 The version folder contains stable versions of the files while the root folder contains our work in progress. The latest stable version is available in:
