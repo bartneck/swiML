@@ -19,7 +19,7 @@ I am currently working on a book that will be published by [CRC Press](https://w
 # Architecture
 swiML consists of an XML based swim training program that can be validated against the swiML Schema (XSD File). A swiML XML file can be generated directly in XML or using the Python library. If the file is valid, then it can be transformed using XSLT to HTML (XSL File).
 
-![System Architecture](https://github.com/bartneck/swiML/blob/main/documentation/swiML-Architecture.png)
+![System Architecture](https://bartneck.github.io/swiML/documentation/swiML-Architecture.png)
 
 # Usage
 Here is an example of a very simple training program:
