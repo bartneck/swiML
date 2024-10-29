@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Vikings</title>
+    <author>
+        <firstName>Callum</firstName>
+        <lastName>Lockhart</lastName>
+        <email>clo78@uclive.ac.nz</email>
+    </author>
+    <programDescription>Tuesday Afternoon Training</programDescription>
+    <creationDate>2024-10-29</creationDate>
+    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>8</repetitionCount>
+        </repetition>
+        <instruction>
+            <length>
+                <lengthAsDistance>50</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>any</standardStroke>
+            </stroke>
+            <rest>
+                <sinceStart>PT1M00S</sinceStart>
+            </rest>
+        </instruction>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>16</repetitionCount>
+        </repetition>
+        <instruction>
+            <length>
+                <lengthAsDistance>25</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>any</standardStroke>
+            </stroke>
+            <rest>
+                <sinceStart>PT0M30S</sinceStart>
+            </rest>
+        </instruction>
+    </instruction>
+
+    <instruction>
+        <segmentName>Main Set</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+        </repetition>
+        <instruction>
+            <repetition>
+                <repetitionCount>2</repetitionCount>
+            </repetition>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT1M40S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>easy</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </instruction>
+        <instruction>
+            <repetition>
+                <repetitionCount>4</repetitionCount>
+            </repetition>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedleyOrder</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT0M45S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>racePace</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </instruction>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsDistance>200</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+    </instruction>
+
+
+    <instruction>
+        <repetition>
+            <repetitionCount>8</repetitionCount>
+        </repetition>
+        <instruction>
+            <length>
+                <lengthAsDistance>50</lengthAsDistance>
+            </length>
+            <stroke>
+                <kick>
+                    <standardKick>nr1</standardKick>
+                </kick>
+            </stroke>
+            <rest>
+                <sinceStart>PT1M00S</sinceStart>
+            </rest>
+        </instruction>
+    </instruction>
+
+    <instruction>
+        <segmentName>Warm Down</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>10</repetitionCount>
+        </repetition>
+        <instruction>
+            <length>
+                <lengthAsDistance>100</lengthAsDistance>
+            </length>
+            <stroke>
+                <standardStroke>any</standardStroke>
+            </stroke>
+            <rest>
+                <sinceStart>PT1M30S</sinceStart>
+            </rest>
+            <equipment>pads</equipment>
+            <equipment>pullBuoy</equipment>
+        </instruction>
+    </instruction>
+
+</program>
