@@ -31,6 +31,7 @@
                 <zone>easy</zone>
             </startIntensity>
         </intensity>
+        <equipment>pullBuoy</equipment>
     </instruction>
     
     <instruction>
