@@ -41,7 +41,6 @@
     </instruction>
     <instruction>
         <continue>
-            <excludeAlignContinue>true</excludeAlignContinue>
             <instruction>
                 <length>
                     <lengthAsDistance>50</lengthAsDistance>
@@ -59,10 +58,10 @@
                 </stroke>
             </instruction>
         </continue>
+        <excludeAlign>true</excludeAlign>
     </instruction>
     <instruction>
         <continue>
-            <excludeAlignContinue>true</excludeAlignContinue>
             <breath>5</breath>
             <instruction>
                 <length>
@@ -77,10 +76,11 @@
                     <lengthAsDistance>50</lengthAsDistance>
                 </length>
                 <stroke>
-                    <standardStroke>backstroke</standardStroke>
+                    <standardStroke>breaststroke</standardStroke>
                 </stroke>
             </instruction>
         </continue>
+        <excludeAlign>true</excludeAlign>
     </instruction>
 
     <instruction>
@@ -89,30 +89,30 @@
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
             <instruction>
                 <length>
                     <lengthAsDistance>50</lengthAsDistance>
                 </length>
                 <stroke>
-                    <standardStroke>individualMedleyOrder</standardStroke>
+                    <standardStroke>freestyle</standardStroke>
                 </stroke>
             </instruction>
         </repetition>
+        <excludeAlign>true</excludeAlign>
     </instruction>
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
-            <excludeAlignRepetition>true</excludeAlignRepetition>
             <breath>7</breath>
             <instruction>
                 <length>
                     <lengthAsDistance>50</lengthAsDistance>
                 </length>
                 <stroke>
-                    <standardStroke>individualMedleyOrder</standardStroke>
+                    <standardStroke>freestyle</standardStroke>
                 </stroke>
             </instruction>
         </repetition>
+        <excludeAlign>true</excludeAlign>
     </instruction>
 </program>
