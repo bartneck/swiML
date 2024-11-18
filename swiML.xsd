@@ -923,6 +923,8 @@
             <xs:enumeration value="3Kick1Pull"/>
             <xs:enumeration value="2Pull1Kick"/>
             <xs:enumeration value="3Pull1Kick"/>
+            <xs:enumeration value="3Right3Left"/>
+            <xs:enumeration value="2Right2Left"/>
             <xs:enumeration value="other"/>
         </xs:restriction>
     </xs:simpleType>

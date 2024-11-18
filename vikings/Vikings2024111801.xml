@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    <title>Vikings</title>
+    <author>
+        <firstName>Callum</firstName>
+        <lastName>Lockhart</lastName>
+        <email>clo78@uclive.ac.nz</email>
+    </author>
+    <programDescription>Monday Morning Training</programDescription>
+    <creationDate>2024-11-18</creationDate>
+    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>5</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>10</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kick>
+                        <standardKick>any</standardKick>
+                    </kick>
+                </stroke>
+                <equipment>fins</equipment>
+            </instruction>
+        </repetition>        
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillStroke>any</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+        </repetition>        
+    </instruction>
+
+    <instruction>
+        <segmentName>Main Set</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                </repetition>
+                <instruction>
+                    <length>
+                        <lengthAsDistance>100</lengthAsDistance>
+                    </length>
+                    <stroke>
+                        <standardStroke>any</standardStroke>
+                    </stroke>
+                </instruction>
+            </instruction>
+            <instruction>
+                <simplify>true</simplify>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <rest>
+                    <sinceStart>PT1M0S</sinceStart>
+                </rest>
+                <instruction>
+                    <repetition>
+                        <repetitionCount>4</repetitionCount>
+                        <instruction>
+                            <stroke>
+                                <drill>
+                                    <drillStroke>nr1</drillStroke>
+                                </drill>
+                            </stroke>
+                        </instruction>
+                    </repetition>                    
+                </instruction>
+                <instruction>
+                    <repetition>
+                        <repetitionCount>4</repetitionCount>
+                        <instruction>
+                            <stroke>
+                                <drill>
+                                    <drillStroke>nr2</drillStroke>
+                                </drill>
+                            </stroke>
+                        </instruction>
+                    </repetition>                    
+                </instruction>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <simplify>true</simplify>
+                <length>
+                    <lengthAsDistance>25</lengthAsDistance>
+                </length>
+                <instruction>
+                    <repetition>
+                        <repetitionCount>6</repetitionCount>
+                        <instruction>
+                            <stroke>
+                                <standardStroke>fly</standardStroke>
+                            </stroke>
+                            <rest>
+                                <sinceStart>PT0M25S</sinceStart>
+                            </rest>
+                        </instruction>
+                    </repetition>                    
+                </instruction>
+                <instruction>
+                    <repetition>
+                        <repetitionCount>6</repetitionCount>
+                        <instruction>
+                            <stroke>
+                                <standardStroke>nr1</standardStroke>
+                            </stroke>
+                            <rest>
+                                <sinceStart>PT0M25S</sinceStart>
+                            </rest>
+                        </instruction>
+                    </repetition>                    
+                </instruction>
+                <instruction>
+                    <repetition>
+                        <repetitionCount>6</repetitionCount>
+                        <instruction>
+                            <stroke>
+                                <standardStroke>freestyle</standardStroke>
+                            </stroke>
+                            <rest>
+                                <sinceStart>PT0M20S</sinceStart>
+                            </rest>
+                        </instruction>
+                    </repetition>                    
+                </instruction>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <segmentName>Warm Down</segmentName>
+    </instruction>
+
+    <instruction>
+        <length>
+            <lengthAsDistance>400</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>any</standardStroke>
+        </stroke>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+</program>

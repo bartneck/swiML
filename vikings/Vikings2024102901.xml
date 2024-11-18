@@ -36,50 +36,50 @@
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
-        </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>100</lengthAsDistance>
-            </length>
-            <stroke>
-                <drill>
-                    <drillStroke>any</drillStroke>
-                </drill>
-            </stroke>
-        </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillStroke>any</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+        </repetition>        
     </instruction>
 
     <instruction>
         <repetition>
             <repetitionCount>6</repetitionCount>
-        </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>50</lengthAsDistance>
-            </length>
-            <stroke>
-                <kick>
-                    <standardKick>any</standardKick>
-                </kick>
-            </stroke>
-        </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kick>
+                        <standardKick>any</standardKick>
+                    </kick>
+                </stroke>
+            </instruction>
+        </repetition>        
     </instruction>
 
     <instruction>
         <repetition>
             <repetitionCount>16</repetitionCount>
-        </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>50</lengthAsDistance>
-            </length>
-            <stroke>
-                <standardStroke>any</standardStroke>
-            </stroke>
-            <rest>
-                <sinceStart>PT0M50S</sinceStart>
-            </rest>
-        </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT0M50S</sinceStart>
+                </rest>
+            </instruction>
+        </repetition>        
     </instruction>
     
     <instruction>
@@ -104,23 +104,24 @@
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>200</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT2M45S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>threshold</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
         </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>200</lengthAsDistance>
-            </length>
-            <stroke>
-                <standardStroke>any</standardStroke>
-            </stroke>
-            <rest>
-                <sinceStart>PT2M45S</sinceStart>
-            </rest>
-            <intensity>
-                <startIntensity>
-                    <zone>threshold</zone>
-                </startIntensity>
-            </intensity>
-        </instruction>
+       
     </instruction>
 
     <instruction>
@@ -141,23 +142,23 @@
     <instruction>
         <repetition>
             <repetitionCount>6</repetitionCount>
-        </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>100</lengthAsDistance>
-            </length>
-            <stroke>
-                <standardStroke>any</standardStroke>
-            </stroke>
-            <rest>
-                <sinceStart>PT1M35S</sinceStart>
-            </rest>
-            <intensity>
-                <startIntensity>
-                    <zone>threshold</zone>
-                </startIntensity>
-            </intensity>
-        </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT1M35S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>threshold</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>        
     </instruction>
 
     <instruction>
@@ -178,30 +179,29 @@
     <instruction>
         <repetition>
             <repetitionCount>12</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>any</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT0M45S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>threshold</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
         </repetition>
-        <instruction>
-            <length>
-                <lengthAsDistance>50</lengthAsDistance>
-            </length>
-            <stroke>
-                <standardStroke>any</standardStroke>
-            </stroke>
-            <rest>
-                <sinceStart>PT0M45S</sinceStart>
-            </rest>
-            <intensity>
-                <startIntensity>
-                    <zone>threshold</zone>
-                </startIntensity>
-            </intensity>
-        </instruction>
     </instruction>
 
     <instruction>
         <segmentName>Warm Down</segmentName>
     </instruction>
 
-    <instruction>
 
     <instruction>
         <length>
