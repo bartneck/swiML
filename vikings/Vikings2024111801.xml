@@ -41,9 +41,9 @@
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>any</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
                 <equipment>fins</equipment>
             </instruction>
@@ -76,48 +76,50 @@
             <instruction>
                 <repetition>
                     <repetitionCount>4</repetitionCount>
-                </repetition>
-                <instruction>
-                    <length>
-                        <lengthAsDistance>100</lengthAsDistance>
-                    </length>
-                    <stroke>
-                        <standardStroke>any</standardStroke>
-                    </stroke>
-                </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>any</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>                
             </instruction>
             <instruction>
-                <simplify>true</simplify>
-                <length>
-                    <lengthAsDistance>50</lengthAsDistance>
-                </length>
-                <rest>
-                    <sinceStart>PT1M0S</sinceStart>
-                </rest>
-                <instruction>
-                    <repetition>
-                        <repetitionCount>4</repetitionCount>
-                        <instruction>
-                            <stroke>
-                                <drill>
-                                    <drillStroke>nr1</drillStroke>
-                                </drill>
-                            </stroke>
-                        </instruction>
-                    </repetition>                    
-                </instruction>
-                <instruction>
-                    <repetition>
-                        <repetitionCount>4</repetitionCount>
-                        <instruction>
-                            <stroke>
-                                <drill>
-                                    <drillStroke>nr2</drillStroke>
-                                </drill>
-                            </stroke>
-                        </instruction>
-                    </repetition>                    
-                </instruction>
+                <repetition>
+                    <simplify>true</simplify>
+                    <length>
+                        <lengthAsDistance>50</lengthAsDistance>
+                    </length>
+                    <rest>
+                        <sinceStart>PT1M0S</sinceStart>
+                    </rest>
+                    <instruction>
+                        <repetition>
+                            <repetitionCount>4</repetitionCount>
+                            <instruction>
+                                <stroke>
+                                    <drill>
+                                        <drillStroke>nr1</drillStroke>
+                                    </drill>
+                                </stroke>
+                            </instruction>
+                        </repetition>                    
+                    </instruction>
+                    <instruction>
+                        <repetition>
+                            <repetitionCount>4</repetitionCount>
+                            <instruction>
+                                <stroke>
+                                    <drill>
+                                        <drillStroke>nr2</drillStroke>
+                                    </drill>
+                                </stroke>
+                            </instruction>
+                        </repetition>                    
+                    </instruction>
+                </repetition>
             </instruction>
         </repetition>
     </instruction>
@@ -125,50 +127,48 @@
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
+            <simplify>true</simplify>
+            <length>
+                <lengthAsDistance>25</lengthAsDistance>
+            </length>
             <instruction>
-                <simplify>true</simplify>
-                <length>
-                    <lengthAsDistance>25</lengthAsDistance>
-                </length>
-                <instruction>
-                    <repetition>
-                        <repetitionCount>6</repetitionCount>
-                        <instruction>
-                            <stroke>
-                                <standardStroke>fly</standardStroke>
-                            </stroke>
-                            <rest>
-                                <sinceStart>PT0M25S</sinceStart>
-                            </rest>
-                        </instruction>
-                    </repetition>                    
-                </instruction>
-                <instruction>
-                    <repetition>
-                        <repetitionCount>6</repetitionCount>
-                        <instruction>
-                            <stroke>
-                                <standardStroke>nr1</standardStroke>
-                            </stroke>
-                            <rest>
-                                <sinceStart>PT0M25S</sinceStart>
-                            </rest>
-                        </instruction>
-                    </repetition>                    
-                </instruction>
-                <instruction>
-                    <repetition>
-                        <repetitionCount>6</repetitionCount>
-                        <instruction>
-                            <stroke>
-                                <standardStroke>freestyle</standardStroke>
-                            </stroke>
-                            <rest>
-                                <sinceStart>PT0M20S</sinceStart>
-                            </rest>
-                        </instruction>
-                    </repetition>                    
-                </instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>butterfly</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M20S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
             </instruction>
         </repetition>
     </instruction>

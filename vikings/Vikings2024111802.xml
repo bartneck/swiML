@@ -21,15 +21,15 @@
 
     <instruction>
         <continue>
-            <continueLength>600</continueLength>
+            <continueLength><lengthAsDistance>600</lengthAsDistance></continueLength>
             <length>
                 <lengthAsDistance>100</lengthAsDistance>
             </length>
             <instruction>                
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>any</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
             </instruction>
             <instruction>                
@@ -63,7 +63,7 @@
                         <stroke>
                             <drill>
                                 <drillName>3Right3Left</drillName>
-                                <drillStroke>fly</drillStroke>
+                                <drillStroke>butterfly</drillStroke>
                             </drill>
                         </stroke>
                     </instruction>

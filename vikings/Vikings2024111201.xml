@@ -49,6 +49,8 @@
         </repetition>        
     </instruction>
 
+
+    <!-- simplify fails when inheriting length? Also fails xslt transformation with some duplicate lengths not sure if xml problem or xsl -->
     <instruction>
         <repetition>
             <simplify>true</simplify>

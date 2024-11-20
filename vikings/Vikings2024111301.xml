@@ -59,9 +59,9 @@
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>any</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
                 <rest>
                     <sinceStart>PT2M10S</sinceStart>
@@ -92,9 +92,9 @@
                     <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>any</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
                 <intensity>
                     <startIntensity>
@@ -122,6 +122,9 @@
                 <stroke>
                     <standardStroke>nr1</standardStroke>
                 </stroke>
+                <rest>
+                    <sinceStart>PT1M20S</sinceStart>
+                </rest>
                 <intensity>
                     <startIntensity>
                         <percentageEffort>85</percentageEffort>
@@ -135,6 +138,9 @@
                 <stroke>
                     <standardStroke>nr1</standardStroke>
                 </stroke>
+                <rest>
+                    <sinceStart>PT2M0S</sinceStart>
+                </rest>
                 <intensity>
                     <startIntensity>
                         <zone>max</zone>
