@@ -57,9 +57,9 @@
                     <lengthAsDistance>50</lengthAsDistance>
                 </length>
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>any</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
             </instruction>
         </repetition>        

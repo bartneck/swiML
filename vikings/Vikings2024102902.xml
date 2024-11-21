@@ -123,9 +123,9 @@
                     <lengthAsDistance>50</lengthAsDistance>
                 </length>
                 <stroke>
-                    <kick>
+                    <kicking>
                         <standardKick>nr1</standardKick>
-                    </kick>
+                    </kicking>
                 </stroke>
                 <rest>
                     <sinceStart>PT1M00S</sinceStart>

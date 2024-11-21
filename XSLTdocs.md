@@ -16,15 +16,123 @@ Sections [2](#2-header) & [3](#3-body) refer to the header and the body sections
 Sections [4](#4-intro), [5](#5-program) & [6](#6-footer) refer to the elements contained within the body of the HTML document
 
 ### Pre-calculations
-When creating the HTML all similar instructions are set to align to the same character so that the resulting HTML is neat and easy to read. 
+When creating the HTML all the instructions are just set out on the page and it looks very messy, in order to fix this problem and create a more readable program we choose to align different instructions on the same point, e.g. all basic instructions will be aligned vertically on the right of the last digit of its length, whereas continues and repetitions are aligned on their symbols. 
 
-To acheive this mutliple functions and variables are used or created before any other processes start. This process create lists for each type of instruction which are stored globally and can be accessed later when giving attributes to each instructions divs. 
+To acheive this mutliple functions and variables are used or created before any other processes start. For each main type of instruction ([instruction](#51-instructions), [repetition](#52-repetitions), [simplify](#53-simplifying-repetitions), [continue](#54-continues)) there is a set of 2 variables and a function which collect and group each instruction, these can then be accessed later by the template defining the html for the instruction so that it knows how wide each div needs to be for it to align properly. 
 
-These lists indicate the minimum length for every instruction so that they line up correctly and can be grouped according to specific formatting requirements.
+For an example using the variables and fuctions to define the width of [instructions](#11-instruction-length). 
+Firstly [instLengths](#111-instlengths) collects all the basic instructions defined in the program and creates a list giving each instructions location and the string length of its distance elements. This list is stored and can be accessed globally if needed. 
 
-Lists are created by sorting each instruction type by location in the program and by string length 
-By default instructions are separated by segements (segment Names) and into 10 character width groups, however this can be changed using the excludeAlign element, more info can be found in [Section 1](#1-length-variables-and-functions). 
- 
+Next [maxInstLengths](#113-maxinstlengths) is defined which groups the instructions according to firstly what section they are in (defined by [sectionNames](#56-segment-names)), this means that only instructions in the same section will align with each other. 
+Each section is then subdivided again but this time into groups of instructions that have the same parents, so that any instructions at the top level will only align with other instructions in the same section that are also at the top level, or any instructions with only a repetition as its parent will only align with those that have the same. 
+This is done to avoid misalignments as each different type of instruction has different symbols which dont have the same width, so any subsequent children elements won't align properly. 
+
+After grouping all the instructions [maxInstLengths](#113-maxinstlengths) calls the function [instNodes](#112-instnodes) which then groups the instructions even further into groups of 10 characters. This means that if the first instructions distance had a string length of 1, any instructions in the same grouping upto an including ones with a string length of 10 would be grouped together and set to the largest in the group, i.e. if the largest has a string length of 8 then all instructions in this group will be told to have a width of 8 characters so they all align on the same character. 
+This works by calling [instNodes](#112-instnodes) for each group of instructions that [maxInstLengths](#113-maxinstlengths) produces. instNodes then takes any instructions that are within 10 characters of the first and returning each location with the max length of this group. instNodes then recursively calls itself with any remaining instructions until the entire group has been processed, as instNodes outputs Items in a list for each instruction that will be stored in the maxInstLenghs variable to be accessed later. 
+
+This process is the same for all other types of instructions, with repetitions using [repLengths](#141-replengths),[maxRepLengths](#143-maxreplengths) and [repNodes](#142-repnodes) and so on. The process of separating instruction groups by every 10 characters isnt used much in normally instructions and you dont use over a 10 digit length, its more used to separate the other instructions. As repetitions and continues align on the symbol, everything to the left of the symbol is used to calculate string length, not just the distance number. 
+When including multiple instruction elements at the top level this can create some longer strings (e.g distance, stroke, rest, multiple equipment) so in order to limit any very short strings from being algined 10+ characters off this limit was introduced. This can be disabled for any instruction by using excludeAlign in an instruction or by using programAlign in the intro to disable these features.  
+
+More information on each of the individual functions and variables can be found in [Section 1](#1-length-variables-and-functions). 
+
+### Alignment Examples 
+The following are some examples of how the alignment process works
+
+Basic Instructions:
+```
+<instruction>
+    <length>
+        <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+        <standardStroke>freestyle</standardStroke>
+    </stroke>
+</instruction>
+<instruction>
+    <length>
+        <lengthAsDistance>50</lengthAsDistance>
+    </length>
+    <stroke>
+        <standardStroke>backstroke</standardStroke>
+    </stroke>
+</instruction>
+<instruction>
+    <length>
+        <lengthAsLaps>2</lengthAsLaps>
+    </length>
+    <stroke>
+        <standardStroke>butterfly</standardStroke>
+    </stroke>
+</instruction>
+```
+These instructions are all collected in instLengths which results in an output of 3000 , 2001 , 1002 . 
+The first digit represents the string length of the distance, 3,2,1 which can be seen in the length element of each instruction.
+The next 3 digits are the location of the instructions, all three are in section 0 so 2nd digit is 0 and all 3 are at the top level so the parent section is a 0 (this can be multiple digits with multiple parents). The last digit is the location in its group, so the first instruction is at position 0 in section 0 with parents=0, the second is at position 1 and the third at position 2 
+
+Then maxInstLengths takes these and groups them by section and parents, but as they are the same they all end up in the same group. Then fed to instNodes which returns an Item for each instruction as: 03,13,23. The output of instNodes simplifys the location to a single variable giving the distance to the first instruction at a given level. So for 03 the instruction at distance 0 to the first instruction should have the distance div's width set to 3 characters, similar for 13 and 23 the instructions at 1 and 2 distance from the first instruction also need to have width 3 characters. 
+
+This results in the diplayed html reading as:
+```
+100 FR
+ 50 BK
+  2 laps FL
+```
+So all instructions are aligned on the right of the last digit in its distance 
+
+Another Example using repetitions: 
+```
+<instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest>
+                <sinceStart>PT1M0S</sinceStart>
+            </rest>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+```
+
+In this case we use the output of repLengths to determine how wide the div before the repetition symbol needs to be which are 3020 and 10021. In this case the string length of the repetitions are 3 and 10 with both in section 0 and both only having themselves as parents, indicated by the 2. The first repetition at position 0 and the second and position 1. 
+
+maxRepLengths uses this and returns 010 and 110 so both repetitions should have a width of 10 characters as 10 is within 10 characters of 3. This is the resulting HTML with | idicating the repetition symbol:
+```
+       3 × | 100 FR
+3 × @_1:00 | 100 FR
+```
+However if we also included this tag below the rest element in the second repetition
+```
+<intensity>
+    <startIntensity>
+        <zone>racePace</zone>
+    </startIntensity>
+</intensity>
+```
+this would change the output of repLengths to 3020 and 20021 and since the string lengths are now more than 10 characters apart they no longer align automatically giving the resultant HTML as:
+```
+3 × | 100 FR
+3 × @_1:00 Race Pace | 100 FR
+```
 
 ### XML to HTML
 Sections 2-6 cover the transformation of XML to HTML with the header ([Section 2](#2-header)) of the document being standard, only the title changing between different documents. 

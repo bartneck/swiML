@@ -105,6 +105,7 @@
 
             <!-- sort all nodes again this time by what parents the have -->
             <!-- this is stored as a numerical value so can be sorted so the nodes with the same parents will have the same lengths-->
+            <!-- NOTE this doensnt group the parents properly, e.g. if same parents but one parent is in different group then they will try to align but be off by 10 cos their not aligned -->
             <xsl:for-each-group select="$instLengths" group-by="./*[3][../Section = current-grouping-key()]">
 
                 <!-- call helper function for each set of nodes that have the same section and parents -->
@@ -676,9 +677,10 @@
                 <!-- The recursive instructions -->
                 <div class="program">
                     <xsl:apply-templates select="sw:program/sw:instruction"/>
-                    <!--<xsl:value-of select="$instLengths"/>
+                    <!--<xsl:value-of select="$repLengths"/>
                     c
-                    <xsl:value-of select="$maxInstLengths"/>
+                    <xsl:value-of select="$maxRepLengths"/>
+                    
                     c
                     <xsl:value-of select="$simpLengths"/>
                     c

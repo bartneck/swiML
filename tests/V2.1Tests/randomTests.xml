@@ -13,322 +13,40 @@
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     
-
     <instruction>
-        <segmentName>Warm up</segmentName>
-    </instruction>
-
-    <instruction>
-        <continue>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
             <instruction>
                 <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
                     <standardStroke>freestyle</standardStroke>
                 </stroke>
             </instruction>
-        </continue>
+        </repetition>
     </instruction>
-
+    
     <instruction>
-        <continue>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest>
+                <sinceStart>PT1M0S</sinceStart>
+            </rest>
+            <intensity>
+                <startIntensity>
+                    <zone>racePace</zone>
+                </startIntensity>
+            </intensity>
+            <!-- NOTE something wrong with this representation in HTML -->
             <instruction>
                 <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
+                    <lengthAsDistance>100</lengthAsDistance>
                 </length>
                 <stroke>
                     <standardStroke>freestyle</standardStroke>
                 </stroke>
             </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
+        </repetition>
     </instruction>
-
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-
-    <instruction>
-        <length>
-            <lengthAsLaps>1</lengthAsLaps>
-        </length>
-        <stroke>
-            <standardStroke>any</standardStroke>
-        </stroke>
-        <intensity>
-            <startIntensity>
-                <zone>easy</zone>
-            </startIntensity>
-        </intensity>
-    </instruction>
-    
-    <instruction>
-        <segmentName>First set</segmentName>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>1</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>butterfly</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>9</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    <instruction>
-        <length>
-            <lengthAsLaps>1</lengthAsLaps>
-        </length>
-        <stroke>
-            <standardStroke>any</standardStroke>
-        </stroke>
-        <intensity>
-            <startIntensity>
-                <zone>easy</zone>
-            </startIntensity>
-        </intensity>
-    </instruction>
-    
-    <instruction>
-        <segmentName>Second set</segmentName>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>breaststroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>7</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>7</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>breaststroke</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    <instruction>
-        <continue>
-            <instruction>
-                <length>
-                    <lengthAsLaps>7</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>breaststroke</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsLaps>3</lengthAsLaps>
-                </length>
-                <stroke>
-                    <standardStroke>backstroke</standardStroke>
-                </stroke>
-            </instruction>
-        </continue>
-    </instruction>
-    
-    
-    <instruction>
-        <length>
-            <lengthAsLaps>1</lengthAsLaps>
-        </length>
-        <stroke>
-            <standardStroke>any</standardStroke>
-        </stroke>
-        <intensity>
-            <startIntensity>
-                <zone>easy</zone>
-            </startIntensity>
-        </intensity>
-    </instruction>
-    
 </program>
