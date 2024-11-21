@@ -200,8 +200,8 @@ When no elements left it returns the running total, this should be the total str
 
 If function finds an element that has no predefined string length it calls sumExtras to get the best estimate of how many characters the element will take
 
-
-# 2. Header
+# HTML Page Construction
+## 2. Header
 Data in the header of the HTML page
 
 ## 2.1 Meta
