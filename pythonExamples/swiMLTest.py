@@ -70,7 +70,6 @@ def nonBasicInstructions(instructions):
                 instructionList.extend(basicInstructions(child.instructions))
     return instructionList
 
-
 def get_total_length(instructions):
     '''returns length of given instructions
     or repetitions if '''
@@ -255,16 +254,19 @@ def readXML(filename):
     '''Parses Xml file to Python Classes'''
     with open(filename,"r+") as f:
         file = f.read()
-        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL).group(0)
         nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
-        f.truncate(0)
-        f.seek(0)
-        f.write(nons)
-    tree = ET.parse(filename)
+        versionm = re.search('swiML/(main(/version/[0-9]+/[0-9]+\.[0-9]+)?)/swiML',namespace)
+        if versionm.group(2):
+            version = versionm.group(2).split('/')[-1]  
+        else: 
+            version = "main"
+        print(version)
+    tree = ET.ElementTree(ET.fromstring(nons))
     root = tree.getroot()
     if root.tag == 'program':
         programDict,instructions = nodeToDict(root)
-        return Program(**programDict,instructions=instructions)
+        return Program(**programDict,swiMLVersion=version,instructions=instructions)
     else:
         return XMLToClass(root)
 

@@ -474,11 +474,11 @@
                         (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) then(
                             if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) = 1) then(
                                 number(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
+                                ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance
                                 )
                             ) else(
                                 sum(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
+                                ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance
                                 )
                             )
                          ) else(
@@ -492,7 +492,7 @@
                         )) = number(
                             (
                                 (
-                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsDistance
+                                (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance
                                 ) | (
                                     ./descendant-or-self::sw:continueLength
                                 )
@@ -504,11 +504,11 @@
                         (if($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) then(
                             if(count($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)]) = 1) then(
                                 number(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
+                                ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps
                                 )
                             ) else(
                                 sum(
-                                    ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
+                                ($instruction/descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps
                                 )
                             )
                         ) else(
@@ -524,7 +524,7 @@
                         )) = number(
                             (
                                 (
-                                    (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//sw:lengthAsLaps
+                                (./descendant-or-self::sw:instruction[not(ancestor::sw:continue/sw:continueLength) and not(./sw:continue/sw:continueLength) and not(./sw:repetition)][1])//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps
                                 ) | (                            
                                     ./descendant-or-self::sw:continueLength
                                 )

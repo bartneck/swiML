@@ -335,6 +335,8 @@
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
+                        <Item><xsl:text>c</xsl:text></Item>
+                        <Item><xsl:value-of select="$repInstLength"/></Item>
                     </Item>
                 </xsl:for-each>       
             </xsl:when>
@@ -511,7 +513,7 @@
                                         </xsl:when>
                                         
                                         <xsl:otherwise>
-                                            <xsl:value-of select="1+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])"/>
+                                            <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])"/>
                                         </xsl:otherwise>
                                         
                                     </xsl:choose>
@@ -982,7 +984,8 @@
         <!-- display 1 as length when in a simplifying repetition and it has siblings -->
         <!-- this should be fine as base level instructions can only be 1 set of a repetition but this needs to be checked -->
         <xsl:choose>
-            <xsl:when test="../../sw:repetition/sw:simplify[text()='true']">
+            <xsl:when test="../sw:repetition/sw:simplify[text()='true']"></xsl:when>
+            <xsl:when test="./ancestor::sw:repetition/sw:simplify[text()='true']">
                 <xsl:choose>
                     <xsl:when test="count(..//sw:instruction) > 1">
                         <span>                
@@ -1140,7 +1143,7 @@
     <!-- returns the number of repetitions needed for a node-->
     <!-- used in simpifying repetitions-->
     <xsl:template name="simplifyLength">
-        <xsl:value-of select="myData:number(myData:simpRep(.))"/>
+        <xsl:value-of select="myData:number(myData:simpRep(.))"/>        
     </xsl:template>
 
 
@@ -1594,9 +1597,9 @@
                         myData:contLength($l/*[1])
                     )else if(name($l/*[1]) = 'pyramid')then(
                         1
-                    )else if($l/*[1]//sw:lengthAsDistance) then(
+                    )else if($l/*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance) then(
                         number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance)
-                    )else if($l/*[1]//sw:lengthAsLaps) then(
+                    )else if($l/*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) then(
                         number($l/*[1]/(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps) * $root/ancestor-or-self::sw:program/sw:poolLength
                     )else(
                     0
