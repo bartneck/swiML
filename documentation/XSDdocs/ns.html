@@ -1,0 +1,1350 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for swiML.xsd</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript"><!--
+        var propertiesBoxes= new Array('properties_swiML.xsd', 
+				'properties_program', 
+				'properties_program_title', 
+				'properties_program_author', 
+				'properties_program_program_author_firstName', 
+				'properties_program_program_author_lastName', 
+				'properties_program_program_author_email', 
+				'properties_program_programDescription', 
+				'properties_program_creationDate', 
+				'properties_program_poolLength', 
+				'properties_program_lengthUnit', 
+				'properties_program_programAlign', 
+				'properties_program_numeralSystem', 
+				'properties_program_hideIntro', 
+				'properties_program_layoutWidth', 
+				'properties_program_instruction', 
+				'properties_instructionType_segmentName', 
+				'properties_instructionType_repetition', 
+				'properties_repetitionType_repetitionCount', 
+				'properties_repetitionType_simplify', 
+				'properties_repetitionType_repetitionDescription', 
+				'properties_instructionGroup_length', 
+				'properties_lengthType_lengthAsDistance', 
+				'properties_lengthType_lengthAsTime', 
+				'properties_lengthType_lengthAsLaps', 
+				'properties_instructionGroup_stroke', 
+				'properties_strokeType_standardStroke', 
+				'properties_strokeType_kicking', 
+				'properties_kickStyle_orientation', 
+				'properties_kickStyle_legMovement', 
+				'properties_kickStyle_standardKick', 
+				'properties_strokeType_drill', 
+				'properties_drillType_drillName', 
+				'properties_drillType_drillStroke', 
+				'properties_instructionGroup_rest', 
+				'properties_restType_afterStop', 
+				'properties_restType_sinceStart', 
+				'properties_restType_sinceLastRest', 
+				'properties_restType_inOut', 
+				'properties_instructionGroup_intensity', 
+				'properties_intensityProfile_startIntensity', 
+				'properties_intensityType_percentageEffort', 
+				'properties_intensityType_zone', 
+				'properties_intensityType_percentageHeartRate', 
+				'properties_intensityProfile_stopIntensity', 
+				'properties_instructionGroup_breath', 
+				'properties_instructionGroup_underwater', 
+				'properties_instructionGroup_equipment', 
+				'properties_instructionGroup_instructionDescription', 
+				'properties_repetitionType_instruction', 
+				'properties_instructionType_pyramid', 
+				'properties_pyramidType_startLength', 
+				'properties_pyramidType_stopLength', 
+				'properties_pyramidType_increment', 
+				'properties_pyramidType_incremenentLengthUnit', 
+				'properties_pyramidType_isPointy', 
+				'properties_instructionType_continue', 
+				'properties_continueType_continueLength', 
+				'properties_continueType_instruction', 
+				'properties_instructionType_excludeAlign', 
+				'properties_instructionType', 
+				'properties_lengthType', 
+				'properties_strokeType', 
+				'properties_restType', 
+				'properties_intensityProfile');
+var facetsBoxes= new Array('facets_program_title', 
+				'facets_program_program_author_email', 
+				'facets_program_programDescription', 
+				'facets_program_lengthUnit', 
+				'facets_program_numeralSystem', 
+				'facets_instructionType_segmentName', 
+				'facets_repetitionType_repetitionDescription', 
+				'facets_strokeType_standardStroke', 
+				'facets_kickStyle_orientation', 
+				'facets_kickStyle_legMovement', 
+				'facets_kickStyle_standardKick', 
+				'facets_drillType_drillName', 
+				'facets_drillType_drillStroke', 
+				'facets_intensityType_percentageEffort', 
+				'facets_intensityType_zone', 
+				'facets_intensityType_percentageHeartRate', 
+				'facets_instructionGroup_equipment', 
+				'facets_instructionGroup_instructionDescription', 
+				'facets_pyramidType_incremenentLengthUnit', 
+				'facets_titleString', 
+				'facets_emailAddress', 
+				'facets_descriptionString', 
+				'facets_lengthUnits', 
+				'facets_numeralSystems', 
+				'facets_segmentNameType', 
+				'facets_instructionDescriptionType', 
+				'facets_standardStrokeType', 
+				'facets_orientationType', 
+				'facets_legMovementType', 
+				'facets_drillNameType', 
+				'facets_percentType', 
+				'facets_zoneType', 
+				'facets_equipmentType');
+var usedByBoxes= new Array('usedBy_titleString', 
+				'usedBy_emailAddress', 
+				'usedBy_descriptionString', 
+				'usedBy_lengthUnits', 
+				'usedBy_numeralSystems', 
+				'usedBy_instructionType', 
+				'usedBy_segmentNameType', 
+				'usedBy_repetitionType', 
+				'usedBy_instructionDescriptionType', 
+				'usedBy_lengthType', 
+				'usedBy_strokeType', 
+				'usedBy_standardStrokeType', 
+				'usedBy_kickStyle', 
+				'usedBy_orientationType', 
+				'usedBy_legMovementType', 
+				'usedBy_drillType', 
+				'usedBy_drillNameType', 
+				'usedBy_restType', 
+				'usedBy_intensityProfile', 
+				'usedBy_intensityType', 
+				'usedBy_percentType', 
+				'usedBy_zoneType', 
+				'usedBy_equipmentType', 
+				'usedBy_pyramidType', 
+				'usedBy_continueType', 
+				'usedBy_instructionGroup');
+var sourceBoxes= new Array('source_program', 
+				'source_program_title', 
+				'source_program_author', 
+				'source_program_program_author_firstName', 
+				'source_program_program_author_lastName', 
+				'source_program_program_author_email', 
+				'source_program_programDescription', 
+				'source_program_creationDate', 
+				'source_program_poolLength', 
+				'source_program_lengthUnit', 
+				'source_program_programAlign', 
+				'source_program_numeralSystem', 
+				'source_program_hideIntro', 
+				'source_program_layoutWidth', 
+				'source_program_instruction', 
+				'source_instructionType_segmentName', 
+				'source_instructionType_repetition', 
+				'source_repetitionType_repetitionCount', 
+				'source_repetitionType_simplify', 
+				'source_repetitionType_repetitionDescription', 
+				'source_instructionGroup_length', 
+				'source_lengthType_lengthAsDistance', 
+				'source_lengthType_lengthAsTime', 
+				'source_lengthType_lengthAsLaps', 
+				'source_instructionGroup_stroke', 
+				'source_strokeType_standardStroke', 
+				'source_strokeType_kicking', 
+				'source_kickStyle_orientation', 
+				'source_kickStyle_legMovement', 
+				'source_kickStyle_standardKick', 
+				'source_strokeType_drill', 
+				'source_drillType_drillName', 
+				'source_drillType_drillStroke', 
+				'source_instructionGroup_rest', 
+				'source_restType_afterStop', 
+				'source_restType_sinceStart', 
+				'source_restType_sinceLastRest', 
+				'source_restType_inOut', 
+				'source_instructionGroup_intensity', 
+				'source_intensityProfile_startIntensity', 
+				'source_intensityType_percentageEffort', 
+				'source_intensityType_zone', 
+				'source_intensityType_percentageHeartRate', 
+				'source_intensityProfile_stopIntensity', 
+				'source_instructionGroup_breath', 
+				'source_instructionGroup_underwater', 
+				'source_instructionGroup_equipment', 
+				'source_instructionGroup_instructionDescription', 
+				'source_repetitionType_instruction', 
+				'source_instructionType_pyramid', 
+				'source_pyramidType_startLength', 
+				'source_pyramidType_stopLength', 
+				'source_pyramidType_increment', 
+				'source_pyramidType_incremenentLengthUnit', 
+				'source_pyramidType_isPointy', 
+				'source_instructionType_continue', 
+				'source_continueType_continueLength', 
+				'source_continueType_instruction', 
+				'source_instructionType_excludeAlign', 
+				'source_titleString', 
+				'source_emailAddress', 
+				'source_descriptionString', 
+				'source_lengthUnits', 
+				'source_numeralSystems', 
+				'source_instructionType', 
+				'source_segmentNameType', 
+				'source_repetitionType', 
+				'source_instructionDescriptionType', 
+				'source_lengthType', 
+				'source_strokeType', 
+				'source_standardStrokeType', 
+				'source_kickStyle', 
+				'source_orientationType', 
+				'source_legMovementType', 
+				'source_drillType', 
+				'source_drillNameType', 
+				'source_restType', 
+				'source_intensityProfile', 
+				'source_intensityType', 
+				'source_percentType', 
+				'source_zoneType', 
+				'source_equipmentType', 
+				'source_pyramidType', 
+				'source_continueType', 
+				'source_equipmentList', 
+				'source_instructionGroup');
+var instanceBoxes= new Array('instance_program', 
+				'instance_program_author', 
+				'instance_program_instruction', 
+				'instance_instructionType_repetition', 
+				'instance_instructionGroup_length', 
+				'instance_instructionGroup_stroke', 
+				'instance_strokeType_kicking', 
+				'instance_strokeType_drill', 
+				'instance_instructionGroup_rest', 
+				'instance_instructionGroup_intensity', 
+				'instance_intensityProfile_startIntensity', 
+				'instance_intensityProfile_stopIntensity', 
+				'instance_repetitionType_instruction', 
+				'instance_instructionType_pyramid', 
+				'instance_pyramidType_startLength', 
+				'instance_pyramidType_stopLength', 
+				'instance_instructionType_continue', 
+				'instance_continueType_continueLength', 
+				'instance_continueType_instruction');
+var diagramBoxes= new Array('diagram_program', 
+				'diagram_program_title', 
+				'diagram_program_author', 
+				'diagram_program_program_author_firstName', 
+				'diagram_program_program_author_lastName', 
+				'diagram_program_program_author_email', 
+				'diagram_program_programDescription', 
+				'diagram_program_creationDate', 
+				'diagram_program_poolLength', 
+				'diagram_program_lengthUnit', 
+				'diagram_program_programAlign', 
+				'diagram_program_numeralSystem', 
+				'diagram_program_hideIntro', 
+				'diagram_program_layoutWidth', 
+				'diagram_program_instruction', 
+				'diagram_instructionType_segmentName', 
+				'diagram_instructionType_repetition', 
+				'diagram_repetitionType_repetitionCount', 
+				'diagram_repetitionType_simplify', 
+				'diagram_repetitionType_repetitionDescription', 
+				'diagram_instructionGroup_length', 
+				'diagram_lengthType_lengthAsDistance', 
+				'diagram_lengthType_lengthAsTime', 
+				'diagram_lengthType_lengthAsLaps', 
+				'diagram_instructionGroup_stroke', 
+				'diagram_strokeType_standardStroke', 
+				'diagram_strokeType_kicking', 
+				'diagram_kickStyle_orientation', 
+				'diagram_kickStyle_legMovement', 
+				'diagram_kickStyle_standardKick', 
+				'diagram_strokeType_drill', 
+				'diagram_drillType_drillName', 
+				'diagram_drillType_drillStroke', 
+				'diagram_instructionGroup_rest', 
+				'diagram_restType_afterStop', 
+				'diagram_restType_sinceStart', 
+				'diagram_restType_sinceLastRest', 
+				'diagram_restType_inOut', 
+				'diagram_instructionGroup_intensity', 
+				'diagram_intensityProfile_startIntensity', 
+				'diagram_intensityType_percentageEffort', 
+				'diagram_intensityType_zone', 
+				'diagram_intensityType_percentageHeartRate', 
+				'diagram_intensityProfile_stopIntensity', 
+				'diagram_instructionGroup_breath', 
+				'diagram_instructionGroup_underwater', 
+				'diagram_instructionGroup_equipment', 
+				'diagram_instructionGroup_instructionDescription', 
+				'diagram_repetitionType_instruction', 
+				'diagram_instructionType_pyramid', 
+				'diagram_pyramidType_startLength', 
+				'diagram_pyramidType_stopLength', 
+				'diagram_pyramidType_increment', 
+				'diagram_pyramidType_incremenentLengthUnit', 
+				'diagram_pyramidType_isPointy', 
+				'diagram_instructionType_continue', 
+				'diagram_continueType_continueLength', 
+				'diagram_continueType_instruction', 
+				'diagram_instructionType_excludeAlign', 
+				'diagram_titleString', 
+				'diagram_emailAddress', 
+				'diagram_descriptionString', 
+				'diagram_lengthUnits', 
+				'diagram_numeralSystems', 
+				'diagram_instructionType', 
+				'diagram_segmentNameType', 
+				'diagram_repetitionType', 
+				'diagram_instructionDescriptionType', 
+				'diagram_lengthType', 
+				'diagram_strokeType', 
+				'diagram_standardStrokeType', 
+				'diagram_kickStyle', 
+				'diagram_orientationType', 
+				'diagram_legMovementType', 
+				'diagram_drillType', 
+				'diagram_drillNameType', 
+				'diagram_restType', 
+				'diagram_intensityProfile', 
+				'diagram_intensityType', 
+				'diagram_percentType', 
+				'diagram_zoneType', 
+				'diagram_equipmentType', 
+				'diagram_pyramidType', 
+				'diagram_continueType', 
+				'diagram_equipmentList', 
+				'diagram_instructionGroup');
+var annotationBoxes= new Array('annotations_program_title', 
+				'annotations_program_author', 
+				'annotations_program_program_author_firstName', 
+				'annotations_program_program_author_lastName', 
+				'annotations_program_program_author_email', 
+				'annotations_program_programDescription', 
+				'annotations_program_creationDate', 
+				'annotations_program_poolLength', 
+				'annotations_program_lengthUnit', 
+				'annotations_program_programAlign', 
+				'annotations_program_numeralSystem', 
+				'annotations_program_hideIntro', 
+				'annotations_program_layoutWidth', 
+				'annotations_program_instruction', 
+				'annotations_instructionType_repetition', 
+				'annotations_repetitionType_repetitionCount', 
+				'annotations_repetitionType_simplify', 
+				'annotations_repetitionType_repetitionDescription', 
+				'annotations_instructionGroup_length', 
+				'annotations_lengthType_lengthAsDistance', 
+				'annotations_lengthType_lengthAsTime', 
+				'annotations_lengthType_lengthAsLaps', 
+				'annotations_instructionGroup_stroke', 
+				'annotations_kickStyle_orientation', 
+				'annotations_kickStyle_legMovement', 
+				'annotations_drillType_drillStroke', 
+				'annotations_instructionGroup_rest', 
+				'annotations_restType_afterStop', 
+				'annotations_restType_sinceStart', 
+				'annotations_restType_sinceLastRest', 
+				'annotations_restType_inOut', 
+				'annotations_instructionGroup_intensity', 
+				'annotations_intensityType_percentageEffort', 
+				'annotations_intensityType_zone', 
+				'annotations_intensityType_percentageHeartRate', 
+				'annotations_instructionGroup_breath', 
+				'annotations_instructionGroup_underwater', 
+				'annotations_instructionGroup_equipment', 
+				'annotations_instructionGroup_instructionDescription', 
+				'annotations_repetitionType_instruction', 
+				'annotations_instructionType_pyramid', 
+				'annotations_pyramidType_startLength', 
+				'annotations_pyramidType_stopLength', 
+				'annotations_pyramidType_increment', 
+				'annotations_pyramidType_isPointy', 
+				'annotations_instructionType_continue', 
+				'annotations_continueType_continueLength', 
+				'annotations_continueType_instruction', 
+				'annotations_instructionType_excludeAlign', 
+				'annotations_titleString', 
+				'annotations_emailAddress', 
+				'annotations_descriptionString', 
+				'annotations_lengthUnits', 
+				'annotations_numeralSystems', 
+				'annotations_instructionType', 
+				'annotations_repetitionType', 
+				'annotations_instructionDescriptionType', 
+				'annotations_lengthType', 
+				'annotations_strokeType', 
+				'annotations_drillType', 
+				'annotations_drillNameType', 
+				'annotations_restType', 
+				'annotations_intensityProfile', 
+				'annotations_intensityType', 
+				'annotations_percentType', 
+				'annotations_zoneType', 
+				'annotations_pyramidType', 
+				'annotations_continueType');
+var assertsBoxes= new Array('asserts_program', 
+				'asserts_program_instruction', 
+				'asserts_instructionType_repetition', 
+				'asserts_repetitionType_instruction', 
+				'asserts_instructionType_pyramid', 
+				'asserts_instructionType_continue', 
+				'asserts_continueType_instruction', 
+				'asserts_instructionType', 
+				'asserts_repetitionType', 
+				'asserts_pyramidType', 
+				'asserts_continueType');
+var identityConstraintsBoxes= new Array('identityConstraints_program_instruction', 
+				'identityConstraints_repetitionType_instruction', 
+				'identityConstraints_continueType_instruction');
+var modelBoxes= new Array('model_program', 
+				'model_program_author', 
+				'model_program_instruction', 
+				'model_instructionType_repetition', 
+				'model_instructionGroup_length', 
+				'model_instructionGroup_stroke', 
+				'model_strokeType_kicking', 
+				'model_strokeType_drill', 
+				'model_instructionGroup_rest', 
+				'model_instructionGroup_intensity', 
+				'model_intensityProfile_startIntensity', 
+				'model_intensityProfile_stopIntensity', 
+				'model_repetitionType_instruction', 
+				'model_instructionType_pyramid', 
+				'model_pyramidType_startLength', 
+				'model_pyramidType_stopLength', 
+				'model_instructionType_continue', 
+				'model_continueType_continueLength', 
+				'model_continueType_instruction', 
+				'model_instructionType', 
+				'model_repetitionType', 
+				'model_lengthType', 
+				'model_strokeType', 
+				'model_kickStyle', 
+				'model_drillType', 
+				'model_restType', 
+				'model_intensityProfile', 
+				'model_intensityType', 
+				'model_pyramidType', 
+				'model_continueType', 
+				'model_instructionGroup');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                        //--></script></head>
+   <body>
+      <h2><a id="INDEX">Table of Contents</a></h2>
+      <div class="toc">
+         <form action="none">
+            <div><span> Group by: <select id="selectTOC" onchange="selectTOCGroupBy(this.options[this.selectedIndex].value, false, '.html', 'ns.html', 'comp.html');">
+                     <option value="toc_group_by_namespace" selected="selected">Namespace</option>
+                     <option value="toc_group_by_location">Location</option>
+                     <option value="toc_group_by_component_type">Component Type</option></select></span></div>
+         </form>
+         <div class="level1" id="toc_group_by_namespace" style="display:block">
+            <div>
+               <div class="level2">
+                  <p><input id="button_boxIdNamespace1" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1');" class="control" /><span class="indexGroupTitle">https://github.com/bartneck/swiML</span></p>
+                  <div id="boxIdNamespace1" style="display:block">
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_boxIdNamespace1Main_schema" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1Main_schema');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Main Schema</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="boxIdNamespace1Main_schema" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#swiML.xsd" target="_self" title="https://github.com/bartneck/swiML">swiML.xsd</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_boxIdNamespace1Element" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1Element');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Elements</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="boxIdNamespace1Element" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#program" target="_self" title="https://github.com/bartneck/swiML">program</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_boxIdNamespace1Simple_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1Simple_Type');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Simple Types</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="boxIdNamespace1Simple_Type" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#descriptionString" target="_self" title="https://github.com/bartneck/swiML">descriptionString</a></b></div>
+                                                <div><b><a href="swiML.html#drillNameType" target="_self" title="https://github.com/bartneck/swiML">drillNameType</a></b></div>
+                                                <div><b><a href="swiML.html#emailAddress" target="_self" title="https://github.com/bartneck/swiML">emailAddress</a></b></div>
+                                                <div><b><a href="swiML.html#equipmentList" target="_self" title="https://github.com/bartneck/swiML">equipmentList</a></b></div>
+                                                <div><b><a href="swiML.html#equipmentType" target="_self" title="https://github.com/bartneck/swiML">equipmentType</a></b></div>
+                                                <div><b><a href="swiML.html#instructionDescriptionType" target="_self" title="https://github.com/bartneck/swiML">instructionDescriptionType</a></b></div>
+                                                <div><b><a href="swiML.html#legMovementType" target="_self" title="https://github.com/bartneck/swiML">legMovementType</a></b></div>
+                                                <div><b><a href="swiML.html#lengthUnits" target="_self" title="https://github.com/bartneck/swiML">lengthUnits</a></b></div>
+                                                <div><b><a href="swiML.html#numeralSystems" target="_self" title="https://github.com/bartneck/swiML">numeralSystems</a></b></div>
+                                                <div><b><a href="swiML.html#orientationType" target="_self" title="https://github.com/bartneck/swiML">orientationType</a></b></div>
+                                                <div><b><a href="swiML.html#percentType" target="_self" title="https://github.com/bartneck/swiML">percentType</a></b></div>
+                                                <div><b><a href="swiML.html#segmentNameType" target="_self" title="https://github.com/bartneck/swiML">segmentNameType</a></b></div>
+                                                <div><b><a href="swiML.html#standardStrokeType" target="_self" title="https://github.com/bartneck/swiML">standardStrokeType</a></b></div>
+                                                <div><b><a href="swiML.html#titleString" target="_self" title="https://github.com/bartneck/swiML">titleString</a></b></div>
+                                                <div><b><a href="swiML.html#zoneType" target="_self" title="https://github.com/bartneck/swiML">zoneType</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_boxIdNamespace1Complex_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1Complex_Type');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Complex Types</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="boxIdNamespace1Complex_Type" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#continueType" target="_self" title="https://github.com/bartneck/swiML">continueType</a></b></div>
+                                                <div><b><a href="swiML.html#drillType" target="_self" title="https://github.com/bartneck/swiML">drillType</a></b></div>
+                                                <div><b><a href="swiML.html#instructionType" target="_self" title="https://github.com/bartneck/swiML">instructionType</a></b></div>
+                                                <div><b><a href="swiML.html#intensityProfile" target="_self" title="https://github.com/bartneck/swiML">intensityProfile</a></b></div>
+                                                <div><b><a href="swiML.html#intensityType" target="_self" title="https://github.com/bartneck/swiML">intensityType</a></b></div>
+                                                <div><b><a href="swiML.html#kickStyle" target="_self" title="https://github.com/bartneck/swiML">kickStyle</a></b></div>
+                                                <div><b><a href="swiML.html#lengthType" target="_self" title="https://github.com/bartneck/swiML">lengthType</a></b></div>
+                                                <div><b><a href="swiML.html#pyramidType" target="_self" title="https://github.com/bartneck/swiML">pyramidType</a></b></div>
+                                                <div><b><a href="swiML.html#repetitionType" target="_self" title="https://github.com/bartneck/swiML">repetitionType</a></b></div>
+                                                <div><b><a href="swiML.html#restType" target="_self" title="https://github.com/bartneck/swiML">restType</a></b></div>
+                                                <div><b><a href="swiML.html#strokeType" target="_self" title="https://github.com/bartneck/swiML">strokeType</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_boxIdNamespace1Element_Group" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('boxIdNamespace1Element_Group');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Element Groups</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="boxIdNamespace1Element_Group" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#instructionGroup" target="_self" title="https://github.com/bartneck/swiML">instructionGroup</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div style="clear:left"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="level1" id="toc_group_by_component_type" style="display:none">
+            <div>
+               <div class="horizontalLayout">
+                  <table class="rt">
+                     <tr>
+                        <td class="rt_cornerTopLeft"></td>
+                        <td class="rt_lineTop"></td>
+                        <td class="rt_cornerTopRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_lineLeft"></td>
+                        <td class="rt_content">
+                           <table class="componentGroup">
+                              <tbody>
+                                 <tr>
+                                    <td class="componentGroup"><input id="button_Main_schema" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('Main_schema');" class="control" /></td>
+                                    <td class="componentGroup">
+                                       <div class="componentGroupTitle">Main Schema</div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="componentGroup"></td>
+                                    <td class="componentGroup">
+                                       <div id="Main_schema" class="componentGroup" style="display:block">
+                                          <div><b><a href="swiML.html#swiML.xsd" target="_self" title="https://github.com/bartneck/swiML">swiML.xsd</a></b></div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                        <td class="rt_lineRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_cornerBottomLeft"></td>
+                        <td class="rt_lineBottom"></td>
+                        <td class="rt_cornerBottomRight"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="horizontalLayout">
+                  <table class="rt">
+                     <tr>
+                        <td class="rt_cornerTopLeft"></td>
+                        <td class="rt_lineTop"></td>
+                        <td class="rt_cornerTopRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_lineLeft"></td>
+                        <td class="rt_content">
+                           <table class="componentGroup">
+                              <tbody>
+                                 <tr>
+                                    <td class="componentGroup"><input id="button_Element" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('Element');" class="control" /></td>
+                                    <td class="componentGroup">
+                                       <div class="componentGroupTitle">Elements</div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="componentGroup"></td>
+                                    <td class="componentGroup">
+                                       <div id="Element" class="componentGroup" style="display:block">
+                                          <div><b><a href="swiML.html#program" target="_self" title="https://github.com/bartneck/swiML">program</a></b></div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                        <td class="rt_lineRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_cornerBottomLeft"></td>
+                        <td class="rt_lineBottom"></td>
+                        <td class="rt_cornerBottomRight"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="horizontalLayout">
+                  <table class="rt">
+                     <tr>
+                        <td class="rt_cornerTopLeft"></td>
+                        <td class="rt_lineTop"></td>
+                        <td class="rt_cornerTopRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_lineLeft"></td>
+                        <td class="rt_content">
+                           <table class="componentGroup">
+                              <tbody>
+                                 <tr>
+                                    <td class="componentGroup"><input id="button_Simple_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('Simple_Type');" class="control" /></td>
+                                    <td class="componentGroup">
+                                       <div class="componentGroupTitle">Simple Types</div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="componentGroup"></td>
+                                    <td class="componentGroup">
+                                       <div id="Simple_Type" class="componentGroup" style="display:block">
+                                          <div><b><a href="swiML.html#descriptionString" target="_self" title="https://github.com/bartneck/swiML">descriptionString</a></b></div>
+                                          <div><b><a href="swiML.html#drillNameType" target="_self" title="https://github.com/bartneck/swiML">drillNameType</a></b></div>
+                                          <div><b><a href="swiML.html#emailAddress" target="_self" title="https://github.com/bartneck/swiML">emailAddress</a></b></div>
+                                          <div><b><a href="swiML.html#equipmentList" target="_self" title="https://github.com/bartneck/swiML">equipmentList</a></b></div>
+                                          <div><b><a href="swiML.html#equipmentType" target="_self" title="https://github.com/bartneck/swiML">equipmentType</a></b></div>
+                                          <div><b><a href="swiML.html#instructionDescriptionType" target="_self" title="https://github.com/bartneck/swiML">instructionDescriptionType</a></b></div>
+                                          <div><b><a href="swiML.html#legMovementType" target="_self" title="https://github.com/bartneck/swiML">legMovementType</a></b></div>
+                                          <div><b><a href="swiML.html#lengthUnits" target="_self" title="https://github.com/bartneck/swiML">lengthUnits</a></b></div>
+                                          <div><b><a href="swiML.html#numeralSystems" target="_self" title="https://github.com/bartneck/swiML">numeralSystems</a></b></div>
+                                          <div><b><a href="swiML.html#orientationType" target="_self" title="https://github.com/bartneck/swiML">orientationType</a></b></div>
+                                          <div><b><a href="swiML.html#percentType" target="_self" title="https://github.com/bartneck/swiML">percentType</a></b></div>
+                                          <div><b><a href="swiML.html#segmentNameType" target="_self" title="https://github.com/bartneck/swiML">segmentNameType</a></b></div>
+                                          <div><b><a href="swiML.html#standardStrokeType" target="_self" title="https://github.com/bartneck/swiML">standardStrokeType</a></b></div>
+                                          <div><b><a href="swiML.html#titleString" target="_self" title="https://github.com/bartneck/swiML">titleString</a></b></div>
+                                          <div><b><a href="swiML.html#zoneType" target="_self" title="https://github.com/bartneck/swiML">zoneType</a></b></div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                        <td class="rt_lineRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_cornerBottomLeft"></td>
+                        <td class="rt_lineBottom"></td>
+                        <td class="rt_cornerBottomRight"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="horizontalLayout">
+                  <table class="rt">
+                     <tr>
+                        <td class="rt_cornerTopLeft"></td>
+                        <td class="rt_lineTop"></td>
+                        <td class="rt_cornerTopRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_lineLeft"></td>
+                        <td class="rt_content">
+                           <table class="componentGroup">
+                              <tbody>
+                                 <tr>
+                                    <td class="componentGroup"><input id="button_Complex_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('Complex_Type');" class="control" /></td>
+                                    <td class="componentGroup">
+                                       <div class="componentGroupTitle">Complex Types</div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="componentGroup"></td>
+                                    <td class="componentGroup">
+                                       <div id="Complex_Type" class="componentGroup" style="display:block">
+                                          <div><b><a href="swiML.html#continueType" target="_self" title="https://github.com/bartneck/swiML">continueType</a></b></div>
+                                          <div><b><a href="swiML.html#drillType" target="_self" title="https://github.com/bartneck/swiML">drillType</a></b></div>
+                                          <div><b><a href="swiML.html#instructionType" target="_self" title="https://github.com/bartneck/swiML">instructionType</a></b></div>
+                                          <div><b><a href="swiML.html#intensityProfile" target="_self" title="https://github.com/bartneck/swiML">intensityProfile</a></b></div>
+                                          <div><b><a href="swiML.html#intensityType" target="_self" title="https://github.com/bartneck/swiML">intensityType</a></b></div>
+                                          <div><b><a href="swiML.html#kickStyle" target="_self" title="https://github.com/bartneck/swiML">kickStyle</a></b></div>
+                                          <div><b><a href="swiML.html#lengthType" target="_self" title="https://github.com/bartneck/swiML">lengthType</a></b></div>
+                                          <div><b><a href="swiML.html#pyramidType" target="_self" title="https://github.com/bartneck/swiML">pyramidType</a></b></div>
+                                          <div><b><a href="swiML.html#repetitionType" target="_self" title="https://github.com/bartneck/swiML">repetitionType</a></b></div>
+                                          <div><b><a href="swiML.html#restType" target="_self" title="https://github.com/bartneck/swiML">restType</a></b></div>
+                                          <div><b><a href="swiML.html#strokeType" target="_self" title="https://github.com/bartneck/swiML">strokeType</a></b></div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                        <td class="rt_lineRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_cornerBottomLeft"></td>
+                        <td class="rt_lineBottom"></td>
+                        <td class="rt_cornerBottomRight"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="horizontalLayout">
+                  <table class="rt">
+                     <tr>
+                        <td class="rt_cornerTopLeft"></td>
+                        <td class="rt_lineTop"></td>
+                        <td class="rt_cornerTopRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_lineLeft"></td>
+                        <td class="rt_content">
+                           <table class="componentGroup">
+                              <tbody>
+                                 <tr>
+                                    <td class="componentGroup"><input id="button_Element_Group" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('Element_Group');" class="control" /></td>
+                                    <td class="componentGroup">
+                                       <div class="componentGroupTitle">Element Groups</div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="componentGroup"></td>
+                                    <td class="componentGroup">
+                                       <div id="Element_Group" class="componentGroup" style="display:block">
+                                          <div><b><a href="swiML.html#instructionGroup" target="_self" title="https://github.com/bartneck/swiML">instructionGroup</a></b></div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                        <td class="rt_lineRight"></td>
+                     </tr>
+                     <tr>
+                        <td class="rt_cornerBottomLeft"></td>
+                        <td class="rt_lineBottom"></td>
+                        <td class="rt_cornerBottomRight"></td>
+                     </tr>
+                  </table>
+               </div>
+               <div style="clear:left"></div>
+            </div>
+         </div>
+         <div class="level1" id="toc_group_by_location" style="display:none">
+            <div>
+               <div class="level2">
+                  <p><input id="button_gr_swiML.xsd" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsd');" class="control" /><span class="indexGroupTitle">swiML.xsd</span></p>
+                  <div id="gr_swiML.xsd" style="display:block">
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_gr_swiML.xsdMain_schema" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsdMain_schema');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Main Schema</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="gr_swiML.xsdMain_schema" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#swiML.xsd" target="_self" title="https://github.com/bartneck/swiML">swiML.xsd</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_gr_swiML.xsdElement" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsdElement');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Elements</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="gr_swiML.xsdElement" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#program" target="_self" title="https://github.com/bartneck/swiML">program</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_gr_swiML.xsdSimple_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsdSimple_Type');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Simple Types</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="gr_swiML.xsdSimple_Type" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#descriptionString" target="_self" title="https://github.com/bartneck/swiML">descriptionString</a></b></div>
+                                                <div><b><a href="swiML.html#drillNameType" target="_self" title="https://github.com/bartneck/swiML">drillNameType</a></b></div>
+                                                <div><b><a href="swiML.html#emailAddress" target="_self" title="https://github.com/bartneck/swiML">emailAddress</a></b></div>
+                                                <div><b><a href="swiML.html#equipmentList" target="_self" title="https://github.com/bartneck/swiML">equipmentList</a></b></div>
+                                                <div><b><a href="swiML.html#equipmentType" target="_self" title="https://github.com/bartneck/swiML">equipmentType</a></b></div>
+                                                <div><b><a href="swiML.html#instructionDescriptionType" target="_self" title="https://github.com/bartneck/swiML">instructionDescriptionType</a></b></div>
+                                                <div><b><a href="swiML.html#legMovementType" target="_self" title="https://github.com/bartneck/swiML">legMovementType</a></b></div>
+                                                <div><b><a href="swiML.html#lengthUnits" target="_self" title="https://github.com/bartneck/swiML">lengthUnits</a></b></div>
+                                                <div><b><a href="swiML.html#numeralSystems" target="_self" title="https://github.com/bartneck/swiML">numeralSystems</a></b></div>
+                                                <div><b><a href="swiML.html#orientationType" target="_self" title="https://github.com/bartneck/swiML">orientationType</a></b></div>
+                                                <div><b><a href="swiML.html#percentType" target="_self" title="https://github.com/bartneck/swiML">percentType</a></b></div>
+                                                <div><b><a href="swiML.html#segmentNameType" target="_self" title="https://github.com/bartneck/swiML">segmentNameType</a></b></div>
+                                                <div><b><a href="swiML.html#standardStrokeType" target="_self" title="https://github.com/bartneck/swiML">standardStrokeType</a></b></div>
+                                                <div><b><a href="swiML.html#titleString" target="_self" title="https://github.com/bartneck/swiML">titleString</a></b></div>
+                                                <div><b><a href="swiML.html#zoneType" target="_self" title="https://github.com/bartneck/swiML">zoneType</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_gr_swiML.xsdComplex_Type" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsdComplex_Type');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Complex Types</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="gr_swiML.xsdComplex_Type" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#continueType" target="_self" title="https://github.com/bartneck/swiML">continueType</a></b></div>
+                                                <div><b><a href="swiML.html#drillType" target="_self" title="https://github.com/bartneck/swiML">drillType</a></b></div>
+                                                <div><b><a href="swiML.html#instructionType" target="_self" title="https://github.com/bartneck/swiML">instructionType</a></b></div>
+                                                <div><b><a href="swiML.html#intensityProfile" target="_self" title="https://github.com/bartneck/swiML">intensityProfile</a></b></div>
+                                                <div><b><a href="swiML.html#intensityType" target="_self" title="https://github.com/bartneck/swiML">intensityType</a></b></div>
+                                                <div><b><a href="swiML.html#kickStyle" target="_self" title="https://github.com/bartneck/swiML">kickStyle</a></b></div>
+                                                <div><b><a href="swiML.html#lengthType" target="_self" title="https://github.com/bartneck/swiML">lengthType</a></b></div>
+                                                <div><b><a href="swiML.html#pyramidType" target="_self" title="https://github.com/bartneck/swiML">pyramidType</a></b></div>
+                                                <div><b><a href="swiML.html#repetitionType" target="_self" title="https://github.com/bartneck/swiML">repetitionType</a></b></div>
+                                                <div><b><a href="swiML.html#restType" target="_self" title="https://github.com/bartneck/swiML">restType</a></b></div>
+                                                <div><b><a href="swiML.html#strokeType" target="_self" title="https://github.com/bartneck/swiML">strokeType</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div class="horizontalLayout">
+                        <table class="rt">
+                           <tr>
+                              <td class="rt_cornerTopLeft"></td>
+                              <td class="rt_lineTop"></td>
+                              <td class="rt_cornerTopRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_lineLeft"></td>
+                              <td class="rt_content">
+                                 <table class="componentGroup">
+                                    <tbody>
+                                       <tr>
+                                          <td class="componentGroup"><input id="button_gr_swiML.xsdElement_Group" type="image" alt="expand/collapse" src="img/btM.gif" onclick="switchState('gr_swiML.xsdElement_Group');" class="control" /></td>
+                                          <td class="componentGroup">
+                                             <div class="componentGroupTitle">Element Groups</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td class="componentGroup"></td>
+                                          <td class="componentGroup">
+                                             <div id="gr_swiML.xsdElement_Group" class="componentGroup" style="display:block">
+                                                <div><b><a href="swiML.html#instructionGroup" target="_self" title="https://github.com/bartneck/swiML">instructionGroup</a></b></div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                              <td class="rt_lineRight"></td>
+                           </tr>
+                           <tr>
+                              <td class="rt_cornerBottomLeft"></td>
+                              <td class="rt_lineBottom"></td>
+                              <td class="rt_cornerBottomRight"></td>
+                           </tr>
+                        </table>
+                     </div>
+                     <div style="clear:left"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="footer">
+         <hr />
+         <div style="text-align:center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.</div>
+      </div>
+   </body>
+</html>
