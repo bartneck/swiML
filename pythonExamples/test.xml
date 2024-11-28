@@ -1,92 +1,57 @@
 <?xml version='1.0' encoding='utf-8'?>
-<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/1/1.1/swiML.xsd">
-  <title>Continue Examples</title>
+<program xmlns="https://github.com/bartneck/swiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+  <title>Vikings</title>
   <author>
     <firstName>Callum</firstName>
     <lastName>Lockhart</lastName>
+    <email>clo78@uclive.ac.nz</email>
   </author>
-  <programDescription>Examples of continues in swiML</programDescription>
-  <creationDate>2024-09-23</creationDate>
+  <programDescription>Wednesday Afternoon Training</programDescription>
+  <creationDate>2024-11-13</creationDate>
   <poolLength>25</poolLength>
   <lengthUnit>meters</lengthUnit>
-  <programAlign>false</programAlign>
-  <numeralSystem>roman</numeralSystem>
+  <programAlign>true</programAlign>
+  <numeralSystem>decimal</numeralSystem>
+  <hideIntro>false</hideIntro>
   <instruction>
-    <continue>
-      <continueLength>
-        <lengthAsDistance>200</lengthAsDistance>
-      </continueLength>
-      <instruction>
-        <length>
-          <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>butterfly</standardStroke>
-        </stroke>
-        <excludeAlign>false</excludeAlign>
-      </instruction>
-      <instruction>
-        <length>
-          <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>breaststroke</standardStroke>
-        </stroke>
-        <excludeAlign>false</excludeAlign>
-      </instruction>
-    </continue>
+    <segmentName>Warm up</segmentName>
   </instruction>
   <instruction>
-    <continue>
-      <continueLength>
-        <lengthAsDistance>400</lengthAsDistance>
-      </continueLength>
+    <length>
+      <lengthAsDistance>200</lengthAsDistance>
+    </length>
+    <stroke>
+      <standardStroke>freestyle</standardStroke>
+    </stroke>
+    <rest>
+      <sinceStart>PT3M10S</sinceStart>
+    </rest>
+    <excludeAlign>false</excludeAlign>
+  </instruction>
+  <instruction>
+    <repetition>
+      <repetitionCount>8</repetitionCount>
+      <simplify>false</simplify>
       <instruction>
         <length>
-          <lengthAsDistance>100</lengthAsDistance>
+          <lengthAsDistance>50</lengthAsDistance>
         </length>
         <stroke>
           <drill>
-            <drillName>any</drillName>
             <drillStroke>any</drillStroke>
           </drill>
         </stroke>
+        <rest>
+          <sinceStart>PT1M10S</sinceStart>
+        </rest>
         <excludeAlign>false</excludeAlign>
       </instruction>
-      <instruction>
-        <length>
-          <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>any</standardStroke>
-        </stroke>
-        <excludeAlign>false</excludeAlign>
-      </instruction>
-    </continue>
+    </repetition>
   </instruction>
   <instruction>
-    <continue>
-      <continueLength>
-        <lengthAsDistance>400</lengthAsDistance>
-      </continueLength>
-      <instruction>
-        <length>
-          <lengthAsDistance>50</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <excludeAlign>false</excludeAlign>
-      </instruction>
-      <instruction>
-        <length>
-          <lengthAsDistance>50</lengthAsDistance>
-        </length>
-        <stroke>
-          <standardStroke>backstroke</standardStroke>
-        </stroke>
-        <excludeAlign>false</excludeAlign>
-      </instruction>
+    <repetition>
+      <repetitionCount>3</repetitionCount>
+      <simplify>false</simplify>
       <instruction>
         <length>
           <lengthAsDistance>100</lengthAsDistance>
@@ -96,8 +61,111 @@
             <standardKick>any</standardKick>
           </kicking>
         </stroke>
+        <rest>
+          <sinceStart>PT2M10S</sinceStart>
+        </rest>
         <excludeAlign>false</excludeAlign>
       </instruction>
-    </continue>
+    </repetition>
+  </instruction>
+  <instruction>
+    <length>
+      <lengthAsDistance>100</lengthAsDistance>
+    </length>
+    <stroke>
+      <standardStroke>any</standardStroke>
+    </stroke>
+    <intensity>
+      <startIntensity>
+        <zone>easy</zone>
+      </startIntensity>
+    </intensity>
+    <excludeAlign>false</excludeAlign>
+  </instruction>
+  <instruction>
+    <repetition>
+      <repetitionCount>2</repetitionCount>
+      <simplify>false</simplify>
+      <instruction>
+        <length>
+          <lengthAsDistance>100</lengthAsDistance>
+        </length>
+        <stroke>
+          <kicking>
+            <standardKick>any</standardKick>
+          </kicking>
+        </stroke>
+        <intensity>
+          <startIntensity>
+            <zone>easy</zone>
+          </startIntensity>
+          <stopIntensity>
+            <zone>racePace</zone>
+          </stopIntensity>
+        </intensity>
+        <excludeAlign>false</excludeAlign>
+      </instruction>
+    </repetition>
+  </instruction>
+  <instruction>
+    <segmentName>Main Set</segmentName>
+  </instruction>
+  <instruction>
+    <repetition>
+      <repetitionCount>8</repetitionCount>
+      <simplify>false</simplify>
+      <instruction>
+        <length>
+          <lengthAsDistance>75</lengthAsDistance>
+        </length>
+        <stroke>
+          <standardStroke>nr1</standardStroke>
+        </stroke>
+        <rest>
+          <sinceStart>PT1M20S</sinceStart>
+        </rest>
+        <intensity>
+          <startIntensity>
+            <percentageEffort>85</percentageEffort>
+          </startIntensity>
+        </intensity>
+        <excludeAlign>false</excludeAlign>
+      </instruction>
+      <instruction>
+        <length>
+          <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+          <standardStroke>nr1</standardStroke>
+        </stroke>
+        <rest>
+          <sinceStart>PT2M0S</sinceStart>
+        </rest>
+        <intensity>
+          <startIntensity>
+            <zone>max</zone>
+          </startIntensity>
+        </intensity>
+        <excludeAlign>false</excludeAlign>
+      </instruction>
+    </repetition>
+  </instruction>
+  <instruction>
+    <segmentName>Warm Down</segmentName>
+  </instruction>
+  <instruction>
+    <length>
+      <lengthAsDistance>1000</lengthAsDistance>
+    </length>
+    <stroke>
+      <standardStroke>any</standardStroke>
+    </stroke>
+    <intensity>
+      <startIntensity>
+        <zone>easy</zone>
+      </startIntensity>
+    </intensity>
+    <equipment>fins</equipment>
+    <excludeAlign>false</excludeAlign>
   </instruction>
 </program>
