@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 import re
 import datetime
-import roman
 # version 2.3.1
 
 INSTRUCTION_GROUP = [
@@ -119,7 +118,7 @@ def simplify_repetition(instructions,repetitionCount):
 def numeral(number,system):
     number = int(number)
     if system == 'roman':
-        return roman.toRoman(number)
+        return number #removed roman library
     else:
         return number
 
@@ -264,9 +263,11 @@ def readXML(filename):
         file = f.read()
         namespace = re.search('<program .+?>',file,flags=re.DOTALL).group(0)
         nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
-        versionm = re.search('swiML/(main(/version/[0-9]+/[0-9]+\.[0-9]+)?)/swiML',namespace)
-        if versionm.group(2):
-            version = versionm.group(2).split('/')[-1]  
+        versionm = re.search('swiML/(main(/version/(latest|[0-9]+/[0-9]+\.[0-9]+))?)/swiML', namespace)
+        if versionm.group(3):
+            version = versionm.group(3) 
+            if version != 'latest':
+                version = version.split('/')[-1]
         else: 
             version = "main"
     tree = ET.ElementTree(ET.fromstring(nons))
@@ -321,7 +322,10 @@ def instGroupStr(self):
             stroke = self.stroke[1] 
         else: 
             if self.stroke[0] == 'drill':
-                stroke = f'{self.stroke[1][1]} {self.stroke[1][0]} drill'
+                if self.stroke[1][0] == 'drillStroke':
+                    stroke = f'{self.stroke[1][1]} drill'
+                else:
+                    stroke = f'{self.stroke[1][1][1]} {self.stroke[1][0][1]} drill'
             else:
                 if self.stroke[1][0] == 'standardKick':
                     stroke = f'{self.stroke[1][1]} kick'
