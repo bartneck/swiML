@@ -202,12 +202,16 @@ def ObjToXML(root,tags,instructions):
                             ObjToXML(parent,[choice],[instructions[tag_index][1]]) 
 
                 elif tag[1] == 'e':
-                    #TODO copy the bit from tag[1] == s so that this only takes tags that are specified not just all of them
-                    if type(instructions[tag_index]) is list:
-                        for index, item in enumerate(instructions[tag_index]):
-                            ObjToXML(parent,[tag[2][index]],[instructions[tag_index][index][1]]) 
+                    if type(instructions[tag_index]) is tuple:
+                        insts = [instructions[tag_index]]
                     else:
-                        ObjToXML(parent,[tag[2][0]],[instructions[tag_index][1]]) 
+                        insts = instructions[tag_index]
+                    matching_keys = {key for key, _ in insts}
+
+                    filtered_tag2 = [item for item in tag[2] if item[0] in matching_keys]
+                    for i in range(len(filtered_tag2)):
+                        ObjToXML(parent, [filtered_tag2[i]], [insts[i][1]])
+                    
                         
         
 

@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 import re
 import datetime
-import roman
 # version 2.3.1
 
 INSTRUCTION_GROUP = [
@@ -70,7 +69,6 @@ def nonBasicInstructions(instructions):
                 instructionList.extend(basicInstructions(child.instructions))
     return instructionList
 
-
 def get_total_length(instructions):
     '''returns length of given instructions
     or repetitions if '''
@@ -120,7 +118,7 @@ def simplify_repetition(instructions,repetitionCount):
 def numeral(number,system):
     number = int(number)
     if system == 'roman':
-        return roman.toRoman(number)
+        return number #removed roman library
     else:
         return number
 
@@ -187,21 +185,33 @@ def ObjToXML(root,tags,instructions):
             elif type(tag) is tuple:
                 parent = ET.SubElement(root,tag[0])
                 if tag[1] == 's':
-                    #this is a very bad way of removing tags as not always the end tag is removed 
-                    if len(tag[2]) == len(instructions[tag_index]):
-                        ObjToXML(parent,tag[2],instructions[tag_index])
+
+                    if type(instructions[tag_index]) is tuple:
+                        insts = [instructions[tag_index]]
                     else:
-                        ObjToXML(parent,tag[2][:-(len(tag[2])-len(instructions[tag_index]))],instructions[tag_index])
+                        insts = instructions[tag_index]
+
+                    matching_keys = {key for key, _ in insts}
+                    filtered_tag2 = [item for item in tag[2] if item in matching_keys]
+
+                    ObjToXML(parent, filtered_tag2, insts)
+
                 elif tag[1] == 'c':
                     for choice in tag[2]:
                         if instructions[tag_index][0] == choice or instructions[tag_index][0] == choice[0]:
                             ObjToXML(parent,[choice],[instructions[tag_index][1]]) 
 
                 elif tag[1] == 'e':
-                    for index,option in enumerate(tag[2]): 
-                        if len(instructions[tag_index]) > 2*index:
-                            if option[0] == instructions[tag_index][index*2]:
-                                ObjToXML(parent,[option],[instructions[tag_index][2*index+1]]) 
+                    if type(instructions[tag_index]) is tuple:
+                        insts = [instructions[tag_index]]
+                    else:
+                        insts = instructions[tag_index]
+                    matching_keys = {key for key, _ in insts}
+
+                    filtered_tag2 = [item for item in tag[2] if item[0] in matching_keys]
+                    for i in range(len(filtered_tag2)):
+                        ObjToXML(parent, [filtered_tag2[i]], [insts[i][1]])
+                    
                         
         
 
@@ -235,8 +245,9 @@ def nodeToDict(node):
 def XMLToClass(node):
     '''takes XML input and outputs class of the contents'''
     instType = node.findall('*')
-    
-    if instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid' and instType[0].tag != 'segmentName':
+    if instType[0].tag == 'segmentName':
+        return SegmentName(instType[0].text)
+    elif instType[0].tag != 'repetition' and instType[0].tag != 'continue' and instType[0].tag != 'pyramid':
         instDict,instructions = nodeToDict(node)
         return Instruction(**instDict)
     else:
@@ -247,24 +258,27 @@ def XMLToClass(node):
             return Continue(**instDict,instructions=instructions)
         elif instType[0].tag == 'pyramid':
             return Pyramid(**instDict,instructions=instructions)
-        elif instType[0].tag == 'segmentName':
-            return SegmentName(**instDict)
+        
 
 
 def readXML(filename):
     '''Parses Xml file to Python Classes'''
     with open(filename,"r+") as f:
         file = f.read()
-        namespace = re.search('<program .+?>',file,flags=re.DOTALL)
+        namespace = re.search('<program .+?>',file,flags=re.DOTALL).group(0)
         nons= re.sub('<program .+?>','<program>',file,flags=re.DOTALL)
-        f.truncate(0)
-        f.seek(0)
-        f.write(nons)
-    tree = ET.parse(filename)
+        versionm = re.search('swiML/(main(/version/(latest|[0-9]+/[0-9]+\.[0-9]+))?)/swiML', namespace)
+        if versionm.group(3):
+            version = versionm.group(3) 
+            if version != 'latest':
+                version = version.split('/')[-1]
+        else: 
+            version = "main"
+    tree = ET.ElementTree(ET.fromstring(nons))
     root = tree.getroot()
     if root.tag == 'program':
         programDict,instructions = nodeToDict(root)
-        return Program(**programDict,instructions=instructions)
+        return Program(**programDict,swiMLVersion=version,instructions=instructions)
     else:
         return XMLToClass(root)
 
@@ -293,10 +307,10 @@ def instGroupStr(self):
         equipment = equipment[:-2]
         
     if self.intensity != None:
-        if len(self.intensity) == 2:
+        if self.intensity[0] == 'startIntensity':
             intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][0] == "percentageHeartRate" else ""}'
         else:
-            intensity =  f'{self.intensity[1][1]}{"%" if self.intensity[1][1] == "percentageEffort" else "% of max HR" if self.intensity[1][1] == "percentageHeartRate" else ""}...{self.intensity[3][1]}{"%" if self.intensity[3][0] == "percentageEffort" else "% of max HR" if self.intensity[3][0] == "percentageHeartRate" else ""}'
+            intensity =  f'{self.intensity[0][1][1]}{"%" if self.intensity[0][1][0] == "percentageEffort" else "% of max HR" if self.intensity[0][1][0] == "percentageHeartRate" else ""}...{self.intensity[1][1][1]}{"%" if self.intensity[1][1][0] == "percentageEffort" else "% of max HR" if self.intensity[1][1][0] == "percentageHeartRate" else ""}'
     else:
         intensity = ''
     
@@ -312,7 +326,10 @@ def instGroupStr(self):
             stroke = self.stroke[1] 
         else: 
             if self.stroke[0] == 'drill':
-                stroke = f'{self.stroke[1][1]} {self.stroke[1][0]} drill'
+                if self.stroke[1][0] == 'drillStroke':
+                    stroke = f'{self.stroke[1][1]} drill'
+                else:
+                    stroke = f'{self.stroke[1][1][1]} {self.stroke[1][0][1]} drill'
             else:
                 if self.stroke[1][0] == 'standardKick':
                     stroke = f'{self.stroke[1][1]} kick'
@@ -627,7 +644,7 @@ class SegmentName:
 
     def __str__(self):
         '''returns string for segment name'''
-        return '\n'+str(self.segmentName)
+        return '\n --- '+str(self.segmentName)+' ---'
     
 
 
