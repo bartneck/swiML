@@ -16,36 +16,48 @@
     <instruction>
         <repetition>
             <repetitionCount>3</repetitionCount>
+            <simplify>true</simplify>
+            <length>
+                <lengthAsDistance>25</lengthAsDistance>
+            </length>
             <instruction>
-                <length>
-                    <lengthAsDistance>100</lengthAsDistance>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>butterfly</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
             </instruction>
-        </repetition>
-    </instruction>
-    
-    <instruction>
-        <repetition>
-            <repetitionCount>3</repetitionCount>
-            <rest>
-                <sinceStart>PT1M0S</sinceStart>
-            </rest>
-            <intensity>
-                <startIntensity>
-                    <zone>racePace</zone>
-                </startIntensity>
-            </intensity>
-            <!-- NOTE something wrong with this representation in HTML -->
             <instruction>
-                <length>
-                    <lengthAsDistance>100</lengthAsDistance>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M20S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
             </instruction>
         </repetition>
     </instruction>

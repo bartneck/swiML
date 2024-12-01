@@ -4,7 +4,7 @@
 body {
     font-family: 'JetBrains Mono', monospace;
 	/* the font size is set so that 50 characters add up to 11cm */
-    font-size: 3.67mm;
+    font-size: 3.666mm;
     font-weight: 400;
     font-style: normal;
     counter-reset: line;
@@ -292,7 +292,7 @@ https://github.com/bartneck/swiML/raw/main/fonts/JetBrainsMono/fonts/webfonts/Je
     }
 
     body {
-        font-size: 3.67mm;
+        font-size: 3.666mm;
     }
 
     .program {
