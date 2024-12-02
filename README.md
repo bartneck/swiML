@@ -90,7 +90,7 @@ The version folder contains stable versions of the files while the root folder c
 ```versions/latest```
 
 ## Python
-We also developed a Python library that you can use to code your swimming program. It is available as a package over at [PyPi](https://pypi.org/project/swiml_python_xml/). You can find some example of how to use Python in our [Python Examples](https://github.com/bartneck/swiML/tree/main/pythonExamples) folder.
+We also developed a Python library that you can use to code your swimming program. It is available as a package over at [PyPi](https://pypi.org/project/swiml_python_xml/). You can find some example of how to use Python in our [Python Examples](https://github.com/bartneck/swiML/tree/main/documentation/pythonExamples) folder.
 
 # Examples
 A first test implementation showing the [training sessions](https://bartneck.github.io/swiML/jasiMasters/) for the [Jasi Masters](https://jasimasters.org.nz) swimming club in Christchurch, New Zealand is available. These programs demonstrate the usage of swiML, including examples of Python programs.
