@@ -546,8 +546,9 @@
         </xs:assert>
 
         <!-- Explain what this assertion does -->
+        <!-- removed and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount) not sure if needed, will have to test more -->
         <xs:assert
-            test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"/>
+            test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount "/>
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<program xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML"
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
+    <creationDate>2024-07-11</creationDate>
+    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <simplify>true</simplify>
+            <length>
+                <lengthAsDistance>25</lengthAsDistance>
+            </length>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>butterfly</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>nr1</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M25S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>6</repetitionCount>
+                    <instruction>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT0M20S</sinceStart>
+                        </rest>
+                    </instruction>
+                </repetition>                    
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
