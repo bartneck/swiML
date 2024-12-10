@@ -8,56 +8,50 @@
         <lastName>Bartneck</lastName>
     </author>
     <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
-    <creationDate>2024-07-11</creationDate>
-    
+    <creationDate>2024-05-17</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    
     <instruction>
         <repetition>
-            <repetitionCount>3</repetitionCount>
             <simplify>true</simplify>
-            <length>
-                <lengthAsDistance>25</lengthAsDistance>
-            </length>
+            <repetitionDescription>nonn</repetitionDescription>
             <instruction>
-                <repetition>
-                    <repetitionCount>6</repetitionCount>
-                    <instruction>
-                        <stroke>
-                            <standardStroke>butterfly</standardStroke>
-                        </stroke>
-                        <rest>
-                            <sinceStart>PT0M25S</sinceStart>
-                        </rest>
-                    </instruction>
-                </repetition>                    
+                <length>
+                    <lengthAsLaps>4</lengthAsLaps>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <instruction>
+                <length>
+                    <lengthAsLaps>4</lengthAsLaps>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
             </instruction>
             <instruction>
-                <repetition>
-                    <repetitionCount>6</repetitionCount>
-                    <instruction>
-                        <stroke>
-                            <standardStroke>nr1</standardStroke>
-                        </stroke>
-                        <rest>
-                            <sinceStart>PT0M25S</sinceStart>
-                        </rest>
-                    </instruction>
-                </repetition>                    
-            </instruction>
-            <instruction>
-                <repetition>
-                    <repetitionCount>6</repetitionCount>
-                    <instruction>
-                        <stroke>
-                            <standardStroke>freestyle</standardStroke>
-                        </stroke>
-                        <rest>
-                            <sinceStart>PT0M20S</sinceStart>
-                        </rest>
-                    </instruction>
-                </repetition>                    
+                <length>
+                    <lengthAsLaps>4</lengthAsLaps>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
             </instruction>
         </repetition>
     </instruction>
