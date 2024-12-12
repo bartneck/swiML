@@ -20,8 +20,9 @@
     
     <xsl:template match="sw:instruction">
         <xsl:param name="cont" select="'0|0'"/>
+        <xsl:param name="pos" select="'None'"/>
         <xsl:choose>
-            <xsl:when test="sw:repetition or sw:continue or sw:pyramid">
+            <xsl:when test="sw:repetition or sw:continue or sw:pyramid or sw:segmentName">
                 <xsl:apply-templates select="sw:pyramid">
                     <xsl:with-param name="cont" select="$cont"/>
                 </xsl:apply-templates>  
@@ -29,6 +30,9 @@
                     <xsl:with-param name="cont" select="$cont"/>
                 </xsl:apply-templates>  
                 <xsl:apply-templates select="sw:continue">
+                    <xsl:with-param name="cont" select="$cont"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="sw:segmentName">
                     <xsl:with-param name="cont" select="$cont"/>
                 </xsl:apply-templates>  
             </xsl:when>
@@ -74,6 +78,7 @@
     
     <xsl:template match="sw:repetition">
         <xsl:param name="cont" select="'0|0'"/>
+        <xsl:param name="pos" select="'None'"/>
         <xsl:variable name="count">
             <xsl:choose>
                 <xsl:when test="sw:repetitionCount"><xsl:value-of select="sw:repetitionCount"/></xsl:when>
@@ -89,6 +94,8 @@
                 <xsl:apply-templates select="." >
                     <xsl:with-param name="cont" select="concat(substring-before($cont, '|'), '|',
                         if (position() = last() and substring-after($cont,'|') = '1' and $isLast) then '1' else '0')"/>
+                    <xsl:with-param name="pos" select="concat( string(position()),',',string(position()) , ',' , string(count($rep/sw:instruction)))"/>
+                    
                 </xsl:apply-templates>     
             </xsl:for-each>
         </xsl:for-each>
@@ -96,6 +103,7 @@
     
     <xsl:template match="sw:continue">
         <xsl:param name="cont" select="'0|0'"/>
+        <xsl:param name="pos" select="'None'"/>
         <xsl:variable name="con" select="."/>
         <xsl:variable name="count">
             <xsl:choose>
@@ -106,19 +114,25 @@
                     <xsl:value-of select="1"/>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable> 
-        <xsl:message><xsl:value-of select="$count"/></xsl:message>
+        </xsl:variable>
         <xsl:for-each select="1 to $count">
             <xsl:variable name="isLast"  select="position() = last()" />
+            <xsl:variable name="fractionTotal" select="((myData:contLength($con))) div min($con//sw:length/*[1])"/>
             <xsl:for-each select="$con/sw:instruction">
+                <xsl:message><xsl:value-of select="concat(string((sum(./preceding-sibling::*//sw:length/*[1]) div min($con//sw:length/*[1]))+1),','
+                    ,string((sum(./preceding-sibling::*//sw:length/*[1]| ./sw:length/*[1]) div min($con//sw:length/*[1]))) , ',' , $fractionTotal)"/></xsl:message>
                 <xsl:apply-templates select="." >
                     <xsl:with-param name="cont" select="concat('1|', if (position() = last() and $isLast) then '1' else '0')"/>
+                    <xsl:with-param name="pos" select="concat(string((sum(./preceding-sibling::*//sw:length/*[1]) div min($con//sw:length/*[1]))+1),','
+                        ,string((sum(./preceding-sibling::*//sw:length/*[1]| ./sw:length/*[1]) div min($con//sw:length/*[1]))) , ',' , $fractionTotal)" />
                 </xsl:apply-templates>            
             </xsl:for-each>
         </xsl:for-each>        
     </xsl:template>
     
     <xsl:template match="sw:pyramid"/>
+    
+    <xsl:template match="sw:segmentName"/>
     
     
     

@@ -26,8 +26,7 @@
 </xsl:template>
 
 <!-- Instruction Template -->
-<xsl:template name="displayInst">       
-
+<xsl:template name="displayInst"> 
     <xsl:apply-templates select="sw:length"/>
     <xsl:apply-templates select="sw:stroke/sw:standardStroke"/>
     <xsl:apply-templates select="sw:stroke/sw:kicking/sw:orientation"/>
@@ -42,6 +41,7 @@
     <xsl:apply-templates select="sw:underwater"/>
     <xsl:apply-templates select="sw:equipment"/>
     <xsl:apply-templates select="sw:instructionDescription"/>
+    <xsl:text>&#xa;</xsl:text>
 </xsl:template>
 
 <xsl:template match="sw:length">
@@ -53,11 +53,11 @@
   
 <!-- Length Templates -->
 <xsl:template match="sw:lengthAsDistance">  
-    <xsl:value-of select="myData:number(../ancestor-or-self::*[sw:lengthAsDistance])"/>
+    <xsl:value-of select="normalize-space(myData:number(../ancestor-or-self::*[sw:lengthAsDistance]))"/>
 </xsl:template>
 
 <xsl:template match="sw:lengthAsLaps">           
-    <xsl:value-of select="myData:number(../ancestor-or-self::*[sw:lengthAsLaps])"/>
+    <xsl:value-of select="normalize-space(myData:number(../ancestor-or-self::*[sw:lengthAsLaps]))"/>
     
     <xsl:if test="not(//sw:lengthUnit = 'laps')">
         <xsl:text> </xsl:text>

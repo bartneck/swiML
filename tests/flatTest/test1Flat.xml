@@ -2,46 +2,56 @@
 <program xmlns="file:/C:/My%20Documents/GitHub/swiML"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../../swiML.xsd">
-   <title>Jasi Masters</title>
+   <title>Vikings</title>
    <author>
-      <firstName>Christoph</firstName>
-      <lastName>Bartneck</lastName>
+      <firstName>Callum</firstName>
+      <lastName>Lockhart</lastName>
+      <email>clo78@uclive.ac.nz</email>
    </author>
-   <programDescription>Our Tuesday evening program targeted at one hour. The coach was Matt.</programDescription>
-   <creationDate>2024-05-17</creationDate>
+   <programDescription>Tuesday Afternoon Training</programDescription>
+   <creationDate>2024-11-12</creationDate>
    <poolLength>25</poolLength>
    <lengthUnit>meters</lengthUnit>
+   <hideIntro>false</hideIntro>
    <instruction>
       <length>
-         <lengthAsLaps>4</lengthAsLaps>
-      </length>
-      <stroke>
-         <standardStroke>backstroke</standardStroke>
-      </stroke>
-      <rest>
-         <afterStop>PT0M15S</afterStop>
-      </rest>
-   </instruction>
-   <instruction>
-      <length>
-         <lengthAsLaps>4</lengthAsLaps>
-      </length>
-      <stroke>
-         <standardStroke>backstroke</standardStroke>
-      </stroke>
-      <rest>
-         <afterStop>PT0M15S</afterStop>
-      </rest>
-   </instruction>
-   <instruction>
-      <length>
-         <lengthAsLaps>4</lengthAsLaps>
+         <lengthAsDistance>150</lengthAsDistance>
       </length>
       <stroke>
          <standardStroke>freestyle</standardStroke>
       </stroke>
       <rest>
-         <afterStop>PT0M15S</afterStop>
+         <afterStop>PT0M0S</afterStop>
       </rest>
+   </instruction>
+   <instruction>
+      <length>
+         <lengthAsDistance>75</lengthAsDistance>
+      </length>
+      <stroke>
+         <standardStroke>freestyle</standardStroke>
+      </stroke>
+      <rest>
+         <afterStop>PT0M0S</afterStop>
+      </rest>
+   </instruction>
+   <instruction>
+      <length>
+         <lengthAsDistance>50</lengthAsDistance>
+      </length>
+      <stroke>
+         <standardStroke>freestyle</standardStroke>
+      </stroke>
+      <rest>
+         <afterStop>PT0M0S</afterStop>
+      </rest>
+   </instruction>
+   <instruction>
+      <length>
+         <lengthAsDistance>25</lengthAsDistance>
+      </length>
+      <stroke>
+         <standardStroke>freestyle</standardStroke>
+      </stroke>
    </instruction>
 </program>

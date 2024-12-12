@@ -327,7 +327,7 @@
             </xs:annotation>
         </xs:assert>
         
-        <!-- check if this is just for standard stroke or for kicks and drills too -->
+        <!-- work out a way to divide contlength by the sum of its children so it actually works, cos it doesnt atm -->
         <xs:assert test="
                 every $stroke in ./sw:stroke
                     satisfies
@@ -335,7 +335,7 @@
                      or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOrder' or $stroke/sw:kicking/sw:standardKick = 'reverseIndividualMedleyOrder'
                      or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOrder' or $stroke/sw:drill/sw:drillStroke = 'reverseIndividualMedleyOrder')
                     then
-                        ($stroke/ancestor::*/sw:repetition and(every $rep in ($stroke/ancestor::*/sw:repetition) satisfies $rep/sw:repetitionCount mod 4 = 0))
+                        (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) > 0 and sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 4 = 0 )
                         or
                         ($stroke/ancestor::*/sw:continue/sw:continueLength and 
                         (every $cont in $stroke/ancestor::*/sw:continue satisfies ($cont/sw:continueLength mod 4 = 0)))
@@ -345,11 +345,29 @@
                         
                 ">
             <xs:annotation>
-                <xs:documentation>checks all strokes to make sure medley order or overlaps are only
-                    used in a repetition</xs:documentation>
+                <xs:documentation>checks all strokes to make sure medley order are only
+                    used in a repetition or continue that is divisible by 4</xs:documentation>
             </xs:annotation>
         </xs:assert>
-
+        
+        <!-- may need to make 2 different types for every 2: flbk bkbr brfr or 3: flbkbr bkbrfr 
+        Also may need to denote if you include the others like frfl or brfrfl, frflbk cos sometimes you do -->
+        <xs:assert test="
+            every $stroke in ./sw:stroke
+            satisfies
+            if ($stroke/sw:standardStroke = 'individualMedleyOverlap'
+            or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOverlap' 
+            or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOverlap' )
+            then
+            (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) > 0 and (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0 or sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0))
+            else
+            ($stroke/parent::*)
+            ">
+            <xs:annotation>
+                <xs:documentation>checks all strokes to make sure medley overlap is only
+                    used in a repetition or continue that is divisible by 2 or 3</xs:documentation>
+            </xs:annotation>
+        </xs:assert>
     </xs:complexType>
 
     <!-- ====================================================== -->
