@@ -12,8 +12,7 @@
    <creationDate>2024-11-12</creationDate>
    <poolLength>25</poolLength>
    <lengthUnit>meters</lengthUnit>
-   <hideIntro>false</hideIntro>
-   <instruction>
+   <hideIntro>false</hideIntro>1,6,12<instruction>
       <length>
          <lengthAsDistance>150</lengthAsDistance>
       </length>
@@ -23,8 +22,7 @@
       <rest>
          <afterStop>PT0M0S</afterStop>
       </rest>
-   </instruction>
-   <instruction>
+   </instruction>7,9,12<instruction>
       <length>
          <lengthAsDistance>75</lengthAsDistance>
       </length>
@@ -34,8 +32,7 @@
       <rest>
          <afterStop>PT0M0S</afterStop>
       </rest>
-   </instruction>
-   <instruction>
+   </instruction>10,11,12<instruction>
       <length>
          <lengthAsDistance>50</lengthAsDistance>
       </length>
@@ -45,8 +42,7 @@
       <rest>
          <afterStop>PT0M0S</afterStop>
       </rest>
-   </instruction>
-   <instruction>
+   </instruction>12,12,12<instruction>
       <length>
          <lengthAsDistance>25</lengthAsDistance>
       </length>

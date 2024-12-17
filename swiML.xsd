@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
-    targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
-    version="2.3">
+    xmlns:sw="file:/C:/My%20Documents/GitHub/swiML" vc:minVersion="1.1"
+    targetNamespace="file:/C:/My%20Documents/GitHub/swiML"
+    xmlns="file:/C:/My%20Documents/GitHub/swiML">
 <!-- version 2.3 -->
     
     <xs:element name="program">
@@ -663,6 +663,22 @@
                     only at top level</xs:documentation>
             </xs:annotation>
         </xs:assert>
+        
+        
+        
+        <xs:assert test="
+            if (./sw:continueLength) then (number(sw:continueLength) mod (
+            (for $con in . return 
+            sum(.//sw:length[not(ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)])][not(ancestor::sw:continue/sw:continueLength[count(./ancestor::*) > count($con/sw:continueLength/ancestor::*)])])) 
+            + (for $con in . return sum(./*//sw:continueLength[not(../ancestor::sw:continue/sw:continueLength[count(./ancestor::*) > count($con/sw:continueLength/ancestor::*)])])) 
+            + (for $con in . return( if (.//sw:length[ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)]]) then (for $inst in .//sw:length[ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)]] return (number($inst) * sum($inst/ancestor::sw:repetition/sw:repetitionCount[count(./ancestor::*) > count($con/ancestor::*)]))) else (0)
+            )) 
+            ) = 0 ) else (true())
+            ">
+            <xs:annotation>
+                <xs:documentation>check that if continue length is defined it is divisible by the contents of the continue</xs:documentation>
+            </xs:annotation>
+        </xs:assert>
     </xs:complexType>
 
 
@@ -960,4 +976,5 @@
             <xs:maxLength value="100"/>
         </xs:restriction>
     </xs:simpleType>
+
 </xs:schema>

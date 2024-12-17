@@ -37,6 +37,7 @@
                 </xsl:apply-templates>  
             </xsl:when>
             <xsl:otherwise>
+                <xsl:value-of select="$pos"/>
                 <xsl:copy>
                     
                     <xsl:apply-templates select="ancestor-or-self::*/sw:length[last()]"/>
@@ -105,6 +106,7 @@
         <xsl:param name="cont" select="'0|0'"/>
         <xsl:param name="pos" select="'None'"/>
         <xsl:variable name="con" select="."/>
+        
         <xsl:variable name="count">
             <xsl:choose>
                 <xsl:when test="sw:continueLength">
@@ -134,7 +136,19 @@
     
     <xsl:template match="sw:segmentName"/>
     
-    
+    <xsl:function name="myData:breadth">
+        <!-- node parameter is the node which depth will be returned-->
+        <xsl:param name="node" as="node()"/>
+        <xsl:choose>
+            <!-- when direct parent node is instruction then -1 from # of ancestors to give correct number-->
+            <xsl:when test="name($node/../..) = 'instruction'">
+                <xsl:value-of select="(count($node/ancestor::*)-1) div 2"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="count($node/ancestor::*) div 2"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
     <!-- function to return length of a continue -->
     <xsl:function name="myData:contLength">

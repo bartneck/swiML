@@ -17,13 +17,45 @@
     
     
     
-    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <continue>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <repetition>
+                            <repetitionCount>4</repetitionCount>
+                            <instruction>
+                                <length>
+                                    <lengthAsDistance>75</lengthAsDistance>
+                                </length>
+                                <stroke>
+                                    <standardStroke>freestyle</standardStroke>
+                                </stroke>
+                            </instruction>
+                        </repetition>
+                    </instruction>
+                </continue>
+            </instruction>
+        </repetition>
+    </instruction>
     
     
     <instruction>
         <continue>
             <continueLength>
-                <lengthAsDistance>300</lengthAsDistance>
+                <lengthAsDistance>525</lengthAsDistance>
             </continueLength>
             <instruction>
                 <length>
@@ -42,20 +74,43 @@
                 </stroke>
             </instruction>
             <instruction>
-                <length>
-                    <lengthAsDistance>50</lengthAsDistance>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
-            </instruction>
-            <instruction>
-                <length>
-                    <lengthAsDistance>25</lengthAsDistance>
-                </length>
-                <stroke>
-                    <standardStroke>freestyle</standardStroke>
-                </stroke>
+                <continue>
+                    <continueLength>
+                        <lengthAsDistance>300</lengthAsDistance>
+                    </continueLength>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>75</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </continue>
             </instruction>
         </continue>
     </instruction>
