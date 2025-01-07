@@ -3,7 +3,7 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
-    version="2.3">
+    version="2.1">
 <!-- version 2.3 -->
     
     <xs:element name="program">
@@ -327,28 +327,48 @@
             </xs:annotation>
         </xs:assert>
         
-        <!-- check if this is just for standard stroke or for kicks and drills too -->
+        <!-- work out a way to divide contlength by the sum of its children so it actually works, cos it doesnt atm -->
         <xs:assert test="
                 every $stroke in ./sw:stroke
                     satisfies
-                    if ($stroke/sw:standardStroke = 'individualMedleyOverlap' or $stroke/sw:standardStroke = 'individualMedleyOrder' or $stroke/sw:standardStroke = 'reverseIndividualMedleyOrder'
-                    or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOverlap' or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOrder' or $stroke/sw:kicking/sw:standardKick = 'reverseIndividualMedleyOrder'
-                    or$stroke/sw:drill/sw:drillStroke = 'individualMedleyOverlap' or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOrder' or $stroke/sw:drill/sw:drillStroke = 'reverseIndividualMedleyOrder')
+                    if ($stroke/sw:standardStroke = 'individualMedleyOrder' or $stroke/sw:standardStroke = 'reverseIndividualMedleyOrder'
+                     or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOrder' or $stroke/sw:kicking/sw:standardKick = 'reverseIndividualMedleyOrder'
+                     or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOrder' or $stroke/sw:drill/sw:drillStroke = 'reverseIndividualMedleyOrder')
                     then
-                        ($stroke/ancestor::*/sw:repetition)
+                    (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount[not(ancestor::sw:continue)]) > 0 and 
+                    ((sum(for $n in $stroke/ancestor::*/sw:repetition/sw:repetitionCount[not(ancestor::sw:continue)] return if ($n mod 4 = 0) then 1 else 0) &gt; 0)or(sum(for $n in $stroke/ancestor::*/sw:repetition/sw:repetitionCount return if ($n mod 2 = 0) then 1 else 0) &gt; 1)))
                         or
-                        ($stroke/ancestor::*/sw:continue/sw:continueLength)
+                        ($stroke/ancestor::*/sw:continue/sw:continueLength and 
+                        (every $cont in $stroke/ancestor::*/sw:continue satisfies ($cont/sw:continueLength mod 4 = 0)))
                     else
                         ($stroke/parent::*)
                 
                         
                 ">
             <xs:annotation>
-                <xs:documentation>checks all strokes to make sure medley order or overlaps are only
-                    used in a repetition</xs:documentation>
+                <xs:documentation>checks all strokes to make sure medley order are only
+                    used in a repetition or continue that is divisible by 4</xs:documentation>
             </xs:annotation>
         </xs:assert>
-
+        
+        <!-- may need to make 2 different types for every 2: flbk bkbr brfr or 3: flbkbr bkbrfr 
+        Also may need to denote if you include the others like frfl or brfrfl, frflbk cos sometimes you do -->
+        <xs:assert test="
+            every $stroke in ./sw:stroke
+            satisfies
+            if ($stroke/sw:standardStroke = 'individualMedleyOverlap'
+            or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOverlap' 
+            or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOverlap' )
+            then
+            (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) > 0 and (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0 or sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0))
+            else
+            ($stroke/parent::*)
+            ">
+            <xs:annotation>
+                <xs:documentation>checks all strokes to make sure medley overlap is only
+                    used in a repetition or continue that is divisible by 2 or 3</xs:documentation>
+            </xs:annotation>
+        </xs:assert>
     </xs:complexType>
 
     <!-- ====================================================== -->
@@ -546,8 +566,9 @@
         </xs:assert>
 
         <!-- Explain what this assertion does -->
+        <!-- removed and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount) not sure if needed, will have to test more -->
         <xs:assert
-            test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount and not(./sw:simplify[text() = 'true'] and ./sw:repetitionCount)"/>
+            test="./sw:simplify[text() = 'true'] or ./sw:repetitionCount "/>
     </xs:complexType>
 
     <!-- A pyramid is a common structure element for programs. -->
@@ -641,6 +662,22 @@
             <xs:annotation>
                 <xs:documentation>ensures no rest tags occur within the instructions of a continue
                     only at top level</xs:documentation>
+            </xs:annotation>
+        </xs:assert>
+        
+        
+        
+        <xs:assert test="
+            if (./sw:continueLength) then (number(sw:continueLength) mod (
+            (for $con in . return 
+            sum(.//sw:length[not(ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)])][not(ancestor::sw:continue/sw:continueLength[count(./ancestor::*) > count($con/sw:continueLength/ancestor::*)])])) 
+            + (for $con in . return sum(./*//sw:continueLength[not(../ancestor::sw:continue/sw:continueLength[count(./ancestor::*) > count($con/sw:continueLength/ancestor::*)])])) 
+            + (for $con in . return( if (.//sw:length[ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)]]) then (for $inst in .//sw:length[ancestor::sw:repetition[count(./ancestor::*) > count($con/ancestor::*)]] return (number($inst) * sum($inst/ancestor::sw:repetition/sw:repetitionCount[count(./ancestor::*) > count($con/ancestor::*)]))) else (0)
+            )) 
+            ) = 0 ) else (true())
+            ">
+            <xs:annotation>
+                <xs:documentation>check that if continue length is defined it is divisible by the contents of the continue</xs:documentation>
             </xs:annotation>
         </xs:assert>
     </xs:complexType>
@@ -806,6 +843,7 @@
         </xs:choice>
     </xs:complexType>
 
+
     <xs:simpleType name="standardStrokeType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="butterfly"/>
@@ -939,4 +977,5 @@
             <xs:maxLength value="100"/>
         </xs:restriction>
     </xs:simpleType>
+
 </xs:schema>
