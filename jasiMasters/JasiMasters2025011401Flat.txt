@@ -1,0 +1,38 @@
+400 Any Easy
+50 K FR ◔0:00 Fins
+50 K Nr 1 ◔0:00 Fins
+50 D FR Any ◔0:00 Fins
+50 D Nr 1 Any ◔0:00 Fins
+50 K FR ◔0:00 Fins
+50 K Nr 1 ◔0:00 Fins
+50 FR ◔0:00 Fins
+50 Nr 1 Fins
+50 D FR 6KD ◔0:15
+50 D FR 123 ◔0:15
+50 D FR FT ◔0:15
+50 FR ◔0:15 b5
+100 FR @_1:40 Easy…Race Pace
+100 FR @_1:40 Easy…Race Pace
+100 FR @_1:40 Easy…Race Pace
+100 FR @_1:40 Easy…Race Pace
+50 FL ◔0:15
+50 BK ◔0:15
+50 BR ◔0:15
+50 FR ◔0:15
+100 IM @_2:00
+100 IM @_2:00
+100 IM @_2:00
+100 IM @_2:00
+50 K Nr 1 ◔0:15
+50 D Nr 1 Any ◔0:15
+50 Nr 1 ◔0:15 Pads
+50 Nr 1 ◔0:15
+25 Nr 1 ◔0:00
+75 FR
+25 Nr 1 ◔0:00
+75 FR
+25 Nr 1 ◔0:00
+75 FR
+25 Nr 1 ◔0:00
+75 FR
+400 Any Easy
