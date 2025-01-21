@@ -9,6 +9,8 @@
 
 <xsl:variable name="gloalRoot" select="/"/>
 
+
+<!-- match program template -->
 <xsl:template match="/">
 
     <xsl:apply-templates select="sw:program/sw:instruction"/>

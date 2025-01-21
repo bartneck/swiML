@@ -14,6 +14,86 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>tests/flatTest/flatCBTest02Flat.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL PlainText</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>tests/flatTest/flatCBTest02.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL flat</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>tests/flatTest/flatCBTest01Flat.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL PlainText</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>tests/flatTest/flatCBTest01.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL flat</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>tests/flatTest/test1Flat.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -99,26 +179,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>flat</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>tests/flatTest/flatCBTest02.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL latest</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -3938,66 +3998,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>jasiMasters/JasiMasters2023020701.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023021901.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023021201.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023013101.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

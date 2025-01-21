@@ -5,23 +5,30 @@
     xmlns:sw="https://github.com/bartneck/swiML">
     
     
+    <!-- setting up page to copy surrounding xml tags--> 
     <xsl:variable name="namespace" ><xsl:text>https://github.com/bartneck/swiML</xsl:text></xsl:variable>
     <xsl:variable name="gloalRoot" select="/"/>
     <xsl:output indent="yes" method="xml"/>
     <xsl:strip-space elements="*"/>
     <xsl:mode on-no-match="shallow-copy"/>
     
-    
+    <!-- match all nodes in the program-->
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
         </xsl:copy>
     </xsl:template>
     
+    
+    <!-- template to copy over each individual instruction -->
     <xsl:template match="sw:instruction">
+        <!-- parameter for if inside a continue/repetition or at the end  -->
         <xsl:param name="cont" select="'0|0'"/>
+        <!-- parameter giving the relative position of the instruction within its parent instructions -->
         <xsl:param name="pos" select="'None'"/>
         <xsl:choose>
+            <!-- For when instruction is not a basic instruction
+            apply template and carry over parameters for other instructions -->
             <xsl:when test="sw:repetition or sw:continue or sw:pyramid or sw:segmentName">
                 <xsl:apply-templates select="sw:pyramid">
                     <xsl:with-param name="cont" select="$cont"/>
@@ -41,18 +48,22 @@
                 </xsl:apply-templates>  
             </xsl:when>
             <xsl:otherwise>
+                <!-- if basic instruction copy over and change/add relevant elements -->
                 <xsl:copy>
-                    
+                    <!-- copy length element -->
                     <xsl:apply-templates select="ancestor-or-self::*/sw:length[last()]"/>
                     
+                    <!-- copying/creating stroke element 
+                    when instruction is within a medley element it needs to split up the instructions into quarters-->
                     <xsl:choose>
                         <xsl:when test="ancestor-or-self::*/sw:stroke[last()]/sw:standardStroke = 'individualMedleyOrder'">
                             <xsl:element namespace="{$namespace}" name="stroke">
                                 <xsl:element namespace="{$namespace}" name="standardStroke">
-                                    
+                                    <!-- find which quarter the instruction is in  -->
                                     <xsl:variable name="quarter">
                                         <xsl:value-of select="myData:quarter($pos,(0,1))"/>
                                     </xsl:variable>
+                                    <!-- display relevent stroke -->
                                     <xsl:choose>
                                         <xsl:when test="$quarter = 1">butterfly</xsl:when>
                                         <xsl:when test="$quarter = 2">backstroke</xsl:when>
@@ -108,11 +119,13 @@
                     </xsl:choose>
                     
                     <xsl:choose>
+                        <!-- when inside a continue need to add a rest = 0 to denote this -->
                         <xsl:when test="$cont = '1|0'">
                             <xsl:element namespace="{$namespace}" name="rest">
                                 <xsl:element namespace="{$namespace}" name="afterStop"><xsl:text>PT0M0S</xsl:text></xsl:element>
                             </xsl:element>                        
                         </xsl:when>
+                        <!-- if not copy over any present rest tag -->
                         <xsl:otherwise>
                             <xsl:if test="ancestor-or-self::*/sw:rest">
                                 <xsl:apply-templates select="ancestor-or-self::*/sw:rest[last()]"/>
@@ -140,8 +153,9 @@
         </xsl:choose> 
     </xsl:template>
     
-    
+    <!-- template for dividing up repetition elements -->
     <xsl:template match="sw:repetition">
+        <!-- parameters for repetition -->
         <xsl:param name="cont" select="'0|0'"/>
         <xsl:param name="pos" select="'None'"/>
         <xsl:variable name="count">
@@ -154,12 +168,18 @@
         
         <xsl:variable name="rep" select="."/>
         
+        <!-- repeat for each repetition that occurs -->
         <xsl:for-each select="1 to $count">
+            
+            <!-- variables to split up the repetition -->
             <xsl:variable name="isLast"  select="position() = last()" />
             <xsl:variable name="relPos" select="position()"/>
             <xsl:variable name="fractionTotal" select="myData:repLength($rep) div number($rep/ancestor::sw:program/sw:poolLength)"/>
             <xsl:variable name="repetitionAdd" select="(position()-1)*($fractionTotal div $count)"/>
+            
+            <!-- repeat for instruction inside the repetition -->
             <xsl:for-each select="$rep/sw:instruction">
+                <!-- add position variable giving the relative position of the instruction inside the repetition -->
                 <xsl:variable name="position">
                     <xsl:choose>
                         <xsl:when test="$pos = 'None'">
@@ -172,6 +192,7 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
+                <!-- apply instruction template to child with position and whether it is last inside the repetition -->
                 <xsl:apply-templates select="." >
                     <xsl:with-param name="cont" select="concat(substring-before($cont, '|'), '|',
                         if (position() = last() and substring-after($cont,'|') = '1' and $isLast) then '1' else '0')"/>
@@ -182,7 +203,9 @@
         </xsl:for-each>
     </xsl:template>
     
+    <!-- template for dividing up a continue element -->
     <xsl:template match="sw:continue">
+        <!-- parameters for continue -->
         <xsl:param name="cont" select="'0|0'"/>
         <xsl:param name="pos" select="'None'"/>
         <xsl:variable name="con" select="."/>
@@ -197,10 +220,15 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        
+        <!-- repeat for each time the continue repeats the instructions inside -->
         <xsl:for-each select="1 to $count">
+            <!-- variables to give the relative position of the child instruction inside the continue -->
             <xsl:variable name="isLast"  select="position() = last()" />
             <xsl:variable name="fractionTotal" select="((myData:contLength($con))) div number($con/ancestor::sw:program/sw:poolLength)"/>
             <xsl:variable name="repetitionAdd" select="(position()-1)*($fractionTotal div $count)"/>
+            
+            <!-- repeat for each instruction inside the continue -->
             <xsl:for-each select="$con/sw:instruction">
                 <xsl:variable name="position">
                     <xsl:choose>
@@ -223,26 +251,32 @@
         </xsl:for-each>        
     </xsl:template>
     
+    <!-- no copying over of pyramids or segment names yet -->
     <xsl:template match="sw:pyramid"/>
     
     <xsl:template match="sw:segmentName"/>
     
+    <!-- function that returns the quarter a instruction is in given its position and the parent instruction -->
     <xsl:function name="myData:quarter">
         <xsl:param name="position" />
         <xsl:param name="range"/>
         <xsl:variable name="segments" select="tokenize($position,'\|')"/>
         
         <xsl:choose>
+            <!-- if there are no segments left return error message as it broke -->
             <xsl:when test="count($segments) = 0 ">
                 <xsl:message>No valid Quarter Found</xsl:message>
                 <xsl:text>No valid Quarter Found</xsl:text>
             </xsl:when>
             <xsl:otherwise>
+                <!-- variables breaking up the position of the instruction -->
                 <xsl:variable name="first_segment" select="$segments[1]" />
                 <xsl:variable name="segment_values" select="tokenize($first_segment, ',')" />
                 <xsl:variable name="total_size" select="number($segment_values[3])" />
                 <xsl:variable name="start" select="(number($segment_values[1])-1) div $total_size" />
                 <xsl:variable name="end" select="number($segment_values[2]) div $total_size" />
+                
+                <!-- gives which quarter the instruction is in -->
                 <xsl:choose>
                     <xsl:when test="((($range[2]-$range[1])*$end)+$range[1]) &lt;= 0.25">
                         <xsl:value-of select="1"/>
@@ -256,6 +290,7 @@
                     <xsl:when test="((($range[2]-$range[1])*$start)+$range[1]) &gt;= 0.75 ">
                         <xsl:value-of select="4"/>
                     </xsl:when>
+                    <!-- if no quarter can be found call function again with given information to split further -->
                     <xsl:otherwise>
                         <xsl:value-of select="myData:quarter(tokenize(substring-after($position, '|'), '\|'),($start,$end))"/>
                     </xsl:otherwise>

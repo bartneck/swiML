@@ -1,0 +1,35 @@
+400 Any Easy
+150 K FR Fins
+25 D FR 6KD ◔0:00 Fins
+25 D FR FT ◔0:00 Fins
+25 D FR 6KD ◔0:00 Fins
+25 D FR FT Fins
+50 FR Fins
+50 K FR
+25 D FR 6KD ◔0:00
+25 D FR FT ◔0:00
+25 D FR 6KD ◔0:00
+25 D FR FT
+150 FR
+200 FR @_3:15 Pads Pullbuoy
+200 FR @_3:15 Pads Pullbuoy
+50 FR ◔0:30 Easy…Race Pace
+50 FR ◔0:30 Easy…Race Pace
+200 FR @_3:15
+200 FR @_3:15
+25 FR ◔0:30 Easy…Race Pace Pullbuoy
+25 FR ◔0:30 Easy…Race Pace Pullbuoy
+150 FR @_2:35 Pads Pullbuoy
+150 FR @_2:35 Pads Pullbuoy
+50 K FR ◔0:30 Easy
+50 K FR ◔0:30 Race Pace
+50 K FR ◔0:30 Easy
+150 FR @_2:35
+150 FR @_2:35
+25 FR @_0:30 Race Pace Pullbuoy
+25 FR @_0:30 Easy Pullbuoy
+25 FR @_0:30 Race Pace Pullbuoy
+25 FR @_0:30 Easy Pullbuoy
+25 FR @_0:30 Race Pace Pullbuoy
+25 FR @_0:30 Easy Pullbuoy
+150 Any Easy
