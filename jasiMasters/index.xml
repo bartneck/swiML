@@ -534,5 +534,15 @@
         <date>2024-12-03</date>
         <id>1</id>
         <pool>Jellie Park</pool>
-    </session>        
+    </session>
+    <session>
+        <date>2025-01-14</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2025-01-19</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session> 
 </swimTraining>
