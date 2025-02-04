@@ -8,9 +8,9 @@
         <lastName>Humer</lastName>
         <email>larshumer@outlook.com</email>
     </author>
-    <programDescription>Practise 01 Week 09
+    <programDescription>Practise 01 Week 09 Option 1
     </programDescription>
-    <creationDate>2024-06-17</creationDate>
+    <creationDate>2024-06-15</creationDate>
     <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>
 
@@ -203,6 +203,108 @@
         <stroke>
             <standardStroke>any</standardStroke>
         </stroke>
-        <instructionDescription>O Ch</instructionDescription>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Threshold and Endurance</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>300</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <sinceStart>PT4M0S</sinceStart>
+                </rest>
+                <intensity>
+                    <startIntensity>
+                        <zone>threshold</zone>
+                    </startIntensity>
+                </intensity>
+            </instruction>
+            
+            <instruction>
+                <repetition>
+                    <repetitionCount>3</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT1M20S</sinceStart>
+                        </rest>
+                        <intensity>
+                            <startIntensity>
+                                <zone>endurance</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>  
+                </repetition>
+            </instruction>
+
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <segmentName>Easy and Threshold</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>4</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>50</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>butterfly</standardStroke>
+                        </stroke>
+                        <rest>
+                            <sinceStart>PT1M0S</sinceStart>
+                        </rest>
+                        <intensity>
+                            <startIntensity>
+                                <zone>threshold</zone>
+                            </startIntensity>
+                        </intensity>
+                        <equipment>fins</equipment>
+                    </instruction>
+                </repetition>
+            </instruction>
+            
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>150</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                        <rest>
+                            <afterStop>PT0M20S</afterStop>
+                        </rest>
+                        <intensity>
+                            <startIntensity>
+                                <zone>easy</zone>
+                            </startIntensity>
+                        </intensity>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
     </instruction>
 </program>
