@@ -178,47 +178,54 @@
     </instruction>
 
     <instruction>
-        <length>
-            <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <rest>
-            <afterStop>PT0M15S</afterStop>
-        </rest>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+            </instruction>
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>any</drillName>
+                        <drillStroke>freestyle</drillStroke>
+                    </drill>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+            </instruction>
+            
+            
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+                <rest>
+                    <afterStop>PT0M15S</afterStop>
+                </rest>
+                <equipment>pullBuoy</equipment>
+            </instruction>
+            
+            
+            
+        </repetition>
     </instruction>
-
-    <instruction>
-        <length>
-            <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-            <drill>
-                <drillName>any</drillName>
-                <drillStroke>freestyle</drillStroke>
-            </drill>
-        </stroke>
-        <rest>
-            <afterStop>PT0M15S</afterStop>
-        </rest>
-    </instruction>
-
-
-    <instruction>
-        <length>
-            <lengthAsDistance>100</lengthAsDistance>
-        </length>
-        <stroke>
-            <standardStroke>freestyle</standardStroke>
-        </stroke>
-        <rest>
-            <afterStop>PT0M15S</afterStop>
-        </rest>
-        <equipment>pullBuoy</equipment>
-    </instruction>
-
-
+    
     <instruction>
         <repetition>
             <repetitionCount>6</repetitionCount>
