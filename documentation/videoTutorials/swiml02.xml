@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+
+    <title>My First Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>This is the first program to demonstate swiML.</programDescription>
+    <creationDate>2025-02-05</creationDate>
+    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <breath>5</breath>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+        <instructionDescription>Focus on entry phase.</instructionDescription>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>75</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>breaststroke</standardStroke>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>25</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>any</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <kicking>
+                        <standardKick>any</standardKick>
+                    </kicking>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <drill>
+                        <drillName>6KickDrill</drillName>
+                        <drillStroke>freestyle</drillStroke>
+                    </drill>
+                </stroke>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>freestyle</standardStroke>
+                </stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <simplify>true</simplify>
+            <equipment>pads</equipment>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>backstroke</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <intensity>
+                <startIntensity>
+                    <percentageEffort>50</percentageEffort>
+                </startIntensity>
+                <stopIntensity>
+                    <percentageEffort>100</percentageEffort>
+                </stopIntensity>
+            </intensity>
+            <equipment>fins</equipment>
+            <instruction>
+                <length>
+                    <lengthAsDistance>100</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>individualMedleyOrder</standardStroke>
+                </stroke>
+                
+            </instruction>
+        </repetition>
+    </instruction>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</program>

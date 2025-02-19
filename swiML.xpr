@@ -14,7 +14,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../../../../UC%20Enterprise%20Dropbox/Christoph%20Bartneck/swimML/oxygen/swiML/tests/swimDunedin/swimDunedin2024061701.xml</String>
+                                    <String>documentation/videoTutorials/swiml01.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -35,6 +35,26 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>tests/swimDunedin/swimDunedin2024061501.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../UC%20Enterprise%20Dropbox/Christoph%20Bartneck/swimML/oxygen/swiML/tests/swimDunedin/swimDunedin2024061701.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -3981,26 +4001,6 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>bookExamples/firstExample05.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023022801.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+
+    <title>My First Program</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>This is the first program to demonstate swiML.</programDescription>
+    <creationDate>2025-02-05</creationDate>
+    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    
+    <instruction>
+        <segmentName>Warm up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <rest>
+            <afterStop>PT0M15S</afterStop>
+        </rest>
+        <intensity>
+            <startIntensity>
+                <zone>easy</zone>
+            </startIntensity>
+        </intensity>
+    </instruction>
+    
+    <instruction>
+        <length>
+            <lengthAsDistance>25</lengthAsDistance>
+        </length>
+        <stroke>
+            <standardStroke>freestyle</standardStroke>
+        </stroke>
+        <breath>5</breath>
+        <equipment>pads</equipment>
+        <equipment>pullBuoy</equipment>
+        <instructionDescription>Focus on entry phase.</instructionDescription>
+    </instruction>
+</program>
