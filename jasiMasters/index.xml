@@ -550,5 +550,27 @@
         <date>2025-01-21</date>
         <id>1</id>
         <pool>Jellie Park</pool>
+    </session>
+    
+    
+    <session>
+        <date>2025-01-28</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session>
+    <session>
+        <date>2025-02-04</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session> 
+    <session>
+        <date>2025-02-09</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
+    </session> 
+    <session>
+        <date>2025-02-11</date>
+        <id>1</id>
+        <pool>Jellie Park</pool>
     </session> 
 </swimTraining>
