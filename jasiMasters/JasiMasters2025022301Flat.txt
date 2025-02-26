@@ -1,0 +1,46 @@
+400 Any Easy
+50 K Back Dolphin ◔0:00 Fins
+50 K Back Flutter ◔0:00 Fins
+50 K Back Dolphin ◔0:00 Fins
+50 K Back Flutter Fins
+50 D FL Any ◔0:00 Fins
+50 D BK Any ◔0:00 Fins
+50 D FR Any Fins
+25 BK ◔0:00 Pullbuoy
+25 BR ◔0:00 Pullbuoy
+25 FR Pullbuoy
+25 BK ◔0:00 Pullbuoy
+25 BR ◔0:00 Pullbuoy
+25 FR Pullbuoy
+100 IM
+50 FR @_1:00 70…100%
+50 FR @_1:00 70…100%
+50 FR @_1:00 70…100%
+50 FR @_1:00 70…100%
+300 FR Endurance Pads Pullbuoy
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+25 K Any ◔0:00 Race Pace
+25 K Any ◔0:00 Easy
+25 K Any ◔0:00 Race Pace
+25 K Any Easy
+50 Nr 1 @_1:10 70…100%
+50 Nr 1 @_1:10 70…100%
+50 Nr 1 @_1:10 70…100%
+50 Nr 1 @_1:10 70…100%
+300 FR Endurance
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+50 IM Overlap @_1:05
+25 Nr 1 @_0:45 Race Pace
+25 Nr 1 @_0:45 Easy
+25 Nr 1 @_0:45 Race Pace
+25 Nr 1 @_0:45 Easy
+200 Any Easy
