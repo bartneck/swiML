@@ -361,13 +361,27 @@
             or $stroke/sw:kicking/sw:standardKick = 'individualMedleyOverlap' 
             or $stroke/sw:drill/sw:drillStroke = 'individualMedleyOverlap' )
             then
-            (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) > 0 and (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0 or sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0))
+            ((sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) > 0 
+            and (sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0 or sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0)) 
+            and (if(sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0 and sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0) 
+            then(($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 3 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 75 = 0)
+            or ($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0)) 
+            else(
+            if(sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0) 
+            then($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 3 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 75 = 0) 
+            else(true()))
+            and (if(sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0) 
+            then($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0) 
+            else(true())
+            )))
             else
             ($stroke/parent::*)
             ">
             <xs:annotation>
                 <xs:documentation>checks all strokes to make sure medley overlap is only
-                    used in a repetition or continue that is divisible by 2 or 3</xs:documentation>
+                    used in a repetition or continue that is divisible by 2 or 3
+                    then checks if divisible by 3 must be repeating something a mulitple of 50 
+                    if divisible by 2 then it must be divisible by 75</xs:documentation>
             </xs:annotation>
         </xs:assert>
     </xs:complexType>
