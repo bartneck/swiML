@@ -11,12 +11,12 @@
     <creationDate>2024-05-11</creationDate>
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
-    <hideIntro>true</hideIntro>
+    <hideIntro>false</hideIntro>
     <layoutWidth>50</layoutWidth>
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>any</standardStroke>
@@ -33,7 +33,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -50,7 +50,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -67,7 +67,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -84,7 +84,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -101,7 +101,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -118,7 +118,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <drill>
@@ -138,7 +138,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>backstroke</standardStroke>
@@ -155,7 +155,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>breaststroke</standardStroke>
@@ -172,7 +172,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>freestyle</standardStroke>
@@ -189,7 +189,7 @@
     
     <instruction>
         <length>
-            <lengthAsTime>PT5M33S</lengthAsTime>
+            <lengthAsTime>PT5M27S</lengthAsTime>
         </length>
         <stroke>
             <standardStroke>any</standardStroke>
