@@ -912,7 +912,7 @@
             <xs:enumeration value="pads"/>
             <xs:enumeration value="pullBuoy"/>
             <xs:enumeration value="fins"/>
-            <xs:enumeration value="snorkle"/>
+            <xs:enumeration value="snorkel"/>
             <xs:enumeration value="chute"/>
             <xs:enumeration value="stretchCord"/>
         </xs:restriction>

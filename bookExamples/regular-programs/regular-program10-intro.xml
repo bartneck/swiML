@@ -7,7 +7,7 @@
         <firstName>Christoph</firstName>
         <lastName>Bartneck</lastName>
     </author>
-    <programDescription>This program is a Christmas tradition at the JASI Masters club. December is summer in New Zealand and we swim this in the 50 meters outdoor pool.</programDescription>
+    <programDescription>This program is a Christmas tradition at the JASI Masters club. December is summer in New Zealand and we swim this in the 50 meter outdoor pool.</programDescription>
     <creationDate>2024-07-19</creationDate>
     <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>

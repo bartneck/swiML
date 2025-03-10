@@ -35,7 +35,6 @@
                     </xsl:for-each>
                 </xsl:if>
                 <!-- length as laps tags -->
-                <xsl:if test="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                     <xsl:for-each select="//sw:length/sw:lengthAsLaps[not(../../sw:excludeAlign[text() = 'true'])]">
                         <Item>
                             <Length><xsl:value-of select="string-length(myData:number(.))"/></Length>
@@ -44,7 +43,6 @@
                             <Location><xsl:value-of select="myData:location(.)"/></Location>
                         </Item>
                     </xsl:for-each>
-                </xsl:if>
 
                 <!-- length as time tags -->
                 <xsl:if test="//sw:length/sw:lengthAsTime[not(../../sw:excludeAlign[text() = 'true'])]">
@@ -1387,7 +1385,7 @@
         <term index="pads">Pads</term>
         <term index="pullBuoy">Pullbuoy</term>
         <term index="fins">Fins</term>
-        <term index="snorkle">Snorkle</term>
+        <term index="snorkel">Snorkel</term>
         <term index="chute">Chute</term>
         <term index="stretchCord">Stretch Cord</term>
         <term index="other">other</term>
