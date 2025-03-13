@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<program xmlns="https://github.com/bartneck/swiML"
+<program xmlns="file:/C:/My%20Documents/GitHub/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/swiML.xsd">
+    xsi:schemaLocation="file:/C:/My%20Documents/GitHub/swiML ../swiML.xsd">
     <title>Jasi Masters</title>
     <author>
         <firstName>Christoph</firstName>
@@ -502,8 +502,8 @@
                         </intensity>
                     </instruction>
                 </continue>
+                <excludeAlign>true</excludeAlign>
             </instruction>
-
         </repetition>
     </instruction>
 </program>

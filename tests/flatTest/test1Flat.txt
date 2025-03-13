@@ -1,20 +1,12 @@
-25 K FL ◔0:00 Race Pace
 25 FL ◔0:00
-25 K BK ◔0:00 Race Pace
+25 BK
+25 FL ◔0:00
+25 BK
 25 BK ◔0:00
-25 K BR ◔0:00 Race Pace
+25 BR
+25 BK ◔0:00
+25 BR
 25 BR ◔0:00
-25 K FR ◔0:00 Race Pace
 25 FR
-50 K BK Fins
-50 D FL Any ◔0:00 Fins
-50 FL Fins
-50 K BK Fins
-50 D BK Any ◔0:00 Fins
-50 BK Fins
-50 K BK Fins
-50 D BR Any ◔0:00 Fins
-50 BR Fins
-50 K BK Fins
-50 D FR Any ◔0:00 Fins
-50 FR Fins
+25 BR ◔0:00
+25 FR

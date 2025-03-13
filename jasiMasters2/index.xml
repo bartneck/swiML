@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<swimTraining xmlns="https://github.com/bartneck/swiML">
+  <clubName>Jasi Masters</clubName>
+  <clubURL>https://jasimasters.org.nz</clubURL>
+  <session>
+    <date>2022-09-20</date>
+    <id />
+    <pool />
+  </session>
+  <session>
+    <date>2022-09-22</date>
+    <id />
+    <pool />
+  </session>
+</swimTraining>
