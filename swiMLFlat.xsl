@@ -240,6 +240,29 @@
                                                 <xsl:otherwise></xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:when>
+                                        <xsl:when test="(.//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0 or .//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0) and (../sw:repetitionCount mod 2 = 0)">
+                                            <xsl:variable name="half">
+                                                <xsl:value-of select="myData:half($pos,(0,1))"/>
+                                            </xsl:variable>
+                                            <!-- display relevent stroke -->
+                                            <xsl:choose>
+                                                <xsl:when test="number($half) = 1">
+                                                    <xsl:choose>
+                                                        <xsl:when test="number(tokenize($sub,'\|')[1]) = 0">butterfly</xsl:when>
+                                                        <xsl:when test="number(tokenize($sub,'\|')[1]) = 1">backstroke</xsl:when>
+                                                        <xsl:otherwise></xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:when>
+                                                <xsl:when test="number($half) = 2">
+                                                    <xsl:choose>
+                                                        <xsl:when test="number(tokenize($sub,'\|')[1]) = 0">breaststroke</xsl:when>
+                                                        <xsl:when test="number(tokenize($sub,'\|')[1]) = 1">freestyle</xsl:when>
+                                                        <xsl:otherwise></xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:when>
+                                                <xsl:otherwise></xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:variable name="third">
                                                 <xsl:value-of select="myData:third($pos,(0,1))"/>
@@ -492,7 +515,8 @@
                     <xsl:when test="./sw:stroke//text() = 'individualMedleyOverlap'">
                         <xsl:variable name="triple">
                             <xsl:choose>
-                                <xsl:when test="./*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance = 75 or ./*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps = 3">
+                                <xsl:when test="(./*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance = 75 or ./*[1]//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps = 3 ) or
+                                    ((.//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 75 = 0 or .//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 3 = 0) and (../sw:repetitionCount mod 2 = 0))">
                                     <xsl:value-of select="true()"/>
                                 </xsl:when>
                                 <xsl:otherwise>

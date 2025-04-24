@@ -368,7 +368,7 @@
             or ($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0)) 
             else(
             if(sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 2 = 0) 
-            then($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 3 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 75 = 0) 
+            then(($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 3 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 75 = 0) or ($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0)  ) 
             else(true()))
             and (if(sum($stroke/ancestor::*/sw:repetition/sw:repetitionCount) mod 3 = 0) 
             then($stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsLaps mod 2 = 0 or $stroke//(preceding-sibling::sw:length | ancestor-or-self::*/sw:length)[last()]/sw:lengthAsDistance mod 50 = 0) 
