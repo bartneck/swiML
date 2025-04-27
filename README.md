@@ -5,7 +5,7 @@
 A project to formalise swimming training programs using XML. Our repository is available [here](https://github.com/bartneck/swiML).
 
 # Introduction
-The goal of this project is to develop a communication standard for swim training programs that can be used to exchange training programs between web services, apps, and fitness trackers. While there are some standards available for loggin your exercises, none focus on what you want to swim.
+The goal of this project is to develop a communication standard for swim training programs that can be used to exchange training programs between web services, apps, and fitness trackers. While there are some standards available for logging your exercises, none focus on what you want to swim.
 
 Each trainer has his/her own taxonomy and nomenclatures for the various exercises. The Swimming Markup Lanuguage (swiML) will provide a standard for naming. The goal is also to allow for customisations to accommodate local preferences. In addition, it features a transformation of turning valid XML files into beautifully formatted instructions that can be printed or displayed on devices.
 
@@ -71,7 +71,10 @@ Or if you want to model a repetition you can write:
 ```
 
 ## Documentation
-A [HTML based documenation](https://bartneck.github.io/swiML/documentation/swiML.html) is available as well as a [PDF version](documentation/swiML.pdf). My [swiML YouTube Playlist](https://www.youtube.com/playlist?list=PLNoiyEjV43RzxH_o4E_7v0Q9yWhG7taKX) contains videos that showcase the use.
+- A [HTML-based documentation](https://bartneck.github.io/swiML/documentation/XSDdocs/swiML.html) for the XML Schema is available as well as a [PDF version](documentation/XSDdocs/swiML.pdf). 
+- A [HTML-based documentation](https://bartneck.github.io/swiML/documentation/XSLTdocs/swiML.html) for the XSLT Tranformation is available. We also have a [ReadMe documentation](https://github.com/bartneck/swiML/blob/main/documentation/XSLTdocs/XSLTdocs.md). 
+- [Python examples](https://github.com/bartneck/swiML/tree/main/documentation/pythonExamples) are avaiable.
+- My [swiML YouTube Playlist](https://www.youtube.com/playlist?list=PLNoiyEjV43RzxH_o4E_7v0Q9yWhG7taKX) contains videos that showcase the use.
 
 ## Tools
 We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). JetBrain's [Rider](https://www.jetbrains.com/rider/) has the complete XML/XSLT workflow build in and is free for non-commercial use.
