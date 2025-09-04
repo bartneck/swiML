@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML file:/Users/cba56/Dropbox%20(UC%20Enterprise)/swimML/oxygen/swiML/swiML.xsd">
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>true</hideIntro>
+    <instruction>
+        <repetition>
+            <repetitionCount>10</repetitionCount>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length>
+                            <lengthAsDistance>100</lengthAsDistance>
+                        </length>
+                        <stroke>
+                            <standardStroke>freestyle</standardStroke>
+                        </stroke>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <length>
+                    <lengthAsDistance>50</lengthAsDistance>
+                </length>
+                <stroke>
+                    <standardStroke>backstroke</standardStroke>
+                </stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+</program>
