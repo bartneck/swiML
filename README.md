@@ -73,6 +73,7 @@ Or if you want to model a repetition you can write:
 ```
 
 ## Documentation
+- A tutorial chapter in my book Swim Training Patterns: [Swimming Markup Language](https://www.taylorfrancis.com/chapters/oa-mono/10.1201/9781003535829-3/swimming-markup-language-christoph-bartneck?)
 - A [HTML-based documentation](https://bartneck.github.io/swiML/documentation/XSDdocs/swiML.html) for the XML Schema is available as well as a [PDF version](documentation/XSDdocs/swiML.pdf). 
 - A [HTML-based documentation](https://bartneck.github.io/swiML/documentation/XSLTdocs/swiML.html) for the XSLT Tranformation is available. We also have a [ReadMe documentation](https://github.com/bartneck/swiML/blob/main/documentation/XSLTdocs/XSLTdocs.md). 
 - [Python examples](https://github.com/bartneck/swiML/tree/main/documentation/pythonExamples) are avaiable.
