@@ -7,14 +7,14 @@ A project to formalise swimming training programs using XML. Our repository is a
 # Introduction
 The goal of this project is to develop a communication standard for swim training programs that can be used to exchange training programs between web services, apps, and fitness trackers. While there are some standards available for logging your exercises, none focus on what you want to swim.
 
-Each trainer has his/her own taxonomy and nomenclatures for the various exercises. The Swimming Markup Lanuguage (swiML) will provide a standard for naming. The goal is also to allow for customisations to accommodate local preferences. In addition, it features a transformation of turning valid XML files into beautifully formatted instructions that can be printed or displayed on devices.
+Each trainer has his/her own taxonomy and nomenclatures for the various exercises. The Swimming Markup Language (swiML) will provide a standard for naming. The goal is also to allow for customisations to accommodate local preferences. In addition, it features a transformation of turning valid XML files into beautifully formatted instructions that can be printed or displayed on devices.
 
 Here is a short video that introduces swiML:
 
 [![swiML Introduction Video](https://img.youtube.com/vi/uzR_eI7XN0o/0.jpg)](https://www.youtube.com/watch?v=uzR_eI7XN0o)
 
 # Book
-My book Swim Training Patterns that describes the use of swiML in detail is now available for pre-order from [Amazon](https://amzn.to/3QHJEvy) and [Routledge](https://www.routledge.com/SWIM-TRAINING-PATTERNS-Plan-your-Training-Sessions-with-the-Power-of-Mathematics/Bartneck/p/book/9781032880075).
+My book Swim Training Patterns that describes the use of swiML in detail is now available for pre-order from [Amazon](https://amzn.to/3QHJEvy) and [Routledge](https://www.kqzyfj.com/click-101550201-14472606?url=https%3A%2F%2Fwww.routledge.com%2FSWIM-TRAINING-PATTERNS-Plan-your-Training-Sessions-with-the-Power-of-Mathematics%2FBartneck%2Fp%2Fbook%2F9781032880075).
 
 ![book cover](https://bartneck.github.io/swiML/documentation/render-flat-1000.png)
 
@@ -44,7 +44,7 @@ Here is an example of a very simple training program:
 </program>
 ```
 
-Or if you want to model a repetition you can write:
+Or if you want to model a repetition, you can write:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -87,7 +87,7 @@ Or if you want to model a repetition you can write:
 We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). JetBrain's [Rider](https://www.jetbrains.com/rider/) has the complete XML/XSLT workflow build in and is free for non-commercial use.
 
 ## Files
-You can use the swiML Schema (swiML.xsd) to validate your swiML file. You can then use the XSLT (swiML.xsl) to tranformation the swiML XML to HTML.
+You can use the swiML Schema (swiML.xsd) to validate your swiML file. You can then use the XSLT (swiML.xsl) to transform the swiML XML to HTML.
 
 To reference the swiML Schema you can point directly to:
 ```
