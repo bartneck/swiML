@@ -14,7 +14,7 @@ Here is a short video that introduces swiML:
 [![swiML Introduction Video](https://img.youtube.com/vi/uzR_eI7XN0o/0.jpg)](https://www.youtube.com/watch?v=uzR_eI7XN0o)
 
 # Book
-My book Swim Training Patterns that describes the use of swiML in detail is now available for pre-order from [Amazon](https://amzn.to/3QHJEvy) and [Routledge](https://www.kqzyfj.com/click-101550201-14472606?url=https%3A%2F%2Fwww.routledge.com%2FSWIM-TRAINING-PATTERNS-Plan-your-Training-Sessions-with-the-Power-of-Mathematics%2FBartneck%2Fp%2Fbook%2F9781032880075).
+My book Swim Training Patterns that describes the use of swiML in detail is now available from [Amazon](https://amzn.to/3QHJEvy), [Routledge](https://www.kqzyfj.com/click-101550201-14472606?url=https%3A%2F%2Fwww.routledge.com%2FSWIM-TRAINING-PATTERNS-Plan-your-Training-Sessions-with-the-Power-of-Mathematics%2FBartneck%2Fp%2Fbook%2F9781032880075) and other resellers.
 
 ![book cover](https://bartneck.github.io/swiML/documentation/render-flat-1000.png)
 
@@ -95,12 +95,12 @@ https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd
 ```
 
 ## Versions
-The version folder contains stable versions of the files while the root folder contains our work in progress. The latest stable version is available in:
+The version folder contains stable versions of the files, while the root folder contains our work in progress. The latest stable version is available in:
 
 ```versions/latest```
 
 ## Python
-We also developed a Python library that you can use to code your swimming program. It is available as a package over at [PyPi](https://pypi.org/project/swiml_python_xml/). You can find some example of how to use Python in our [Python Examples](https://github.com/bartneck/swiML/tree/main/documentation/pythonExamples) folder.
+We also developed a Python library that you can use to code your swimming program. It is available as a package over at [PyPi](https://pypi.org/project/swiml_python_xml/). You can find some examples of how to use Python in our [Python Examples](https://github.com/bartneck/swiML/tree/main/documentation/pythonExamples) folder.
 
 # Examples
 A first test implementation showing the [training sessions](https://bartneck.github.io/swiML/jasiMasters/) for the [Jasi Masters](https://jasimasters.org.nz) swimming club in Christchurch, New Zealand is available. These programs demonstrate the usage of swiML, including examples of Python programs.
