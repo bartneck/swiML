@@ -19,7 +19,7 @@ My book Swim Training Patterns that describes the use of swiML in detail is now 
 ![book cover](https://bartneck.github.io/swiML/documentation/render-flat-1000.png)
 
 # swimDSL
-We developed an easy-to-use editor that allows you to write swim training programs using an even easier language. We call it swimDSL, a domain-specific language that is similar to what you would find on many whiteboards. It runs directly in your web browser. Givi ![swimDSL](https://bartneck.github.io/SwimDsl/) a try.
+We developed an easy-to-use editor that allows you to write swim training programs using an even easier language. We call it swimDSL, a domain-specific language that is similar to what you would find on many whiteboards. It runs directly in your web browser. Give [swimDSL](https://bartneck.github.io/SwimDsl/) a try.
 
 # Architecture
 swiML consists of an XML based swim training program that can be validated against the swiML Schema (XSD File). A swiML XML file can be generated directly in XML or using the Python library. If the file is valid, then it can be transformed using XSLT to HTML (XSL File).
