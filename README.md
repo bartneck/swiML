@@ -19,7 +19,7 @@ My book Swim Training Patterns that describes the use of swiML in detail is now 
 ![book cover](https://bartneck.github.io/swiML/documentation/render-flat-1000.png)
 
 # swimDSL
-We developed an easy-to-use editor that allows you to write swim training programs using an even easier language. We call it swimDSL, a domain-specific language that is similar to what you would find on many whiteboards. It runs directly in your web browser. Give [swimDSL](https://bartneck.github.io/SwimDsl/) a try. We also have a short [swimDSL Demo video](https://youtu.be/i9ZC9OgWqhg).
+We developed an easy-to-use editor that allows you to write swim training programs using an even easier language. We call it swimDSL, a domain-specific language that is similar to what you would find on many whiteboards. It runs directly in your web browser. Give [swimDSL](https://bartneck.github.io/SwimDsl/) a try. We also have a short [swimDSL Demo video](https://youtu.be/i9ZC9OgWqhg). There are some minor differences between swimDSL and swiML. swimDSL does not yet have the compelte set of functions. Please see our [documentation](documentation/swimDSL-implementation.pdf).
 
 ![swimDSL Editor](https://bartneck.github.io/swiML/documentation/swimDSL_screenshot.png)
 
