@@ -1,0 +1,24 @@
+set Title "Demo Program of today"
+set Author "Christoph Bartneck"
+set Description "Demo of the swimDSL editor. It shows all the major funactions"
+set Date "2026-01-27"
+set PoolLength 25
+set LengthUnit "metres"
+
+>Warm up
+400 Choice
+8 x 50 Freestyle on 1:00 @60%
+
+>Main program
+
+4x{
+  100 Freestyle on 1:45 @60%
+  2 x {
+    50 Backstroke on 1:00 @90%
+  }
+}
+
+200 Freestyle +Pads PullBuoy
+
+>Warm down
+100 Choice

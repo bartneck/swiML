@@ -18,6 +18,66 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>tests/swimDSL%20test/dsl/SwimProgrammeFlat.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL PlainText</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>tests/swimDSL%20test/dsl/SwimProgramme.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL flat</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>tests/swimDSL%20test/test.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>swiMLXSL latest</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioStorageLocations">
+                                    <list>
+                                        <Byte>2</Byte>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../../../../UC%20Enterprise%20Dropbox/Christoph%20Bartneck/swimML/oxygen/swiML/tests/nerd%20nite/Untitled1.xml</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -3955,66 +4015,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>swiMLXSLv2.0</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023032801.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>jasiMasters/JasiMasters2023032601.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSLv1.1</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XSL</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioStorageLocations">
-                                    <list>
-                                        <Byte>2</Byte>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>tests/VTraining.xml</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>swiMLXSL</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">

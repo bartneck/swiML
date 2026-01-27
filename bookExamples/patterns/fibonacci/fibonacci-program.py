@@ -1,4 +1,5 @@
-import swiML as swiML
+from swiml_python_xml import swiML
+#import swiML as swiML
 
 def fibonacci(n):
     fib_sequence = [1, 1]  # Initialize with the first two terms
@@ -62,7 +63,7 @@ def write_program():
         instructions=myInstructions
     )
     # write swiML XML to file
-    swiML.writeXML('patterns/fibonacci/fibonacci.xml',simpleProgram)
+    swiML.writeXML('patterns/fibonacci/fibonacciTest.xml',simpleProgram)
 
 # counting up the number
 number = 9
