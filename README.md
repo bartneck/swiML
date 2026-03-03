@@ -88,6 +88,8 @@ Or if you want to model a repetition, you can write:
   - [Basic language introduction](https://youtu.be/6nDxFRI4Idk)
   - [Repetition and Continue](https://youtu.be/s0H8TIwg0ts)
   - [swimDSL Demo](https://youtu.be/i9ZC9OgWqhg)
+- Project Reports
+  - [Creating a Domain-Specific Language for Swimming](https://bartneck.github.io/swiML/documentation/projectReports/swiML_DSL_Harrison_Parkes.pdf) - Harrison Parks
 
 ## Tools
 We recommend an XML authoring tool, such as [Oxygen Author](https://www.oxygenxml.com/xml_author.html) to write, validate and transform swiML documents. Alternatively, there are XML plugins for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) and [Eclipse](https://marketplace.eclipse.org/content/eclipse-xml-editors-and-tools). JetBrain's [Rider](https://www.jetbrains.com/rider/) has the complete XML/XSLT workflow build in and is free for non-commercial use.
