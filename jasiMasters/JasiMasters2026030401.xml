@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="swiML.xsl"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <title>Squad Session 2</title>
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+
+    <!-- WARM UP -->
+    <instruction>
+        <segmentName>Warm Up</segmentName>
+    </instruction>
+
+    <instruction>
+        <length><lengthAsDistance>400</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <intensity><startIntensity><zone>easy</zone></startIntensity></intensity>
+    </instruction>
+
+    <!-- FIRST SET: 6x100 FR w15 -->
+    <instruction>
+        <segmentName>First Set</segmentName>
+    </instruction>
+
+    <!-- Rep 1: Kick -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Rep 2: Drill - 50 kick / 50 freestyle -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Rep 3: Swim breathing 3/5 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <breath>3</breath>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <breath>5</breath>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Rep 4: Kick again -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Rep 5: Pull breathing 3/5 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <equipment>pullBuoy</equipment>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <breath>3</breath>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>25</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <breath>5</breath>
+                    </instruction>
+                </repetition>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Rep 6: Swim build -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M15S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity>
+                    <startIntensity><zone>easy</zone></startIntensity>
+                    <stopIntensity><zone>max</zone></stopIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- SECOND SET: 3x200 Pull+Paddle on 3:15/3:20/3:30/3:40, build 1-3 -->
+    <instruction>
+        <segmentName>Second Set</segmentName>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT3M15S</sinceStart></rest>
+            <equipment>pullBuoy</equipment>
+            <equipment>pads</equipment>
+            <instruction>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity>
+                    <startIntensity><zone>easy</zone></startIntensity>
+                    <stopIntensity><zone>max</zone></stopIntensity>
+                </intensity>
+                <instructionDescription>Build each 200 faster than the last</instructionDescription>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- THIRD SET: 12x50 FR on 55/60, rotating R1-R4 -->
+    <instruction>
+        <segmentName>Third Set</segmentName>
+    </instruction>
+
+    <!-- R1: Swim -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT0M55S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- R2: Pull + Paddles -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT0M55S</sinceStart></rest>
+            <equipment>pullBuoy</equipment>
+            <equipment>pads</equipment>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- R3: Swim -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT0M55S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- R4: Swim + fins -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT0M55S</sinceStart></rest>
+            <equipment>fins</equipment>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- FOURTH SET: 200 Kick fins choice -->
+    <instruction>
+        <segmentName>Fourth Set</segmentName>
+    </instruction>
+
+    <instruction>
+        <continue>
+            <equipment>fins</equipment>
+            <instruction>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+
+    <!-- FIFTH SET: 16x25 on 40/45 - IM order x4 -->
+    <instruction>
+        <segmentName>Fifth Set</segmentName>
+    </instruction>
+
+    <!-- Butterfly round -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><kicking><standardKick>butterfly</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>butterfly</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>butterfly</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>butterfly</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Backstroke round -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><kicking><standardKick>backstroke</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>backstroke</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>backstroke</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Breaststroke round -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><kicking><standardKick>breaststroke</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>breaststroke</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>breaststroke</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>breaststroke</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- Freestyle round -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>freestyle</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT0M40S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+
+    <!-- COOL DOWN -->
+    <instruction>
+        <segmentName>Cool Down</segmentName>
+    </instruction>
+
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <intensity><startIntensity><zone>easy</zone></startIntensity></intensity>
+    </instruction>
+
+</program>

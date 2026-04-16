@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="swiML.xsl"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+        <email>christoph@bartneck.de</email>
+    </author>
+    <programDescription>Our Wednesday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
+    <creationDate>2025-03-11</creationDate>
+    
+    <poolLength>100</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    <!-- WARM UP -->
+    <instruction>
+        <segmentName>Warm Up</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length><lengthAsDistance>400</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <intensity><startIntensity><zone>easy</zone></startIntensity></intensity>
+    </instruction>
+    
+    <!-- FIRST SET: 300 KDS KDS -->
+    <instruction>
+        <segmentName>First Set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <continue>
+            <!-- KDS Freestyle -->
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>freestyle</drillStroke></drill></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+            <!-- KDS choice -->
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><drill><drillName>any</drillName><drillStroke>any</drillStroke></drill></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <!-- SECOND SET: 4x100 FR on 1:45 -->
+    <instruction>
+        <segmentName>Second Set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <rest><sinceStart>PT1M45S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- THIRD SET: Ladder -->
+    <instruction>
+        <segmentName>Third Set</segmentName>
+    </instruction>
+    
+    <!-- 50 FR FAST on 60 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT1M0S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 100 FR tec w20 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceLastRest>PT0M20S</sinceLastRest></rest>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><drill><drillName>technic</drillName><drillStroke>freestyle</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 50 FR FAST on 60 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT1M0S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 200 FR tec w40 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceLastRest>PT0M40S</sinceLastRest></rest>
+            <instruction>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><drill><drillName>technic</drillName><drillStroke>freestyle</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 2x50 FR FAST on 60 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>2</repetitionCount>
+            <rest><sinceStart>PT1M0S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 300 FR tec w60 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceLastRest>PT1M0S</sinceLastRest></rest>
+            <instruction>
+                <length><lengthAsDistance>300</lengthAsDistance></length>
+                <stroke><drill><drillName>technic</drillName><drillStroke>freestyle</drillStroke></drill></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 3x50 FR FAST on 60 -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <rest><sinceStart>PT1M0S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>max</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 50 Easy -->
+    <instruction>
+        <repetition>
+            <repetitionCount>1</repetitionCount>
+            <rest><sinceStart>PT1M0S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity><startIntensity><zone>easy</zone></startIntensity></intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    
+    <!-- FOURTH SET: 8x50 not freestyle on 70 -->
+    <instruction>
+        <segmentName>Fourth Set</segmentName>
+    </instruction>
+    
+    <instruction>
+        <repetition>
+            <repetitionCount>8</repetitionCount>
+            <rest><sinceStart>PT1M10S</sinceStart></rest>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+                <instructionDescription>notFreestyle</instructionDescription>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- COOL DOWN: 200 P+P or Fins -->
+    <instruction>
+        <segmentName>Cool Down</segmentName>
+    </instruction>
+    
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <intensity><startIntensity><zone>easy</zone></startIntensity></intensity>
+        <equipment>pullBuoy</equipment>
+        <equipment>pads</equipment>
+    </instruction>
+    
+</program>
