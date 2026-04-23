@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Morgan</firstName>
+        <lastName>Lee</lastName>
+    </author>
+    <creationDate>2026-04-12</creationDate>    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <layoutWidth>75</layoutWidth>
+    
+    <!-- 400 loosen -->
+    <instruction>
+        <length><lengthAsDistance>400</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <instructionDescription>loosen</instructionDescription>
+    </instruction>
+    
+</program>

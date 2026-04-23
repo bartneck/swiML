@@ -1,15 +1,16 @@
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/refs/heads/main/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Jasi Masters</title>
     <author>
-        <firstName>Christoph</firstName>
-        <lastName>Bartneck</lastName>
+        <firstName>Morgan</firstName>
+        <lastName>Lee</lastName>
     </author>
     <creationDate>2026-03-29</creationDate>    
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
+    <layoutWidth>75</layoutWidth>
     
     
     <!-- 400m loosen -->
@@ -34,6 +35,7 @@
                         <length><lengthAsDistance>50</lengthAsDistance></length>
                         <stroke>
                             <drill>
+                                <drillName>any</drillName>
                                 <drillStroke>any</drillStroke>
                             </drill>
                         </stroke>

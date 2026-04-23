@@ -5,10 +5,10 @@
     xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
     <title>Jasi Masters</title>
     <author>
-        <firstName>Christoph</firstName>
-        <lastName>Bartneck</lastName>
+        <firstName>Morgan</firstName>
+        <lastName>Lee</lastName>
     </author>
-    <creationDate>2026-03-29</creationDate>    
+    <creationDate>2026-04-05</creationDate>    
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
