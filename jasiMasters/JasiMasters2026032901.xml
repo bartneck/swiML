@@ -1,0 +1,122 @@
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/refs/heads/main/swiML.xsd">
+    <title>Jasi Masters</title>
+    <author>
+        <firstName>Christoph</firstName>
+        <lastName>Bartneck</lastName>
+    </author>
+    <creationDate>2026-03-29</creationDate>    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    
+    
+    <!-- 400m loosen -->
+    <instruction>
+        <length><lengthAsDistance>400</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <instructionDescription>loosen</instructionDescription>
+    </instruction>
+    
+    <!-- 3x200 as 50kob/50d/50s/50build w/ fins, fins+pads, swim -->
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <repetitionDescription>1: Fins, 2: Fins+Pads, 3: Swim</repetitionDescription>
+            <instruction>
+                <continue>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><kicking><standardKick>backstroke</standardKick></kicking></stroke>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke>
+                            <drill>
+                                <drillStroke>any</drillStroke>
+                            </drill>
+                        </stroke>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                    </instruction>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><standardStroke>any</standardStroke></stroke>
+                        <intensity>
+                            <startIntensity><percentageEffort>60</percentageEffort></startIntensity>
+                            <stopIntensity><percentageEffort>90</percentageEffort></stopIntensity>
+                        </intensity>
+                    </instruction>
+                </continue>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 12x50 free P+P as 1&2 B5, 3 fast -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <equipment>pads</equipment>
+            <equipment>pullBuoy</equipment>
+            <instruction>
+                <repetition>
+                    <repetitionCount>2</repetitionCount>
+                    <instruction>
+                        <length><lengthAsDistance>50</lengthAsDistance></length>
+                        <stroke><standardStroke>freestyle</standardStroke></stroke>
+                        <breath>5</breath>
+                    </instruction>
+                </repetition>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <intensity>
+                    <startIntensity><percentageEffort>90</percentageEffort></startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 200 free-->
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+    </instruction>
+    
+    <!-- 12x50 fins choice as k/s/s/choice -->
+    <instruction>
+        <repetition>
+            <repetitionCount>4</repetitionCount>
+            <equipment>fins</equipment>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><kicking><standardKick>any</standardKick></kicking></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>50</lengthAsDistance></length>
+                <stroke><standardStroke>any</standardStroke></stroke>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <!-- 200 free P+P -->
+    <instruction>
+        <length><lengthAsDistance>200</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <equipment>pullBuoy</equipment>
+        <equipment>pads</equipment>
+    </instruction>
+    
+</program>
