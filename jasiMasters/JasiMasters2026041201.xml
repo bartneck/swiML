@@ -17,7 +17,11 @@
     <instruction>
         <length><lengthAsDistance>400</lengthAsDistance></length>
         <stroke><standardStroke>any</standardStroke></stroke>
-        <instructionDescription>loosen</instructionDescription>
+        <intensity>
+            <startIntensity>
+               <zone>easy</zone>
+            </startIntensity>
+        </intensity>
     </instruction>
     
     <!-- 6x75 k/d/s--> 
@@ -32,7 +36,7 @@
                     <instruction>
                         <length><lengthAsDistance>75</lengthAsDistance></length>
                         <stroke><drill>
-                                <drillName>any</drillName>
+                                <drillName>123</drillName>
                                 <drillStroke>freestyle</drillStroke>
                             </drill>
                         </stroke>
@@ -50,10 +54,18 @@
     <instruction>
         <repetition>
             <repetitionCount>6</repetitionCount>
+            <intensity>
+                <startIntensity>
+                    <zone>easy</zone>
+                </startIntensity>
+                <stopIntensity>
+                    <zone>racePace</zone>
+                </stopIntensity>
+            </intensity>
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
-                <instructionDescription>Build 1-6</instructionDescription>
+
             </instruction>
         </repetition>
     </instruction>
@@ -101,7 +113,7 @@
                 <length><lengthAsDistance>25</lengthAsDistance></length>
                 <stroke><standardStroke>freestyle</standardStroke></stroke>
                 <rest><afterStop>PT0M20S</afterStop></rest>
-                <instructionDescription>Decreasing to fast</instructionDescription>
+                <underwater>true</underwater>
             </instruction>
         </repetition>
     </instruction>

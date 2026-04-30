@@ -12,7 +12,7 @@
     <programDescription>Our Wednesday morning program targeted at 60 minutes. The coach was Matt Nash</programDescription>
     <creationDate>2025-03-11</creationDate>
     
-    <poolLength>100</poolLength>
+    <poolLength>50</poolLength>
     <lengthUnit>meters</lengthUnit>
     <hideIntro>false</hideIntro>
     
@@ -71,10 +71,11 @@
     <instruction>
         <repetition>
             <repetitionCount>4</repetitionCount>
-            <rest><sinceStart>PT1M45S</sinceStart></rest>
+            
             <instruction>
                 <length><lengthAsDistance>100</lengthAsDistance></length>
                 <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+                <rest><sinceStart>PT1M45S</sinceStart></rest>
             </instruction>
         </repetition>
     </instruction>
