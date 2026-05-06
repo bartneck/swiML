@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program xmlns="https://github.com/bartneck/swiML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    <title>Endurance Swim Set</title>
+    <author>
+        <firstName>Morgan</firstName>
+        <lastName>Lee</lastName>
+    </author>
+    <creationDate>2026-04-23</creationDate>    
+    <poolLength>25</poolLength>
+    <lengthUnit>meters</lengthUnit>
+    <hideIntro>false</hideIntro>
+    <layoutWidth>75</layoutWidth>
+    
+    <instruction><segmentName>Warm Up</segmentName></instruction>
+    <instruction>
+        <length><lengthAsDistance>50</lengthAsDistance></length>
+        <stroke><kicking><standardKick>freestyle</standardKick></kicking></stroke>
+        <equipment>board</equipment>
+    </instruction>
+    <instruction>
+        <length><lengthAsDistance>50</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <intensity>
+            <startIntensity><zone>easy</zone></startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <continue>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill>
+                        <drillName>other</drillName>
+                        <drillStroke>freestyle</drillStroke>
+                </drill></stroke>
+                <instructionDescription>fist drill</instructionDescription>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    <instruction>
+        <continue>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><drill>
+                        <drillName>fingerTrails</drillName>
+                        <drillStroke>freestyle</drillStroke>
+                </drill></stroke>
+            </instruction>
+            <instruction>
+                <length><lengthAsDistance>25</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+            </instruction>
+        </continue>
+    </instruction>
+    
+    <instruction><segmentName>Main Set</segmentName></instruction>
+    <instruction>
+        <length><lengthAsDistance>300</lengthAsDistance></length>
+        <stroke><standardStroke>freestyle</standardStroke></stroke>
+        <rest><afterStop>PT0M20S</afterStop></rest>
+        <intensity>
+            <startIntensity><zone>threshold</zone></startIntensity>
+        </intensity>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>3</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>200</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <rest><afterStop>PT0M20S</afterStop></rest>
+                <intensity>
+                    <startIntensity><zone>threshold</zone></startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    <instruction>
+        <repetition>
+            <repetitionCount>5</repetitionCount>
+            <instruction>
+                <length><lengthAsDistance>100</lengthAsDistance></length>
+                <stroke><standardStroke>freestyle</standardStroke></stroke>
+                <rest><afterStop>PT0M20S</afterStop></rest>
+                <intensity>
+                    <startIntensity><zone>threshold</zone></startIntensity>
+                </intensity>
+            </instruction>
+        </repetition>
+    </instruction>
+    
+    <instruction><segmentName>Warm Down</segmentName></instruction>
+    <instruction>
+        <length><lengthAsDistance>50</lengthAsDistance></length>
+        <stroke><standardStroke>any</standardStroke></stroke>
+        <intensity>
+            <startIntensity><zone>easy</zone></startIntensity>
+        </intensity>
+    </instruction>
+    
+</program>
