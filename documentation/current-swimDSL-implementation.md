@@ -12,7 +12,7 @@ Fully supported through `set Date "[Creation Date]`
 Fully supported through `set HideIntro [True|False]`
 ## Instruction
 ### Breath
-Currently unsupported in swimDSL
+Fully supported through `[Distance] [Stroke Name] breathe [Strokes Per Breath]`
 ### Continue
 Currently unsupported in swimDSL
 ### Equipment
@@ -112,7 +112,7 @@ Currently partially unsupported in swimDSL
 #### Standard Stroke
 Fully supported through `[Distance] [Stroke Name]`
 #### Underwater
-Currently unsupported in swimDSL
+Fully supported through `[Distance] [Stroke Name] Underwater`
 
 ## Layout Width
 Fully supported through `set LayoutWidth [Layout Width]`
