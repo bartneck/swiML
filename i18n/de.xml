@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations language="de">
+    <terms>
+        <!-- Schwimmarten -->
+        <term index="butterfly">S</term>
+        <term index="backstroke">R</term>
+        <term index="breaststroke">B</term>
+        <term index="freestyle">F</term>
+        <term index="individualMedley">L</term>
+        <term index="reverseIndividualMedley">L Reverse</term>
+        <term index="individualMedleyOverlap">L Overlap</term>
+        <term index="individualMedleyOrder">L Reihenfolge</term>
+        <term index="reverseIndividualMedleyOrder">L Reverse Reihenfolge</term>
+        <term index="any">Beliebig</term>
+        <term index="nr1">Nr 1</term>
+        <term index="nr2">Nr 2</term>
+        <term index="nr3">Nr 3</term>
+        <term index="nr4">Nr 4</term>
+        <term index="notButterfly">Nicht S</term>
+        <term index="notBackstroke">Nicht R</term>
+        <term index="notBreaststroke">Nicht B</term>
+        <term index="notFreestyle">Nicht F</term>
+        <!-- Beinbewegungen -->
+        <term index="flutter">Flutter</term>
+        <term index="dolphin">Delfin</term>
+        <term index="scissor">Schere</term>
+        <!-- Orientierungen -->
+        <term index="front">Bauch</term>
+        <term index="back">Rücken</term>
+        <term index="left">Links</term>
+        <term index="right">Rechts</term>
+        <term index="side">Seite</term>
+        <term index="vertical">Vertikal</term>
+        <!-- Intensitätszonen -->
+        <term index="easy">Locker</term>
+        <term index="threshold">Schwelle</term>
+        <term index="endurance">Ausdauer</term>
+        <term index="racePace">Wettkampf</term>
+        <term index="max">Max</term>
+        <!-- Übungen -->
+        <term index="6KickDrill">6KÜ</term>
+        <term index="8KickDrill">8KÜ</term>
+        <term index="10KickDrill">10KÜ</term>
+        <term index="12KickDrill">12KÜ</term>
+        <term index="fingerTrails">FT</term>
+        <term index="123">123</term>
+        <term index="bigDog">Big Dog</term>
+        <term index="scull">Scull</term>
+        <term index="singleArm">Einarmig</term>
+        <term index="technic">Technik</term>
+        <term index="dogPaddle">Hundepaddeln</term>
+        <term index="tarzan">Tarzan</term>
+        <term index="fist">Faust</term>
+        <term index="3Kick1Pull">3K1Z</term>
+        <term index="2Kick1Pull">2K1Z</term>
+        <term index="3Pull1Kick">3Z1K</term>
+        <term index="2Pull1Kick">2Z1K</term>
+        <!-- Ausrüstung -->
+        <term index="board">Brett</term>
+        <term index="pads">Paddles</term>
+        <term index="pullBuoy">Pullbuoy</term>
+        <term index="fins">Flossen</term>
+        <term index="snorkel">Schnorchel</term>
+        <term index="chute">Fallschirm</term>
+        <term index="stretchCord">Zugseil</term>
+        <term index="other">andere</term>
+        <!-- Einheiten -->
+        <term index="breath">A</term>
+        <term index="laps">Bahnen</term>
+        <term index="meters">Meter</term>
+        <term index="yards">yd</term>
+    </terms>
+    <labels>
+        <label key="date">Datum:</label>
+        <label key="poolSize">Beckenlänge:</label>
+        <label key="units">Einheiten:</label>
+        <label key="length">Länge:</label>
+        <label key="lapsUnit">Bahnen</label>
+        <label key="madeWith">erstellt mit:</label>
+        <label key="as">als</label>
+        <label key="in">rein</label>
+        <label key="out">raus</label>
+        <label key="kick">K</label>
+        <label key="drill">Ü</label>
+        <label key="training">Training</label>
+        <label key="program">Programm:</label>
+    </labels>
+    <formats>
+        <format key="dateFormat">[D01].[M01].[Y0001]</format>
+    </formats>
+</translations>

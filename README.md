@@ -35,7 +35,8 @@ Here is an example of a very simple training program:
 <?xml version="1.0" encoding="UTF-8"?>
 <program xmlns="https://github.com/bartneck/swiML"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd">
+    xsi:schemaLocation="https://github.com/bartneck/swiML https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd"
+    xml:lang="en">
     <poolLength>25</poolLength>
     <lengthUnit>meters</lengthUnit>
     <instruction>
@@ -101,6 +102,19 @@ To reference the swiML Schema you can point directly to:
 ```
 https://raw.githubusercontent.com/bartneck/swiML/main/version/latest/swiML.xsd
 ```
+
+## Language Support
+swiML supports internationalization. The output language is determined by the `xml:lang` attribute on the `<program>` element. If omitted, English is used as the default.
+
+```xml
+<!-- English output -->
+<program xmlns="https://github.com/bartneck/swiML" xml:lang="en">
+
+<!-- German output -->
+<program xmlns="https://github.com/bartneck/swiML" xml:lang="de">
+```
+
+Currently supported languages: English (`en`), German (`de`). Translation files are located in the `i18n/` directory. To add a new language, create a new XML file (e.g. `i18n/fr.xml`) following the structure of the existing files.
 
 ## Versions
 The version folder contains stable versions of the files, while the root folder contains our work in progress. The latest stable version is available in:

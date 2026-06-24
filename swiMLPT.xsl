@@ -7,6 +7,10 @@
 
 <xsl:output method="text" encoding="UTF-8" omit-xml-declaration="yes" />
 
+<!-- i18n: determine language from source document, default to English -->
+<xsl:variable name="lang" select="if (/sw:program/@xml:lang) then /sw:program/@xml:lang else 'en'"/>
+<xsl:variable name="i18n" select="document(concat('i18n/', $lang, '.xml'))"/>
+
 <xsl:variable name="gloalRoot" select="/"/>
 
 
@@ -194,7 +198,7 @@
 </xsl:template>
 
 <xsl:template match="sw:inOut">
-    <xsl:value-of select="concat(' ', ., ' in ',1,' out')"/>
+    <xsl:value-of select="concat(' ', ., ' ', $i18n/translations/labels/label[@key='in'], ' ', 1, ' ', $i18n/translations/labels/label[@key='out'])"/>
 </xsl:template>
 
 <!-- Stroke -->
@@ -207,7 +211,7 @@
 
 <!-- Kick -->
 <xsl:template match="sw:orientation">
-    <xsl:text> K </xsl:text>
+    <xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='kick']"/><xsl:text> </xsl:text>
     <xsl:call-template name="toDisplay">
         <xsl:with-param name="fullTerm" select="."/>
     </xsl:call-template>
@@ -218,7 +222,7 @@
 </xsl:template>
 
 <xsl:template match="sw:standardKick">
-    <xsl:text> K </xsl:text>
+    <xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='kick']"/><xsl:text> </xsl:text>
     <xsl:call-template name="toDisplay">
         <xsl:with-param name="fullTerm" select="."/>
     </xsl:call-template>
@@ -226,7 +230,7 @@
 
 <!-- Drill -->
 <xsl:template match="sw:drill">
-    <xsl:text> D </xsl:text>
+    <xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='drill']"/><xsl:text> </xsl:text>
     <xsl:if test="sw:drillStroke">
         <xsl:call-template name="toDisplay">
             <xsl:with-param name="fullTerm" select="sw:drillStroke"/>
@@ -251,78 +255,19 @@
 <!-- ============================== -->
 <!-- Helper -->
 <!-- ============================== -->
-<xsl:variable name="thisDocument" select="document('')"/>
 
 <xsl:template name="toDisplay">
     <xsl:param name="fullTerm"/>
-    <xsl:value-of
-        select="$thisDocument/xsl:stylesheet/myData:translation/term[@index = string($fullTerm)]"
-    />
+    <xsl:variable name="translation" select="$i18n/translations/terms/term[@index = string($fullTerm)]"/>
+    <xsl:choose>
+        <xsl:when test="$translation">
+            <xsl:value-of select="$translation"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$fullTerm"/>
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
-
-<myData:translation>
-    <term index="butterfly">FL</term>
-    <term index="backstroke">BK</term>
-    <term index="breaststroke">BR</term>
-    <term index="freestyle">FR</term>
-    <term index="individualMedley">IM</term>
-    <term index="reverseIndividualMedley">IM Reverse</term>
-    <term index="individualMedleyOverlap">IM Overlap</term>
-    <term index="individualMedleyOrder">IM Order</term>
-    <term index="reverseIndividualMedleyOrder">IM Reverse Order</term>
-    <term index="any">Any</term>
-    <term index="nr1">Nr 1</term>
-    <term index="nr2">Nr 2</term>
-    <term index="nr3">Nr 3</term>
-    <term index="nr4">Nr 4</term>
-    <term index="notButterfly">Not FL</term>
-    <term index="notBackstroke">Not BK</term>
-    <term index="notBreaststroke">Not BR</term>
-    <term index="notFreestyle">Not FR</term>
-    <term index="flutter">Flutter</term>
-    <term index="dolphin">Dolphin</term>
-    <term index="scissor">Scissor</term>
-    <term index="front">Front</term>
-    <term index="back">Back</term>
-    <term index="left">Left</term>
-    <term index="right">Right</term>
-    <term index="side">Side</term>
-    <term index="vertical">Vertical</term>
-    <term index="easy">Easy</term>
-    <term index="threshold">Threshold</term>
-    <term index="endurance">Endurance</term>
-    <term index="racePace">Race Pace</term>
-    <term index="max">Max</term>
-    <term index="6KickDrill">6KD</term>
-    <term index="8KickDrill">8KD</term>
-    <term index="10KickDrill">10KD</term>
-    <term index="12KickDrill">12KD</term>
-    <term index="fingerTrails">FT</term>
-    <term index="123">123</term>
-    <term index="bigDog">Big Dog</term>
-    <term index="scull">Scull</term>
-    <term index="singleArm">Single Arm</term>
-    <term index="technic">Technic</term>
-    <term index="dogPaddle">Dog Paddle</term>
-    <term index="tarzan">Tarzan</term>
-    <term index="fist">Fist</term>
-    <term index="3Kick1Pull">3K1P</term>
-    <term index="3Kick1Pull">2K1P</term>
-    <term index="3Kick1Pull">3P1K</term>
-    <term index="3Kick1Pull">2P1K</term>
-    <term index="board">Board</term>
-    <term index="pads">Pads</term>
-    <term index="pullBuoy">Pullbuoy</term>
-    <term index="fins">Fins</term>
-    <term index="snorkle">Snorkle</term>
-    <term index="chute">Chute</term>
-    <term index="stretchCord">Stretch Cord</term>
-    <term index="other">other</term>
-    <term index="breath">b</term>
-    <term index="laps">laps</term>
-    <term index="meters">m</term>
-    <term index="yards">yd</term>
-</myData:translation>
 
 <xsl:function name="myData:roman" as="xs:string">
     <xsl:param name="value" as="xs:integer"/>
