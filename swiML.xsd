@@ -3,6 +3,7 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" xmlns:sw="https://github.com/bartneck/swiML"
     targetNamespace="https://github.com/bartneck/swiML" xmlns="https://github.com/bartneck/swiML"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
     version="2.1">
     
 <!-- version 2.3 -->
@@ -135,6 +136,12 @@
                     any other element in an instruction doesnt have to be defined</xs:documentation>
                 </xs:annotation>
             </xs:assert>
+            <xs:attribute ref="xml:lang" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The language of the program content. Used to determine the
+                        display language when rendering the program (e.g. "en", "de").</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
 
         </xs:complexType>
     </xs:element>

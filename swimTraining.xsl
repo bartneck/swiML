@@ -4,8 +4,13 @@
     xmlns:myData="http://www.bartneck.de" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:sw="https://github.com/bartneck/swiML">
 <!-- version 2.1 -->
+
+    <!-- i18n: determine language from source document, default to English -->
+    <xsl:variable name="lang" select="if (/sw:swimTraining/@xml:lang) then /sw:swimTraining/@xml:lang else 'en'"/>
+    <xsl:variable name="i18n" select="document(concat('i18n/', $lang, '.xml'))"/>
+
     <xsl:template match="/">
-        <html>
+        <html lang="{$lang}" xml:lang="{$lang}">
             <head>
                 <meta charset="UTF-8"/>
                 <meta property="og:image"
@@ -45,7 +50,7 @@
 
                 <title>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
-                    <xsl:text> Training</xsl:text>
+                    <xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='training']"/>
                 </title>
             </head>
 
@@ -60,13 +65,13 @@
                 </img>
                 
                 <h1><xsl:value-of select="sw:swimTraining/sw:clubName"/>
-                    <xsl:text> Training</xsl:text>
+                    <xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='training']"/>
                 </h1> This is the index of the <a>
                     <xsl:attribute name="href">
                         <xsl:value-of select="sw:swimTraining/sw:clubURL"/>
                     </xsl:attribute>
                     <xsl:value-of select="sw:swimTraining/sw:clubName"/>
-                </a> Training Sessions. 
+                </a> <xsl:value-of select="$i18n/translations/labels/label[@key='training']"/> Sessions. 
                 
                 <ul>
                 <xsl:for-each-group select="sw:swimTraining/sw:session" group-by="year-from-date(sw:date)">
@@ -75,8 +80,7 @@
                     <ul>
                         <xsl:for-each select="current-group()">
                             <xsl:sort select="sw:date" order="descending"/>
-                            <li><xsl:value-of separator=" "
-                                select="sw:date, 'Program:', format-number(sw:id, '00'), sw:pool"/>
+                            <li><xsl:value-of select="sw:date"/><xsl:text> </xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='program']"/><xsl:text> </xsl:text><xsl:value-of select="format-number(sw:id, '00')"/><xsl:text> </xsl:text><xsl:value-of select="sw:pool"/>
                                 <xsl:text> (</xsl:text>
                                 <a>
                                     <xsl:attribute name="href">
@@ -115,7 +119,7 @@
                 
        
                 <div class="bottom">
-                    <div class="footnote">made with: </div>
+                    <div class="footnote"><xsl:value-of select="$i18n/translations/labels/label[@key='madeWith']"/><xsl:text> </xsl:text></div>
                     <div class="logo">
                         <a href="https://github.com/bartneck/swiML">
                             <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"

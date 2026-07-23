@@ -6,6 +6,18 @@
 
     <!-- version 2.3 -->
     
+    <!-- i18n: determine language from source document, default to English -->
+    <xsl:variable name="lang" select="if (/sw:program/@xml:lang) then /sw:program/@xml:lang else 'en'"/>
+    <xsl:variable name="i18n" select="document(concat('i18n/', $lang, '.xml'))"/>
+    
+    <!-- i18n: precomputed string lengths for alignment calculations -->
+    <xsl:variable name="i18n.asLength" select="string-length($i18n/translations/labels/label[@key='as'])"/>
+    <xsl:variable name="i18n.lapsUnitLength" select="string-length($i18n/translations/labels/label[@key='lapsUnit'])"/>
+    <xsl:variable name="i18n.inLength" select="string-length($i18n/translations/labels/label[@key='in'])"/>
+    <xsl:variable name="i18n.outLength" select="string-length($i18n/translations/labels/label[@key='out'])"/>
+    <xsl:variable name="i18n.kickLength" select="string-length($i18n/translations/labels/label[@key='kick'])"/>
+    <xsl:variable name="i18n.drillLength" select="string-length($i18n/translations/labels/label[@key='drill'])"/>
+    
     <!-- global variables for space calculation -->
     
     <xsl:variable name="gloalRoot" select="/"/>
@@ -140,13 +152,13 @@
                             <!-- length is the length of calculated length node, 3 characters for as, length of any top level instruction tags and the extra spaces they need -->
 
                             <xsl:when test="../../../sw:repetition/sw:simplify[text()='true']">
-                                <Length><xsl:value-of select="4+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/></Length>
+                                <Length><xsl:value-of select="(2 + $i18n.asLength)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/></Length>
                             </xsl:when>
                             <xsl:when test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps">
-                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+7+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
+                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+(1 + $i18n.lapsUnitLength + $i18n.asLength)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
                             </xsl:when>
                             <xsl:otherwise>
-                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+3+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
+                                <Length><xsl:value-of select="string-length(string(myData:number(myData:contLength(.))))+(1 + $i18n.asLength)+$contInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'length' or name(.) = 'excludeAlignContinue' or name(.) = 'continueLength' )])"/> </Length>
                             </xsl:otherwise>
                         </xsl:choose>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
@@ -232,7 +244,7 @@
                     </xsl:variable>
                     <xsl:variable name="isLaps">
                         <xsl:choose>
-                            <xsl:when test="(./descendant-or-self::sw:lengthAsLaps)">5</xsl:when>
+                            <xsl:when test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:value-of select="1 + $i18n.lapsUnitLength"/></xsl:when>
                             <xsl:otherwise>0</xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
@@ -240,8 +252,8 @@
                     <!-- add data for each simplifying tag to the array -->
                     <!-- this data is the length of each continue, its section, its parents and its unique location -->
                     <Item>
-                        <!-- length is the length of calculated length node, 6 characters for as and multiplier symbol, length of any top level instruction tags and the extra spaces they need -->
-                        <Length><xsl:value-of select="string-length(string(myData:number(myData:simpRep(.))))+string-length(string(myData:number(myData:firstInst(.))))+$isLaps+6+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
+                        <!-- length is the length of calculated length node, multiplier symbol + as label, length of any top level instruction tags and the extra spaces they need -->
+                        <Length><xsl:value-of select="string-length(string(myData:number(myData:simpRep(.))))+string-length(string(myData:number(myData:firstInst(.))))+$isLaps+(3 + 1 + $i18n.asLength)+$simpInstLength+count(./*[not(name(.) = 'instruction' or name(.) = 'repetitionCount' or name(.) = 'simplify' or name(.) = 'length' or name(.) = 'excludeAlignRepetition' )])"/></Length>
                         <Section><xsl:value-of select="myData:section(.)"/></Section>
                         <Parents><xsl:value-of select="myData:parents(.)"/></Parents>
                         <Location><xsl:value-of select="myData:location(.)"/></Location>
@@ -417,7 +429,7 @@
             <xsl:otherwise>
                 <!--more nodes do add so calculate length of the current node-->
                 <xsl:variable name="product">
-                    <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodes[1])])"/>
+                    <xsl:value-of select="string-length($i18n/translations/terms/term[@index = string($nodes[1])])"/>
                 </xsl:variable>
 
                 <!-- recursively call self with next node and current nodes length added to sum-->
@@ -471,7 +483,7 @@
                                 </xsl:when>
 
                                 <xsl:otherwise>
-                                    <xsl:value-of select="8+string-length(./sw:inOut)"/>
+                                    <xsl:value-of select="(3 + $i18n.inLength + $i18n.outLength)+string-length(./sw:inOut)"/>
                                 </xsl:otherwise>
 
                             </xsl:choose>
@@ -494,7 +506,7 @@
                                         </xsl:when>
                                         
                                         <xsl:otherwise>
-                                            <xsl:value-of select="1+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])+string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[2]/*[1])])"/>
+                                            <xsl:value-of select="1+string-length($i18n/translations/terms/term[@index = string($nodeSet[1]/*[1]/*[1])])+string-length($i18n/translations/terms/term[@index = string($nodeSet[1]/*[2]/*[1])])"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:when>
@@ -511,7 +523,7 @@
                                         </xsl:when>
                                         
                                         <xsl:otherwise>
-                                            <xsl:value-of select="string-length($thisDocument/xsl:stylesheet/myData:translation/term[@index = string($nodeSet[1]/*[1]/*[1])])"/>
+                                            <xsl:value-of select="string-length($i18n/translations/terms/term[@index = string($nodeSet[1]/*[1]/*[1])])"/>
                                         </xsl:otherwise>
                                         
                                     </xsl:choose>
@@ -582,7 +594,7 @@
         <!-- HTML Document -->
         <!-- ============================== -->
 
-        <html>
+        <html lang="{$lang}" xml:lang="{$lang}">
             <head>
                 <script src="https://kit.fontawesome.com/7414123f18.js" crossorigin="anonymous"></script>
                 <meta charset="UTF-8"/>
@@ -647,27 +659,32 @@
                             </p>
                             <ul>
                                 <li>
-                                    <span class="semiBoldTypeFace">Date:</span>
+                                    <span class="semiBoldTypeFace"><xsl:value-of select="$i18n/translations/labels/label[@key='date']"/></span>
                                     <xsl:value-of
-                                        select="format-date(sw:program/sw:creationDate, '[D01] [MNn] [Y0001]')"
+                                        select="format-date(sw:program/sw:creationDate, $i18n/translations/formats/format[@key='dateFormat'])"
                                     />
                                 </li>
                                 <li>
-                                    <span class="semiBoldTypeFace">Pool Size:</span>
+                                    <span class="semiBoldTypeFace"><xsl:value-of select="$i18n/translations/labels/label[@key='poolSize']"/></span>
                                     <xsl:value-of select="myData:number(sw:program/sw:poolLength)"/>
                                 </li>
                                 <li>
-                                    <span class="semiBoldTypeFace">Units:</span>
-                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
+                                    <span class="semiBoldTypeFace"><xsl:value-of select="$i18n/translations/labels/label[@key='units']"/></span>
+                                    <xsl:call-template name="toDisplay">
+                                        <xsl:with-param name="fullTerm" select="sw:program/sw:lengthUnit"/>
+                                    </xsl:call-template>
                                 </li>
                                 <li>
-                                    <span class="semiBoldTypeFace">Length:</span>
+                                    <span class="semiBoldTypeFace"><xsl:value-of select="$i18n/translations/labels/label[@key='length']"/></span>
                                     <xsl:value-of select="myData:number(myData:showLength(sw:program))"/>
                                     <xsl:text> </xsl:text>
-                                    <xsl:value-of select="sw:program/sw:lengthUnit"/>
+                                    <xsl:call-template name="toDisplay">
+                                        <xsl:with-param name="fullTerm" select="sw:program/sw:lengthUnit"/>
+                                    </xsl:call-template>
                                     <xsl:text> / </xsl:text>
                                     <xsl:value-of select="myData:number(myData:showLength(sw:program) div (sw:program/sw:poolLength))"/>
-                                    <xsl:text> Laps</xsl:text>
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="$i18n/translations/labels/label[@key='lapsUnit']"/>
                                 </li>
                             </ul>
                         </div>
@@ -696,7 +713,7 @@
                     <xsl:otherwise>
 
                         <div class="bottom">
-                            <div class="footnote">made with: </div>
+                            <div class="footnote"><xsl:value-of select="$i18n/translations/labels/label[@key='madeWith']"/><xsl:text> </xsl:text></div>
                             <div class="logo">
                                 <a href="https://github.com/bartneck/swiML">
                                     <svg class='logoSvg' id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -818,12 +835,12 @@
                             </xsl:attribute>
                             <xsl:value-of select="myData:firstInst(.)"/>
                         </span>
-                        <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:text>&#160;Laps</xsl:text></xsl:if>
+                        <xsl:if test="(./descendant-or-self::sw:lengthAsLaps)"><xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='lapsUnit']"/></xsl:if>
                         <xsl:if test=".//sw:repetitionDescription">
                             <xsl:value-of select="concat('&#160;',sw:repetitionDescription)"/>
                         </xsl:if>
                         <xsl:call-template name="displayInst"/>
-                        <xsl:text>&#160;as</xsl:text>
+                        <xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='as']"/>
                     </div>
 
                     <!-- only display repetition symbol if more than one child instruction-->
@@ -961,9 +978,9 @@
                     
                     
                 </span>
-                <xsl:if test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps"><xsl:text>&#160;Laps</xsl:text></xsl:if>
+                <xsl:if test="every $node in .//sw:length satisfies $node/sw:lengthAsLaps"><xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='lapsUnit']"/></xsl:if>
                 <xsl:call-template name="displayInst"/>
-                <xsl:text>&#160;as</xsl:text>
+                <xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='as']"/>
             </div>
             <div class="continueSymbol"><xsl:text>&#160;</xsl:text></div>
             <div class="continueContent">
@@ -1267,7 +1284,7 @@
     </xsl:template>
 
     <xsl:template match="sw:inOut">
-        <xsl:value-of select="concat('&#160;', ., ' in ',1,' out')"/>
+        <xsl:value-of select="concat('&#160;', ., ' ', $i18n/translations/labels/label[@key='in'], ' ', 1, ' ', $i18n/translations/labels/label[@key='out'])"/>
     </xsl:template>
 
     <!-- Stroke -->
@@ -1280,7 +1297,7 @@
 
     <!-- Kick -->
     <xsl:template match="sw:orientation">
-        <xsl:text>&#160;K&#160;</xsl:text>
+        <xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='kick']"/><xsl:text>&#160;</xsl:text>
         <xsl:call-template name="toDisplay">
             <xsl:with-param name="fullTerm" select="."/>
         </xsl:call-template>
@@ -1291,7 +1308,7 @@
     </xsl:template>
 
     <xsl:template match="sw:standardKick">
-        <xsl:text>&#160;K&#160;</xsl:text>
+        <xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='kick']"/><xsl:text>&#160;</xsl:text>
         <xsl:call-template name="toDisplay">
             <xsl:with-param name="fullTerm" select="."/>
         </xsl:call-template>
@@ -1299,7 +1316,7 @@
 
     <!-- Drill -->
     <xsl:template match="sw:drill">
-        <xsl:text>&#160;D&#160;</xsl:text>
+        <xsl:text>&#160;</xsl:text><xsl:value-of select="$i18n/translations/labels/label[@key='drill']"/><xsl:text>&#160;</xsl:text>
         <xsl:if test="sw:drillStroke">
             <xsl:call-template name="toDisplay">
                 <xsl:with-param name="fullTerm" select="sw:drillStroke"/>
@@ -1324,78 +1341,19 @@
     <!-- ============================== -->
     <!-- Helper -->
     <!-- ============================== -->
-    <xsl:variable name="thisDocument" select="document('')"/>
 
     <xsl:template name="toDisplay">
         <xsl:param name="fullTerm"/>
-        <xsl:value-of
-            select="$thisDocument/xsl:stylesheet/myData:translation/term[@index = string($fullTerm)]"
-        />
+        <xsl:variable name="translation" select="$i18n/translations/terms/term[@index = string($fullTerm)]"/>
+        <xsl:choose>
+            <xsl:when test="$translation">
+                <xsl:value-of select="$translation"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$fullTerm"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-
-    <myData:translation>
-        <term index="butterfly">FL</term>
-        <term index="backstroke">BK</term>
-        <term index="breaststroke">BR</term>
-        <term index="freestyle">FR</term>
-        <term index="individualMedley">IM</term>
-        <term index="reverseIndividualMedley">IM Reverse</term>
-        <term index="individualMedleyOverlap">IM Overlap</term>
-        <term index="individualMedleyOrder">IM Order</term>
-        <term index="reverseIndividualMedleyOrder">IM Reverse Order</term>
-        <term index="any">Any</term>
-        <term index="nr1">Nr 1</term>
-        <term index="nr2">Nr 2</term>
-        <term index="nr3">Nr 3</term>
-        <term index="nr4">Nr 4</term>
-        <term index="notButterfly">Not FL</term>
-        <term index="notBackstroke">Not BK</term>
-        <term index="notBreaststroke">Not BR</term>
-        <term index="notFreestyle">Not FR</term>
-        <term index="flutter">Flutter</term>
-        <term index="dolphin">Dolphin</term>
-        <term index="scissor">Scissor</term>
-        <term index="front">Front</term>
-        <term index="back">Back</term>
-        <term index="left">Left</term>
-        <term index="right">Right</term>
-        <term index="side">Side</term>
-        <term index="vertical">Vertical</term>
-        <term index="easy">Easy</term>
-        <term index="threshold">Threshold</term>
-        <term index="endurance">Endurance</term>
-        <term index="racePace">Race Pace</term>
-        <term index="max">Max</term>
-        <term index="6KickDrill">6KD</term>
-        <term index="8KickDrill">8KD</term>
-        <term index="10KickDrill">10KD</term>
-        <term index="12KickDrill">12KD</term>
-        <term index="fingerTrails">FT</term>
-        <term index="123">123</term>
-        <term index="bigDog">Big Dog</term>
-        <term index="scull">Scull</term>
-        <term index="singleArm">Single Arm</term>
-        <term index="technic">Technic</term>
-        <term index="dogPaddle">Dog Paddle</term>
-        <term index="tarzan">Tarzan</term>
-        <term index="fist">Fist</term>
-        <term index="3Kick1Pull">3K1P</term>
-        <term index="3Kick1Pull">2K1P</term>
-        <term index="3Kick1Pull">3P1K</term>
-        <term index="3Kick1Pull">2P1K</term>
-        <term index="board">Board</term>
-        <term index="pads">Pads</term>
-        <term index="pullBuoy">Pullbuoy</term>
-        <term index="fins">Fins</term>
-        <term index="snorkel">Snorkel</term>
-        <term index="chute">Chute</term>
-        <term index="stretchCord">Stretch Cord</term>
-        <term index="other">other</term>
-        <term index="breath">b</term>
-        <term index="laps">laps</term>
-        <term index="meters">m</term>
-        <term index="yards">yd</term>
-    </myData:translation>
     
     <xsl:function name="myData:roman" as="xs:string">
         <xsl:param name="value" as="xs:integer"/>
